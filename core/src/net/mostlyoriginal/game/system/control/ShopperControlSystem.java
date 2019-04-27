@@ -3,8 +3,11 @@ package net.mostlyoriginal.game.system.control;
 import com.artemis.E;
 import com.artemis.FluidIteratingSystem;
 import com.artemis.annotations.All;
+import com.badlogic.gdx.math.MathUtils;
 import net.mostlyoriginal.game.GameRules;
 import net.mostlyoriginal.game.component.Shopper;
+import net.mostlyoriginal.game.screen.GameScreen;
+import net.mostlyoriginal.game.system.map.MapSpawnerSystem;
 
 /**
  * @author Daan van Yperen
@@ -15,23 +18,41 @@ public class ShopperControlSystem extends FluidIteratingSystem {
     PickupManager pickupManager;
 
     @Override
-    protected void process(E e) {
-        int itemsLifted = e.getLifter().itemsLifted;
-        if ( itemsLifted == 1 ) {
-            e.getLifter().payOnPickup=true;
-            attemptToExchangeCarriedItem(e);
-        }
+    protected void end() {
+        super.end();
+    }
 
-        if ( itemsLifted == 2) {
+    @Override
+    protected void process(E e) {
+        Shopper shopper = e.getShopper();
+        shopper.age += world.delta;
+
+        if (timeToLeaveFor(shopper)) {
             walkOffscreen(e);
             deleteWhenOffscreen(e);
+        } else {
+            int itemsLifted = e.getLifter().itemsLifted;
+
+            if (itemsLifted == 1) {
+                e.getLifter().payOnPickup = true;
+                attemptToExchangeCarriedItem(e);
+            }
+
+            if (itemsLifted == 2) {
+                walkOffscreen(e);
+                deleteWhenOffscreen(e);
+            }
         }
 
     }
 
+    private boolean timeToLeaveFor(Shopper shopper) {
+        return shopper.age >= shopper.leaveAge;
+    }
+
     private void deleteWhenOffscreen(E e) {
-        if ( e.posX() > GameRules.SCREEN_WIDTH ) {
-            if ( e.liftingId() != -1 ) {
+        if (e.posX() > GameRules.SCREEN_WIDTH) {
+            if (e.liftingId() != -1) {
                 E.E(e.liftingId()).deleteFromWorld();
             }
             e.deleteFromWorld();
@@ -47,7 +68,7 @@ public class ShopperControlSystem extends FluidIteratingSystem {
         if (itemOnFloor != null) {
 
             // we only exchange when we get a desired item.
-            if ( itemOnFloor.itemType().equals(e.getDesire().desiredItem)) {
+            if (itemOnFloor.itemType().equals(e.getDesire().desiredItem)) {
                 e.lifterDestroyWhenDropped(false);
             }
 

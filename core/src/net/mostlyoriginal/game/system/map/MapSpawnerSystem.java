@@ -9,6 +9,7 @@ import net.mostlyoriginal.game.GameRules;
 import net.mostlyoriginal.game.component.Hopper;
 import net.mostlyoriginal.game.component.Machine;
 import net.mostlyoriginal.game.manager.ItemRepository;
+import net.mostlyoriginal.game.screen.GameScreen;
 import net.mostlyoriginal.game.system.common.FluidSystem;
 
 import java.util.ArrayList;
@@ -61,8 +62,8 @@ public class MapSpawnerSystem extends BaseSystem {
         } else if ("machine".equals(entity)) {
             spawnMachine(x, y, type);
             return true;
-        } else if ("shopper".equals(entity)) {
-            spawnShopper(x, y);
+        } else if ("shopperspawner".equals(entity)) {
+            spawnShopperSpawner(x, y);
             return true;
         }
 
@@ -100,13 +101,14 @@ public class MapSpawnerSystem extends BaseSystem {
 
 
 
-    private void spawnShopper(int x, int y) {
+    public void spawnShopper(int x, int y) {
 
         String desiredItem = itemRepository.random();
         String rewardItem  = itemRepository.random();
 
         E.E()
                 .gridPos(x, y)
+                .pos(GameRules.SCREEN_WIDTH/(float)GameRules.CAMERA_ZOOM+1,y * GameRules.CELL_SIZE)
                 .anim("customer")
                 .lifterAttemptLifting(true)
                 .lifterDestroyWhenDropped(true)
@@ -115,6 +117,12 @@ public class MapSpawnerSystem extends BaseSystem {
                 .renderLayer(GameRules.LAYER_SHOPPER);
 
         spawnItem(x,y, rewardItem);
+    }
+
+
+    private void spawnShopperSpawner(int x, int y) {
+        E.E()
+                .gridPos(x, y).shopperSpawner();
     }
 
 

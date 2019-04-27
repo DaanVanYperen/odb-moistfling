@@ -60,6 +60,8 @@ public class GameScreen extends WorldScreen {
                         new MapSystem(),
                         new MapCollisionSystem(),
 
+                        new ShopperSpawnSystem(),
+
                         new PlayerControlSystem(),
                         new ShopperControlSystem(),
 

@@ -84,7 +84,7 @@
  </tile>
  <tile id="129">
   <properties>
-   <property name="entity" value="shopper"/>
+   <property name="entity" value="shopperspawner"/>
   </properties>
  </tile>
  <tile id="147">
@@ -168,67 +168,67 @@
  <tile id="179">
   <properties>
    <property name="entity" value="item"/>
-   <property name="type" value=""/>
+   <property name="type" value="item_boots"/>
   </properties>
  </tile>
  <tile id="180">
   <properties>
    <property name="entity" value="item"/>
-   <property name="type" value=""/>
+   <property name="type" value="item_bow"/>
   </properties>
  </tile>
  <tile id="181">
   <properties>
    <property name="entity" value="item"/>
-   <property name="type" value=""/>
+   <property name="type" value="item_sword"/>
   </properties>
  </tile>
  <tile id="182">
   <properties>
    <property name="entity" value="item"/>
-   <property name="type" value=""/>
+   <property name="type" value="item_winged_boots"/>
   </properties>
  </tile>
  <tile id="183">
   <properties>
    <property name="entity" value="item"/>
-   <property name="type" value=""/>
+   <property name="type" value="item_magical_sword"/>
   </properties>
  </tile>
  <tile id="184">
   <properties>
    <property name="entity" value="item"/>
-   <property name="type" value=""/>
+   <property name="type" value="item_enchanted_bow"/>
   </properties>
  </tile>
  <tile id="185">
   <properties>
    <property name="entity" value="item"/>
-   <property name="type" value=""/>
+   <property name="type" value="item_enchanted_armor"/>
   </properties>
  </tile>
  <tile id="186">
   <properties>
    <property name="entity" value="item"/>
-   <property name="type" value=""/>
+   <property name="type" value="item_magical_staff"/>
   </properties>
  </tile>
  <tile id="187">
   <properties>
    <property name="entity" value="item"/>
-   <property name="type" value=""/>
+   <property name="type" value="item_ingot"/>
   </properties>
  </tile>
  <tile id="188">
   <properties>
    <property name="entity" value="item"/>
-   <property name="type" value=""/>
+   <property name="type" value="item_wood"/>
   </properties>
  </tile>
  <tile id="189">
   <properties>
    <property name="entity" value="item"/>
-   <property name="type" value=""/>
+   <property name="type" value="item_mystical_tome"/>
   </properties>
  </tile>
  <tile id="190">
