@@ -69,7 +69,6 @@ public class MapSpawnerSystem extends BaseSystem {
     private void spawnMachine(int x, int y, String type) {
         E altar = E.E()
                 .gridPos(x, y)
-                .pos()
                 .anim("altar")
                 .machineType(Machine.Type.ALTAR)
                 .renderLayer(GameRules.LAYER_MACHINES);
@@ -79,7 +78,6 @@ public class MapSpawnerSystem extends BaseSystem {
     private void spawnHopper(int x, int y) {
         E hopper = E.E()
                 .gridPos(x, y)
-                .pos()
                 .anim("hopper")
                 .hopper()
                 .renderLayer(GameRules.LAYER_MACHINES);
@@ -89,16 +87,15 @@ public class MapSpawnerSystem extends BaseSystem {
     private void spawnPlayer(int x, int y) {
         E.E()
                 .gridPos(x, y)
-                .pos()
                 .anim("player")
                 .itemType("item_player")
+                .player()
                 .renderLayer(GameRules.LAYER_PLAYER);
     }
 
     public void spawnItem(int x, int y, String type) {
         E.E()
                 .gridPos(x, y)
-                .pos()
                 .itemType(type)
                 .anim(itemRepository.get(type).sprite)
                 .renderLayer(GameRules.LAYER_ITEM);
