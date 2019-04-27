@@ -260,5 +260,21 @@
       "width": 32,
       "height": 48,
     },
+	{
+      "id": "hopper",
+      "comment": "Hopper.",
+      "x": 96,
+      "y": 64,
+      "width": 32,
+      "height": 32,
+    },
+	{
+      "id": "altar",
+      "comment": "Alter.",
+      "x": 128,
+      "y": 64,
+      "width": 32,
+      "height": 32,
+    },
   ]
 }
