@@ -27,7 +27,6 @@ public class MachineRecipeSystem extends FluidSystem {
         if (!machine.contents.isEmpty()) {
             // we can just bruteforce this as there won't be many machines initially.
             RecipeData recipe = recipeRepository.firstMatching(machine.contents);
-            System.out.println("Contents: " + machine.contents);
             if (recipe != null) {
                 executeRecipe(machine, e.getGridPos(), recipe);
             }

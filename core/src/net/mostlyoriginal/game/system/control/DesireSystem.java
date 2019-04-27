@@ -24,12 +24,16 @@ public class DesireSystem extends FluidIteratingSystem {
         if (desire.desireIndicatorId == -1) {
             final E indicator = E.E()
                     .posX(e.posX())
-                    .posY(e.posY()+ DESIRE_INDICATOR_OFFSET_Y)
+                    .posY(e.posY() + DESIRE_INDICATOR_OFFSET_Y)
                     .anim(itemRepository.get(desire.desiredItem).sprite)
                     .renderLayer(GameRules.LAYER_DESIRE_INDICATOR)
-                    .tint(1f,1f,1f,0.5f);
+                    .tint(1f, 1f, 1f, 0.5f);
             desire.desireIndicatorId =
                     indicator.id();
         }
+
+        // follow shopper.
+        E.E(desire.desireIndicatorId).posX(e.posX())
+                .posY(e.posY() + DESIRE_INDICATOR_OFFSET_Y);
     }
 }

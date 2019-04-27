@@ -108,7 +108,9 @@ public class MapSpawnerSystem extends BaseSystem {
                 .gridPos(x, y)
                 .anim("customer")
                 .lifterAttemptLifting(true)
+                .lifterDestroyWhenDropped(true)
                 .desireDesiredItem(desiredItem)
+                .shopper()
                 .renderLayer(GameRules.LAYER_SHOPPER);
 
         spawnItem(x,y, rewardItem);

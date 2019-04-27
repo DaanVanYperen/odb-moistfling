@@ -21,11 +21,9 @@ import net.mostlyoriginal.game.system.MyAnimRenderSystem;
 public class PickupSystem extends FluidIteratingSystem {
 
     private static final int CARRIED_OBJECT_LIFTING_HEIGHT = 0;
-    @All({CanPickup.class, GridPos.class})
-    @Exclude(Moving.class)
-    private EntitySubscription pickupables;
 
     RenderBatchingSystem renderBatchingSystem;
+    PickupManager pickupManager;
 
     @Override
     protected void process(E e) {
@@ -51,37 +49,38 @@ public class PickupSystem extends FluidIteratingSystem {
 
     private void attemptDrop(E actor) {
         E item = E.E(actor.liftingId());
-        if (!actor.isMoving() && !item.isMoving() && anythingAt(actor)) {
+        if (!actor.isMoving() && !item.isMoving()) {
+            E itemOnFloor = pickupManager.getOverlapping(actor);
+
             actor.removeLifting();
+
             item.gridPos(actor.getGridPos()).removeLifted().renderLayer(GameRules.LAYER_ITEM);
             renderBatchingSystem.sortedDirty=true;
             System.out.println("Drop!");
+
+            if ( actor.lifterDestroyWhenDropped() ) {
+                item.deleteFromWorld();
+            }
+
+            if ( itemOnFloor != null ) {
+                attemptPickup(actor, itemOnFloor);
+                actor.lifterAttemptLifting(true); // we swapped something, ontinue lifting.
+            }
         }
     }
 
-    private boolean anythingAt(E actor) {
-        return getOverlapping(actor) == null;
+    private void attemptPickup(E actor) {
+        E item = pickupManager.getOverlapping(actor);
+        attemptPickup(actor, item);
     }
 
-    private void attemptPickup(E actor) {
-        E item = getOverlapping(actor);
+    private void attemptPickup(E actor, E item) {
         if (item != null) {
             actor.liftingId(item.id());
+            actor.getLifter().itemsLifted++;
             item.removeGridPos().lifted().renderLayer(GameRules.LAYER_ITEM_CARRIED);
             renderBatchingSystem.sortedDirty=true;
             System.out.println("Pickup!");
         }
-    }
-
-    private E getOverlapping(E actor) {
-        IntBag pickupEntities = pickupables.getEntities();
-        E overlaps = null;
-        for (int i = 0, s = pickupEntities.size(); i < s; i++) {
-            E item = E.E(pickupEntities.get(i));
-            if (!item.hasLifted() && item.getGridPos().overlaps(actor.getGridPos())) {
-                overlaps = item;
-            }
-        }
-        return overlaps;
     }
 }

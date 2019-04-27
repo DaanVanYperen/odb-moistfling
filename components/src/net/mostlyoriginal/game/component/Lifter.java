@@ -7,4 +7,6 @@ import com.artemis.Component;
  */
 public class Lifter extends Component {
     public boolean attemptLifting;
+    public int itemsLifted = 0;
+    public boolean destroyWhenDropped=false;
 }

@@ -13,9 +13,7 @@ import net.mostlyoriginal.api.system.graphics.RenderBatchingSystem;
 import net.mostlyoriginal.game.manager.ItemRepository;
 import net.mostlyoriginal.game.manager.RecipeRepository;
 import net.mostlyoriginal.game.system.*;
-import net.mostlyoriginal.game.system.control.DesireSystem;
-import net.mostlyoriginal.game.system.control.PlayerControlSystem;
-import net.mostlyoriginal.game.system.control.PickupSystem;
+import net.mostlyoriginal.game.system.control.*;
 import net.mostlyoriginal.game.system.map.*;
 import net.mostlyoriginal.game.system.mechanics.HopperDetectionSystem;
 import net.mostlyoriginal.game.system.mechanics.MachineHopperDetectionSystem;
@@ -47,7 +45,8 @@ public class GameScreen extends WorldScreen {
                         new FontManager(),
                         new TagManager(),
                         new ItemRepository(),
-                        new RecipeRepository()
+                        new RecipeRepository(),
+                        new PickupManager()
                         //new TutorialService()
                 )
                 .with(
@@ -61,6 +60,8 @@ public class GameScreen extends WorldScreen {
                         new MapCollisionSystem(),
 
                         new PlayerControlSystem(),
+                        new ShopperControlSystem(),
+
                         new PickupSystem(),
                         new DesireSystem(),
                         new GridPosSystem(),
