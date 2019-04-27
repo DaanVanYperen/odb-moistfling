@@ -1,0 +1,49 @@
+Music by Michiel "Flaterectomy" Barten
+Original sound recordings by Michiel "Flaterectomy" Barten and Chris "MeatMachine" Napier
+
+Other recordings used in 'I Clean Toilet' for Ludum Dare #37
+
+plunger_01.mp3, 
+plunger_02.mp3, 
+plunger_03.mp3, 
+plunger_04.mp3, 
+plunger_05.mp3:
+
+- plunger in toilet
+- theshaggyfreak at Freesound
+- https://www.freesound.org/people/theshaggyfreak/sounds/274996/
+
+mop_01.mp3,
+mop_02.mp3,
+mop_03.mp3,
+mop_04.mp3,
+mop_05.mp3:
+
+- mop_dripping_in_water_bucket.wav
+- daboy291 at Freesound
+- https://www.freesound.org/people/daboy291/sounds/138073/
+
+victory.mp3
+
+- telethon cheering2m57s060213.mp3
+- John Sipos at Freesound
+- https://www.freesound.org/people/John%20Sipos/sounds/190597/
+
+- cheering church 3.wav
+- pan14 at Freesound
+- https://www.freesound.org/people/pan14/sounds/266185/
+
+defeat.mp3
+
+- Boo!.mp3
+- freki3333 at Freesound
+- https://www.freesound.org/people/freki3333/sounds/131594/
+
+- Boo 5 only a couple people.wav
+- jayfrosting at Freesound
+- https://www.freesound.org/people/jayfrosting/sounds/333393/
+
+- boo 01.wav
+- Corsica_S at Freesound
+- https://www.freesound.org/people/Corsica_S/sounds/336997/
+
