@@ -25,6 +25,8 @@ public class ItemRepository extends BaseSystem {
     }
 
     public ItemData get(String type) {
-        return itemLibrary.getById(type);
+        ItemData byId = itemLibrary.getById(type);
+        if ( byId == null ) throw new RuntimeException("unknown item type " + type);
+        return byId;
     }
 }

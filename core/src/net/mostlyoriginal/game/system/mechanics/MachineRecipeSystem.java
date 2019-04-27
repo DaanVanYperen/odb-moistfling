@@ -27,6 +27,7 @@ public class MachineRecipeSystem extends FluidSystem {
         if (!machine.contents.isEmpty()) {
             // we can just bruteforce this as there won't be many machines initially.
             RecipeData recipe = recipeRepository.firstMatching(machine.contents);
+            System.out.println("Contents: " + machine.contents);
             if (recipe != null) {
                 executeRecipe(machine, e.getGridPos(), recipe);
             }
@@ -36,7 +37,7 @@ public class MachineRecipeSystem extends FluidSystem {
     private void executeRecipe(Machine machine, GridPos machineGridPos, RecipeData recipe) {
         consumeIngredients(machine);
         spawnProduce(machineGridPos, recipe);
-        System.out.println("Would produce something here! :D");
+        System.out.println("Recipe " + recipe.id + " triggered.");
     }
 
     private void spawnProduce(GridPos machineGridPos, RecipeData recipe) {

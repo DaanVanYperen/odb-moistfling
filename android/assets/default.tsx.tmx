@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tileset version="1.2" tiledversion="1.2.3" name="default" tilewidth="32" tileheight="32" tilecount="1024" columns="32">
+ <image source="tileset.png" width="1024" height="1024"/>
+ <tile id="2">
+  <properties>
+   <property name="solid" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="3">
+  <properties>
+   <property name="solid" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="4">
+  <properties>
+   <property name="solid" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="5">
+  <properties>
+   <property name="solid" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="6">
+  <properties>
+   <property name="solid" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="7">
+  <properties>
+   <property name="solid" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="34">
+  <properties>
+   <property name="solid" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="35">
+  <properties>
+   <property name="solid" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="36">
+  <properties>
+   <property name="solid" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="37">
+  <properties>
+   <property name="solid" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="38">
+  <properties>
+   <property name="solid" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="39">
+  <properties>
+   <property name="solid" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="66">
+  <properties>
+   <property name="entity" value="hopper"/>
+  </properties>
+ </tile>
+ <tile id="67">
+  <properties>
+   <property name="entity" value="hopper"/>
+  </properties>
+ </tile>
+ <tile id="68">
+  <properties>
+   <property name="entity" value="machine"/>
+   <property name="type" value="ALTAR"/>
+  </properties>
+ </tile>
+ <tile id="128">
+  <properties>
+   <property name="entity" value="player"/>
+  </properties>
+ </tile>
+ <tile id="147">
+  <properties>
+   <property name="entity" value="item"/>
+   <property name="type" value="item_chicken"/>
+  </properties>
+ </tile>
+ <tile id="148">
+  <properties>
+   <property name="entity" value="item"/>
+   <property name="type" value="item_drumstick"/>
+  </properties>
+ </tile>
+ <tile id="149">
+  <properties>
+   <property name="entity" value="item"/>
+   <property name="type" value="item_imp"/>
+  </properties>
+ </tile>
+ <tile id="150">
+  <properties>
+   <property name="entity" value="item"/>
+   <property name="type" value="item_demon_hide"/>
+  </properties>
+ </tile>
+ <tile id="151">
+  <properties>
+   <property name="entity" value="item"/>
+   <property name="type" value=""/>
+  </properties>
+ </tile>
+ <tile id="152">
+  <properties>
+   <property name="entity" value="item"/>
+   <property name="type" value=""/>
+  </properties>
+ </tile>
+ <tile id="153">
+  <properties>
+   <property name="entity" value="item"/>
+   <property name="type" value=""/>
+  </properties>
+ </tile>
+ <tile id="154">
+  <properties>
+   <property name="entity" value="item"/>
+   <property name="type" value=""/>
+  </properties>
+ </tile>
+ <tile id="155">
+  <properties>
+   <property name="entity" value="item"/>
+   <property name="type" value=""/>
+  </properties>
+ </tile>
+ <tile id="156">
+  <properties>
+   <property name="entity" value="item"/>
+   <property name="type" value=""/>
+  </properties>
+ </tile>
+ <tile id="157">
+  <properties>
+   <property name="entity" value="item"/>
+   <property name="type" value=""/>
+  </properties>
+ </tile>
+ <tile id="158">
+  <properties>
+   <property name="entity" value="item"/>
+   <property name="type" value=""/>
+  </properties>
+ </tile>
+ <tile id="159">
+  <properties>
+   <property name="entity" value="item"/>
+   <property name="type" value=""/>
+  </properties>
+ </tile>
+ <tile id="179">
+  <properties>
+   <property name="entity" value="item"/>
+   <property name="type" value=""/>
+  </properties>
+ </tile>
+ <tile id="180">
+  <properties>
+   <property name="entity" value="item"/>
+   <property name="type" value=""/>
+  </properties>
+ </tile>
+ <tile id="181">
+  <properties>
+   <property name="entity" value="item"/>
+   <property name="type" value=""/>
+  </properties>
+ </tile>
+ <tile id="182">
+  <properties>
+   <property name="entity" value="item"/>
+   <property name="type" value=""/>
+  </properties>
+ </tile>
+ <tile id="183">
+  <properties>
+   <property name="entity" value="item"/>
+   <property name="type" value=""/>
+  </properties>
+ </tile>
+ <tile id="184">
+  <properties>
+   <property name="entity" value="item"/>
+   <property name="type" value=""/>
+  </properties>
+ </tile>
+ <tile id="185">
+  <properties>
+   <property name="entity" value="item"/>
+   <property name="type" value=""/>
+  </properties>
+ </tile>
+ <tile id="186">
+  <properties>
+   <property name="entity" value="item"/>
+   <property name="type" value=""/>
+  </properties>
+ </tile>
+ <tile id="187">
+  <properties>
+   <property name="entity" value="item"/>
+   <property name="type" value=""/>
+  </properties>
+ </tile>
+ <tile id="188">
+  <properties>
+   <property name="entity" value="item"/>
+   <property name="type" value=""/>
+  </properties>
+ </tile>
+ <tile id="189">
+  <properties>
+   <property name="entity" value="item"/>
+   <property name="type" value=""/>
+  </properties>
+ </tile>
+ <tile id="190">
+  <properties>
+   <property name="entity" value="item"/>
+   <property name="type" value=""/>
+  </properties>
+ </tile>
+ <tile id="191">
+  <properties>
+   <property name="entity" value="item"/>
+   <property name="type" value=""/>
+  </properties>
+ </tile>
+ <tile id="211">
+  <properties>
+   <property name="entity" value="item"/>
+   <property name="type" value=""/>
+  </properties>
+ </tile>
+ <tile id="212">
+  <properties>
+   <property name="entity" value="item"/>
+   <property name="type" value="item_chick"/>
+  </properties>
+ </tile>
+ <tile id="213">
+  <properties>
+   <property name="entity" value="item"/>
+   <property name="type" value=""/>
+  </properties>
+ </tile>
+ <tile id="214">
+  <properties>
+   <property name="entity" value="item"/>
+   <property name="type" value=""/>
+  </properties>
+ </tile>
+ <tile id="215">
+  <properties>
+   <property name="entity" value="item"/>
+   <property name="type" value=""/>
+  </properties>
+ </tile>
+ <tile id="216">
+  <properties>
+   <property name="entity" value="item"/>
+   <property name="type" value=""/>
+  </properties>
+ </tile>
+ <tile id="217">
+  <properties>
+   <property name="entity" value="item"/>
+   <property name="type" value=""/>
+  </properties>
+ </tile>
+ <tile id="218">
+  <properties>
+   <property name="entity" value="item"/>
+   <property name="type" value=""/>
+  </properties>
+ </tile>
+ <tile id="219">
+  <properties>
+   <property name="entity" value="item"/>
+   <property name="type" value=""/>
+  </properties>
+ </tile>
+ <tile id="220">
+  <properties>
+   <property name="entity" value="item"/>
+   <property name="type" value=""/>
+  </properties>
+ </tile>
+ <tile id="221">
+  <properties>
+   <property name="entity" value="item"/>
+   <property name="type" value=""/>
+  </properties>
+ </tile>
+ <tile id="222">
+  <properties>
+   <property name="entity" value="item"/>
+   <property name="type" value=""/>
+  </properties>
+ </tile>
+ <tile id="223">
+  <properties>
+   <property name="entity" value="item"/>
+   <property name="type" value=""/>
+  </properties>
+ </tile>
+</tileset>
