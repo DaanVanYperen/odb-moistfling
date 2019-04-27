@@ -58,7 +58,7 @@ public class PickupSystem extends FluidIteratingSystem {
 
             item.gridPos(actor.getGridPos()).removeLifted().renderLayer(GameRules.LAYER_ITEM);
             renderBatchingSystem.sortedDirty=true;
-            System.out.println("Drop!");
+            //System.out.println("Drop!");
 
             if ( actor.lifterPayOnPickup() ) {
                 int goldValue = itemRepository.get(item.itemType()).gold;
@@ -89,7 +89,7 @@ public class PickupSystem extends FluidIteratingSystem {
             actor.getLifter().itemsLifted++;
             item.removeGridPos().lifted().renderLayer(GameRules.LAYER_ITEM_CARRIED);
             renderBatchingSystem.sortedDirty=true;
-            System.out.println("Pickup!");
+            //System.out.println("Pickup!");
         }
     }
 }

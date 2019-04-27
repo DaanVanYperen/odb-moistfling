@@ -34,18 +34,23 @@ public class GridPosSystem extends FluidIteratingSystem {
             pos.x = goalX;
             pos.y = goalY;
         } else {
-            float dx = MathUtils.clamp(goalX - pos.x, -1, 1);
-            float dy = MathUtils.clamp(goalY - pos.y, -1, 1);
+            if ( gridPos.deriveFromPos ) {
+                gridPos.x = (int)((pos.x + e.boundsCx()) / GameRules.CELL_SIZE);
+                gridPos.y = (int)((pos.y + e.boundsMiny()+4) / GameRules.CELL_SIZE);
+            } else {
+                float dx = MathUtils.clamp(goalX - pos.x, -1, 1);
+                float dy = MathUtils.clamp(goalY - pos.y, -1, 1);
 
-            pos.x = pos.x + (dx * world.delta * MOVEMENT_SPEED);
-            pos.y = pos.y + (dy * world.delta * MOVEMENT_SPEED);
+                pos.x = pos.x + (dx * world.delta * MOVEMENT_SPEED);
+                pos.y = pos.y + (dy * world.delta * MOVEMENT_SPEED);
 
-            boolean atTarget = MathUtils.isEqual(pos.x, goalX, 1f) && MathUtils.isEqual(pos.y, goalY, 1f);
-            if ( atTarget ) {
-                pos.x = goalX;
-                pos.y = goalY;
+                boolean atTarget = MathUtils.isEqual(pos.x, goalX, 1f) && MathUtils.isEqual(pos.y, goalY, 1f);
+                if (atTarget) {
+                    pos.x = goalX;
+                    pos.y = goalY;
+                }
+                e.moving(!atTarget);
             }
-            e.moving(!atTarget);
         }
 
     }

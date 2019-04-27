@@ -6,6 +6,7 @@ import com.artemis.FluidIteratingSystem;
 import com.artemis.annotations.All;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.math.Vector2;
 import net.mostlyoriginal.api.utils.MapMask;
 import net.mostlyoriginal.game.component.GridPos;
 import net.mostlyoriginal.game.component.Item;
@@ -20,6 +21,7 @@ import java.security.Key;
 @All(Player.class)
 public class PlayerControlSystem extends FluidIteratingSystem {
 
+    private static final float PLAYER_MOVEMENT_SPEED = 220f;
     private MapSystem mapSystem;
     private MapMask solid;
 
@@ -39,6 +41,8 @@ public class PlayerControlSystem extends FluidIteratingSystem {
         }
     }
 
+    Vector2 vector2 = new Vector2();
+
     private void handleMovement(E e) {
         final GridPos gridPos = e.getGridPos();
 
@@ -51,13 +55,12 @@ public class PlayerControlSystem extends FluidIteratingSystem {
         int dy = Gdx.input.isKeyPressed(Input.Keys.W) ? 1 :
                 Gdx.input.isKeyPressed(Input.Keys.S) ? -1 : 0;
 
-        int tx = gridPos.x + dx;
-        int ty = gridPos.y + dy;
+        Vector2 movementVector = vector2.set(dx, dy).nor();
 
-        if (!solid.atGrid(tx, ty, true)) {
-            gridPos.x = tx;
-            gridPos.y = ty;
-        }
+
+        e.getPhysics().vx = movementVector.x * PLAYER_MOVEMENT_SPEED * 1.1f;
+        e.getPhysics().vy = movementVector.y * PLAYER_MOVEMENT_SPEED;
+        e.getPhysics().friction = 0;
     }
 
 }

@@ -8,6 +8,7 @@ import com.artemis.Component;
 public class GridPos extends Component {
     public int x;
     public int y;
+    public boolean deriveFromPos=false;
 
     public void set(int x, int y) {
         this.x = x;

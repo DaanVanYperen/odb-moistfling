@@ -10,6 +10,7 @@ import net.mostlyoriginal.api.manager.FontManager;
 import net.mostlyoriginal.api.screen.core.WorldScreen;
 import net.mostlyoriginal.api.system.camera.CameraSystem;
 import net.mostlyoriginal.api.system.graphics.RenderBatchingSystem;
+import net.mostlyoriginal.api.system.physics.PhysicsSystem;
 import net.mostlyoriginal.game.manager.ItemRepository;
 import net.mostlyoriginal.game.manager.RecipeRepository;
 import net.mostlyoriginal.game.system.*;
@@ -58,13 +59,15 @@ public class GameScreen extends WorldScreen {
 
                         new MapSpawnerSystem(),
                         new MapSystem(),
-                        new MapCollisionSystem(),
 
                         new ShopperSpawnSystem(),
 
                         new PlayerControlSystem(),
+                        new MapCollisionSystem(),
+
                         new ShopperControlSystem(),
 
+                        new MyPhysicsSystem(),
                         new PickupSystem(),
                         new DesireSystem(),
                         new GridPosSystem(),

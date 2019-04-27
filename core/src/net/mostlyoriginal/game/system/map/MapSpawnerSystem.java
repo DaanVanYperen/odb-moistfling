@@ -91,9 +91,12 @@ public class MapSpawnerSystem extends BaseSystem {
     private void spawnPlayer(int x, int y) {
         E.E()
                 .gridPos(x, y)
+                .gridPosDeriveFromPos(true)
                 .anim("player_kid")
                 .itemType("item_player")
+                .bounds(4,4,16-4,48-4)
                 .player()
+                .physics()
                 .tag("player")
                 .lifter()
                 .renderLayer(GameRules.LAYER_PLAYER);
