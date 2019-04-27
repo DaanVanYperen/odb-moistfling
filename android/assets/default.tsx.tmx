@@ -82,6 +82,11 @@
    <property name="entity" value="player"/>
   </properties>
  </tile>
+ <tile id="129">
+  <properties>
+   <property name="entity" value="shopper"/>
+  </properties>
+ </tile>
  <tile id="147">
   <properties>
    <property name="entity" value="item"/>

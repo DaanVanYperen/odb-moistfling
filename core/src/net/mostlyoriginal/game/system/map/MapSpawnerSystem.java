@@ -61,6 +61,9 @@ public class MapSpawnerSystem extends BaseSystem {
         } else if ("machine".equals(entity)) {
             spawnMachine(x, y, type);
             return true;
+        } else if ("shopper".equals(entity)) {
+            spawnShopper(x, y);
+            return true;
         }
 
         return false;
@@ -90,8 +93,20 @@ public class MapSpawnerSystem extends BaseSystem {
                 .anim("player")
                 .itemType("item_player")
                 .player()
+                .lifter()
                 .renderLayer(GameRules.LAYER_PLAYER);
     }
+
+
+
+    private void spawnShopper(int x, int y) {
+        E.E()
+                .gridPos(x, y)
+                .anim("customer")
+                .lifterAttemptLifting(true)
+                .renderLayer(GameRules.LAYER_SHOPPER);
+    }
+
 
     public void spawnItem(int x, int y, String type) {
         if ( type == null || "".equals(type) ) return;

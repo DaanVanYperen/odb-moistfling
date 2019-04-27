@@ -5,26 +5,20 @@ import com.artemis.World;
 import com.artemis.WorldConfigurationBuilder;
 import com.artemis.link.EntityLinkManager;
 import com.artemis.managers.TagManager;
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import net.mostlyoriginal.api.manager.FontManager;
 import net.mostlyoriginal.api.screen.core.WorldScreen;
 import net.mostlyoriginal.api.system.camera.CameraSystem;
 import net.mostlyoriginal.api.system.graphics.RenderBatchingSystem;
-import net.mostlyoriginal.api.system.mouse.MouseCursorSystem;
-import net.mostlyoriginal.api.system.physics.GravitySystem;
-import net.mostlyoriginal.game.GdxArtemisGame;
 import net.mostlyoriginal.game.manager.ItemRepository;
 import net.mostlyoriginal.game.manager.RecipeRepository;
 import net.mostlyoriginal.game.system.*;
 import net.mostlyoriginal.game.system.control.PlayerControlSystem;
-import net.mostlyoriginal.game.system.control.PlayerPickupSystem;
-import net.mostlyoriginal.game.system.logic.TransitionSystem;
+import net.mostlyoriginal.game.system.control.PickupSystem;
 import net.mostlyoriginal.game.system.map.*;
 import net.mostlyoriginal.game.system.mechanics.HopperDetectionSystem;
 import net.mostlyoriginal.game.system.mechanics.MachineHopperDetectionSystem;
 import net.mostlyoriginal.game.system.mechanics.MachineRecipeSystem;
-import net.mostlyoriginal.game.system.render.CameraFollowSystem;
 import net.mostlyoriginal.game.system.view.GameScreenAssetSystem;
 import net.mostlyoriginal.game.system.view.MyClearScreenSystem;
 import net.mostlyoriginal.plugin.OperationsPlugin;
@@ -66,7 +60,7 @@ public class GameScreen extends WorldScreen {
                         new MapCollisionSystem(),
 
                         new PlayerControlSystem(),
-                        new PlayerPickupSystem(),
+                        new PickupSystem(),
                         new GridPosSystem(),
 
                         new HopperDetectionSystem(),

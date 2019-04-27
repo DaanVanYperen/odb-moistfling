@@ -42,6 +42,10 @@ public class PlayerControlSystem extends FluidIteratingSystem {
     private void handleMovement(E e) {
         final GridPos gridPos = e.getGridPos();
 
+        if ( Gdx.input.isKeyJustPressed(Input.Keys.SPACE) ) {
+            e.getLifter().attemptLifting = !e.getLifter().attemptLifting;
+        }
+
         int dx = Gdx.input.isKeyPressed(Input.Keys.A) ? -1 :
                 Gdx.input.isKeyPressed(Input.Keys.D) ? 1 : 0;
         int dy = Gdx.input.isKeyPressed(Input.Keys.W) ? 1 :

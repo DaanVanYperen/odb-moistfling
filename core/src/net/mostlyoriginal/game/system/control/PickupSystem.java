@@ -8,29 +8,34 @@ import com.artemis.annotations.Exclude;
 import com.artemis.utils.IntBag;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import net.mostlyoriginal.api.system.graphics.RenderBatchingSystem;
 import net.mostlyoriginal.game.GameRules;
 import net.mostlyoriginal.game.component.*;
+import net.mostlyoriginal.game.system.MyAnimRenderSystem;
 
 /**
  * @author Daan van Yperen
  */
-@All(Player.class)
-public class PlayerPickupSystem extends FluidIteratingSystem {
+@All(Lifter.class)
+public class PickupSystem extends FluidIteratingSystem {
 
-    private static final int CARRIED_OBJECT_LIFTING_HEIGHT = 16;
+    private static final int CARRIED_OBJECT_LIFTING_HEIGHT = 0;
     @All({CanPickup.class, GridPos.class})
     @Exclude(Moving.class)
     private EntitySubscription pickupables;
 
+    RenderBatchingSystem renderBatchingSystem;
+
     @Override
     protected void process(E e) {
-        if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
-            if (e.hasLifting()) {
-                attemptDrop(e);
-            } else {
+        if (e.lifterAttemptLifting()) {
+            if (!e.hasLifting()) {
                 attemptPickup(e);
             }
-
+        } else {
+            if (e.hasLifting()) {
+                attemptDrop(e);
+            }
         }
         followCarrier(e);
     }
@@ -48,6 +53,7 @@ public class PlayerPickupSystem extends FluidIteratingSystem {
         if (!actor.isMoving() && !item.isMoving() && anythingAt(actor)) {
             actor.removeLifting();
             item.gridPos(actor.getGridPos()).removeLifted().renderLayer(GameRules.LAYER_ITEM);
+            renderBatchingSystem.sortedDirty=true;
             System.out.println("Drop!");
         }
     }
@@ -61,6 +67,7 @@ public class PlayerPickupSystem extends FluidIteratingSystem {
         if (item != null) {
             actor.liftingId(item.id());
             item.removeGridPos().lifted().renderLayer(GameRules.LAYER_ITEM_CARRIED);
+            renderBatchingSystem.sortedDirty=true;
             System.out.println("Pickup!");
         }
     }
