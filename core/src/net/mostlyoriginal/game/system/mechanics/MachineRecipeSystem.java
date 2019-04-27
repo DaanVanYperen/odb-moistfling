@@ -29,9 +29,14 @@ public class MachineRecipeSystem extends FluidSystem {
             // we can just bruteforce this as there won't be many machines initially.
             RecipeData recipe = recipeRepository.firstMatching(machine.contents);
             if (recipe != null) {
-                executeRecipe(machine, e.getGridPos(), recipe);
+                machine.warmupAge += world.delta;
+                if ( machine.warmupAge > 0.5f ) {
+                    executeRecipe(machine, e.getGridPos(), recipe);
+                }
+                return;
             }
         }
+        machine.warmupAge = 0;
     }
 
     private void executeRecipe(Machine machine, GridPos machineGridPos, RecipeData recipe) {

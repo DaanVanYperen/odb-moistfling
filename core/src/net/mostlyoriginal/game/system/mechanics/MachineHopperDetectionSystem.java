@@ -13,6 +13,8 @@ import net.mostlyoriginal.game.system.common.FluidSystem;
 @All(Machine.class)
 public class MachineHopperDetectionSystem extends FluidSystem {
 
+    public static final float MINIMUM_SLOTTED_DURATION_SECONDS = 0.6f;
+
     @Override
     protected void process(E e) {
 
@@ -22,7 +24,7 @@ public class MachineHopperDetectionSystem extends FluidSystem {
         machine.contents.clear();
         for (int i = 0, s = hoppers.size(); i < s; i++) {
             final Hopper hopper = E.E(hoppers.get(i)).getHopper();
-            if (hopper.slottedId != -1) {
+            if (hopper.slottedId != -1 && hopper.slottedDuration > MINIMUM_SLOTTED_DURATION_SECONDS) {
                 machine.contents.add(hopper.slottedId);
             }
         }

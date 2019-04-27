@@ -12,6 +12,8 @@ import net.mostlyoriginal.game.component.Item;
 import net.mostlyoriginal.game.component.Machine;
 import net.mostlyoriginal.game.system.common.FluidSystem;
 
+import static net.mostlyoriginal.game.system.mechanics.MachineHopperDetectionSystem.MINIMUM_SLOTTED_DURATION_SECONDS;
+
 /**
  * @author Daan van Yperen
  */
@@ -38,9 +40,15 @@ public class HopperDetectionSystem extends FluidSystem {
             final E item = E.E(itemEntities.get(i));
             if (!item.hasMoving() && item.getGridPos().overlaps(hopperE.getGridPos())) {
                 hopper.slottedId = item.id();
+                hopper.slottedDuration  += world.delta;
+                if ( hopper.slottedDuration > MINIMUM_SLOTTED_DURATION_SECONDS && !item.hasFloating() && !item.hasPlayer() ) {
+                    item.floating();
+                }
                 //item.angleRotation(MathUtils.random(0f,100f));
-                break;
+                return;
             }
         }
+
+        hopper.slottedDuration = 0;
     }
 }

@@ -13,6 +13,7 @@ public class Machine extends Component {
     }
 
     public Type type;
+    public float warmupAge = 0;
 
     @EntityId
     public IntBag hoppers = new IntBag();

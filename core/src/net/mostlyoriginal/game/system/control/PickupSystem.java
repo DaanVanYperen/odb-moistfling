@@ -87,7 +87,7 @@ public class PickupSystem extends FluidIteratingSystem {
         if (item != null) {
             actor.liftingId(item.id());
             actor.getLifter().itemsLifted++;
-            item.removeGridPos().lifted().renderLayer(GameRules.LAYER_ITEM_CARRIED);
+            item.removeGridPos().removeFloating().lifted().renderLayer(GameRules.LAYER_ITEM_CARRIED);
             renderBatchingSystem.sortedDirty=true;
             //System.out.println("Pickup!");
         }

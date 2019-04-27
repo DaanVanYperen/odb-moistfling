@@ -12,4 +12,6 @@ public class Hopper extends Component {
 
     @EntityId
     public int slottedId = -1;
+
+    public float slottedDuration = 0;
 }
