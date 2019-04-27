@@ -20,6 +20,8 @@ public abstract class GameRules {
     public static final int LAYER_ITEM_CARRIED = 1050;
     public static final int LAYER_DESIRE_INDICATOR = 1010;
 
+    public static final int LAYER_PAYMENT = 2000;
+
     public static int lastScore = -1;
     public static int level = 0;
     public static Music music;

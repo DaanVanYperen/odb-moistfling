@@ -8,4 +8,5 @@ public class ItemData {
     public String sprite;
     public boolean consumed;
     public boolean reward;
+    public int gold;
 }

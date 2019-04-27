@@ -66,6 +66,8 @@ public class GameScreen extends WorldScreen {
                         new DesireSystem(),
                         new GridPosSystem(),
 
+                        new PayingSystem(),
+
                         new HopperDetectionSystem(),
                         new MachineHopperDetectionSystem(),
                         new MachineRecipeSystem(),

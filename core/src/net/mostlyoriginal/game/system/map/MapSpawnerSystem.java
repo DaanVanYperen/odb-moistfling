@@ -93,6 +93,7 @@ public class MapSpawnerSystem extends BaseSystem {
                 .anim("player")
                 .itemType("item_player")
                 .player()
+                .tag("player")
                 .lifter()
                 .renderLayer(GameRules.LAYER_PLAYER);
     }

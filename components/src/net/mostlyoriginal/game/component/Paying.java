@@ -5,6 +5,10 @@ import com.artemis.Component;
 /**
  * @author Daan van Yperen
  */
-public class Player extends Component {
+public class Paying extends Component {
     public int gold;
+
+    public void set(int gold ){
+        this.gold=gold;
+    }
 }

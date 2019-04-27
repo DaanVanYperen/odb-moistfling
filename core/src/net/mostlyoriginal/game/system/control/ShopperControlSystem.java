@@ -18,6 +18,7 @@ public class ShopperControlSystem extends FluidIteratingSystem {
     protected void process(E e) {
         int itemsLifted = e.getLifter().itemsLifted;
         if ( itemsLifted == 1 ) {
+            e.getLifter().payOnPickup=true;
             attemptToExchangeCarriedItem(e);
         }
 

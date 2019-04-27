@@ -12,6 +12,7 @@ import net.mostlyoriginal.api.component.basic.Pos;
 import net.mostlyoriginal.api.system.graphics.RenderBatchingSystem;
 import net.mostlyoriginal.game.GameRules;
 import net.mostlyoriginal.game.component.*;
+import net.mostlyoriginal.game.manager.ItemRepository;
 import net.mostlyoriginal.game.system.MyAnimRenderSystem;
 
 /**
@@ -24,6 +25,7 @@ public class PickupSystem extends FluidIteratingSystem {
 
     RenderBatchingSystem renderBatchingSystem;
     PickupManager pickupManager;
+    private ItemRepository itemRepository;
 
     @Override
     protected void process(E e) {
@@ -57,6 +59,13 @@ public class PickupSystem extends FluidIteratingSystem {
             item.gridPos(actor.getGridPos()).removeLifted().renderLayer(GameRules.LAYER_ITEM);
             renderBatchingSystem.sortedDirty=true;
             System.out.println("Drop!");
+
+            if ( actor.lifterPayOnPickup() ) {
+                int goldValue = itemRepository.get(item.itemType()).gold;
+                if ( goldValue > 0 ) {
+                    actor.paying(goldValue);
+                }
+            }
 
             if ( actor.lifterDestroyWhenDropped() ) {
                 item.deleteFromWorld();
