@@ -1,0 +1,114 @@
+{
+  "items": [
+    {
+      "id": "item_chick",
+      "sprite": "item_chick"
+    },
+    {
+      "id": "item_chicken",
+      "sprite": "item_chicken"
+    },
+    {
+      "id": "item_imp",
+      "sprite": "item_imp"
+    },
+    {
+      "id": "item_demon_hide",
+      "sprite": "item_demon_hide"
+    },
+    {
+      "id": "item_unicorn",
+      "sprite": "item_unicorn"
+    },
+    {
+      "id": "item_tier1_orb",
+      "sprite": "item_tier1_orb"
+    },
+    {
+      "id": "item_tier2_orb",
+      "sprite": "item_tier2_orb"
+    },
+    {
+      "id": "item_tier3_orb",
+      "sprite": "item_tier3_orb"
+    },
+    {
+      "id": "item_herb_branch",
+      "sprite": "item_herb_branch"
+    },
+    {
+      "id": "item_healing_potion",
+      "sprite": "item_healing_potion"
+    },
+    {
+      "id": "item_mana_potion",
+      "sprite": "item_mana_potion"
+    },
+    {
+      "id": "item_leather_armor",
+      "sprite": "item_leather_armor"
+    },
+    {
+      "id": "item_boots",
+      "sprite": "item_boots"
+    },
+    {
+      "id": "item_bow",
+      "sprite": "item_bow"
+    },
+    {
+      "id": "item_bow",
+      "sprite": "item_bow"
+    },
+    {
+      "id": "item_sword",
+      "sprite": "item_sword"
+    },
+    {
+      "id": "item_winged_boots",
+      "sprite": "item_winged_boots"
+    },
+    {
+      "id": "item_magical_sword",
+      "sprite": "item_magical_sword"
+    },
+    {
+      "id": "item_enchanted_bow",
+      "sprite": "item_enchanted_bow"
+    },
+    {
+      "id": "item_enchanted_armor",
+      "sprite": "item_enchanted_armor"
+    },
+    {
+      "id": "item_magical_staff",
+      "sprite": "item_magical_staff"
+    },
+    {
+      "id": "item_ingot",
+      "sprite": "item_ingot"
+    },
+    {
+      "id": "item_wood",
+      "sprite": "item_wood"
+    },
+    {
+      "id": "item_mystical_tome",
+      "sprite": "item_mystical_tome"
+    },
+    {
+      "id": "item_boxed_forge",
+      "sprite": "item_boxed_forge"
+    },
+    {
+      "id": "item_boxed_herb_bush",
+      "sprite": "item_boxed_herb_bush"
+    },
+    {
+      "id": "item_boxed_chicken_coop",
+      "sprite": "item_boxed_chicken_coop"
+    },
+
+
+  ]
+}
