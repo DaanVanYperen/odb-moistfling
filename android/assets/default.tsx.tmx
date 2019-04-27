@@ -114,55 +114,55 @@
  <tile id="151">
   <properties>
    <property name="entity" value="item"/>
-   <property name="type" value=""/>
+   <property name="type" value="item_unicorn"/>
   </properties>
  </tile>
  <tile id="152">
   <properties>
    <property name="entity" value="item"/>
-   <property name="type" value=""/>
+   <property name="type" value="item_unicorn_horn"/>
   </properties>
  </tile>
  <tile id="153">
   <properties>
    <property name="entity" value="item"/>
-   <property name="type" value=""/>
+   <property name="type" value="item_tier1_orb"/>
   </properties>
  </tile>
  <tile id="154">
   <properties>
    <property name="entity" value="item"/>
-   <property name="type" value=""/>
+   <property name="type" value="item_tier2_orb"/>
   </properties>
  </tile>
  <tile id="155">
   <properties>
    <property name="entity" value="item"/>
-   <property name="type" value=""/>
+   <property name="type" value="item_tier3_orb"/>
   </properties>
  </tile>
  <tile id="156">
   <properties>
    <property name="entity" value="item"/>
-   <property name="type" value=""/>
+   <property name="type" value="item_herb_branch"/>
   </properties>
  </tile>
  <tile id="157">
   <properties>
    <property name="entity" value="item"/>
-   <property name="type" value=""/>
+   <property name="type" value="item_healing_potion"/>
   </properties>
  </tile>
  <tile id="158">
   <properties>
    <property name="entity" value="item"/>
-   <property name="type" value=""/>
+   <property name="type" value="item_mana_potion"/>
   </properties>
  </tile>
  <tile id="159">
   <properties>
    <property name="entity" value="item"/>
-   <property name="type" value=""/>
+   <property name="type" value="item_leather_armor"/>
   </properties>
  </tile>
  <tile id="179">
