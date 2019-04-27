@@ -1,14 +1,10 @@
 package net.mostlyoriginal.game.system.common;
 
 import com.artemis.Aspect;
-import com.artemis.Component;
 import com.artemis.E;
 import com.artemis.Entity;
 import com.artemis.managers.TagManager;
 import com.artemis.systems.EntityProcessingSystem;
-import net.mostlyoriginal.api.component.basic.Bounds;
-import net.mostlyoriginal.api.component.basic.Pos;
-import net.mostlyoriginal.game.component.BathroomLevel;
 
 import static com.artemis.E.E;
 
