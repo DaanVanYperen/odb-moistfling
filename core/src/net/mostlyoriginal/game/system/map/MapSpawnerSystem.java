@@ -100,11 +100,18 @@ public class MapSpawnerSystem extends BaseSystem {
 
 
     private void spawnShopper(int x, int y) {
+
+        String desiredItem = itemRepository.random();
+        String rewardItem  = itemRepository.random();
+
         E.E()
                 .gridPos(x, y)
                 .anim("customer")
                 .lifterAttemptLifting(true)
+                .desireDesiredItem(desiredItem)
                 .renderLayer(GameRules.LAYER_SHOPPER);
+
+        spawnItem(x,y, rewardItem);
     }
 
 

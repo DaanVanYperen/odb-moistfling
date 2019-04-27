@@ -2,6 +2,7 @@ package net.mostlyoriginal.game.manager;
 
 import com.artemis.BaseSystem;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Json;
 import net.mostlyoriginal.game.component.ItemData;
 import net.mostlyoriginal.game.system.ItemLibrary;
@@ -26,7 +27,16 @@ public class ItemRepository extends BaseSystem {
 
     public ItemData get(String type) {
         ItemData byId = itemLibrary.getById(type);
-        if ( byId == null ) throw new RuntimeException("unknown item type " + type);
+        if (byId == null) throw new RuntimeException("unknown item type " + type);
         return byId;
     }
+
+    public String random() {
+        boolean valid = false;
+        while (true) {
+            ItemData item = itemLibrary.items[MathUtils.random(0, itemLibrary.items.length - 1)];
+            if (item.reward) return item.id;
+        }
+    }
 }
+

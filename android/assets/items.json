@@ -3,146 +3,175 @@
     {
       "id": "item_chick",
       "sprite": "item_chick",
-      "consumed": true
+      "consumed": true,
+      "reward": true
     },
     {
       "id": "item_chicken",
       "sprite": "item_chicken",
-      "consumed": true
+      "consumed": true,
+      "reward": true
     },
     {
       "id": "item_drumstick",
       "sprite": "item_drumstick",
-      "consumed": true
+      "consumed": true,
+      "reward": true
     },
     {
       "id": "item_imp",
       "sprite": "item_imp",
-      "consumed": true
+      "consumed": true,
+      "reward": true
     },
     {
       "id": "item_demon_hide",
       "sprite": "item_demon_hide",
-      "consumed": true
+      "consumed": true,
+      "reward": true
     },
     {
       "id": "item_unicorn",
       "sprite": "item_unicorn",
-      "consumed": true
+      "consumed": true,
+      "reward": true
     },
     {
       "id": "item_unicorn_horn",
       "sprite": "item_unicorn_horn",
-      "consumed": true
+      "consumed": true,
+      "reward": true
     },
     {
       "id": "item_tier1_orb",
       "sprite": "item_tier1_orb",
-      "consumed": true
+      "consumed": true,
+      "reward": true
     },
     {
       "id": "item_tier2_orb",
       "sprite": "item_tier2_orb",
-      "consumed": true
+      "consumed": true,
+      "reward": true
     },
     {
       "id": "item_tier3_orb",
       "sprite": "item_tier3_orb",
-      "consumed": true
+      "consumed": true,
+      "reward": true
     },
     {
       "id": "item_herb_branch",
       "sprite": "item_herb_branch",
-      "consumed": true
+      "consumed": true,
+      "reward": true
     },
     {
       "id": "item_healing_potion",
       "sprite": "item_healing_potion",
-      "consumed": true
+      "consumed": true,
+      "reward": true
     },
     {
       "id": "item_mana_potion",
       "sprite": "item_mana_potion",
-      "consumed": true
+      "consumed": true,
+      "reward": true
     },
     {
       "id": "item_leather_armor",
       "sprite": "item_leather_armor",
-      "consumed": true
+      "consumed": true,
+      "reward": true
     },
     {
       "id": "item_boots",
       "sprite": "item_boots",
-      "consumed": true
+      "consumed": true,
+      "reward": false
     },
     {
       "id": "item_bow",
       "sprite": "item_bow",
-      "consumed": true
+      "consumed": true,
+      "reward": false
     },
     {
       "id": "item_sword",
       "sprite": "item_sword",
-      "consumed": true
+      "consumed": true,
+      "reward": false
     },
     {
       "id": "item_winged_boots",
       "sprite": "item_winged_boots",
-      "consumed": true
+      "consumed": true,
+      "reward": true
     },
     {
       "id": "item_magical_sword",
       "sprite": "item_magical_sword",
-      "consumed": true
+      "consumed": true,
+      "reward": true
     },
     {
       "id": "item_enchanted_bow",
       "sprite": "item_enchanted_bow",
-      "consumed": true
+      "consumed": true,
+      "reward": true
     },
     {
       "id": "item_enchanted_armor",
       "sprite": "item_enchanted_armor",
-      "consumed": true
+      "consumed": true,
+      "reward": true
     },
     {
       "id": "item_magical_staff",
       "sprite": "item_magical_staff",
-      "consumed": true
+      "consumed": true,
+      "reward": true
     },
     {
       "id": "item_ingot",
       "sprite": "item_ingot",
-      "consumed": true
+      "consumed": true,
+      "reward": true
     },
     {
       "id": "item_wood",
       "sprite": "item_wood",
-      "consumed": true
+      "consumed": true,
+      "reward": true
     },
     {
       "id": "item_mystical_tome",
       "sprite": "item_mystical_tome",
-      "consumed": true
+      "consumed": true,
+      "reward": true
     },
     {
       "id": "item_boxed_forge",
       "sprite": "item_boxed_forge",
-      "consumed": true
+      "consumed": true,
+      "reward": true
     },
     {
       "id": "item_boxed_herb_bush",
       "sprite": "item_boxed_herb_bush",
-      "consumed": true
+      "consumed": true,
+      "reward": true
     },
     {
       "id": "item_boxed_chicken_coop",
       "sprite": "item_boxed_chicken_coop",
-      "consumed": true
+      "consumed": true,
+      "reward": true
     },
     {
       "id": "item_player",
-      "consumed": false
+      "consumed": false,
+      "reward": falses
 	}
   ]
 }

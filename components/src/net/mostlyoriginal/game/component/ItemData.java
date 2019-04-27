@@ -7,4 +7,5 @@ public class ItemData {
     public String id;
     public String sprite;
     public boolean consumed;
+    public boolean reward;
 }

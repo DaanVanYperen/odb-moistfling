@@ -8,6 +8,7 @@ import com.artemis.annotations.Exclude;
 import com.artemis.utils.IntBag;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import net.mostlyoriginal.api.component.basic.Pos;
 import net.mostlyoriginal.api.system.graphics.RenderBatchingSystem;
 import net.mostlyoriginal.game.GameRules;
 import net.mostlyoriginal.game.component.*;
@@ -16,7 +17,7 @@ import net.mostlyoriginal.game.system.MyAnimRenderSystem;
 /**
  * @author Daan van Yperen
  */
-@All(Lifter.class)
+@All({Lifter.class, Pos.class})
 public class PickupSystem extends FluidIteratingSystem {
 
     private static final int CARRIED_OBJECT_LIFTING_HEIGHT = 0;
@@ -41,7 +42,7 @@ public class PickupSystem extends FluidIteratingSystem {
     }
 
     private void followCarrier(E actor) {
-        if (actor.hasLifting() && actor.getLifting().id != -1) {
+        if (actor.hasLifting() && actor.getLifting().id != -1 ) {
             E lifting = E.E(actor.getLifting().id);
             lifting.posX(actor.getPos().xy.x);
             lifting.posY(actor.getPos().xy.y + CARRIED_OBJECT_LIFTING_HEIGHT);

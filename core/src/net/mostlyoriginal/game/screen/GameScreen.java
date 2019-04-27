@@ -13,6 +13,7 @@ import net.mostlyoriginal.api.system.graphics.RenderBatchingSystem;
 import net.mostlyoriginal.game.manager.ItemRepository;
 import net.mostlyoriginal.game.manager.RecipeRepository;
 import net.mostlyoriginal.game.system.*;
+import net.mostlyoriginal.game.system.control.DesireSystem;
 import net.mostlyoriginal.game.system.control.PlayerControlSystem;
 import net.mostlyoriginal.game.system.control.PickupSystem;
 import net.mostlyoriginal.game.system.map.*;
@@ -61,6 +62,7 @@ public class GameScreen extends WorldScreen {
 
                         new PlayerControlSystem(),
                         new PickupSystem(),
+                        new DesireSystem(),
                         new GridPosSystem(),
 
                         new HopperDetectionSystem(),
