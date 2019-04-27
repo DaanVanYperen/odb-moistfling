@@ -11,6 +11,11 @@
       "consumed": true
     },
     {
+      "id": "item_drumstick",
+      "sprite": "item_drumstick",
+      "consumed": true
+    },
+    {
       "id": "item_imp",
       "sprite": "item_imp",
       "consumed": true

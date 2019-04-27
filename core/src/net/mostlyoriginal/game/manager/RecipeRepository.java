@@ -20,13 +20,28 @@ import static com.artemis.E.E;
 public class RecipeRepository extends BaseSystem {
 
     private RecipeLibrary recipeLibrary;
+    private ItemRepository itemRepository;
 
     @Override
     protected void initialize() {
         super.initialize();
         final Json json = new Json();
         recipeLibrary = json.fromJson(RecipeLibrary.class, Gdx.files.internal("recipes.json"));
+        validateRecipes();
     }
+
+
+    public void validateRecipes() {
+        for (RecipeData o : recipeLibrary.recipes) {
+            for (String ingredient : o.ingredients) {
+                if ( itemRepository.get(ingredient) == null ) throw new RuntimeException("Unknown ingredient " + ingredient);
+            }
+            for (String product : o.produces) {
+                if ( itemRepository.get(product) == null ) throw new RuntimeException("Unknown product " + product);
+            }
+        }
+    }
+
 
     @Override
     protected void processSystem() {

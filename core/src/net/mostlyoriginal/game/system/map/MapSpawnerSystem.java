@@ -96,6 +96,7 @@ public class MapSpawnerSystem extends BaseSystem {
     public void spawnItem(int x, int y, String type) {
         E.E()
                 .gridPos(x, y)
+                .canPickup(true)
                 .itemType(type)
                 .anim(itemRepository.get(type).sprite)
                 .renderLayer(GameRules.LAYER_ITEM);

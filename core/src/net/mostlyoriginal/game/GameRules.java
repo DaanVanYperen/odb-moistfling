@@ -16,6 +16,7 @@ public abstract class GameRules {
     public static final int LAYER_PLAYER = 1000;
     public static final int LAYER_ITEM = 750;
     public static final int LAYER_MACHINES = 500;
+    public static final int LAYER_ITEM_CARRIED = 1050;
 
     public static int lastScore = -1;
     public static int level = 0;

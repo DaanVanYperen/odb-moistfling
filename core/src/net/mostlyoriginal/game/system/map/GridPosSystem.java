@@ -5,7 +5,6 @@ import com.artemis.FluidIteratingSystem;
 import com.artemis.annotations.All;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector3;
-import net.mostlyoriginal.api.component.basic.Pos;
 import net.mostlyoriginal.game.GameRules;
 import net.mostlyoriginal.game.component.GridPos;
 
@@ -16,6 +15,8 @@ import net.mostlyoriginal.game.component.GridPos;
  */
 @All({GridPos.class})
 public class GridPosSystem extends FluidIteratingSystem {
+
+    private static final float MOVEMENT_SPEED = 150f;
 
     @Override
     protected void process(E e) {
@@ -36,10 +37,10 @@ public class GridPosSystem extends FluidIteratingSystem {
             float dx = MathUtils.clamp(goalX - pos.x, -1, 1);
             float dy = MathUtils.clamp(goalY - pos.y, -1, 1);
 
-            pos.x = pos.x + (dx * world.delta * 100f);
-            pos.y = pos.y + (dy * world.delta * 100f);
+            pos.x = pos.x + (dx * world.delta * MOVEMENT_SPEED);
+            pos.y = pos.y + (dy * world.delta * MOVEMENT_SPEED);
 
-            boolean atTarget = MathUtils.isEqual(pos.x, goalX, 0.5f) && MathUtils.isEqual(pos.y, goalY, 0.5f);
+            boolean atTarget = MathUtils.isEqual(pos.x, goalX, 1f) && MathUtils.isEqual(pos.y, goalY, 1f);
             if ( atTarget ) {
                 pos.x = goalX;
                 pos.y = goalY;

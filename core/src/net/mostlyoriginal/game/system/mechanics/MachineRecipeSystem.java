@@ -34,17 +34,24 @@ public class MachineRecipeSystem extends FluidSystem {
     }
 
     private void executeRecipe(Machine machine, GridPos machineGridPos, RecipeData recipe) {
+        consumeIngredients(machine);
+        spawnProduce(machineGridPos, recipe);
+        System.out.println("Would produce something here! :D");
+    }
+
+    private void spawnProduce(GridPos machineGridPos, RecipeData recipe) {
+        for (String producesItem : recipe.produces) {
+            mapSpawnerSystem.spawnItem(machineGridPos.x, machineGridPos.y, producesItem);
+        }
+    }
+
+    private void consumeIngredients(Machine machine) {
         for (int i = 0, s = machine.contents.size(); i < s; i++) {
             final E ingredient = E.E(machine.contents.get(i));
             final ItemData itemData = itemRepository.get(ingredient.getItem().type);
             if ( itemData.consumed ) {
                 ingredient.deleteFromWorld();
             }
-
-            for (String producesItem : recipe.produces) {
-                mapSpawnerSystem.spawnItem(machineGridPos.x, machineGridPos.y, producesItem);
-            }
         }
-        System.out.println("Would produce something here! :D");
     }
 }

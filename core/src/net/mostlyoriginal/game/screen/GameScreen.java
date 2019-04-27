@@ -18,6 +18,7 @@ import net.mostlyoriginal.game.manager.ItemRepository;
 import net.mostlyoriginal.game.manager.RecipeRepository;
 import net.mostlyoriginal.game.system.*;
 import net.mostlyoriginal.game.system.control.PlayerControlSystem;
+import net.mostlyoriginal.game.system.control.PlayerPickupSystem;
 import net.mostlyoriginal.game.system.logic.TransitionSystem;
 import net.mostlyoriginal.game.system.map.*;
 import net.mostlyoriginal.game.system.mechanics.HopperDetectionSystem;
@@ -65,6 +66,7 @@ public class GameScreen extends WorldScreen {
                         new MapCollisionSystem(),
 
                         new PlayerControlSystem(),
+                        new PlayerPickupSystem(),
                         new GridPosSystem(),
 
                         new HopperDetectionSystem(),

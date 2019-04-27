@@ -10,6 +10,191 @@
       "produces": [
         "item_chicken"
       ]
+    },
+    {
+      "id": "recipe_soul_orb_tier_1",
+      "machine": "ALTAR",
+      "ingredients": [
+        "item_chicken",
+        "item_player"
+      ],
+      "produces": [
+        "item_tier1_orb",
+        "item_drumstick"
+      ]
+    },
+    {
+      "id": "recipe_soul_orb_tier_2",
+      "machine": "ALTAR",
+      "ingredients": [
+        "item_imp",
+        "item_player"
+      ],
+      "produces": [
+        "item_tier2_orb",
+        "item_demon_hide"
+      ]
+    },
+    {
+      "id": "recipe_soul_orb_tier_3",
+      "machine": "ALTAR",
+      "ingredients": [
+        "item_unicorn",
+        "item_player"
+      ],
+      "produces": [
+        "item_tier3_orb",
+        "item_unicorn_horn"
+      ]
+    },
+    {
+      "id": "recipe_soul_orb_tier_1_orb_conversion",
+      "machine": "ALTAR",
+      "ingredients": [
+        "item_tier1_orb",
+        "item_tier1_orb",
+        "item_tier1_orb"
+      ],
+      "produces": [
+        "item_tier2_orb"
+      ]
+    },
+    {
+      "id": "recipe_soul_orb_tier_2_orb_conversion",
+      "machine": "ALTAR",
+      "ingredients": [
+        "item_tier2_orb",
+        "item_tier2_orb",
+        "item_tier2_orb"
+      ],
+      "produces": [
+        "item_tier3_orb"
+      ]
+    },
+    {
+      "id": "recipe_healing_potion",
+      "machine": "ALTAR",
+      "ingredients": [
+        "item_herb_branch",
+        "item_tier1_orb"
+      ],
+      "produces": [
+        "item_healing_potion"
+      ]
+    },
+    {
+      "id": "recipe_mana_potion",
+      "machine": "ALTAR",
+      "ingredients": [
+        "item_unicorn_horn",
+        "item_tier1_orb"
+      ],
+      "produces": [
+        "item_mana_potion"
+      ]
+    },
+    {
+      "id": "recipe_leather_armor",
+      "machine": "ALTAR",
+      "ingredients": [
+        "item_demon_hide",
+        "item_demon_hide",
+        "item_demon_hide"
+      ],
+      "produces": [
+        "item_leather_armor"
+      ]
+    },
+    {
+      "id": "recipe_winged_boots",
+      "machine": "ALTAR",
+      "ingredients": [
+        "item_demon_hide",
+        "item_tier2_orb"
+      ],
+      "produces": [
+        "item_winged_boots"
+      ]
+    },
+    {
+      "id": "recipe_magical_sword",
+      "machine": "ALTAR",
+      "ingredients": [
+        "item_ingot",
+        "item_tier2_orb"
+      ],
+      "produces": [
+        "item_magical_sword"
+      ]
+    },
+    {
+      "id": "recipe_enchanted_bow",
+      "machine": "ALTAR",
+      "ingredients": [
+        "item_wood",
+        "item_tier2_orb"
+      ],
+      "produces": [
+        "item_enchanted_bow"
+      ]
+    },
+    {
+      "id": "recipe_enchanted_armor",
+      "machine": "ALTAR",
+      "ingredients": [
+        "item_leather_armor",
+        "item_tier3_orb"
+      ],
+      "produces": [
+        "item_enchanted_armor"
+      ]
+    },
+    {
+      "id": "recipe_magical_staff",
+      "machine": "ALTAR",
+      "ingredients": [
+        "item_wood",
+        "item_tier3_orb"
+      ],
+      "produces": [
+        "item_magical_staff"
+      ]
+    },
+    {
+      "id": "recipe_boxed_herb_bush",
+      "machine": "ALTAR",
+      "ingredients": [
+        "item_herb_branch",
+        "item_tier3_orb",
+        "item_mystical_tome"
+      ],
+      "produces": [
+        "item_boxed_herb_bush"
+      ]
+    },
+    {
+      "id": "recipe_boxed_forges",
+      "machine": "ALTAR",
+      "ingredients": [
+        "item_ingot",
+        "item_tier3_orb",
+        "item_mystical_tome"
+      ],
+      "produces": [
+        "item_boxed_forge"
+      ]
+    },
+    {
+      "id": "recipe_boxed_chicken_coop",
+      "machine": "ALTAR",
+      "ingredients": [
+        "item_chicken",
+        "item_tier3_orb",
+        "item_mystical_tome"
+      ],
+      "produces": [
+        "item_boxed_chicken_coop"
+      ]
     }
   ]
 }
