@@ -29,9 +29,17 @@
       "height": 32,
     },
     {
+      "id": "item_drumstick",
+      "comment": "Deceased chicken.",
+      "x": 640,
+      "y": 128,
+      "width": 32,
+      "height": 32,
+    },
+    {
       "id": "item_imp",
       "comment": "Imp.",
-      "x": 640,
+      "x": 672,
       "y": 128,
       "width": 32,
       "height": 32,
@@ -39,7 +47,7 @@
 	{
       "id": "item_demon_hide",
       "comment": "The hide of an imp.",
-      "x": 672,
+      "x": 704,
       "y": 128,
       "width": 32,
       "height": 32,
@@ -47,7 +55,7 @@
 	{
       "id": "item_unicorn",
       "comment": "OMG AN UNICORN LOL",
-      "x": 704,
+      "x": 736,
       "y": 128,
       "width": 32,
       "height": 32,
@@ -55,7 +63,7 @@
 	{
       "id": "item_unicorn_horn",
       "comment": "Horny unicorns, I might add.",
-      "x": 736,
+      "x": 768,
       "y": 128,
       "width": 32,
       "height": 32,
@@ -63,7 +71,7 @@
 	{
       "id": "item_tier1_orb",
       "comment": "Tier 1 orb.",
-      "x": 768,
+      "x": 800,
       "y": 128,
       "width": 32,
       "height": 32,
@@ -71,7 +79,7 @@
 	{
       "id": "item_tier2_orb",
       "comment": "Tier 2 orb.",
-      "x": 800,
+      "x": 832,
       "y": 128,
       "width": 32,
       "height": 32,
@@ -79,7 +87,7 @@
 	{
       "id": "item_tier3_orb",
       "comment": "Tier 3 orb.",
-      "x": 832,
+      "x": 864,
       "y": 128,
       "width": 32,
       "height": 32,
@@ -87,7 +95,7 @@
 	{
       "id": "item_herb_branch",
       "comment": "Herb branch.",
-      "x": 864,
+      "x": 896,
       "y": 128,
       "width": 32,
       "height": 32,
@@ -95,7 +103,7 @@
 	{
       "id": "item_healing_potion",
       "comment": "Healing potion.",
-      "x": 896,
+      "x": 928,
       "y": 128,
       "width": 32,
       "height": 32,
@@ -103,7 +111,7 @@
 	{
       "id": "item_mana_potion",
       "comment": "Mana potion.",
-      "x": 928,
+      "x": 960,
       "y": 128,
       "width": 32,
       "height": 32,
@@ -111,7 +119,7 @@
 	{
       "id": "item_leather_armor",
       "comment": "Leather armor.",
-      "x": 960,
+      "x": 992,
       "y": 128,
       "width": 32,
       "height": 32,
@@ -119,15 +127,15 @@
 	{
       "id": "item_boots",
       "comment": "Normal boots.",
-      "x": 992,
-      "y": 128,
+      "x": 608,
+      "y": 160,
       "width": 32,
       "height": 32,
     },
 	{
       "id": "item_bow",
       "comment": "Normal bow.",
-      "x": 608,
+      "x": 640,
       "y": 160,
       "width": 32,
       "height": 32,
@@ -135,7 +143,7 @@
 	{
       "id": "item_sword",
       "comment": "Normal sword.",
-      "x": 640,
+      "x": 672,
       "y": 160,
       "width": 32,
       "height": 32,
@@ -143,7 +151,7 @@
 	{
       "id": "item_winged_boots",
       "comment": "Winged boots.",
-      "x": 672,
+      "x": 704,
       "y": 160,
       "width": 32,
       "height": 32,
@@ -151,7 +159,7 @@
 	{
       "id": "item_magical_sword",
       "comment": "A sword but like magical.",
-      "x": 704,
+      "x": 736,
       "y": 160,
       "width": 32,
       "height": 32,
@@ -159,7 +167,7 @@
 	{
       "id": "item_enchanted_bow",
       "comment": "Enchanted bow.",
-      "x": 736,
+      "x": 768,
       "y": 160,
       "width": 32,
       "height": 32,
@@ -167,7 +175,7 @@
 	{
       "id": "item_enchanted_armor",
       "comment": "Enchanted armor.",
-      "x": 768,
+      "x": 800,
       "y": 160,
       "width": 32,
       "height": 32,
@@ -175,7 +183,7 @@
 	{
       "id": "item_magical_staff",
       "comment": "A staff but like magical.",
-      "x": 800,
+      "x": 832,
       "y": 160,
       "width": 32,
       "height": 32,
@@ -183,7 +191,7 @@
 	{
       "id": "item_ingot",
       "comment": "A very METAL ingot.",
-      "x": 832,
+      "x": 864,
       "y": 160,
       "width": 32,
       "height": 32,
@@ -191,7 +199,7 @@
 	{
       "id": "item_wood",
       "comment": "Wood.",
-      "x": 864,
+      "x": 896,
       "y": 160,
       "width": 32,
       "height": 32,
@@ -199,7 +207,7 @@
 	{
       "id": "item_mystical_tome",
       "comment": "Mystical tome.",
-      "x": 896,
+      "x": 928,
       "y": 160,
       "width": 32,
       "height": 32,
@@ -207,7 +215,7 @@
 	{
       "id": "item_boxed_forge",
       "comment": "Forge structure.",
-      "x": 928,
+      "x": 960,
       "y": 160,
       "width": 32,
       "height": 32,
@@ -215,7 +223,7 @@
 	{
       "id": "item_boxed_herb_bush",
       "comment": "Herb bush structure.",
-      "x": 960,
+      "x": 992,
       "y": 160,
       "width": 32,
       "height": 32,
@@ -223,14 +231,6 @@
 	{
       "id": "item_boxed_chicken_coop",
       "comment": "Chicken coop structure.",
-      "x": 992,
-      "y": 160,
-      "width": 32,
-      "height": 32,
-    },
-	{
-      "id": "item_bow",
-      "comment": "Normal bow.",
       "x": 608,
       "y": 192,
       "width": 32,
