@@ -38,7 +38,7 @@ public class HopperDetectionSystem extends FluidSystem {
             final E item = E.E(itemEntities.get(i));
             if (!item.hasMoving() && item.getGridPos().overlaps(hopperE.getGridPos())) {
                 hopper.slottedId = item.id();
-                item.angleRotation(MathUtils.random(0f,100f));
+                //item.angleRotation(MathUtils.random(0f,100f));
                 break;
             }
         }

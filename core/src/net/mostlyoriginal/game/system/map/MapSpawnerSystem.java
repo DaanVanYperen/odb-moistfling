@@ -2,15 +2,10 @@ package net.mostlyoriginal.game.system.map;
 
 import com.artemis.BaseSystem;
 import com.artemis.E;
-import com.artemis.EBag;
-import com.artemis.FluidIteratingSystem;
 import com.badlogic.gdx.maps.MapProperties;
 import net.mostlyoriginal.game.GameRules;
-import net.mostlyoriginal.game.component.Hopper;
 import net.mostlyoriginal.game.component.Machine;
 import net.mostlyoriginal.game.manager.ItemRepository;
-import net.mostlyoriginal.game.screen.GameScreen;
-import net.mostlyoriginal.game.system.common.FluidSystem;
 
 import java.util.ArrayList;
 import java.util.List;

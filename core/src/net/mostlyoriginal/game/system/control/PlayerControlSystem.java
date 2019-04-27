@@ -58,9 +58,13 @@ public class PlayerControlSystem extends FluidIteratingSystem {
         Vector2 movementVector = vector2.set(dx, dy).nor();
 
 
-        e.getPhysics().vx = movementVector.x * PLAYER_MOVEMENT_SPEED * 1.1f;
-        e.getPhysics().vy = movementVector.y * PLAYER_MOVEMENT_SPEED;
-        e.getPhysics().friction = 0;
+        if ( movementVector.x != 0 ) {
+            e.getPhysics().vx = movementVector.x * PLAYER_MOVEMENT_SPEED * 1.1f;
+        }
+        if ( movementVector.y != 0 ) {
+            e.getPhysics().vy = movementVector.y * PLAYER_MOVEMENT_SPEED;
+        }
+        e.getPhysics().friction = 50;
     }
 
 }
