@@ -14,6 +14,10 @@ import net.mostlyoriginal.api.system.physics.GravitySystem;
 import net.mostlyoriginal.game.GdxArtemisGame;
 import net.mostlyoriginal.game.system.*;
 import net.mostlyoriginal.game.system.logic.TransitionSystem;
+import net.mostlyoriginal.game.system.map.MapCollisionSystem;
+import net.mostlyoriginal.game.system.map.MapRenderInFrontSystem;
+import net.mostlyoriginal.game.system.map.MapRenderSystem;
+import net.mostlyoriginal.game.system.map.MapSystem;
 import net.mostlyoriginal.game.system.render.CameraFollowSystem;
 import net.mostlyoriginal.game.system.view.GameScreenAssetSystem;
 import net.mostlyoriginal.game.system.view.MyClearScreenSystem;
@@ -44,16 +48,20 @@ public class GameScreen extends TransitionableWorldScreen {
                         //new TutorialService()
                 )
                 .with(
-
                         // Replace with your own systems!
                         new CameraSystem(2),
                         new MyClearScreenSystem(Color.valueOf(BACKGROUND_COLOR_HEX)),
                         new GameScreenAssetSystem(),
+                        new MapSystem(),
+                        new MapCollisionSystem(),
                         new MyPhysicsSystem(),
+
+                        new MapRenderSystem(),
                         renderBatchingSystem = new RenderBatchingSystem(),
                         new MyAnimRenderSystem(renderBatchingSystem),
                         new MyLabelRenderSystem(renderBatchingSystem),
-                        new TransitionSystem(GdxArtemisGame.getInstance(),this)
+                        new MapRenderInFrontSystem(),
+                        new TransitionSystem(GdxArtemisGame.getInstance(), this)
                 ).build());
     }
 

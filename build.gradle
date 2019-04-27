@@ -29,7 +29,7 @@ allprojects {
 
     version = '1.0'
     ext {
-        appName = 'Orange Guard'
+        appName = 'Necromarket'
         appVersion = '1.0'
         gdxVersion = '1.9.9'
         roboVMVersion = '2.3.5'
