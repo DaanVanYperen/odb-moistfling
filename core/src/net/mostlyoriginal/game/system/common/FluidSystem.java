@@ -14,7 +14,7 @@ import static com.artemis.E.E;
 public abstract class FluidSystem extends EntityProcessingSystem {
 
     public FluidSystem() {
-        super(Aspect.all());
+        super(null);
     }
 
     public FluidSystem(Aspect.Builder aspect) {

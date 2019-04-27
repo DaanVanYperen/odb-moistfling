@@ -1,0 +1,15 @@
+{
+  "recipes": [
+    {
+      "id": "recipe_age_chicken",
+      "machine": "ALTAR",
+      "ingredients": [
+        "item_chick",
+        "item_player"
+      ],
+      "produces": [
+        "item_chicken"
+      ]
+    }
+  ]
+}

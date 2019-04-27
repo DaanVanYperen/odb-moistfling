@@ -21,12 +21,9 @@ public class MapSystem extends BaseSystem {
     public int height;
     private Array<TiledMapTileLayer> layers;
     private boolean isSetup;
-
-    private GameScreenAssetSystem assetSystem;
-    private MapCollisionSystem mapCollisionSystem;
     public MapProperties properties;
     public int activeLevel = -1;
-    //private PuzzleDirectorSystem directorSystem;
+    private MapSpawnerSystem mapSpawnerSystem;
 
     @Override
     protected void initialize() {
@@ -76,11 +73,11 @@ public class MapSystem extends BaseSystem {
                     final TiledMapTileLayer.Cell cell = layer.getCell(tx, ty);
                     if (cell != null) {
                         final MapProperties properties = cell.getTile().getProperties();
-//                        if (properties.containsKey("entity")) {
-////                            if (entitySpawnerSystem.spawnEntity(tx * G.CELL_SIZE, ty * G.CELL_SIZE, properties)) {
-////                                layer.setCell(tx, ty, null);
-////                            }
-//                        }
+                        if (properties.containsKey("entity")) {
+                            if (mapSpawnerSystem.spawn(tx, ty, properties)) {
+                                layer.setCell(tx, ty, null);
+                            }
+                        }
 //                        if (properties.containsKey("invisible")) {
 //                            layer.setCell(tx, ty, null);
 //                        }
@@ -88,6 +85,7 @@ public class MapSystem extends BaseSystem {
                 }
             }
         }
+        mapSpawnerSystem.finalizeSpawns();
     }
 
     @Override

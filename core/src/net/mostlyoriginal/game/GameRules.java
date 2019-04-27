@@ -13,6 +13,10 @@ public abstract class GameRules {
     public static final int CAMERA_ZOOM = 2;
     public static final int CELL_SIZE = 32;
 
+    public static final int LAYER_PLAYER = 1000;
+    public static final int LAYER_ITEM = 750;
+    public static final int LAYER_MACHINES = 500;
+
     public static int lastScore = -1;
     public static int level = 0;
     public static Music music;
