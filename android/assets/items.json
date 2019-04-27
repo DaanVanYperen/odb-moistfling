@@ -21,6 +21,10 @@
       "sprite": "item_unicorn"
     },
     {
+      "id": "item_unicorn_horn",
+      "sprite": "item_unicorn_horn"
+    },
+    {
       "id": "item_tier1_orb",
       "sprite": "item_tier1_orb"
     },
@@ -51,10 +55,6 @@
     {
       "id": "item_boots",
       "sprite": "item_boots"
-    },
-    {
-      "id": "item_bow",
-      "sprite": "item_bow"
     },
     {
       "id": "item_bow",
@@ -108,7 +108,9 @@
       "id": "item_boxed_chicken_coop",
       "sprite": "item_boxed_chicken_coop"
     },
-
+    {
+      "id": "item_player"
+	},
 
   ]
 }
