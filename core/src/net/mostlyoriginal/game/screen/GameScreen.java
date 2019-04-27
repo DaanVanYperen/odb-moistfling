@@ -18,6 +18,7 @@ import net.mostlyoriginal.game.system.map.*;
 import net.mostlyoriginal.game.system.mechanics.HopperDetectionSystem;
 import net.mostlyoriginal.game.system.mechanics.MachineHopperDetectionSystem;
 import net.mostlyoriginal.game.system.mechanics.MachineRecipeSystem;
+import net.mostlyoriginal.game.system.mechanics.PlayerAgeSystem;
 import net.mostlyoriginal.game.system.view.GameScreenAssetSystem;
 import net.mostlyoriginal.game.system.view.MyClearScreenSystem;
 import net.mostlyoriginal.plugin.OperationsPlugin;
@@ -65,6 +66,7 @@ public class GameScreen extends WorldScreen {
                         new PickupSystem(),
                         new DesireSystem(),
                         new GridPosSystem(),
+                        new PlayerAgeSystem(),
 
                         new PayingSystem(),
 

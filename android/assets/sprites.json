@@ -244,13 +244,37 @@
       "width": 32,
       "height": 32,
     },
-	{
-      "id": "player",
+    {
+      "id": "player_kid",
       "comment": "The player.",
       "x": 0,
       "y": 96,
       "width": 32,
-      "height": 48,
+      "height": 48
+    },
+    {
+      "id": "player_young_adult",
+      "comment": "The player.",
+      "x": 0,
+      "y": 96,
+      "width": 32,
+      "height": 48
+    },
+    {
+      "id": "player_adult",
+      "comment": "The player.",
+      "x": 0,
+      "y": 96,
+      "width": 32,
+      "height": 48
+    },
+    {
+      "id": "player_elderly",
+      "comment": "The player.",
+      "x": 0,
+      "y": 96,
+      "width": 32,
+      "height": 48
     },
 	{
       "id": "customer",

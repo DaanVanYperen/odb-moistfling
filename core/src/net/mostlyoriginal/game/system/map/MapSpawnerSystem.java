@@ -90,7 +90,7 @@ public class MapSpawnerSystem extends BaseSystem {
     private void spawnPlayer(int x, int y) {
         E.E()
                 .gridPos(x, y)
-                .anim("player")
+                .anim("player_kid")
                 .itemType("item_player")
                 .player()
                 .tag("player")

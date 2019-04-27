@@ -6,6 +6,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.IntMap;
 import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.ObjectIntMap;
+import net.mostlyoriginal.game.component.Item;
 import net.mostlyoriginal.game.component.RecipeData;
 import net.mostlyoriginal.game.system.ItemLibrary;
 import net.mostlyoriginal.game.system.RecipeLibrary;
@@ -34,10 +35,11 @@ public class RecipeRepository extends BaseSystem {
     public void validateRecipes() {
         for (RecipeData o : recipeLibrary.recipes) {
             for (String ingredient : o.ingredients) {
-                if ( itemRepository.get(ingredient) == null ) throw new RuntimeException("Unknown ingredient " + ingredient);
+                if (itemRepository.get(ingredient) == null)
+                    throw new RuntimeException("Unknown ingredient " + ingredient);
             }
             for (String product : o.produces) {
-                if ( itemRepository.get(product) == null ) throw new RuntimeException("Unknown product " + product);
+                if (itemRepository.get(product) == null) throw new RuntimeException("Unknown product " + product);
             }
         }
     }
@@ -48,13 +50,17 @@ public class RecipeRepository extends BaseSystem {
     }
 
     public RecipeData firstMatching(IntBag ingredients) {
-        for (int i = 0, s = ingredients.size(); i < s; i++) {
-            final String ingredient = E(ingredients.get(i)).getItem().type;
-            RecipeData recipe = recipeLibrary.firstWithIngredient(ingredient);
-            if (recipe != null) {
+
+        Item ingredientItem = E(ingredients.get(0)).getItem();
+        final String ingredient = ingredientItem.type;
+
+        for (int j = 0, s2 = recipeLibrary.recipes.length; j < s2; j++) {
+            final RecipeData recipe = recipeLibrary.recipes[j];
+            if (recipe.hasIngredient(ingredient)) {
                 if (matchesRecipe(ingredients, recipe)) return recipe;
             }
         }
+
         return null;
     }
 

@@ -20,6 +20,7 @@ public class MachineRecipeSystem extends FluidSystem {
     private RecipeRepository recipeRepository;
     private ItemRepository itemRepository;
     private MapSpawnerSystem mapSpawnerSystem;
+    private PlayerAgeSystem playerAgeSystem;
 
     @Override
     protected void process(E e) {
@@ -34,6 +35,12 @@ public class MachineRecipeSystem extends FluidSystem {
     }
 
     private void executeRecipe(Machine machine, GridPos machineGridPos, RecipeData recipe) {
+
+        if ( !playerAgeSystem.attemptPayment(recipe.ageCost) ) {
+            System.out.println("Cannot afford payment for " + recipe.id + ".");
+            return;
+        }
+
         consumeIngredients(machine);
         spawnProduce(machineGridPos, recipe);
         System.out.println("Recipe " + recipe.id + " triggered.");
