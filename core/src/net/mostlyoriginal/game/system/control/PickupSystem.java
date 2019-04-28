@@ -75,14 +75,18 @@ public class PickupSystem extends FluidIteratingSystem {
                     storeItemHere(actor, item);
                 }
                 if ( slot.slotMode() == Slot.Mode.EXPAND ) {
-                    expandItemHere(actor, item);
+                    deployItemHere(actor, item);
                 }
             }
         }
     }
 
-    private void expandItemHere(E actor, E item) {
+    DeploySystem deploySystem;
 
+    private void deployItemHere(E actor, E item) {
+        deploySystem.deploy(item, actor.getGridPos());
+        item.deleteFromWorld();
+        actor.removeLifting();
     }
 
     private void storeItemHere(E actor, E item) {

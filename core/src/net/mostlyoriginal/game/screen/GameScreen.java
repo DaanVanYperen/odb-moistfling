@@ -61,6 +61,8 @@ public class GameScreen extends WorldScreen {
 
                         new PlayerControlSystem(),
                         new MapCollisionSystem(),
+                        new DeploySystem(),
+                        new PassiveSpawnSystem(),
 
                         new ShopperControlSystem(),
 
@@ -88,6 +90,7 @@ public class GameScreen extends WorldScreen {
                         new MyAnimRenderSystem(renderBatchingSystem),
                         new MyLabelRenderSystem(renderBatchingSystem),
                         new MapRenderInFrontSystem()
+
 //                        new TransitionSystem(GdxArtemisGame.getInstance(), this)
                 ).build());
     }

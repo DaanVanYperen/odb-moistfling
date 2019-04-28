@@ -31,6 +31,26 @@
    <property name="solid" type="bool" value="true"/>
   </properties>
  </tile>
+ <tile id="8">
+  <properties>
+   <property name="solid" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="9">
+  <properties>
+   <property name="solid" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="12">
+  <properties>
+   <property name="solid" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="13">
+  <properties>
+   <property name="solid" type="bool" value="true"/>
+  </properties>
+ </tile>
  <tile id="34">
   <properties>
    <property name="solid" type="bool" value="true"/>
@@ -61,6 +81,26 @@
    <property name="solid" type="bool" value="true"/>
   </properties>
  </tile>
+ <tile id="40">
+  <properties>
+   <property name="solid" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="41">
+  <properties>
+   <property name="solid" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="44">
+  <properties>
+   <property name="solid" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="45">
+  <properties>
+   <property name="solid" type="bool" value="true"/>
+  </properties>
+ </tile>
  <tile id="66">
   <properties>
    <property name="entity" value="hopper"/>
@@ -82,6 +122,8 @@
    <property name="accepts" value="any"/>
    <property name="entity" value="slot"/>
    <property name="mode" value="store"/>
+   <property name="x" type="int" value="0"/>
+   <property name="y" type="int" value="0"/>
   </properties>
  </tile>
  <tile id="128">
@@ -100,7 +142,7 @@
    <property name="entity" value="slot"/>
    <property name="mode" value="expand"/>
    <property name="x" type="int" value="0"/>
-   <property name="y" type="int" value="0"/>
+   <property name="y" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="139">
@@ -109,7 +151,7 @@
    <property name="entity" value="slot"/>
    <property name="mode" value="expand"/>
    <property name="x" type="int" value="1"/>
-   <property name="y" type="int" value="0"/>
+   <property name="y" type="int" value="1"/>
   </properties>
  </tile>
  <tile id="147">
@@ -196,7 +238,7 @@
    <property name="entity" value="slot"/>
    <property name="mode" value="expand"/>
    <property name="x" type="int" value="0"/>
-   <property name="y" type="int" value="1"/>
+   <property name="y" type="int" value="0"/>
   </properties>
  </tile>
  <tile id="171">
@@ -205,7 +247,7 @@
    <property name="entity" value="slot"/>
    <property name="mode" value="expand"/>
    <property name="x" type="int" value="1"/>
-   <property name="y" type="int" value="1"/>
+   <property name="y" type="int" value="0"/>
   </properties>
  </tile>
  <tile id="179">

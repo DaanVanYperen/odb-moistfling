@@ -57,7 +57,10 @@ public class MapSpawnerSystem extends BaseSystem {
             spawnPlayer(x, y);
             return true;
         }else if ("slot".equals(entity)) {
-            spawnSlot(x, y,  (String) properties.get("accepts"), Slot.Mode.valueOf(((String) properties.get("mode")).toUpperCase()));
+            spawnSlot(x, y,  (String) properties.get("accepts"),
+                    Slot.Mode.valueOf(((String) properties.get("mode")).toUpperCase()),
+                    (int) properties.get("x"),
+                    (int) properties.get("y"));
             return false;
         } else if ("hopper".equals(entity)) {
             spawnHopper(x, y);
@@ -73,12 +76,14 @@ public class MapSpawnerSystem extends BaseSystem {
         return false;
     }
 
-    private void spawnSlot(int x, int y, String accepts, Slot.Mode mode) {
+    private void spawnSlot(int x, int y, String accepts, Slot.Mode mode, int slotX, int slotY) {
         E altar = E.E()
                 .gridPos(x, y)
                 .tint(1f,1f,1f,0.7f)
                 .slotAccepts(accepts.split(","))
                 .slotMode(mode)
+                .slotX(slotX)
+                .slotY(slotY)
                 .renderLayer(GameRules.LAYER_SLOTS);
     }
 

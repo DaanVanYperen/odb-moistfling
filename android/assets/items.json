@@ -210,6 +210,8 @@
     {
       "id": "item_boxed_forge",
       "sprite": "item_boxed_forge",
+      "machine": "machine_forge",
+      "machineProducts": ["item_ingot", "item_imp"],
       "consumed": true,
       "reward": false,
       "gold": -1,
@@ -219,6 +221,8 @@
     {
       "id": "item_boxed_bush",
       "sprite": "item_boxed_bush",
+      "machine": "machine_herb_bush",
+      "machineProducts": ["item_herb_branch", "item_wood"],
       "consumed": true,
       "reward": false,
       "gold": -1,
@@ -228,6 +232,8 @@
     {
       "id": "item_boxed_coop",
       "sprite": "item_boxed_coop",
+      "machine": "machine_chicken_coop",
+      "machineProducts": ["item_chick","item_chicken"],
       "consumed": true,
       "reward": false,
       "gold": -1,

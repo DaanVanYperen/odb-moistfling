@@ -12,4 +12,6 @@ public class Slot extends Component {
     }
     public String[] accepts;
     public Mode mode;
+    public int x;
+    public int y;
 }
