@@ -8,6 +8,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.math.Vector2;
 import net.mostlyoriginal.api.utils.MapMask;
+import net.mostlyoriginal.game.GameRules;
 import net.mostlyoriginal.game.component.GridPos;
 import net.mostlyoriginal.game.component.Item;
 import net.mostlyoriginal.game.component.Player;
@@ -46,14 +47,29 @@ public class PlayerControlSystem extends FluidIteratingSystem {
     private void handleMovement(E e) {
         final GridPos gridPos = e.getGridPos();
 
-        if ( Gdx.input.isKeyJustPressed(Input.Keys.SPACE) ) {
+        if ( GameRules.DEBUG_ENABLED  ) {
+            if (Gdx.input.isKeyPressed(Input.Keys.F5)) {
+                E.withTag("player").playerAge(0);
+            }
+            if (Gdx.input.isKeyPressed(Input.Keys.F6)) {
+                E.withTag("player").playerAge(1);
+            }
+            if (Gdx.input.isKeyPressed(Input.Keys.F7)) {
+                E.withTag("player").playerAge(2);
+            }
+            if (Gdx.input.isKeyPressed(Input.Keys.F8)) {
+                E.withTag("player").playerAge(3);
+            }
+        }
+
+        if ( Gdx.input.isKeyJustPressed(Input.Keys.SPACE)||Gdx.input.isKeyJustPressed(Input.Keys.SHIFT_RIGHT)||Gdx.input.isKeyJustPressed(Input.Keys.SHIFT_LEFT) ) {
             e.getLifter().attemptLifting = !e.getLifter().attemptLifting;
         }
 
-        int dx = Gdx.input.isKeyPressed(Input.Keys.A) ? -1 :
-                Gdx.input.isKeyPressed(Input.Keys.D) ? 1 : 0;
-        int dy = Gdx.input.isKeyPressed(Input.Keys.W) ? 1 :
-                Gdx.input.isKeyPressed(Input.Keys.S) ? -1 : 0;
+        int dx = Gdx.input.isKeyPressed(Input.Keys.A) || Gdx.input.isKeyPressed(Input.Keys.LEFT) ? -1 :
+                Gdx.input.isKeyPressed(Input.Keys.D) || Gdx.input.isKeyPressed(Input.Keys.RIGHT) ? 1 : 0;
+        int dy = Gdx.input.isKeyPressed(Input.Keys.W) || Gdx.input.isKeyPressed(Input.Keys.UP)? 1 :
+                Gdx.input.isKeyPressed(Input.Keys.S)|| Gdx.input.isKeyPressed(Input.Keys.DOWN) ? -1 : 0;
 
         Vector2 movementVector = vector2.set(dx, dy).nor();
 
