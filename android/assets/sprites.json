@@ -421,8 +421,8 @@
       "comment": "Wall with window and floor and god rays and light and yay.",
       "x": 256,
       "y": 0,
-      "width": 32,
-      "height": 64,
+      "width": 64,
+      "height": 128,
     },
     {
       "id": "player_elderly",
