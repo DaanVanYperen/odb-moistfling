@@ -46,16 +46,16 @@ public class PickupSystem extends FluidIteratingSystem {
         followCarrier(e);
     }
 
-    Tint carriedItemTint = new Tint(1f, 1f, 1f, 0.8f);
+    Tint carriedItemTint = new Tint(0.8f, 0.8f, 1f, 0.8f);
 
     private void followCarrier(E actor) {
         if (actor.hasLifting() && actor.getLifting().id != -1) {
             E lifting = E.E(actor.getLifting().id);
             if (actor.hasShopper()) {
-                lifting.scale(0.5f);
+                lifting.scale(1f);
                 lifting.tint(carriedItemTint);
-                lifting.posX(actor.getPos().xy.x + 16);
-                lifting.posY(actor.getPos().xy.y + CARRIED_OBJECT_SHOPPER_LIFTING_HEIGHT);
+                lifting.posX(actor.getPos().xy.x + 8);
+                lifting.posY(actor.getPos().xy.y + CARRIED_OBJECT_SHOPPER_LIFTING_HEIGHT-8);
             } else {
                 lifting.scale(1f);
                 lifting.tint(Tint.WHITE);

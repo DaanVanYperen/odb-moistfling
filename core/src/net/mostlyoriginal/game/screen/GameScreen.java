@@ -10,7 +10,6 @@ import net.mostlyoriginal.api.manager.FontManager;
 import net.mostlyoriginal.api.screen.core.WorldScreen;
 import net.mostlyoriginal.api.system.camera.CameraSystem;
 import net.mostlyoriginal.api.system.graphics.RenderBatchingSystem;
-import net.mostlyoriginal.api.system.physics.PhysicsSystem;
 import net.mostlyoriginal.game.manager.ItemRepository;
 import net.mostlyoriginal.game.manager.RecipeRepository;
 import net.mostlyoriginal.game.system.*;
@@ -84,6 +83,7 @@ public class GameScreen extends WorldScreen {
                         new MachineRecipeSystem(),
                         new RecipeIngredientHintSystem(),
                         new SlotHighlightingSystem(),
+                        new NightSystem(),
 
                         new ParticleSystem(),
                         new MapRenderSystem(),

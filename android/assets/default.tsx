@@ -43,6 +43,7 @@
  </tile>
  <tile id="12">
   <properties>
+   <property name="entity" value="window"/>
    <property name="solid" type="bool" value="true"/>
   </properties>
  </tile>
@@ -210,18 +211,21 @@
  </tile>
  <tile id="156">
   <properties>
+   <property name="count" type="int" value="3"/>
    <property name="entity" value="item"/>
    <property name="type" value="item_herb_branch"/>
   </properties>
  </tile>
  <tile id="157">
   <properties>
+   <property name="count" type="int" value="1"/>
    <property name="entity" value="item"/>
    <property name="type" value="item_healing_potion"/>
   </properties>
  </tile>
  <tile id="158">
   <properties>
+   <property name="count" type="int" value="2"/>
    <property name="entity" value="item"/>
    <property name="type" value="item_mana_potion"/>
   </properties>
@@ -300,6 +304,7 @@
  </tile>
  <tile id="187">
   <properties>
+   <property name="count" type="int" value="5"/>
    <property name="entity" value="item"/>
    <property name="type" value="item_ingot"/>
   </properties>
@@ -330,6 +335,7 @@
  </tile>
  <tile id="211">
   <properties>
+   <property name="count" type="int" value="5"/>
    <property name="entity" value="item"/>
    <property name="type" value="item_boxed_coop"/>
   </properties>
@@ -384,6 +390,7 @@
  </tile>
  <tile id="220">
   <properties>
+   <property name="count" type="int" value="5"/>
    <property name="entity" value="item"/>
    <property name="type" value="item_wood"/>
   </properties>

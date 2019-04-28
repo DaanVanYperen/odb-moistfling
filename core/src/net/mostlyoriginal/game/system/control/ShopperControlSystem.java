@@ -16,10 +16,12 @@ import net.mostlyoriginal.game.system.map.MapSpawnerSystem;
 public class ShopperControlSystem extends FluidIteratingSystem {
 
     PickupManager pickupManager;
+    private E player;
 
     @Override
-    protected void end() {
-        super.end();
+    protected void begin() {
+        super.begin();
+        player = E.withTag("player");
     }
 
     @Override
@@ -42,7 +44,7 @@ public class ShopperControlSystem extends FluidIteratingSystem {
     }
 
     private boolean timeToLeaveFor(Shopper shopper) {
-        return shopper.age >= shopper.leaveAge;
+        return shopper.age >= shopper.leaveAge || player.playerNighttime();
     }
 
     private void deleteWhenOffscreen(E e) {

@@ -25,6 +25,11 @@ public class ShopperSpawnSystem extends FluidIteratingSystem {
     float spawnCooldown = 0;
 
     @Override
+    protected boolean checkProcessing() {
+        return !E.withTag("player").playerNighttime();
+    }
+
+    @Override
     protected void process(E e) {
         ShopperSpawner shopperSpawner = e.getShopperSpawner();
         if ( shopperSpawner.shopperId == -1 && !enoughShoppers()) {

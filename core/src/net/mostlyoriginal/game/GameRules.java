@@ -20,6 +20,7 @@ public abstract class GameRules {
     public static final int LAYER_MACHINES = 500;
     public static final int LAYER_ITEM_CARRIED = 1050;
     public static final int LAYER_DESIRE_INDICATOR = 1010;
+    public static final int LAYER_WINDOWS = 50;
 
     public static final int LAYER_PAYMENT = 2000;
     public static final int LAYER_INGREDIENT_HINTS = 600;

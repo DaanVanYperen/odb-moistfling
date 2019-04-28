@@ -51,7 +51,7 @@ public class MapSpawnerSystem extends BaseSystem {
         if ("item".equals(entity)) {
             E item = spawnItem(x, y, type);
             if ( item != null )
-                item.itemCount(99);
+                item.itemCount(properties.containsKey("count") ? (int)properties.get("count") : 1);
             return true;
         } else if ("player".equals(entity)) {
             spawnPlayer(x, y);
@@ -72,8 +72,20 @@ public class MapSpawnerSystem extends BaseSystem {
             spawnShopperSpawner(x, y);
             return true;
         }
+        if ("window".equals(entity)) {
+            spawnWindow(x, y);
+            return false;
+        }
 
         return false;
+    }
+
+    private void spawnWindow(int x, int y) {
+        E hopper = E.E()
+                .gridPos(x, y-3)
+                .invisibleDuringNight()
+                .anim("godray_window")
+                .renderLayer(GameRules.LAYER_WINDOWS);
     }
 
     private void spawnSlot(int x, int y, String accepts, Slot.Mode mode, int slotX, int slotY) {
