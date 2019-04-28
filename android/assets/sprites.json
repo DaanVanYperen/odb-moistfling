@@ -237,6 +237,22 @@
       "height": 32,
     },
 	{
+      "id": "plus",
+      "comment": "Plus symbol for recipes.",
+      "x": 704,
+      "y": 192,
+      "width": 32,
+      "height": 32,
+    },
+	{
+      "id": "equals",
+      "comment": "Equals symbol for recipes.",
+      "x": 736,
+      "y": 192,
+      "width": 32,
+      "height": 32,
+    },
+	{
       "id": "shadow",
       "comment": "Universal object shadow.",
       "x": 672,
