@@ -36,28 +36,33 @@ public class TradeSystem extends FluidIteratingSystem {
     protected void process(E patron) {
         if (playerWantsToTradeAndHasSomethingToTrade() && patronHasntTradedYet(patron)) {
 
-            if (patron.hasDesire() && patron.gridPosOverlaps(player.getGridPos()) && pickupManager.isCarrying(player, patron.desireDesiredItem())) {
+            if ( patron.gridPosOverlaps(player.getGridPos())) {
+                if (patron.hasDesire() && pickupManager.isCarrying(player, patron.desireDesiredItem())) {
 
-                final int playerItemId = player.liftingId();
-                final int patronItemId = patron.hasLifting() ? patron.liftingId() : -1;
+                    final int playerItemId = player.liftingId();
+                    final int patronItemId = patron.hasLifting() ? patron.liftingId() : -1;
 
-                if (patronItemId != -1) {
-                    player.liftingId(patronItemId);
-                    player.getLifter().itemsLifted++;
-                    player.lifterAttemptLifting(true);
-                    renderBatchingSystem.sortedDirty = true;
+                    if (patronItemId != -1) {
+                        player.liftingId(patronItemId);
+                        player.getLifter().itemsLifted++;
+                        player.lifterAttemptLifting(true);
+                        renderBatchingSystem.sortedDirty = true;
 
-                    final int goldValue = itemRepository.get(E.E(playerItemId).itemType()).gold;
-                    if (goldValue > 0) {
-                        patron.paying(goldValue);
+                        final int goldValue = itemRepository.get(E.E(playerItemId).itemType()).gold;
+                        if (goldValue > 0) {
+                            patron.paying(goldValue);
+                        }
                     }
-                }
 
-                if (playerItemId != -1) {
-                    patron.liftingId(playerItemId);
-                    patron.getLifter().itemsLifted++;
-                    patron.removeDesire();
-                    renderBatchingSystem.sortedDirty = true;
+                    if (playerItemId != -1) {
+                        patron.liftingId(playerItemId);
+                        patron.getLifter().itemsLifted++;
+                        patron.removeDesire();
+                        renderBatchingSystem.sortedDirty = true;
+                    }
+                } else {
+                    // cancel drop if trade can't be made.
+                    player.lifterAttemptLifting(true);
                 }
             }
         }
