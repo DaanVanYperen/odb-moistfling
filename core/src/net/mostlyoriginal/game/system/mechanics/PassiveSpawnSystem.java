@@ -36,15 +36,15 @@ public class PassiveSpawnSystem extends FluidIteratingSystem {
     @Override
     protected void process(E e) {
         PassiveSpawner spawner = e.getPassiveSpawner();
-        if (spawner.items.length > 0 && MathUtils.random(1, 1000) < 100) {
+        if (spawner.items.length > 0 && MathUtils.random(1, 1000) < 20) {
             spawn(e, spawner.items[0]);
         }
         // second item more rare.
-        if (spawner.items.length > 1 && MathUtils.random(1, 1000) < 50) {
+        if (spawner.items.length > 1 && MathUtils.random(1, 1000) < 10) {
             spawn(e, spawner.items[1]);
         }
         // third item rarest.
-        if (spawner.items.length > 2 && MathUtils.random(1, 1000) < 10) {
+        if (spawner.items.length > 2 && MathUtils.random(1, 1000) < 5) {
             spawn(e, spawner.items[2]);
         }
     }

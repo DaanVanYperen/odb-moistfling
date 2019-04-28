@@ -24,6 +24,7 @@ public class ScoreSystem extends BaseSystem {
     private E hintLabel;
     private E rankLabel;
     private int lastGold;
+    private int lastDay;
 
     @Override
     protected void initialize() {
@@ -52,9 +53,13 @@ public class ScoreSystem extends BaseSystem {
                 .fontFontName("5x5")
                 .labelAlign(Label.Align.RIGHT)
                 .renderLayer(GameRules.LAYER_SCORE_TEXT)
-                .labelText("Elderly Grubling");
+                .labelText(dayLabel(10));
 
         flash(hintLabel);
+    }
+
+    private String dayLabel(int day) {
+        return "Day "+ day +": Elderly Grubling";
     }
 
     private boolean nighttimeMode = false;
@@ -62,11 +67,17 @@ public class ScoreSystem extends BaseSystem {
     @Override
     protected void processSystem() {
         final E player = E.withTag("player");
-        goldLabel.labelText("Banked " + player.playerGold() + " gold");
 
         if (lastGold != player.playerGold()) {
             lastGold = player.playerGold();
+            goldLabel.labelText("Banked " + player.playerGold() + " gold");
             flash(goldLabel);
+        }
+
+        if (lastDay != player.playerDay()) {
+            lastDay = player.playerDay();
+            rankLabel.labelText(dayLabel(lastDay));
+            flash(rankLabel);
         }
 
         if (player.playerNighttime()) {

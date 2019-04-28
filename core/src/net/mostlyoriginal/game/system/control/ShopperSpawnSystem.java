@@ -22,7 +22,8 @@ public class ShopperSpawnSystem extends FluidIteratingSystem {
     private EntitySubscription shoppers;
     MapSpawnerSystem mapSpawnerSystem;
 
-    float spawnCooldown = 0;
+    private float spawnCooldown = 0;
+    private int lastScriptedSpawnDay = 0;
 
     @Override
     protected boolean checkProcessing() {
@@ -36,9 +37,40 @@ public class ShopperSpawnSystem extends FluidIteratingSystem {
             shopperSpawner.cooldown -= world.delta;
             if (shopperSpawner.cooldown < 0) {
                 shopperSpawner.cooldown += MathUtils.random(5,10);
+                int day = E.withTag("player").playerDay();
+                if ( lastScriptedSpawnDay != day) {
+                    lastScriptedSpawnDay = day;
+                    if ( spawnScriptedShopper(e.gridPosX(),e.gridPosY(),day))
+                        return;
+                }
                 mapSpawnerSystem.spawnShopper(e.gridPosX(),e.gridPosY());
             }
         }
+    }
+
+    private boolean spawnScriptedShopper(int gridPosX, int gridPosY, int day) {
+
+        if ( day == 1 ) {
+            mapSpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY, "item_enchanted_bow","item_boxed_coop");
+            return true;
+        }
+
+        if ( day == 2 ) {
+            mapSpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY, "item_magical_sword","item_unicorn");
+            return true;
+        }
+
+        if ( day == 3 ) {
+            mapSpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY, "item_enchanted_armor","item_boxed_forge");
+            return true;
+        }
+
+        if ( day % 5 == 4 ) {
+            mapSpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY, "item_magical_staff","item_mystical_tome");
+            return true;
+        }
+
+        return false;
     }
 
     private boolean enoughShoppers() {

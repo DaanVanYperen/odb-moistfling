@@ -139,6 +139,10 @@ public class MapSpawnerSystem extends BaseSystem {
         String desiredItem = itemRepository.randomDesire();
         String rewardItem  = itemRepository.randomReward();
 
+        spawnShopperWithSpecificItems(x, y, desiredItem, rewardItem);
+    }
+
+    public void spawnShopperWithSpecificItems(int x, int y, String desiredItem, String rewardItem) {
         E.E()
                 .gridPos(x, y)
                 .pos(GameRules.SCREEN_WIDTH/(float)GameRules.CAMERA_ZOOM+1,y * GameRules.CELL_SIZE)

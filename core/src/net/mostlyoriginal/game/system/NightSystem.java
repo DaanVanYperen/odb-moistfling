@@ -31,6 +31,9 @@ public class NightSystem extends FluidIteratingSystem {
             flipped = true;
             nighttime = !nighttime;
             player.playerNighttime(nighttime);
+            if ( !nighttime ) {
+                player.getPlayer().day++;
+            }
         } else flipped = false;
     }
 
