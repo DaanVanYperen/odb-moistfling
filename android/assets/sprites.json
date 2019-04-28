@@ -408,5 +408,13 @@
       "width": 38,
       "height": 40,
     },
+	{
+      "id": "particle",
+      "comment": "Party poop never wanted to be a party poop.",
+      "x": 32,
+      "y": 64,
+      "width": 4,
+      "height": 4,
+    },
   ]
 }
