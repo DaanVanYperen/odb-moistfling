@@ -117,10 +117,21 @@
       ]
     },
     {
-      "id": "recipe_winged_boots",
+      "id": "recipe_boots",
       "machine": "ALTAR",
       "ingredients": [
         "item_demon_hide",
+        "item_herb_branch"
+      ],
+      "produces": [
+        "item_boots"
+      ]
+    },
+    {
+      "id": "recipe_winged_boots",
+      "machine": "ALTAR",
+      "ingredients": [
+        "item_boots",
         "item_tier1_orb"
       ],
       "produces": [
@@ -140,10 +151,21 @@
       ]
     },
     {
-      "id": "recipe_magical_sword",
+      "id": "recipe_sword",
       "machine": "ALTAR",
       "ingredients": [
         "item_ingot",
+        "item_ingot"
+      ],
+      "produces": [
+        "item_sword"
+      ]
+    },
+    {
+      "id": "recipe_magical_sword",
+      "machine": "ALTAR",
+      "ingredients": [
+        "item_sword",
         "item_tier1_orb",
         "item_tier1_orb"
       ],
@@ -164,10 +186,21 @@
       ],
     },
     {
-      "id": "recipe_enchanted_bow",
+      "id": "recipe_bow",
       "machine": "ALTAR",
       "ingredients": [
         "item_wood",
+        "item_herb_branch",
+      ],
+      "produces": [
+        "item_bow"
+      ]
+    },
+    {
+      "id": "recipe_enchanted_bow",
+      "machine": "ALTAR",
+      "ingredients": [
+        "item_bow",
         "item_tier1_orb",
         "item_tier1_orb"
       ],
@@ -228,7 +261,7 @@
       "machine": "ALTAR",
       "ageCost": 3,
       "ingredients": [
-        "item_unicorn_horn",
+        "item_wood",
         "item_unicorn_horn",
         "item_player"
       ],

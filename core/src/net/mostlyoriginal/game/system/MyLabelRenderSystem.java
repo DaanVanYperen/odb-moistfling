@@ -1,6 +1,7 @@
 package net.mostlyoriginal.game.system;
 
 import com.artemis.Aspect;
+import com.artemis.E;
 import com.artemis.annotations.Wire;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -13,6 +14,7 @@ import net.mostlyoriginal.api.component.graphics.Tint;
 import net.mostlyoriginal.api.component.ui.BitmapFontAsset;
 import net.mostlyoriginal.api.component.ui.Font;
 import net.mostlyoriginal.api.component.ui.Label;
+import net.mostlyoriginal.api.manager.FontManager;
 import net.mostlyoriginal.api.plugin.extendedcomponentmapper.M;
 import net.mostlyoriginal.api.system.camera.CameraSystem;
 import net.mostlyoriginal.api.system.delegate.DeferredEntityProcessingSystem;
@@ -37,6 +39,11 @@ public class MyLabelRenderSystem extends DeferredEntityProcessingSystem {
     public MyLabelRenderSystem(EntityProcessPrincipal principal) {
         super(Aspect.all(Pos.class, Label.class, Render.class, BitmapFontAsset.class).exclude(Invisible.class), principal);
         batch = new SpriteBatch(1000);
+    }
+
+    @Override
+    protected void initialize() {
+        super.initialize();
     }
 
     @Override

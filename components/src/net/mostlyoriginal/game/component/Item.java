@@ -7,4 +7,5 @@ import com.artemis.Component;
  */
 public class Item extends Component {
     public String type;
+    public int count = 1;
 }
