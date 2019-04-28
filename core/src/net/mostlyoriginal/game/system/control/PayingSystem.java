@@ -30,7 +30,7 @@ public class PayingSystem extends FluidIteratingSystem {
 
         E.E()
                 .pos(e.getPos())
-                .labelText(gold + "S")
+                .labelText("+"+gold + " gold")
                 .fontFontName("5x5")
                 .labelAlign(Label.Align.RIGHT)
                 .renderLayer(GameRules.LAYER_PAYMENT)

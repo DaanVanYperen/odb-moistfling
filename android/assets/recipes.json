@@ -28,7 +28,7 @@
     {
       "id": "recipe_rejuvenate_mana_potion",
       "machine": "ALTAR",
-      "ageCost": -1,
+      "ageCost": -4,
       "ingredients": [
         "item_mana_potion",
         "item_mana_potion",
