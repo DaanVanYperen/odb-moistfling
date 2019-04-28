@@ -60,7 +60,7 @@
       "consumed": true,
       "reward": true,
       "gold": 40,
-      "rewardChance": 0,
+      "rewardChance": 80,
       "desireChance": 0
     },
     {
@@ -96,7 +96,7 @@
       "consumed": true,
       "reward": true,
       "gold": 30,
-      "rewardChance": 0,
+      "rewardChance": 30,
       "desireChance": 100
     },
     {
@@ -191,7 +191,7 @@
       "consumed": true,
       "reward": true,
       "gold": 25,
-      "rewardChance": 200,
+      "rewardChance": 100,
       "desireChance": 0
     },
     {
@@ -200,7 +200,7 @@
       "consumed": true,
       "reward": true,
       "gold": 25,
-      "rewardChance": 150,
+      "rewardChance": 100,
       "desireChance": 0
     },
     {

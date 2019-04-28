@@ -4,6 +4,12 @@ import com.artemis.E;
 import com.artemis.FluidIteratingSystem;
 import com.artemis.annotations.All;
 import com.artemis.utils.IntBag;
+import com.badlogic.gdx.math.Interpolation;
+import net.mostlyoriginal.api.component.graphics.Anim;
+import net.mostlyoriginal.api.component.graphics.Tint;
+import net.mostlyoriginal.api.operation.JamOperationFactory;
+import net.mostlyoriginal.api.operation.OperationFactory;
+import net.mostlyoriginal.api.operation.common.Operation;
 import net.mostlyoriginal.game.Slot;
 import net.mostlyoriginal.game.component.GridPos;
 
@@ -22,12 +28,27 @@ public class SlotHighlightingSystem extends FluidIteratingSystem {
         liftingType = player.hasLifting() && player.liftingId() != -1 ? E.E(player.liftingId()).itemType() : null;
     }
 
+    private static final Tint HIGHLIGHTED = new Tint(1f,1f,1f,0.6f);
+
     @Override
     protected void process(E e) {
         boolean highlight = acceptsItemType(e,liftingType);
-        if (highlight) {
-            e.anim("hopper_highlight");
-        } else if (e.hasAnim()) e.removeAnim();
+        if (highlight ) {
+            if ( !e.hasAnim() ) {
+                e.anim("hopper_highlight").tint(Tint.TRANSPARENT).script(
+                        OperationFactory.sequence(
+                                JamOperationFactory.tintBetween(Tint.TRANSPARENT,HIGHLIGHTED, 0.5f, Interpolation.fade)
+                        )
+                );
+            }
+        } else if (e.hasAnim() && !e.hasScript()) {
+            e.script(
+                    OperationFactory.sequence(
+                            JamOperationFactory.tintBetween(HIGHLIGHTED, Tint.TRANSPARENT, 0.5f, Interpolation.fade),
+                            OperationFactory.remove(Anim.class)
+                    )
+            );
+        }
     }
 
     public boolean acceptsItemType(E e, String type) {
