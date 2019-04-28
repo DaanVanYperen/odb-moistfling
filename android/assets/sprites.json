@@ -350,7 +350,7 @@
     },
     {
       "id": "player_adult",
-      "comment": "The player.",
+      "comment": "The adult player.",
       "x": 128,
       "y": 144,
       "width": 32,
@@ -358,7 +358,7 @@
     },
     {
       "id": "player_adult_walk_down",
-      "comment": "The player walking down on screen.",
+      "comment": "The adult player walking down on screen.",
       "x": 0
       "y": 192,
       "width": 32,
@@ -370,7 +370,7 @@
     },
     {
       "id": "player_adult_walk_up",
-      "comment": "The player walking up on screen.",
+      "comment": "The adult player walking up on screen.",
       "x": 0
       "y": 336,
       "width": 32,
@@ -382,7 +382,7 @@
     },
     {
       "id": "player_adult_walk_right",
-      "comment": "The player walking right  on screen.",
+      "comment": "The adult player walking right  on screen.",
       "x": 0
       "y": 240,
       "width": 32,
@@ -394,7 +394,7 @@
     },
     {
       "id": "player_adult_walk_left",
-      "comment": "The player walking left on screen.",
+      "comment": "The adult player walking left on screen.",
       "x": 0
       "y": 288,
       "width": 32,
@@ -403,6 +403,26 @@
       "countY": 1,
       "milliseconds": 90,
       "repeat": true,
+    },
+    {
+      "id": "player_young_adult_walk_down",
+      "comment": "The young adult player walking down on screen.",
+      "x": 0
+      "y": 384,
+      "width": 32,
+      "height": 48,
+      "countX": 6,
+      "countY": 1,
+      "milliseconds": 100,
+      "repeat": true,
+    },
+    {
+      "id": "godray_window",
+      "comment": "Wall with window and floor and god rays and light and yay.",
+      "x": 0
+      "y": 256,
+      "width": 32,
+      "height": 64,
     },
     {
       "id": "player_elderly",
