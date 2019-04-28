@@ -359,7 +359,7 @@
     {
       "id": "player_adult_walk_down",
       "comment": "The adult player walking down on screen.",
-      "x": 0
+      "x": 0,
       "y": 192,
       "width": 32,
       "height": 48,
@@ -371,7 +371,7 @@
     {
       "id": "player_adult_walk_up",
       "comment": "The adult player walking up on screen.",
-      "x": 0
+      "x": 0,
       "y": 336,
       "width": 32,
       "height": 48,
@@ -383,7 +383,7 @@
     {
       "id": "player_adult_walk_right",
       "comment": "The adult player walking right  on screen.",
-      "x": 0
+      "x": 0,
       "y": 240,
       "width": 32,
       "height": 48,
@@ -395,7 +395,7 @@
     {
       "id": "player_adult_walk_left",
       "comment": "The adult player walking left on screen.",
-      "x": 0
+      "x": 0,
       "y": 288,
       "width": 32,
       "height": 48,
@@ -407,7 +407,7 @@
     {
       "id": "player_young_adult_walk_down",
       "comment": "The young adult player walking down on screen.",
-      "x": 0
+      "x": 0,
       "y": 384,
       "width": 32,
       "height": 48,
@@ -419,7 +419,7 @@
     {
       "id": "player_young_adult_walk_up",
       "comment": "The young adult player walking up on screen.",
-      "x": 0
+      "x": 0,
       "y": 528,
       "width": 32,
       "height": 48,
@@ -431,7 +431,7 @@
     {
       "id": "player_young_adult_walk_right",
       "comment": "The young adult player walking right  on screen.",
-      "x": 0
+      "x": 0,
       "y": 432,
       "width": 32,
       "height": 48,
@@ -443,8 +443,56 @@
     {
       "id": "player_young_adult_walk_left",
       "comment": "The young adult player walking left on screen.",
-      "x": 0
+      "x": 0,
       "y": 480,
+      "width": 32,
+      "height": 48,
+      "countX": 8,
+      "countY": 1,
+      "milliseconds": 90,
+      "repeat": true,
+    },
+    {
+      "id": "player_kid_walk_down",
+      "comment": "The young adult player walking down on screen.",
+      "x": 0,
+      "y": 576,
+      "width": 32,
+      "height": 48,
+      "countX": 6,
+      "countY": 1,
+      "milliseconds": 100,
+      "repeat": true,
+    },
+    {
+      "id": "player_kid_walk_up",
+      "comment": "The young adult player walking up on screen.",
+      "x": 0,
+      "y": 720,
+      "width": 32,
+      "height": 48,
+      "countX": 4,
+      "countY": 1,
+      "milliseconds": 150,
+      "repeat": true,
+    },
+    {
+      "id": "player_kid_walk_right",
+      "comment": "The young adult player walking right  on screen.",
+      "x": 0,
+      "y": 624,
+      "width": 32,
+      "height": 48,
+      "countX": 8,
+      "countY": 1,
+      "milliseconds": 90,
+      "repeat": true,
+    },
+    {
+      "id": "player_kid_walk_left",
+      "comment": "The young adult player walking left on screen.",
+      "x": 0,
+      "y": 672,
       "width": 32,
       "height": 48,
       "countX": 8,
