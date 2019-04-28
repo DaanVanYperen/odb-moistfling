@@ -269,6 +269,14 @@
       "repeat": true,
     },
 	{
+      "id": "pedestal_locked",
+      "comment": "Locked pedestal.",
+      "x": 192,
+      "y": 96,
+      "width": 32,
+      "height": 32,
+    },
+	{
       "id": "item_player",
       "comment": "Player item for recipes.",
       "x": 768,
