@@ -7,8 +7,10 @@ import net.mostlyoriginal.api.component.basic.Pos;
 import net.mostlyoriginal.api.component.graphics.Tint;
 import net.mostlyoriginal.api.system.graphics.RenderBatchingSystem;
 import net.mostlyoriginal.game.GameRules;
+import net.mostlyoriginal.game.Slot;
 import net.mostlyoriginal.game.component.Lifter;
 import net.mostlyoriginal.game.manager.ItemRepository;
+import net.mostlyoriginal.game.system.SlotHighlightingSystem;
 import net.mostlyoriginal.game.system.map.MapSpawnerSystem;
 import net.mostlyoriginal.game.system.view.GameScreenAssetSystem;
 
@@ -28,6 +30,7 @@ public class PickupSystem extends FluidIteratingSystem {
     private MapSpawnerSystem mapSpawnerSystem;
 
     private GameScreenAssetSystem gameScreenAssetSystem;
+    private SlotHighlightingSystem slotHighlightingSystem;
 
     @Override
     protected void process(E e) {
@@ -65,35 +68,52 @@ public class PickupSystem extends FluidIteratingSystem {
     private void attemptDrop(E actor) {
         E item = E.E(actor.liftingId());
         if (!actor.isMoving()) {
-            E itemOnFloor = pickupManager.getOverlapping(actor);
+            E slot = slotHighlightingSystem.getSlotAt(actor.getGridPos());
 
-            // can't drop the wrong thing on a stack and can't swap a stack.
-            boolean matchesFloorItem = itemOnFloor != null && itemOnFloor.itemType().equals(item.itemType());
-            if (itemOnFloor != null && !matchesFloorItem && itemOnFloor.getItem().count > 1 ) {
-                return;
-            }
-
-            actor.removeLifting();
-            item.scale(1f);
-            item.tint(Tint.WHITE);
-            item.gridPos(actor.getGridPos()).removeLifted().renderLayer(GameRules.LAYER_ITEM);
-            renderBatchingSystem.sortedDirty = true;
-
-            if (itemOnFloor != null) {
-                if (matchesFloorItem) {
-                    // merge items if identical.
-                    itemOnFloor.getItem().count++;
-                    item.deleteFromWorld();
-                    if (actor.hasPlayer())
-                        gameScreenAssetSystem.playSfx("sfx_putdown");
-                } else {
-                    attemptPickup(actor, itemOnFloor);
-                    actor.lifterAttemptLifting(true); // we swapped something, ontinue lifting.
+            if ( slot != null  && slotHighlightingSystem.acceptsItemType(slot, item.itemType()) ) {
+                if ( slot.slotMode() == Slot.Mode.STORE ) {
+                    storeItemHere(actor, item);
                 }
-            } else {
+                if ( slot.slotMode() == Slot.Mode.EXPAND ) {
+                    expandItemHere(actor, item);
+                }
+            }
+        }
+    }
+
+    private void expandItemHere(E actor, E item) {
+
+    }
+
+    private void storeItemHere(E actor, E item) {
+        E itemOnFloor = pickupManager.getOverlapping(actor);
+
+        // can't drop the wrong thing on a stack and can't swap a stack.
+        boolean matchesFloorItem = itemOnFloor != null && itemOnFloor.itemType().equals(item.itemType());
+        if (itemOnFloor != null && !matchesFloorItem && itemOnFloor.getItem().count > 1) {
+            return;
+        }
+
+        actor.removeLifting();
+        item.scale(1f);
+        item.tint(Tint.WHITE);
+        item.gridPos(actor.getGridPos()).removeLifted().renderLayer(GameRules.LAYER_ITEM);
+        renderBatchingSystem.sortedDirty = true;
+
+        if (itemOnFloor != null) {
+            if (matchesFloorItem) {
+                // merge items if identical.
+                itemOnFloor.getItem().count++;
+                item.deleteFromWorld();
                 if (actor.hasPlayer())
                     gameScreenAssetSystem.playSfx("sfx_putdown");
+            } else {
+                attemptPickup(actor, itemOnFloor);
+                actor.lifterAttemptLifting(true); // we swapped something, ontinue lifting.
             }
+        } else {
+            if (actor.hasPlayer())
+                gameScreenAssetSystem.playSfx("sfx_putdown");
         }
     }
 

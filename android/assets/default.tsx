@@ -81,6 +81,7 @@
   <properties>
    <property name="accepts" value="any"/>
    <property name="entity" value="slot"/>
+   <property name="mode" value="store"/>
   </properties>
  </tile>
  <tile id="128">
@@ -97,6 +98,7 @@
   <properties>
    <property name="accepts" value="item_boxed_forge,item_boxed_coop,item_boxed_bush"/>
    <property name="entity" value="slot"/>
+   <property name="mode" value="expand"/>
    <property name="x" type="int" value="0"/>
    <property name="y" type="int" value="0"/>
   </properties>
@@ -105,6 +107,7 @@
   <properties>
    <property name="accepts" value="item_boxed_forge,item_boxed_coop,item_boxed_bush"/>
    <property name="entity" value="slot"/>
+   <property name="mode" value="expand"/>
    <property name="x" type="int" value="1"/>
    <property name="y" type="int" value="0"/>
   </properties>
@@ -191,6 +194,7 @@
   <properties>
    <property name="accepts" value="item_boxed_forge,item_boxed_coop,item_boxed_bush"/>
    <property name="entity" value="slot"/>
+   <property name="mode" value="expand"/>
    <property name="x" type="int" value="0"/>
    <property name="y" type="int" value="1"/>
   </properties>
@@ -199,6 +203,7 @@
   <properties>
    <property name="accepts" value="item_boxed_forge,item_boxed_coop,item_boxed_bush"/>
    <property name="entity" value="slot"/>
+   <property name="mode" value="expand"/>
    <property name="x" type="int" value="1"/>
    <property name="y" type="int" value="1"/>
   </properties>
