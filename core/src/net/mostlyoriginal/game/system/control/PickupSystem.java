@@ -3,7 +3,6 @@ package net.mostlyoriginal.game.system.control;
 import com.artemis.E;
 import com.artemis.FluidIteratingSystem;
 import com.artemis.annotations.All;
-import com.artemis.utils.IntBag;
 import net.mostlyoriginal.api.component.basic.Pos;
 import net.mostlyoriginal.api.system.graphics.RenderBatchingSystem;
 import net.mostlyoriginal.game.GameRules;
@@ -74,7 +73,7 @@ public class PickupSystem extends FluidIteratingSystem {
         attemptPickup(actor, item);
     }
 
-    private void attemptPickup(E actor, E item) {
+    public void attemptPickup(E actor, E item) {
         if (item != null) {
             if ( item.itemCount() > 1 ) {
                 // take from stack.
@@ -85,10 +84,12 @@ public class PickupSystem extends FluidIteratingSystem {
                         .lifted()
                         .renderLayer(GameRules.LAYER_ITEM_CARRIED);
                 actor.liftingId(clonedItem.id());
+                actor.lifterAttemptLifting(true);
 
             } else {
                 // pick up final item.
                 actor.liftingId(item.id());
+                actor.lifterAttemptLifting(true);
                 item
                         .removeGridPos()
                         .removeFloating()

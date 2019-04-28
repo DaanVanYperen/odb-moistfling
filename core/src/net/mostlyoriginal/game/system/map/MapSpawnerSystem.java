@@ -46,7 +46,9 @@ public class MapSpawnerSystem extends BaseSystem {
         String entity = (String) properties.get("entity");
         String type = (String) properties.get("type");
         if ("item".equals(entity)) {
-            spawnItem(x, y, type);
+            E item = spawnItem(x, y, type);
+            if ( item != null )
+                item.itemCount(99);
             return true;
         } else if ("player".equals(entity)) {
             spawnPlayer(x, y);
