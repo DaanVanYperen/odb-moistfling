@@ -237,6 +237,14 @@
       "height": 32,
     },
 	{
+      "id": "item_player",
+      "comment": "Player item for recipes.",
+      "x": 768,
+      "y": 192,
+      "width": 32,
+      "height": 32,
+    },
+	{
       "id": "plus",
       "comment": "Plus symbol for recipes.",
       "x": 704,
