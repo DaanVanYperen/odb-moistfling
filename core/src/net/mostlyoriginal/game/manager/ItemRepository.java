@@ -70,7 +70,7 @@ public class ItemRepository extends BaseSystem {
     }
 
     public String randomDesire() {
-        if (MathUtils.random(1, 100) < 60) {
+        if (MathUtils.random(1, 100) < 30) {
             // fairly high chance people want a valuable item, if the player has it.
             String covetedItemType = availableCovetedItemType();
             if (covetedItemType != null) return covetedItemType;
