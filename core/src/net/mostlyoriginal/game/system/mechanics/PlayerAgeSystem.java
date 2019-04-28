@@ -31,22 +31,6 @@ public class PlayerAgeSystem extends FluidIteratingSystem {
         }
 
         // for debugging until we have sprites.
-        e.tint();
-        e.getTint().color.r=1f;
-        e.getTint().color.g=1f;
-        e.getTint().color.b=1f;
-        switch (player.age) {
-            case 0:
-                e.getTint().color.a = 1f; break;
-            case 1:
-                e.getTint().color.a = 0.75f; break;
-            case 2:
-                e.getTint().color.a = 0.5f; break;
-            case 3:
-                e.getTint().color.a = 0.25f; break;
-        }
-
-
     }
 
     public boolean attemptPayment(int ageCost) {
