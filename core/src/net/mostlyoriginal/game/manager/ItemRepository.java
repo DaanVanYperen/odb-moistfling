@@ -13,12 +13,18 @@ import net.mostlyoriginal.game.system.ItemLibrary;
 public class ItemRepository extends BaseSystem {
 
     private ItemLibrary itemLibrary;
+    private int rewardDropTotal = 0;
+    private int desireDropTotal = 0;
 
     @Override
     protected void initialize() {
         super.initialize();
         final Json json = new Json();
         itemLibrary = json.fromJson(ItemLibrary.class, Gdx.files.internal("items.json"));
+        for (ItemData item : itemLibrary.items) {
+            rewardDropTotal += item.rewardChance;
+            desireDropTotal += item.desireChance;
+        }
     }
 
     @Override
@@ -31,12 +37,24 @@ public class ItemRepository extends BaseSystem {
         return byId;
     }
 
-    public String random() {
+    public String randomReward() {
         boolean valid = false;
-        while (true) {
-            ItemData item = itemLibrary.items[MathUtils.random(0, itemLibrary.items.length - 1)];
-            if (item.reward) return item.id;
+
+        int target = MathUtils.random(0, rewardDropTotal - 1);
+        for (ItemData item : itemLibrary.items) {
+            target -= item.rewardChance;
+            if (target <= 0) return item.id;
         }
+        return null;
+    }
+
+    public String randomDesire() {
+        int target = MathUtils.random(0, desireDropTotal - 1);
+        for (ItemData item : itemLibrary.items) {
+            target -= item.desireChance;
+            if (target <= 0) return item.id;
+        }
+        return null;
     }
 }
 

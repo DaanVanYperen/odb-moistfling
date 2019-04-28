@@ -5,188 +5,242 @@
       "sprite": "item_chick",
       "consumed": true,
       "reward": true,
-      "gold": 5
+      "gold": 5,
+      "rewardChance": 100,
+      "desireChance": 0
     },
     {
       "id": "item_chicken",
       "sprite": "item_chicken",
       "consumed": true,
       "reward": true,
-      "gold": 10
+      "gold": 10,
+      "rewardChance": 100,
+      "desireChance": 0
     },
     {
       "id": "item_imp",
       "sprite": "item_imp",
       "consumed": true,
       "reward": true,
-      "gold": 40
+      "gold": 40,
+      "rewardChance": 50,
+      "desireChance": 0
     },
     {
       "id": "item_unicorn",
       "sprite": "item_unicorn",
       "consumed": true,
       "reward": true,
-      "gold": 160
+      "gold": 160,
+      "rewardChance": 25,
+      "desireChance": 0
     },
     {
       "id": "item_tier1_orb",
       "sprite": "item_tier1_orb",
       "consumed": true,
       "reward": true,
-      "gold": 10
+      "gold": 10,
+      "rewardChance": 0,
+      "desireChance": 0
     },
     {
       "id": "item_drumstick",
       "sprite": "item_drumstick",
       "consumed": true,
       "reward": true,
-      "gold": 10
+      "gold": 10,
+      "rewardChance": 0,
+      "desireChance": 200
     },
     {
       "id": "item_demon_hide",
       "sprite": "item_demon_hide",
       "consumed": true,
       "reward": true,
-      "gold": 40
+      "gold": 40,
+      "rewardChance": 0,
+      "desireChance": 0
     },
     {
       "id": "item_unicorn_horn",
       "sprite": "item_unicorn_horn",
       "consumed": true,
       "reward": true,
-      "gold": 160
+      "gold": 160,
+      "rewardChance": 0,
+      "desireChance": 0
     },
     {
       "id": "item_herb_branch",
       "sprite": "item_herb_branch",
       "consumed": true,
       "reward": true,
-      "gold": 10
+      "gold": 10,
+      "rewardChance": 200,
+      "desireChance": 0
     },
     {
       "id": "item_healing_potion",
       "sprite": "item_healing_potion",
       "consumed": true,
       "reward": true,
-      "gold": 200
+      "gold": 200,
+      "rewardChance": 0,
+      "desireChance": 200
     },
     {
       "id": "item_mana_potion",
       "sprite": "item_mana_potion",
       "consumed": true,
       "reward": true,
-      "gold": 30
+      "gold": 30,
+      "rewardChance": 0,
+      "desireChance": 100
     },
     {
       "id": "item_leather_armor",
       "sprite": "item_leather_armor",
       "consumed": true,
       "reward": true,
-      "gold": 150
+      "gold": 150,
+      "rewardChance": 30,
+      "desireChance": 100
     },
     {
       "id": "item_boots",
       "sprite": "item_boots",
       "consumed": true,
       "reward": false,
-      "gold": -1
+      "gold": -1,
+      "rewardChance": 30,
+      "desireChance": 100
     },
     {
       "id": "item_bow",
       "sprite": "item_bow",
       "consumed": true,
       "reward": false,
-      "gold": -1
+      "gold": -1,
+      "rewardChance": 30,
+      "desireChance": 100
     },
     {
       "id": "item_sword",
       "sprite": "item_sword",
       "consumed": true,
       "reward": false,
-      "gold": -1
+      "gold": -1,
+      "rewardChance": 30,
+      "desireChance": 100
     },
     {
       "id": "item_winged_boots",
       "sprite": "item_winged_boots",
       "consumed": true,
       "reward": true,
-      "gold": 125
+      "gold": 125,
+      "rewardChance": 0,
+      "desireChance": 30
     },
     {
       "id": "item_magical_sword",
       "sprite": "item_magical_sword",
       "consumed": true,
       "reward": true,
-      "gold": 150
+      "gold": 150,
+      "rewardChance": 0,
+      "desireChance": 30
     },
     {
       "id": "item_enchanted_bow",
       "sprite": "item_enchanted_bow",
       "consumed": true,
       "reward": true,
-      "gold": 150
+      "gold": 150,
+      "rewardChance": 0,
+      "desireChance": 30
     },
     {
       "id": "item_enchanted_armor",
       "sprite": "item_enchanted_armor",
       "consumed": true,
       "reward": true,
-      "gold": 500
+      "gold": 500,
+      "rewardChance": 0,
+      "desireChance": 30
     },
     {
       "id": "item_magical_staff",
       "sprite": "item_magical_staff",
       "consumed": true,
       "reward": true,
-      "gold": 300
+      "gold": 300,
+      "rewardChance": 0,
+      "desireChance": 30
     },
     {
       "id": "item_ingot",
       "sprite": "item_ingot",
       "consumed": true,
       "reward": true,
-      "gold": 25
+      "gold": 25,
+      "rewardChance": 200,
+      "desireChance": 0
     },
     {
       "id": "item_wood",
       "sprite": "item_wood",
       "consumed": true,
       "reward": true,
-      "gold": 25
+      "gold": 25,
+      "rewardChance": 200,
+      "desireChance": 0
     },
     {
       "id": "item_mystical_tome",
       "sprite": "item_mystical_tome",
       "consumed": true,
       "reward": true,
-      "gold": 2000
+      "gold": 2000,
+      "rewardChance": 5,
+      "desireChance": 0
     },
     {
       "id": "item_boxed_forge",
       "sprite": "item_boxed_forge",
       "consumed": true,
       "reward": false,
-      "gold": -1
+      "gold": -1,
+      "rewardChance": 0,
+      "desireChance": 0
     },
     {
       "id": "item_boxed_herb_bush",
       "sprite": "item_boxed_herb_bush",
       "consumed": true,
       "reward": false,
-      "gold": -1
+      "gold": -1,
+      "rewardChance": 0,
+      "desireChance": 0
     },
     {
       "id": "item_boxed_chicken_coop",
       "sprite": "item_boxed_chicken_coop",
       "consumed": true,
       "reward": false,
-      "gold": -1
+      "gold": -1,
+      "rewardChance": 0,
+      "desireChance": 0
     },
     {
       "id": "item_player",
       "consumed": false,
       "reward": false,
-      "gold": -1
+      "gold": -1,
+      "rewardChance": 0,
+      "desireChance": 0
 	}
   ]
 }

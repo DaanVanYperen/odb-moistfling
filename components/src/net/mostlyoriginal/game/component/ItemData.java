@@ -9,4 +9,6 @@ public class ItemData {
     public boolean consumed;
     public boolean reward;
     public int gold;
+    public int rewardChance;
+    public int desireChance;
 }

@@ -101,8 +101,8 @@ public class MapSpawnerSystem extends BaseSystem {
 
     public void spawnShopper(int x, int y) {
 
-        String desiredItem = itemRepository.random();
-        String rewardItem  = itemRepository.random();
+        String desiredItem = itemRepository.randomDesire();
+        String rewardItem  = itemRepository.randomReward();
 
         E.E()
                 .gridPos(x, y)
