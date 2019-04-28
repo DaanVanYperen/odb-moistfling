@@ -147,7 +147,7 @@
       "machine": "ALTAR",
       "ageCost": 2,
       "ingredients": [
-        "item_demon_hide",
+        "item_boots",
         "item_player_young"
       ],
       "produces": [

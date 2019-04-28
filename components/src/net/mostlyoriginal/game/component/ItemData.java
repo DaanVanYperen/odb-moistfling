@@ -12,6 +12,7 @@ public class ItemData {
     public int gold;
     public int rewardChance;
     public int desireChance;
+    public boolean coveted=false;
 
     public String machine;
     public String[] machineProducts;

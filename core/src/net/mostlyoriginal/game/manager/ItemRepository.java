@@ -1,10 +1,16 @@
 package net.mostlyoriginal.game.manager;
 
 import com.artemis.BaseSystem;
+import com.artemis.E;
+import com.artemis.EntitySubscription;
+import com.artemis.annotations.All;
+import com.artemis.annotations.Exclude;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Json;
+import net.mostlyoriginal.game.component.Item;
 import net.mostlyoriginal.game.component.ItemData;
+import net.mostlyoriginal.game.component.Lifted;
 import net.mostlyoriginal.game.system.ItemLibrary;
 
 /**
@@ -15,6 +21,10 @@ public class ItemRepository extends BaseSystem {
     private ItemLibrary itemLibrary;
     private int rewardDropTotal = 0;
     private int desireDropTotal = 0;
+
+    @All({Item.class})
+    @Exclude(Lifted.class)
+    private EntitySubscription items;
 
     @Override
     protected void initialize() {
@@ -48,7 +58,24 @@ public class ItemRepository extends BaseSystem {
         return null;
     }
 
+    public String availableCovetedItemType() {
+        int[] data = items.getEntities().getData();
+        for (int i = 0, s = items.getEntities().size(); i < s; i++) {
+            String type = E.E(data[i]).itemType();
+            if (itemLibrary.getById(type).coveted) {
+                return type;
+            }
+        }
+        return null;
+    }
+
     public String randomDesire() {
+        if (MathUtils.random(1, 100) < 60) {
+            // fairly high chance people want a valuable item, if the player has it.
+            String covetedItemType = availableCovetedItemType();
+            if (covetedItemType != null) return covetedItemType;
+        }
+
         int target = MathUtils.random(0, desireDropTotal - 1);
         for (ItemData item : itemLibrary.items) {
             target -= item.desireChance;

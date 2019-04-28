@@ -140,6 +140,7 @@
       "sprite": "item_winged_boots",
       "consumed": true,
       "reward": true,
+      "coveted": true,
       "gold": 125,
       "rewardChance": 0,
       "desireChance": 30
@@ -149,6 +150,7 @@
       "sprite": "item_magical_sword",
       "consumed": true,
       "reward": true,
+      "coveted": true,
       "gold": 150,
       "rewardChance": 0,
       "desireChance": 30
@@ -158,6 +160,7 @@
       "sprite": "item_enchanted_bow",
       "consumed": true,
       "reward": true,
+      "coveted": true,
       "gold": 150,
       "rewardChance": 0,
       "desireChance": 30
@@ -167,6 +170,7 @@
       "sprite": "item_enchanted_armor",
       "consumed": true,
       "reward": true,
+      "coveted": true,
       "gold": 500,
       "rewardChance": 0,
       "desireChance": 30
@@ -176,6 +180,7 @@
       "sprite": "item_magical_staff",
       "consumed": true,
       "reward": true,
+      "coveted": true,
       "gold": 300,
       "rewardChance": 0,
       "desireChance": 30
