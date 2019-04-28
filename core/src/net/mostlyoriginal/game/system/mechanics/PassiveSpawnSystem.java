@@ -4,7 +4,9 @@ import com.artemis.E;
 import com.artemis.FluidIteratingSystem;
 import com.artemis.annotations.All;
 import com.badlogic.gdx.math.MathUtils;
+import net.mostlyoriginal.game.GameRules;
 import net.mostlyoriginal.game.component.PassiveSpawner;
+import net.mostlyoriginal.game.system.ParticleSystem;
 import net.mostlyoriginal.game.system.map.MapSpawnerSystem;
 import net.mostlyoriginal.game.system.view.GameScreenAssetSystem;
 
@@ -18,11 +20,12 @@ public class PassiveSpawnSystem extends FluidIteratingSystem {
     private GameScreenAssetSystem gameScreenAssetSystem;
 
     private float cooldown = 1f;
+    private ParticleSystem particleSystem;
 
     @Override
     protected boolean checkProcessing() {
         cooldown -= world.delta;
-        if ( cooldown <= 0 ) {
+        if (cooldown <= 0) {
             cooldown = UPDATE_EVERY_SECONDS;
             return true;
         } else {
@@ -33,15 +36,15 @@ public class PassiveSpawnSystem extends FluidIteratingSystem {
     @Override
     protected void process(E e) {
         PassiveSpawner spawner = e.getPassiveSpawner();
-        if ( spawner.items.length > 0 && MathUtils.random(1, 1000) < 100 ) {
+        if (spawner.items.length > 0 && MathUtils.random(1, 1000) < 100) {
             spawn(e, spawner.items[0]);
         }
         // second item more rare.
-        if ( spawner.items.length > 1 && MathUtils.random(1, 1000) < 50 ) {
+        if (spawner.items.length > 1 && MathUtils.random(1, 1000) < 50) {
             spawn(e, spawner.items[1]);
         }
         // third item rarest.
-        if ( spawner.items.length > 2 && MathUtils.random(1, 1000) < 10 ) {
+        if (spawner.items.length > 2 && MathUtils.random(1, 1000) < 10) {
             spawn(e, spawner.items[2]);
         }
     }
@@ -50,5 +53,6 @@ public class PassiveSpawnSystem extends FluidIteratingSystem {
         mapSpawnerSystem
                 .spawnItem(e.gridPosX(), e.gridPosY(), item);
         gameScreenAssetSystem.playSfx("sfx_putdown");
+        particleSystem.poof(e.gridPosX() * GameRules.CELL_SIZE + 16, e.gridPosY() * GameRules.CELL_SIZE + 16, 40, 40, ParticleSystem.COLOR_WHITE_TRANSPARENT);
     }
 }
