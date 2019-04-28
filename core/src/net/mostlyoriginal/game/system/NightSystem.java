@@ -15,6 +15,8 @@ import net.mostlyoriginal.game.component.InvisibleDuringNight;
 public class NightSystem extends FluidIteratingSystem {
 
     private static final int CYCLE_DURATION = 30;
+    private static final int CYCLE_DURATION_DAY = 45;
+
     private boolean nighttime;
     private float cooldown=CYCLE_DURATION;
 
@@ -27,9 +29,9 @@ public class NightSystem extends FluidIteratingSystem {
         nighttime = player.playerNighttime();
         cooldown -= world.delta;
         if ( cooldown <= 0 ) {
-            cooldown += CYCLE_DURATION;
-            flipped = true;
             nighttime = !nighttime;
+            cooldown += nighttime ? CYCLE_DURATION : CYCLE_DURATION_DAY;
+            flipped = true;
             player.playerNighttime(nighttime);
             if ( !nighttime ) {
                 player.getPlayer().day++;

@@ -26,6 +26,19 @@
       ]
     },
     {
+      "id": "recipe_rejuvenate_mana_potion",
+      "machine": "ALTAR",
+      "ageCost": -1,
+      "ingredients": [
+        "item_mana_potion",
+        "item_mana_potion",
+        "item_player_old"
+      ],
+      "produces": [
+        "item_player_young"
+      ]
+    },
+    {
       "id": "recipe_soul_orb_tier_1",
       "machine": "ALTAR",
       "ingredients": [
@@ -45,7 +58,19 @@
       ],
       "produces": [
         "item_tier1_orb",
+        "item_demon_hide",
         "item_demon_hide"
+      ]
+    },
+    {
+      "id": "recipe_brundle_imp",
+      "machine": "ALTAR",
+      "ingredients": [
+        "item_demon_hide",
+        "item_chicken"
+      ],
+      "produces": [
+        "item_imp"
       ]
     },
     {
