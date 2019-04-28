@@ -73,11 +73,16 @@ public class GameScreenAssetSystem extends AbstractAssetSystem {
         sfxVolume = 0.3f;
 
         loadSounds(new String[]{
+                "sfx_interact_6",
+                "sfx_magic_1",
+                "sfx_magic_2",
+                "sfx_magic_3",
+                "sfx_money_1",
         });
 
         sfxVolume = 0.15f;
 
-        //playMusic("sfx/betterparade.mp3");
+        playMusic("sfx/music_shop.mp3");
     }
 
     public void playMusic(String mp3) {

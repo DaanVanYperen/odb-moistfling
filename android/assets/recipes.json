@@ -219,7 +219,7 @@
       "machine": "ALTAR",
       "ageCost": 2,
       "ingredients": [
-        "item_wood",
+        "item_bow",
         "item_player_young"
       ],
       "produces": [
