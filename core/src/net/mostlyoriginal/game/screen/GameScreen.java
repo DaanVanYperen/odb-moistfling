@@ -71,6 +71,7 @@ public class GameScreen extends WorldScreen {
                         new PickupSystem(),
 
                         new DesireSystem(),
+                        new ShadowSystem(),
                         new GridPosSystem(),
                         new GridPosFloatSystem(),
 

@@ -101,6 +101,7 @@ public class PickupSystem extends FluidIteratingSystem {
         actor.removeLifting();
         item.scale(1f);
         item.tint(Tint.WHITE);
+//        item.castsShadow();
         item.gridPos(actor.getGridPos()).removeLifted().renderLayer(GameRules.LAYER_ITEM);
         renderBatchingSystem.sortedDirty = true;
 
@@ -134,6 +135,7 @@ public class PickupSystem extends FluidIteratingSystem {
                 E clonedItem = mapSpawnerSystem.spawnItem(0, 0, item.itemType())
                         .removeGridPos()
                         .removeFloating()
+                        //.removeCastsShadow()
                         .lifted()
                         .renderLayer(GameRules.LAYER_ITEM_CARRIED);
                 actor.liftingId(clonedItem.id());
@@ -146,6 +148,7 @@ public class PickupSystem extends FluidIteratingSystem {
                 item
                         .removeGridPos()
                         .removeFloating()
+                        //.removeCastsShadow()
                         .lifted()
                         .renderLayer(GameRules.LAYER_ITEM_CARRIED);
                 renderBatchingSystem.sortedDirty = true;

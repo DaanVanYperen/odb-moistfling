@@ -126,9 +126,11 @@ public class MapSpawnerSystem extends BaseSystem {
                 .itemType("item_player")
                 .bounds(4,4,16-4,32-4)
                 .player()
+                .castsShadow()
                 .physics()
                 .tag("player")
                 .lifter()
+                .castsShadowYOffset(-4)
                 .renderLayer(GameRules.LAYER_PLAYER);
     }
 
@@ -150,6 +152,8 @@ public class MapSpawnerSystem extends BaseSystem {
                 .lifterAttemptLifting(true)
                 .desireDesiredItem(desiredItem)
                 .shopper()
+                .castsShadow()
+                .castsShadowYOffset(-4)
                 .renderLayer(GameRules.LAYER_SHOPPER);
 
         spawnItem(x,y, rewardItem);
@@ -168,6 +172,7 @@ public class MapSpawnerSystem extends BaseSystem {
                 .gridPos(x, y)
                 .canPickup(true)
                 .itemType(type)
+                .castsShadow()
                 .anim(itemRepository.get(type).sprite)
                 .renderLayer(GameRules.LAYER_ITEM);
     }

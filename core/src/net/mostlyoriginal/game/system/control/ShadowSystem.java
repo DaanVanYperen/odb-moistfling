@@ -1,0 +1,49 @@
+package net.mostlyoriginal.game.system.control;
+
+import com.artemis.ComponentMapper;
+import com.artemis.E;
+import com.artemis.FluidIteratingSystem;
+import com.artemis.annotations.All;
+import net.mostlyoriginal.api.component.basic.Pos;
+import net.mostlyoriginal.game.GameRules;
+import net.mostlyoriginal.game.component.CastsShadow;
+import net.mostlyoriginal.game.component.GridPos;
+import net.mostlyoriginal.game.manager.ItemRepository;
+
+/**
+ * @author Daan van Yperen
+ */
+@All({CastsShadow.class, Pos.class, GridPos.class})
+public class ShadowSystem extends FluidIteratingSystem {
+
+    private ItemRepository itemRepository;
+
+    @Override
+    protected void process(E e) {
+        CastsShadow castsShadow = e.getCastsShadow();
+        if (castsShadow.shadowId == -1) {
+            final E shadowEntity = E.E()
+                    .anim("shadow")
+                    .renderLayer(GameRules.LAYER_SHADOWS - 1)
+                    .tint(1f, 1f, 1f, 0.7f);
+            castsShadow.shadowId =
+                    shadowEntity.id();
+        }
+
+        E.E(castsShadow.shadowId)
+                .posX(e.posX())
+                .posY(e.posY() +castsShadow.yOffset);
+    }
+
+    private ComponentMapper<CastsShadow> mShadow;
+
+    @Override
+    protected void removed(int entityId) {
+        // kill indicator as well.
+        int shadowId = mShadow.get(entityId).shadowId;
+        if (shadowId != -1) {
+            E.E(shadowId).deleteFromWorld();
+            //mShadow.get(entityId).shadowId=-1;
+        }
+    }
+}

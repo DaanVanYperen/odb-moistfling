@@ -23,8 +23,8 @@ public class ScoreSystem extends BaseSystem {
     private E goldLabel;
     private E hintLabel;
     private E rankLabel;
-    private int lastGold;
-    private int lastDay;
+    private int lastGold=-1;
+    private int lastDay=-1;
 
     @Override
     protected void initialize() {
