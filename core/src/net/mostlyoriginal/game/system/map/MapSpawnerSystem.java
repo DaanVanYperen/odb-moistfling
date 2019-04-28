@@ -123,9 +123,9 @@ public class MapSpawnerSystem extends BaseSystem {
     }
 
 
-    public void spawnItem(int x, int y, String type) {
-        if ( type == null || "".equals(type) ) return;
-        E.E()
+    public E spawnItem(int x, int y, String type) {
+        if ( type == null || "".equals(type) ) return null;
+        return E.E()
                 .gridPos(x, y)
                 .canPickup(true)
                 .itemType(type)

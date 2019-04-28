@@ -9,6 +9,7 @@ import net.mostlyoriginal.api.system.graphics.RenderBatchingSystem;
 import net.mostlyoriginal.game.GameRules;
 import net.mostlyoriginal.game.component.Lifter;
 import net.mostlyoriginal.game.manager.ItemRepository;
+import net.mostlyoriginal.game.system.map.MapSpawnerSystem;
 
 
 /**
@@ -22,6 +23,7 @@ public class PickupSystem extends FluidIteratingSystem {
     RenderBatchingSystem renderBatchingSystem;
     PickupManager pickupManager;
     private ItemRepository itemRepository;
+    private MapSpawnerSystem mapSpawnerSystem;
 
     @Override
     protected void process(E e) {
@@ -51,13 +53,18 @@ public class PickupSystem extends FluidIteratingSystem {
             E itemOnFloor = pickupManager.getOverlapping(actor);
 
             actor.removeLifting();
-
             item.gridPos(actor.getGridPos()).removeLifted().renderLayer(GameRules.LAYER_ITEM);
             renderBatchingSystem.sortedDirty = true;
 
             if (itemOnFloor != null) {
-                attemptPickup(actor, itemOnFloor);
-                actor.lifterAttemptLifting(true); // we swapped something, ontinue lifting.
+                if (itemOnFloor.itemType().equals(item.itemType())) {
+                    // merge items if identical.
+                    itemOnFloor.getItem().count++;
+                    item.deleteFromWorld();
+                } else {
+                    attemptPickup(actor, itemOnFloor);
+                    actor.lifterAttemptLifting(true); // we swapped something, ontinue lifting.
+                }
             }
         }
     }
@@ -69,14 +76,27 @@ public class PickupSystem extends FluidIteratingSystem {
 
     private void attemptPickup(E actor, E item) {
         if (item != null) {
-            actor.liftingId(item.id());
+            if ( item.itemCount() > 1 ) {
+                // take from stack.
+                item.getItem().count--;
+                E clonedItem = mapSpawnerSystem.spawnItem(0, 0, item.itemType())
+                        .removeGridPos()
+                        .removeFloating()
+                        .lifted()
+                        .renderLayer(GameRules.LAYER_ITEM_CARRIED);
+                actor.liftingId(clonedItem.id());
+
+            } else {
+                // pick up final item.
+                actor.liftingId(item.id());
+                item
+                        .removeGridPos()
+                        .removeFloating()
+                        .lifted()
+                        .renderLayer(GameRules.LAYER_ITEM_CARRIED);
+                renderBatchingSystem.sortedDirty = true;
+            }
             actor.getLifter().itemsLifted++;
-            item
-                    .removeGridPos()
-                    .removeFloating()
-                    .lifted()
-                    .renderLayer(GameRules.LAYER_ITEM_CARRIED);
-            renderBatchingSystem.sortedDirty = true;
         }
     }
 }
