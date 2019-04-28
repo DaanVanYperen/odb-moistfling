@@ -56,7 +56,7 @@ public class RecipeRepository extends BaseSystem {
 
         for (int j = 0, s2 = recipeLibrary.recipes.length; j < s2; j++) {
             final RecipeData recipe = recipeLibrary.recipes[j];
-            if (recipe.hasIngredient(ingredient)) {
+            if (recipe.hasIngredient(itemRepository.substitute(ingredient))) {
                 if (matchesRecipe(ingredients, recipe)) return recipe;
             }
         }
@@ -76,6 +76,7 @@ public class RecipeRepository extends BaseSystem {
 
         // track each reagent, we need to do this for repeated reagents.
         for (String recipeIngredient : recipe.ingredients) {
+            recipeIngredient=itemRepository.substitute(recipeIngredient);
             if (reagents.get(recipeIngredient, 0) <= 0) {
                 return false;
             }

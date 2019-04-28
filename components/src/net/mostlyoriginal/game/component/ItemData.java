@@ -6,6 +6,7 @@ package net.mostlyoriginal.game.component;
 public class ItemData {
     public String id;
     public String sprite;
+    public String identicalTo;
     public boolean consumed;
     public boolean reward;
     public int gold;

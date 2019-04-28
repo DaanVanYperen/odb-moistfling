@@ -6,10 +6,11 @@
       "ageCost": -1,
       "ingredients": [
         "item_chick",
-        "item_player"
+        "item_player_old"
       ],
       "produces": [
-        "item_chicken"
+        "item_chicken",
+        "item_player_young"
       ]
     },
     {
@@ -18,9 +19,10 @@
       "ageCost": -1,
       "ingredients": [
         "item_tier1_orb",
-        "item_player"
+        "item_player_old"
       ],
       "produces": [
+        "item_player_young"
       ]
     },
     {
@@ -75,10 +77,11 @@
       "ageCost": 1,
       "ingredients": [
         "item_herb_branch",
-        "item_player"
+        "item_player_young"
       ],
       "produces": [
-        "item_healing_potion"
+        "item_healing_potion",
+        "item_player_old"
       ]
     },
     {
@@ -98,10 +101,11 @@
       "ageCost": 1,
       "ingredients": [
         "item_unicorn_horn",
-        "item_player"
+        "item_player_young"
       ],
       "produces": [
-        "item_mana_potion"
+        "item_mana_potion",
+        "item_player_old"
       ]
     },
     {
@@ -144,10 +148,11 @@
       "ageCost": 2,
       "ingredients": [
         "item_demon_hide",
-        "item_player"
+        "item_player_young"
       ],
       "produces": [
-        "item_winged_boots"
+        "item_winged_boots",
+        "item_player_old"
       ]
     },
     {
@@ -179,10 +184,11 @@
       "ageCost": 2,
       "ingredients": [
         "item_sword",
-        "item_player"
+        "item_player_young"
       ],
       "produces": [
-        "item_magical_sword"
+        "item_magical_sword",
+        "item_player_old"
       ],
     },
     {
@@ -214,10 +220,11 @@
       "ageCost": 2,
       "ingredients": [
         "item_wood",
-        "item_player"
+        "item_player_young"
       ],
       "produces": [
-        "item_enchanted_bow"
+        "item_enchanted_bow",
+        "item_player_old"
       ]
     },
     {
@@ -238,10 +245,11 @@
       "ageCost": 2,
       "ingredients": [
         "item_leather_armor",
-        "item_player"
+        "item_player_young"
       ],
       "produces": [
-        "item_enchanted_armor"
+        "item_enchanted_armor",
+        "item_player_old"
       ]
     },
     {
@@ -263,10 +271,11 @@
       "ingredients": [
         "item_wood",
         "item_unicorn_horn",
-        "item_player"
+        "item_player_young"
       ],
       "produces": [
-        "item_magical_staff"
+        "item_magical_staff",
+        "item_player_old"
       ]
     },
     {
@@ -287,11 +296,12 @@
       "ageCost": 3,
       "ingredients": [
         "item_herb_branch",
-        "item_player",
+        "item_player_young",
         "item_mystical_tome"
       ],
       "produces": [
-        "item_boxed_herb_bush"
+        "item_boxed_herb_bush",
+        "item_player_old"
       ]
     },
     {
@@ -312,11 +322,12 @@
       "ageCost": 3,
       "ingredients": [
         "item_ingot",
-        "item_player",
+        "item_player_young",
         "item_mystical_tome"
       ],
       "produces": [
-        "item_boxed_forge"
+        "item_boxed_forge",
+        "item_player_old"
       ]
     },
     {
@@ -337,11 +348,12 @@
       "ageCost": 3,
       "ingredients": [
         "item_chicken",
-        "item_player",
+        "item_player_young",
         "item_mystical_tome"
       ],
       "produces": [
-        "item_boxed_chicken_coop"
+        "item_boxed_chicken_coop",
+        "item_player_old"
       ]
     }
   ]

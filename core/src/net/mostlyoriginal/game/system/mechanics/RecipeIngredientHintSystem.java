@@ -21,7 +21,7 @@ public class RecipeIngredientHintSystem extends FluidSystem {
     private static final float HINT_SCALE = 0.8f;
     private static final int ICON_OFFSET_X = 4;
     private static final int ICON_OFFSET_Y = 4;
-    private static final int SPACING_BETWEEN_ITEMS = 10;
+    private static final int SPACING_BETWEEN_ITEMS = -16;
     private RecipeRepository recipeRepository;
     private ItemRepository itemRepository;
     private MapSpawnerSystem mapSpawnerSystem;
@@ -58,7 +58,7 @@ public class RecipeIngredientHintSystem extends FluidSystem {
         for (int j = 0, s2 = recipes.length; j < s2; j++) {
             final RecipeData recipe = recipes[j];
             if (hasIngredients(recipe, contents)) {
-                createIngridientHints(recipe, 32, y, machineId);
+                createIngridientHints(recipe, 128, y, machineId);
                 y += 20;
             }
         }

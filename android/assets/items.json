@@ -242,6 +242,35 @@
       "gold": -1,
       "rewardChance": 0,
       "desireChance": 0
-	}
+    },
+    {
+      "id": "item_player",
+      "sprite": "item_player",
+      "consumed": false,
+      "reward": false,
+      "gold": -1,
+      "rewardChance": 0,
+      "desireChance": 0
+    },
+    {
+      "id": "item_player_old",
+      "sprite": "item_player_old",
+      "identicalTo": "item_player",
+      "consumed": false,
+      "reward": false,
+      "gold": -1,
+      "rewardChance": 0,
+      "desireChance": 0
+    },
+    {
+      "id": "item_player_young",
+      "sprite": "item_player_young",
+      "identicalTo": "item_player",
+      "consumed": false,
+      "reward": false,
+      "gold": -1,
+      "rewardChance": 0,
+      "desireChance": 0
+    }
   ]
 }

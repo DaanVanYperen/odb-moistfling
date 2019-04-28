@@ -56,5 +56,10 @@ public class ItemRepository extends BaseSystem {
         }
         return null;
     }
+
+    public String substitute(String ingredient) {
+        String identicalTo = get(ingredient).identicalTo;
+        return identicalTo != null ? identicalTo : ingredient;
+    }
 }
 

@@ -53,6 +53,7 @@ public class MachineRecipeSystem extends FluidSystem {
 
     private void spawnProduce(GridPos machineGridPos, RecipeData recipe) {
         for (String producesItem : recipe.produces) {
+            if ( producesItem.startsWith("item_player_")) continue;
             mapSpawnerSystem.spawnItem(machineGridPos.x, machineGridPos.y, producesItem);
         }
     }
