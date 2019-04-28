@@ -85,6 +85,8 @@ public class GameScreen extends WorldScreen {
                         new SlotHighlightingSystem(),
                         new NightSystem(),
 
+                        new ScoreSystem(),
+
                         new ParticleSystem(),
                         new MapRenderSystem(),
                         renderBatchingSystem = new RenderBatchingSystem(),

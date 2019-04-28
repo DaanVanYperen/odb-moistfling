@@ -15,7 +15,7 @@
       "consumed": true,
       "reward": true,
       "gold": 10,
-      "rewardChance": 100,
+      "rewardChance": 140,
       "desireChance": 0
     },
     {
@@ -24,7 +24,7 @@
       "consumed": true,
       "reward": true,
       "gold": 40,
-      "rewardChance": 50,
+      "rewardChance": 100,
       "desireChance": 0
     },
     {
@@ -33,7 +33,7 @@
       "consumed": true,
       "reward": true,
       "gold": 160,
-      "rewardChance": 25,
+      "rewardChance": 50,
       "desireChance": 0
     },
     {
@@ -52,7 +52,7 @@
       "reward": true,
       "gold": 10,
       "rewardChance": 0,
-      "desireChance": 400
+      "desireChance": 200
     },
     {
       "id": "item_demon_hide",
@@ -88,7 +88,7 @@
       "reward": true,
       "gold": 200,
       "rewardChance": 0,
-      "desireChance": 400
+      "desireChance": 200
     },
     {
       "id": "item_mana_potion",
