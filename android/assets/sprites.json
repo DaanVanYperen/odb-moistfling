@@ -237,6 +237,14 @@
       "height": 32,
     },
 	{
+      "id": "shadow",
+      "comment": "Universal object shadow.",
+      "x": 672,
+      "y": 192,
+      "width": 32,
+      "height": 32,
+    },
+	{
       "id": "hopper_highlight",
       "comment": "Highlighter.",
       "x": 0,
@@ -248,31 +256,31 @@
       "id": "player_kid",
       "comment": "The player.",
       "x": 0,
-      "y": 96,
+      "y": 144,
       "width": 32,
       "height": 48
     },
     {
       "id": "player_young_adult",
       "comment": "The player.",
-      "x": 0,
-      "y": 96,
+      "x": 64,
+      "y": 144,
       "width": 32,
       "height": 48
     },
     {
       "id": "player_adult",
       "comment": "The player.",
-      "x": 0,
-      "y": 96,
+      "x": 128,
+      "y": 144,
       "width": 32,
       "height": 48
     },
     {
       "id": "player_elderly",
       "comment": "The player.",
-      "x": 0,
-      "y": 96,
+      "x": 160,
+      "y": 144,
       "width": 32,
       "height": 48
     },
