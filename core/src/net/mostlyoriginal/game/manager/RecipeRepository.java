@@ -20,7 +20,7 @@ import static com.artemis.E.E;
  */
 public class RecipeRepository extends BaseSystem {
 
-    private RecipeLibrary recipeLibrary;
+    public RecipeLibrary recipeLibrary;
     private ItemRepository itemRepository;
 
     @Override

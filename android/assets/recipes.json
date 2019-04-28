@@ -178,7 +178,7 @@
       "machine": "ALTAR",
       "ageCost": 2,
       "ingredients": [
-        "item_ingot",
+        "item_sword",
         "item_player"
       ],
       "produces": [
