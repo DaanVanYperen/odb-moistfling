@@ -287,7 +287,8 @@
       "id": "recipe_magical_staff",
       "machine": "ALTAR",
       "ingredients": [
-        "item_wood",
+        "item_unicorn_horn",
+        "item_unicorn_horn",
         "item_tier3_orb"
       ],
       "produces": [
@@ -299,7 +300,8 @@
       "machine": "ALTAR",
       "ageCost": 3,
       "ingredients": [
-        "item_wood",
+        "item_unicorn_horn",
+        "item_unicorn_horn",
         "item_player"
       ],
       "produces": [

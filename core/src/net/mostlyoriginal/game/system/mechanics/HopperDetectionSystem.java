@@ -38,7 +38,7 @@ public class HopperDetectionSystem extends FluidSystem {
         final IntBag itemEntities = items.getEntities();
         for (int i = 0, s = itemEntities.size(); i < s; i++) {
             final E item = E.E(itemEntities.get(i));
-            if (!item.hasMoving() && item.getGridPos().overlaps(hopperE.getGridPos())) {
+            if (canBeSlotted(item) && item.getGridPos().overlaps(hopperE.getGridPos())) {
                 hopper.slottedId = item.id();
                 hopper.slottedDuration  += world.delta;
                 if ( hopper.slottedDuration > MINIMUM_SLOTTED_DURATION_SECONDS && !item.hasFloating() && !item.hasPlayer() ) {
@@ -50,5 +50,9 @@ public class HopperDetectionSystem extends FluidSystem {
         }
 
         hopper.slottedDuration = 0;
+    }
+
+    private boolean canBeSlotted(E item) {
+        return !item.hasMoving() || item.hasFloating();
     }
 }

@@ -4,11 +4,9 @@ import com.artemis.BaseSystem;
 import com.artemis.E;
 import com.artemis.EntitySubscription;
 import com.artemis.annotations.All;
-import com.artemis.annotations.Exclude;
 import com.artemis.utils.IntBag;
 import net.mostlyoriginal.game.component.CanPickup;
 import net.mostlyoriginal.game.component.GridPos;
-import net.mostlyoriginal.game.component.Moving;
 
 /**
  * @author Daan van Yperen
@@ -16,11 +14,14 @@ import net.mostlyoriginal.game.component.Moving;
 public class PickupManager extends BaseSystem{
 
     @All({CanPickup.class, GridPos.class})
-    @Exclude(Moving.class)
     private EntitySubscription pickupables;
 
     @Override
     protected void processSystem() {
+    }
+
+    public boolean canPickup(E item) {
+        return !item.isMoving() || item.hasFloating();
     }
 
     public E getOverlapping(E actor) {
@@ -28,7 +29,7 @@ public class PickupManager extends BaseSystem{
         E overlaps = null;
         for (int i = 0, s = pickupEntities.size(); i < s; i++) {
             E item = E.E(pickupEntities.get(i));
-            if (!item.hasLifted() && item.getGridPos().overlaps(actor.getGridPos())) {
+            if (!item.hasLifted() && canPickup(item) && item.getGridPos().overlaps(actor.getGridPos())) {
                 overlaps = item;
             }
         }

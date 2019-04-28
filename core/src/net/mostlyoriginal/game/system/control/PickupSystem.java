@@ -1,19 +1,14 @@
 package net.mostlyoriginal.game.system.control;
 
 import com.artemis.E;
-import com.artemis.EntitySubscription;
 import com.artemis.FluidIteratingSystem;
 import com.artemis.annotations.All;
-import com.artemis.annotations.Exclude;
-import com.artemis.utils.IntBag;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import net.mostlyoriginal.api.component.basic.Pos;
 import net.mostlyoriginal.api.system.graphics.RenderBatchingSystem;
 import net.mostlyoriginal.game.GameRules;
-import net.mostlyoriginal.game.component.*;
+import net.mostlyoriginal.game.component.Lifter;
 import net.mostlyoriginal.game.manager.ItemRepository;
-import net.mostlyoriginal.game.system.MyAnimRenderSystem;
+
 
 /**
  * @author Daan van Yperen
@@ -51,14 +46,13 @@ public class PickupSystem extends FluidIteratingSystem {
 
     private void attemptDrop(E actor) {
         E item = E.E(actor.liftingId());
-        if (!actor.isMoving() && !item.isMoving()) {
+        if (!actor.isMoving()) {
             E itemOnFloor = pickupManager.getOverlapping(actor);
 
             actor.removeLifting();
 
             item.gridPos(actor.getGridPos()).removeLifted().renderLayer(GameRules.LAYER_ITEM);
             renderBatchingSystem.sortedDirty=true;
-            //System.out.println("Drop!");
 
             if ( actor.lifterPayOnPickup() ) {
                 int goldValue = itemRepository.get(item.itemType()).gold;
@@ -87,9 +81,12 @@ public class PickupSystem extends FluidIteratingSystem {
         if (item != null) {
             actor.liftingId(item.id());
             actor.getLifter().itemsLifted++;
-            item.removeGridPos().removeFloating().lifted().renderLayer(GameRules.LAYER_ITEM_CARRIED);
+            item
+                    .removeGridPos()
+                    .removeFloating()
+                    .lifted()
+                    .renderLayer(GameRules.LAYER_ITEM_CARRIED);
             renderBatchingSystem.sortedDirty=true;
-            //System.out.println("Pickup!");
         }
     }
 }
