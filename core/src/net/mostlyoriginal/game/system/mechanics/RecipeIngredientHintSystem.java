@@ -22,13 +22,28 @@ public class RecipeIngredientHintSystem extends FluidSystem {
     private static final int ICON_OFFSET_X = 4;
     private static final int ICON_OFFSET_Y = 4;
     private static final int SPACING_BETWEEN_ITEMS = -16;
+    private static final int MAX_LINES_AT_ONCE = 5;
     private RecipeRepository recipeRepository;
     private ItemRepository itemRepository;
     private MapSpawnerSystem mapSpawnerSystem;
     private PlayerAgeSystem playerAgeSystem;
 
+    private int firstLine = 0;
+    private float scrollCooldown = 3f;
+
     @All(RecipeIngredientHint.class)
     public EntitySubscription recipeIngredientHints;
+
+    @Override
+    protected void begin() {
+        super.begin();
+
+        scrollCooldown -= world.delta;
+        if ( scrollCooldown < 0 ) {
+            scrollCooldown += 5f;
+            firstLine += MAX_LINES_AT_ONCE;
+        }
+    }
 
     @Override
     protected void process(E e) {
@@ -51,15 +66,29 @@ public class RecipeIngredientHintSystem extends FluidSystem {
         }
     }
 
+    int matchingRecipes=0;
+
     private void displayValidRecipes(int machineId, IntBag contents) {
 
         int y = 100;
+        int line = 0;
+        if ( firstLine > matchingRecipes ) {
+            firstLine = 0;
+        }
+        matchingRecipes=0;
         RecipeData[] recipes = recipeRepository.recipeLibrary.recipes;
         for (int j = 0, s2 = recipes.length; j < s2; j++) {
+
+            // limit the amount of crap on the screen.
+
             final RecipeData recipe = recipes[j];
             if (hasIngredients(recipe, contents)) {
-                createIngridientHints(recipe, 128, y, machineId);
-                y += 20;
+                matchingRecipes++;
+                if (  ++line < firstLine+1 || line > firstLine + MAX_LINES_AT_ONCE)
+                    continue;
+
+                createIngridientHints(recipe, 340, y, machineId);
+                y -= 20;
             }
         }
 
