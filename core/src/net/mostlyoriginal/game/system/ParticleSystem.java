@@ -20,6 +20,8 @@ import static net.mostlyoriginal.api.operation.OperationFactory.*;
  */
 public class ParticleSystem extends BaseSystem {
 
+    public static final Color COLOR_WHITE_TRANSPARENT = new Color(1f, 1f, 1f, 0.5f);
+    public static final Color COLOR_BLACK_TRANSPARENT =new Color(0f, 0f, 0f, 0.5f);
     private Color BLOOD_COLOR = Color.valueOf("4B1924");
     private Color COLOR_WHITE = Color.valueOf("FFFFFF");
     private Color COLOR_DUST = Color.valueOf("D4CFB899");
@@ -133,6 +135,23 @@ public class ParticleSystem extends BaseSystem {
                 .create(minCount, maxCount);
     }
 
+
+    public void poof(float x, float y, int minCount, int maxCount, Color color) {
+        bakery
+                .at((int) x - 5, (int) y - 5, (int) x + 5, (int) y + 5)
+                .angle(0, 360)
+                .speed(5, 100)
+                .color(color)
+                .fadeAfter(0.1f)
+                .rotateRandomly()
+                .slowlySplatDown()
+                .friction(1f)
+                .size(0.5f, 2f)
+                .angularMomentum(40)
+                .create(minCount, maxCount);
+    }
+
+
     Vector2 v2 = new Vector2();
 
     public E spawnVanillaParticle(String anim, float x, float y, float angle, float speed, float scale, float emitterVx, float emitterVy, float friction, float angularMomentum, float spriteAngle) {
@@ -184,7 +203,7 @@ public class ParticleSystem extends BaseSystem {
         private float rotateR = 0;
         private float emitterVx;
         private float emitterVy;
-        private String anim;
+        private String anim = "particle";
         private float friction;
         private float angularMomentum;
         private float spriteAngle = -90;

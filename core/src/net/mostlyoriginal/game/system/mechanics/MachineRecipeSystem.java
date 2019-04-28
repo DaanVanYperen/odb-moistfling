@@ -2,12 +2,14 @@ package net.mostlyoriginal.game.system.mechanics;
 
 import com.artemis.E;
 import com.artemis.annotations.All;
+import net.mostlyoriginal.game.GameRules;
 import net.mostlyoriginal.game.component.GridPos;
 import net.mostlyoriginal.game.component.ItemData;
 import net.mostlyoriginal.game.component.Machine;
 import net.mostlyoriginal.game.component.RecipeData;
 import net.mostlyoriginal.game.manager.ItemRepository;
 import net.mostlyoriginal.game.manager.RecipeRepository;
+import net.mostlyoriginal.game.system.ParticleSystem;
 import net.mostlyoriginal.game.system.common.FluidSystem;
 import net.mostlyoriginal.game.system.control.PickupSystem;
 import net.mostlyoriginal.game.system.map.MapSpawnerSystem;
@@ -25,6 +27,21 @@ public class MachineRecipeSystem extends FluidSystem {
     private PlayerAgeSystem playerAgeSystem;
     private PickupSystem pickupSystem;
     private GameScreenAssetSystem gameScreenAssetSystem;
+    private ParticleSystem particleSystem;
+    private float cooldown;
+    private static final float UPDATE_EVERY_SECONDS = 0.1f;
+
+    @Override
+    protected boolean checkProcessing() {
+        // don't run this too aggressively.
+        cooldown -= world.delta;
+        if (cooldown <= 0) {
+            cooldown = UPDATE_EVERY_SECONDS;
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     @Override
     protected void process(E e) {
@@ -33,7 +50,7 @@ public class MachineRecipeSystem extends FluidSystem {
             // we can just bruteforce this as there won't be many machines initially.
             RecipeData recipe = recipeRepository.firstMatching(machine.contents);
             if (recipe != null) {
-                machine.warmupAge += world.delta;
+                machine.warmupAge += UPDATE_EVERY_SECONDS;
                 if (machine.warmupAge > 0.5f) {
                     executeRecipe(machine, e.getGridPos(), recipe);
                 }
@@ -46,7 +63,10 @@ public class MachineRecipeSystem extends FluidSystem {
     private void executeRecipe(Machine machine, GridPos machineGridPos, RecipeData recipe) {
 
         if (!playerAgeSystem.attemptPayment(recipe.ageCost)) {
-            System.out.println("Cannot afford payment for " + recipe.id + ".");
+            //System.out.println("Cannot afford payment for " + recipe.id + ".");
+            E player = E.withTag("player");
+            particleSystem.poof(player.gridPosX() * GameRules.CELL_SIZE + 16,
+                    player.gridPosY() * GameRules.CELL_SIZE + 20, 2, 3, ParticleSystem.COLOR_BLACK_TRANSPARENT);
             return;
         }
 
@@ -64,6 +84,7 @@ public class MachineRecipeSystem extends FluidSystem {
             if (item != null && first) {
                 first = false;
                 giveItemToPlayerIfHandsEmpty(item);
+
             }
         }
     }
@@ -72,6 +93,8 @@ public class MachineRecipeSystem extends FluidSystem {
         E player = E.withTag("player");
         if (!player.hasLifting()) {
             pickupSystem.attemptPickup(player, item);
+            particleSystem.poof(player.gridPosX() * GameRules.CELL_SIZE + 16,
+                    player.gridPosY() * GameRules.CELL_SIZE + 48, 40, 40, ParticleSystem.COLOR_WHITE_TRANSPARENT);
         }
     }
 
@@ -80,6 +103,7 @@ public class MachineRecipeSystem extends FluidSystem {
             final E ingredient = E.E(machine.contents.get(i));
             final ItemData itemData = itemRepository.get(ingredient.getItem().type);
             if (itemData.consumed) {
+                particleSystem.poof(ingredient.posX() + 16, ingredient.posY() + 16, 40, 40, ParticleSystem.COLOR_WHITE_TRANSPARENT);
                 ingredient.deleteFromWorld();
             }
         }

@@ -85,6 +85,7 @@ public class GameScreen extends WorldScreen {
                         new RecipeIngredientHintSystem(),
                         new SlotHighlightingSystem(),
 
+                        new ParticleSystem(),
                         new MapRenderSystem(),
                         renderBatchingSystem = new RenderBatchingSystem(),
                         new MyAnimRenderSystem(renderBatchingSystem),
