@@ -357,6 +357,18 @@
       "height": 48
     },
     {
+      "id": "player_adult_walk_down",
+      "comment": "The player walking down on screen.",
+      "x": 0
+      "y": 288,
+      "width": 32,
+      "height": 48,
+      "countX": 6,
+      "countY": 1,
+      "milliseconds": 100,
+      "repeat": true,
+    },
+    {
       "id": "player_elderly",
       "comment": "The player.",
       "x": 160,
