@@ -15,20 +15,34 @@ public class PlayerAgeSystem extends FluidIteratingSystem {
     protected void process(E e) {
         Player player = e.getPlayer();
 
+        String anim = "";
+
         switch (player.age) {
             case 0:
-                e.anim("player_kid");
+                anim = "player_kid";
                 break;
             case 1:
-                e.anim("player_young_adult");
+                anim = "player_young_adult";
                 break;
             case 2:
-                e.anim("player_adult");
+                anim = "player_adult";
                 break;
             case 3:
-                e.anim("player_elderly");
+                anim = "player_elderly";
                 break;
         }
+
+
+        if ( e.physicsVx() != 0 || e.physicsVy() != 0 ) {
+            anim = anim + "_walk";
+        }
+
+        if ( e.physicsVx() < 0 ) anim = anim + "_left";
+        if ( e.physicsVx() > 0 ) anim = anim + "_right";
+        if ( e.physicsVy() < 0 ) anim = anim + "_down";
+        if ( e.physicsVy() > 0 ) anim = anim + "_up";
+
+        e.anim(anim);
 
         // for debugging until we have sprites.
     }
