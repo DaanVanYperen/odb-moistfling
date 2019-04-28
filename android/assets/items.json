@@ -43,25 +43,11 @@
       "gold": 10
     },
     {
-      "id": "item_tier2_orb",
-      "sprite": "item_tier2_orb",
-      "consumed": true,
-      "reward": true,
-      "gold": 40
-    },
-    {
       "id": "item_demon_hide",
       "sprite": "item_demon_hide",
       "consumed": true,
       "reward": true,
       "gold": 40
-    },
-    {
-      "id": "item_tier3_orb",
-      "sprite": "item_tier3_orb",
-      "consumed": true,
-      "reward": true,
-      "gold": 160
     },
     {
       "id": "item_unicorn_horn",

@@ -24,28 +24,6 @@
       ]
     },
     {
-      "id": "recipe_rejuvenate_tier2",
-      "machine": "ALTAR",
-      "ageCost": -2,
-      "ingredients": [
-        "item_tier2_orb",
-        "item_player"
-      ],
-      "produces": [
-      ]
-    },
-    {
-      "id": "recipe_rejuvenate_tier3",
-      "machine": "ALTAR",
-      "ageCost": -3,
-      "ingredients": [
-        "item_tier3_orb",
-        "item_player"
-      ],
-      "produces": [
-      ]
-    },
-    {
       "id": "recipe_soul_orb_tier_1",
       "machine": "ALTAR",
       "ingredients": [
@@ -53,7 +31,6 @@
         "item_player"
       ],
       "produces": [
-        "item_tier1_orb",
         "item_drumstick"
       ]
     },
@@ -65,7 +42,7 @@
         "item_player"
       ],
       "produces": [
-        "item_tier2_orb",
+        "item_tier1_orb",
         "item_demon_hide"
       ]
     },
@@ -77,58 +54,8 @@
         "item_player"
       ],
       "produces": [
-        "item_tier3_orb",
+        "item_tier1_orb",
         "item_unicorn_horn"
-      ]
-    },
-    {
-      "id": "recipe_soul_orb_tier_1_orb_conversion",
-      "machine": "ALTAR",
-      "ingredients": [
-        "item_tier1_orb",
-        "item_tier1_orb",
-        "item_tier1_orb"
-      ],
-      "produces": [
-        "item_tier2_orb"
-      ]
-    },
-    {
-      "id": "recipe_soul_orb_tier_1_orb_conversion_drain_cost",
-      "machine": "ALTAR",
-      "ageCost": 2,
-      "ingredients": [
-        "item_tier1_orb",
-        "item_tier1_orb",
-        "item_player"
-      ],
-      "produces": [
-        "item_tier2_orb"
-      ]
-    },
-    {
-      "id": "recipe_soul_orb_tier_2_orb_conversion",
-      "machine": "ALTAR",
-      "ingredients": [
-        "item_tier2_orb",
-        "item_tier2_orb",
-        "item_tier2_orb"
-      ],
-      "produces": [
-        "item_tier3_orb"
-      ]
-    },
-    {
-      "id": "recipe_soul_orb_tier_2_orb_conversion_drain_cost",
-      "machine": "ALTAR",
-      "ageCost": 2,
-      "ingredients": [
-        "item_tier2_orb",
-        "item_tier2_orb",
-        "item_player"
-      ],
-      "produces": [
-        "item_tier3_orb"
       ]
     },
     {
@@ -148,14 +75,12 @@
       "ageCost": 1,
       "ingredients": [
         "item_herb_branch",
-        "item_tier1_orb"
+        "item_player"
       ],
       "produces": [
         "item_healing_potion"
       ]
     },
-
-
     {
       "id": "recipe_mana_potion",
       "machine": "ALTAR",
@@ -196,7 +121,7 @@
       "machine": "ALTAR",
       "ingredients": [
         "item_demon_hide",
-        "item_tier2_orb"
+        "item_tier1_orb"
       ],
       "produces": [
         "item_winged_boots"
@@ -219,7 +144,8 @@
       "machine": "ALTAR",
       "ingredients": [
         "item_ingot",
-        "item_tier2_orb"
+        "item_tier1_orb",
+        "item_tier1_orb"
       ],
       "produces": [
         "item_magical_sword"
@@ -242,7 +168,8 @@
       "machine": "ALTAR",
       "ingredients": [
         "item_wood",
-        "item_tier2_orb"
+        "item_tier1_orb",
+        "item_tier1_orb"
       ],
       "produces": [
         "item_enchanted_bow"
@@ -265,7 +192,8 @@
       "machine": "ALTAR",
       "ingredients": [
         "item_leather_armor",
-        "item_tier3_orb"
+        "item_tier1_orb",
+        "item_tier1_orb"
       ],
       "produces": [
         "item_enchanted_armor"
@@ -274,7 +202,7 @@
     {
       "id": "recipe_enchanted_armor_drain_cost",
       "machine": "ALTAR",
-      "ageCost": 3,
+      "ageCost": 2,
       "ingredients": [
         "item_leather_armor",
         "item_player"
@@ -287,9 +215,9 @@
       "id": "recipe_magical_staff",
       "machine": "ALTAR",
       "ingredients": [
+        "item_wood",
         "item_unicorn_horn",
-        "item_unicorn_horn",
-        "item_tier3_orb"
+        "item_tier1_orb"
       ],
       "produces": [
         "item_magical_staff"
@@ -313,7 +241,7 @@
       "machine": "ALTAR",
       "ingredients": [
         "item_herb_branch",
-        "item_tier3_orb",
+        "item_tier1_orb",
         "item_mystical_tome"
       ],
       "produces": [
@@ -338,7 +266,7 @@
       "machine": "ALTAR",
       "ingredients": [
         "item_ingot",
-        "item_tier3_orb",
+        "item_tier1_orb",
         "item_mystical_tome"
       ],
       "produces": [
@@ -363,7 +291,7 @@
       "machine": "ALTAR",
       "ingredients": [
         "item_chicken",
-        "item_tier3_orb",
+        "item_tier1_orb",
         "item_mystical_tome"
       ],
       "produces": [
