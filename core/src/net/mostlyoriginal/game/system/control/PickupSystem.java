@@ -77,8 +77,8 @@ public class PickupSystem extends FluidIteratingSystem {
                 if ( slot.slotMode() == Slot.Mode.EXPAND ) {
                     deployItemHere(actor, item);
                 }
-            }
-        }
+            } else actor.lifterAttemptLifting(true); // failed, continue lifting.
+        } else actor.lifterAttemptLifting(true); // failed, continue lifting.
     }
 
     DeploySystem deploySystem;
