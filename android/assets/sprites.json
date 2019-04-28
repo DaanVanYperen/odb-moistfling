@@ -215,10 +215,14 @@
 	{
       "id": "item_boxed_forge",
       "comment": "Forge structure.",
-      "x": 960,
-      "y": 160,
-      "width": 32,
-      "height": 32,
+      "x": 320,
+      "y": 64,
+      "width": 64,
+      "height": 64,
+      "countX": 7,
+      "countY": 1,
+      "milliseconds": 180,
+      "repeat": true,
     },
 	{
       "id": "item_boxed_herb_bush",
@@ -347,6 +351,14 @@
       "y": 64,
       "width": 32,
       "height": 32,
+    },
+	{
+      "id": "timmy_the_speech_bubble",
+      "comment": "Timmy never wanted to be a speech bubble.",
+      "x": 960,
+      "y": 192,
+      "width": 38,
+      "height": 40,
     },
   ]
 }
