@@ -68,7 +68,10 @@ public class GameScreen extends WorldScreen {
                         new ShopperControlSystem(),
 
                         new MyPhysicsSystem(),
+
+                        new TradeSystem(), // must be before pickup system!
                         new PickupSystem(),
+
                         new DesireSystem(),
                         new GridPosSystem(),
                         new GridPosFloatSystem(),

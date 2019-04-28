@@ -35,4 +35,11 @@ public class PickupManager extends BaseSystem{
         }
         return overlaps;
     }
+
+    public boolean isCarrying(E e, String type) {
+        if ( type != null && e.hasLifting() && e.liftingId() != -1 ) {
+            if ( type.equals(E.E(e.liftingId()).itemType())) return true;
+        }
+        return false;
+    }
 }

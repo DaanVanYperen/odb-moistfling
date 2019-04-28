@@ -1,5 +1,6 @@
 package net.mostlyoriginal.game.system.control;
 
+import com.artemis.ComponentMapper;
 import com.artemis.E;
 import com.artemis.FluidIteratingSystem;
 import com.artemis.annotations.All;
@@ -35,5 +36,17 @@ public class DesireSystem extends FluidIteratingSystem {
         // follow shopper.
         E.E(desire.desireIndicatorId).posX(e.posX())
                 .posY(e.posY() + DESIRE_INDICATOR_OFFSET_Y);
+    }
+
+    ComponentMapper<Desire> mDesire;
+
+
+    @Override
+    protected void removed(int entityId) {
+        // kill indicator as well.
+        int indicatorId = mDesire.get(entityId).desireIndicatorId;
+        if ( indicatorId != -1 ) {
+            E.E(indicatorId).deleteFromWorld();
+        }
     }
 }

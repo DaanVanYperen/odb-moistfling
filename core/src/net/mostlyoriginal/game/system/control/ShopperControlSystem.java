@@ -33,11 +33,6 @@ public class ShopperControlSystem extends FluidIteratingSystem {
         } else {
             int itemsLifted = e.getLifter().itemsLifted;
 
-            if (itemsLifted == 1) {
-                e.getLifter().payOnPickup = true;
-                attemptToExchangeCarriedItem(e);
-            }
-
             if (itemsLifted == 2) {
                 walkOffscreen(e);
                 deleteWhenOffscreen(e);
@@ -66,14 +61,7 @@ public class ShopperControlSystem extends FluidIteratingSystem {
     private void attemptToExchangeCarriedItem(E e) {
         E itemOnFloor = pickupManager.getOverlapping(e);
         if (itemOnFloor != null) {
-
-            // we only exchange when we get a desired item.
-            if (itemOnFloor.itemType().equals(e.getDesire().desiredItem)) {
-                e.lifterDestroyWhenDropped(false);
-            }
-
             e.lifterAttemptLifting(false);
-
         }
     }
 }

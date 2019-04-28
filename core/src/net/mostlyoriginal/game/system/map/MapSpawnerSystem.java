@@ -109,7 +109,6 @@ public class MapSpawnerSystem extends BaseSystem {
                 .pos(GameRules.SCREEN_WIDTH/(float)GameRules.CAMERA_ZOOM+1,y * GameRules.CELL_SIZE)
                 .anim("customer")
                 .lifterAttemptLifting(true)
-                .lifterDestroyWhenDropped(true)
                 .desireDesiredItem(desiredItem)
                 .shopper()
                 .renderLayer(GameRules.LAYER_SHOPPER);

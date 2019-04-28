@@ -3,6 +3,7 @@ package net.mostlyoriginal.game.system.control;
 import com.artemis.E;
 import com.artemis.FluidIteratingSystem;
 import com.artemis.annotations.All;
+import com.artemis.utils.IntBag;
 import net.mostlyoriginal.api.component.basic.Pos;
 import net.mostlyoriginal.api.system.graphics.RenderBatchingSystem;
 import net.mostlyoriginal.game.GameRules;
@@ -37,7 +38,7 @@ public class PickupSystem extends FluidIteratingSystem {
     }
 
     private void followCarrier(E actor) {
-        if (actor.hasLifting() && actor.getLifting().id != -1 ) {
+        if (actor.hasLifting() && actor.getLifting().id != -1) {
             E lifting = E.E(actor.getLifting().id);
             lifting.posX(actor.getPos().xy.x);
             lifting.posY(actor.getPos().xy.y + CARRIED_OBJECT_LIFTING_HEIGHT);
@@ -52,20 +53,9 @@ public class PickupSystem extends FluidIteratingSystem {
             actor.removeLifting();
 
             item.gridPos(actor.getGridPos()).removeLifted().renderLayer(GameRules.LAYER_ITEM);
-            renderBatchingSystem.sortedDirty=true;
+            renderBatchingSystem.sortedDirty = true;
 
-            if ( actor.lifterPayOnPickup() ) {
-                int goldValue = itemRepository.get(item.itemType()).gold;
-                if ( goldValue > 0 ) {
-                    actor.paying(goldValue);
-                }
-            }
-
-            if ( actor.lifterDestroyWhenDropped() ) {
-                item.deleteFromWorld();
-            }
-
-            if ( itemOnFloor != null ) {
+            if (itemOnFloor != null) {
                 attemptPickup(actor, itemOnFloor);
                 actor.lifterAttemptLifting(true); // we swapped something, ontinue lifting.
             }
@@ -86,7 +76,7 @@ public class PickupSystem extends FluidIteratingSystem {
                     .removeFloating()
                     .lifted()
                     .renderLayer(GameRules.LAYER_ITEM_CARRIED);
-            renderBatchingSystem.sortedDirty=true;
+            renderBatchingSystem.sortedDirty = true;
         }
     }
 }
