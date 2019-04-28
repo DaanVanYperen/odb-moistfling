@@ -53,11 +53,20 @@ public class RecipeRepository extends BaseSystem {
 
         Item ingredientItem = E(ingredients.get(0)).getItem();
         final String ingredient = ingredientItem.type;
+//
+//        System.out.println("==============");
+//        System.out.println("==============");
+//        System.out.println("==============");
 
         for (int j = 0, s2 = recipeLibrary.recipes.length; j < s2; j++) {
             final RecipeData recipe = recipeLibrary.recipes[j];
-            if (recipe.hasIngredient(itemRepository.substitute(ingredient))) {
-                if (matchesRecipe(ingredients, recipe)) return recipe;
+
+            for (String recipeIngredient : recipe.ingredients) {
+                recipeIngredient = itemRepository.substitute(recipeIngredient);
+                if (recipeIngredient.equals(itemRepository.substitute(ingredient))) {
+                    if (matchesRecipe(ingredients, recipe)) return recipe;
+                    break;
+                }
             }
         }
 
@@ -70,25 +79,31 @@ public class RecipeRepository extends BaseSystem {
 
         // Take stock of ingredients in hoppers.
         for (int j = 0, s = ingredients.size(); j < s; j++) {
-            final String ingredient = E(ingredients.get(j)).getItem().type;
+            final String ingredient = itemRepository.substitute(E(ingredients.get(j)).getItem().type);
             reagents.getAndIncrement(ingredient, 0, 1);
+//            System.out.println("Increment ingredient + 1 " + ingredient);
         }
 
         // track each reagent, we need to do this for repeated reagents.
         for (String recipeIngredient : recipe.ingredients) {
             recipeIngredient=itemRepository.substitute(recipeIngredient);
             if (reagents.get(recipeIngredient, 0) <= 0) {
+//                System.out.println("MISSING ingredient "+recipeIngredient );
                 return false;
             }
+//            System.out.println("has ingredient "+recipeIngredient );
             reagents.getAndIncrement(recipeIngredient, 0, -1);
         }
 
         // stuff remains. this means there are too many reagents!
         for (String remainingIngredient : reagents.keys()) {
             if (reagents.get(remainingIngredient, 0) > 0) {
+//                System.out.println("Ingredient remaining "+remainingIngredient );
                 return false;
             }
         }
+
+//        System.out.println("Valid recipe: " +recipe );
 
         return true;
     }
