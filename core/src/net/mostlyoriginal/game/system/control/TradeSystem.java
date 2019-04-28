@@ -9,6 +9,7 @@ import net.mostlyoriginal.game.GameRules;
 import net.mostlyoriginal.game.component.Lifter;
 import net.mostlyoriginal.game.component.Shopper;
 import net.mostlyoriginal.game.manager.ItemRepository;
+import net.mostlyoriginal.game.system.view.GameScreenAssetSystem;
 
 
 /**
@@ -25,6 +26,7 @@ public class TradeSystem extends FluidIteratingSystem {
     private ItemRepository itemRepository;
     private E player;
     private RenderBatchingSystem renderBatchingSystem;
+    private GameScreenAssetSystem gameScreenAssetSystem;
 
     @Override
     protected void begin() {
@@ -51,6 +53,7 @@ public class TradeSystem extends FluidIteratingSystem {
                         final int goldValue = itemRepository.get(E.E(playerItemId).itemType()).gold;
                         if (goldValue > 0) {
                             patron.paying(goldValue);
+                            gameScreenAssetSystem.playSfx("sfx_money_1");
                         }
                     }
 

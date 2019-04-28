@@ -11,6 +11,7 @@ import net.mostlyoriginal.game.manager.RecipeRepository;
 import net.mostlyoriginal.game.system.common.FluidSystem;
 import net.mostlyoriginal.game.system.control.PickupSystem;
 import net.mostlyoriginal.game.system.map.MapSpawnerSystem;
+import net.mostlyoriginal.game.system.view.GameScreenAssetSystem;
 
 /**
  * @author Daan van Yperen
@@ -23,6 +24,7 @@ public class MachineRecipeSystem extends FluidSystem {
     private MapSpawnerSystem mapSpawnerSystem;
     private PlayerAgeSystem playerAgeSystem;
     private PickupSystem pickupSystem;
+    private GameScreenAssetSystem gameScreenAssetSystem;
 
     @Override
     protected void process(E e) {
@@ -51,6 +53,7 @@ public class MachineRecipeSystem extends FluidSystem {
         consumeIngredients(machine);
         spawnProduce(machineGridPos, recipe);
         System.out.println("Recipe " + recipe.id + " triggered.");
+        gameScreenAssetSystem.playSfx("sfx_magic_2", "sfx_magic_1");
     }
 
     private void spawnProduce(GridPos machineGridPos, RecipeData recipe) {

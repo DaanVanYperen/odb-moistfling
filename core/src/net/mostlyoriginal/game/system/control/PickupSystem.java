@@ -10,6 +10,7 @@ import net.mostlyoriginal.game.GameRules;
 import net.mostlyoriginal.game.component.Lifter;
 import net.mostlyoriginal.game.manager.ItemRepository;
 import net.mostlyoriginal.game.system.map.MapSpawnerSystem;
+import net.mostlyoriginal.game.system.view.GameScreenAssetSystem;
 
 
 /**
@@ -25,6 +26,8 @@ public class PickupSystem extends FluidIteratingSystem {
     PickupManager pickupManager;
     private ItemRepository itemRepository;
     private MapSpawnerSystem mapSpawnerSystem;
+
+    private GameScreenAssetSystem gameScreenAssetSystem;
 
     @Override
     protected void process(E e) {
@@ -113,6 +116,7 @@ public class PickupSystem extends FluidIteratingSystem {
                 renderBatchingSystem.sortedDirty = true;
             }
             actor.getLifter().itemsLifted++;
+            gameScreenAssetSystem.playSfx("sfx_interact_6");
         }
     }
 }
