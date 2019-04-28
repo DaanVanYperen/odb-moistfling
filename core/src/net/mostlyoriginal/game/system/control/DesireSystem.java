@@ -23,19 +23,26 @@ public class DesireSystem extends FluidIteratingSystem {
     protected void process(E e) {
         Desire desire = e.getDesire();
         if (desire.desireIndicatorId == -1) {
+            final E indicatorCloud = E.E()
+                    .anim("timmy_the_speech_bubble")
+                    .renderLayer(GameRules.LAYER_DESIRE_INDICATOR-1)
+                    .tint(1f, 1f, 1f, 0.9f);
+            desire.desireIndicatorCloudId =
+                    indicatorCloud.id();
+
             final E indicator = E.E()
-                    .posX(e.posX())
-                    .posY(e.posY() + DESIRE_INDICATOR_OFFSET_Y)
                     .anim(itemRepository.get(desire.desiredItem).sprite)
                     .renderLayer(GameRules.LAYER_DESIRE_INDICATOR)
-                    .tint(1f, 1f, 1f, 0.5f);
+                    .tint(1f, 1f, 1f, 0.9f);
             desire.desireIndicatorId =
                     indicator.id();
         }
 
         // follow shopper.
-        E.E(desire.desireIndicatorId).posX(e.posX())
-                .posY(e.posY() + DESIRE_INDICATOR_OFFSET_Y);
+        E.E(desire.desireIndicatorId).posX(e.posX()-2)
+                .posY(e.posY() + DESIRE_INDICATOR_OFFSET_Y+2);
+        E.E(desire.desireIndicatorCloudId).posX(e.posX()-4)
+                .posY(e.posY() + DESIRE_INDICATOR_OFFSET_Y-4);
     }
 
     ComponentMapper<Desire> mDesire;
@@ -47,6 +54,10 @@ public class DesireSystem extends FluidIteratingSystem {
         int indicatorId = mDesire.get(entityId).desireIndicatorId;
         if ( indicatorId != -1 ) {
             E.E(indicatorId).deleteFromWorld();
+        }
+        int cloudIndicatorId = mDesire.get(entityId).desireIndicatorCloudId;
+        if ( cloudIndicatorId != -1 ) {
+            E.E(cloudIndicatorId).deleteFromWorld();
         }
     }
 }

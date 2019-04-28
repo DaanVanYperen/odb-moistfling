@@ -4,6 +4,7 @@ import com.artemis.E;
 import com.artemis.FluidIteratingSystem;
 import com.artemis.annotations.All;
 import net.mostlyoriginal.api.component.basic.Pos;
+import net.mostlyoriginal.api.component.graphics.Tint;
 import net.mostlyoriginal.api.system.graphics.RenderBatchingSystem;
 import net.mostlyoriginal.game.GameRules;
 import net.mostlyoriginal.game.component.Lifter;
@@ -17,7 +18,8 @@ import net.mostlyoriginal.game.system.map.MapSpawnerSystem;
 @All({Lifter.class, Pos.class})
 public class PickupSystem extends FluidIteratingSystem {
 
-    private static final int CARRIED_OBJECT_LIFTING_HEIGHT = 0;
+    private static final int CARRIED_OBJECT_PLAYER_LIFTING_HEIGHT = 32;
+    private static final int CARRIED_OBJECT_SHOPPER_LIFTING_HEIGHT = 4;
 
     RenderBatchingSystem renderBatchingSystem;
     PickupManager pickupManager;
@@ -38,11 +40,22 @@ public class PickupSystem extends FluidIteratingSystem {
         followCarrier(e);
     }
 
+    Tint carriedItemTint = new Tint(1f,1f,1f,0.8f);
+
     private void followCarrier(E actor) {
         if (actor.hasLifting() && actor.getLifting().id != -1) {
             E lifting = E.E(actor.getLifting().id);
-            lifting.posX(actor.getPos().xy.x);
-            lifting.posY(actor.getPos().xy.y + CARRIED_OBJECT_LIFTING_HEIGHT);
+            if ( actor.hasShopper() ) {
+                lifting.scale(0.5f);
+                lifting.tint(carriedItemTint);
+                lifting.posX(actor.getPos().xy.x + 16);
+                lifting.posY(actor.getPos().xy.y + CARRIED_OBJECT_SHOPPER_LIFTING_HEIGHT);
+            } else {
+                lifting.scale(1f);
+                lifting.tint(Tint.WHITE);
+                lifting.posX(actor.getPos().xy.x);
+                lifting.posY(actor.getPos().xy.y + CARRIED_OBJECT_PLAYER_LIFTING_HEIGHT);
+            }
         }
     }
 
@@ -52,6 +65,8 @@ public class PickupSystem extends FluidIteratingSystem {
             E itemOnFloor = pickupManager.getOverlapping(actor);
 
             actor.removeLifting();
+            item.scale(1f);
+            item.tint(Tint.WHITE);
             item.gridPos(actor.getGridPos()).removeLifted().renderLayer(GameRules.LAYER_ITEM);
             renderBatchingSystem.sortedDirty = true;
 

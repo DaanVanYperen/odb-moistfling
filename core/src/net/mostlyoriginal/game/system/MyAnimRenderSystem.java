@@ -91,16 +91,20 @@ public class MyAnimRenderSystem extends DeferredEntityProcessingSystem {
         }
     }
 
-    Tint tint = new Tint(1f,1f,1f,0.8f);
+    Tint FONT_TINT = new Tint(1f,1f,1f,0.8f);
+    Tint FONT_SHADOW_TINT = new Tint(0f,0f,0f,0.6f);
 
     private void renderStackCount(int e, Pos pos) {
         int count = mItem.get(e).count;
         if (count > 1) {
             font.getData().setScale(1f);
-            font.setColor(tint.color);
             final String countText = "x"+count ;
             glyphLayout.setText(font, countText);
-            font.draw(batch, countText, pos.xy.x + GameRules.CELL_SIZE - glyphLayout.width, pos.xy.y + 8);
+
+            font.setColor(FONT_SHADOW_TINT.color);
+            font.draw(batch, countText, pos.xy.x + GameRules.CELL_SIZE - glyphLayout.width -3, pos.xy.y + 10 -1);
+            font.setColor(FONT_TINT.color);
+            font.draw(batch, countText, pos.xy.x + GameRules.CELL_SIZE - glyphLayout.width -4, pos.xy.y + 10);
         }
     }
 

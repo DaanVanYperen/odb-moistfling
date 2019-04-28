@@ -25,7 +25,9 @@ public class MapSpawnerSystem extends BaseSystem {
 
     public void finalizeSpawns() {
 
-        if (machines.size() != 1) throw new RuntimeException("Only one machine supported");
+        if (machines.size() != 1) {
+            throw new RuntimeException("Only one machine supported");
+        }
         if (hoppers.size() == 0) throw new RuntimeException("No hoppers found");
 
         final E altar = machines.get(0);
@@ -91,7 +93,7 @@ public class MapSpawnerSystem extends BaseSystem {
                 .gridPosDeriveFromPos(true)
                 .anim("player_kid")
                 .itemType("item_player")
-                .bounds(4,4,16-4,48-4)
+                .bounds(4,4,16-4,32-4)
                 .player()
                 .physics()
                 .tag("player")

@@ -300,13 +300,13 @@
  <tile id="220">
   <properties>
    <property name="entity" value="item"/>
-   <property name="type" value=""/>
+   <property name="type" value="item_wood"/>
   </properties>
  </tile>
  <tile id="221">
   <properties>
    <property name="entity" value="item"/>
-   <property name="type" value=""/>
+   <property name="type" value="item_mystical_tome"/>
   </properties>
  </tile>
  <tile id="222">

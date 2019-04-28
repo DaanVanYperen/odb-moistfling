@@ -11,4 +11,5 @@ import com.artemis.annotations.EntityId;
 public class Desire extends Component {
     public String desiredItem;
     @EntityId public int desireIndicatorId = -1;
+    @EntityId public int desireIndicatorCloudId = -1;
 }
