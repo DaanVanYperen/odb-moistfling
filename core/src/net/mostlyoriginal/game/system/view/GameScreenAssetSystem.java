@@ -78,6 +78,8 @@ public class GameScreenAssetSystem extends AbstractAssetSystem {
                 "sfx_magic_2",
                 "sfx_magic_3",
                 "sfx_money_1",
+                "sfx_pickup",
+                "sfx_putdown"
         });
 
         sfxVolume = 0.15f;

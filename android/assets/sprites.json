@@ -233,7 +233,7 @@
       "repeat": true,
     },
 	{
-      "id": "item_boxed_herb_bush",
+      "id": "item_boxed_bush",
       "comment": "Herb bush structure.",
       "x": 992,
       "y": 160,
@@ -249,7 +249,7 @@
       "height": 64,
     },
 	{
-      "id": "item_boxed_chicken_coop",
+      "id": "item_boxed_coop",
       "comment": "Chicken coop structure.",
       "x": 608,
       "y": 192,

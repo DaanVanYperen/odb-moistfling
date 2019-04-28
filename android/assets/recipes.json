@@ -279,7 +279,7 @@
       ]
     },
     {
-      "id": "recipe_boxed_herb_bush",
+      "id": "recipe_boxed_bush",
       "machine": "ALTAR",
       "ingredients": [
         "item_herb_branch",
@@ -287,7 +287,7 @@
         "item_mystical_tome"
       ],
       "produces": [
-        "item_boxed_herb_bush"
+        "item_boxed_bush"
       ]
     },
     {
@@ -300,7 +300,7 @@
         "item_mystical_tome"
       ],
       "produces": [
-        "item_boxed_herb_bush",
+        "item_boxed_bush",
         "item_player_old"
       ]
     },
@@ -339,7 +339,7 @@
         "item_mystical_tome"
       ],
       "produces": [
-        "item_boxed_chicken_coop"
+        "item_boxed_coop"
       ]
     },
     {
@@ -352,7 +352,7 @@
         "item_mystical_tome"
       ],
       "produces": [
-        "item_boxed_chicken_coop",
+        "item_boxed_coop",
         "item_player_old"
       ]
     }

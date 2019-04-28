@@ -77,6 +77,12 @@
    <property name="type" value="ALTAR"/>
   </properties>
  </tile>
+ <tile id="103">
+  <properties>
+   <property name="accepts" value="any"/>
+   <property name="entity" value="slot"/>
+  </properties>
+ </tile>
  <tile id="128">
   <properties>
    <property name="entity" value="player"/>
@@ -85,6 +91,22 @@
  <tile id="129">
   <properties>
    <property name="entity" value="shopperspawner"/>
+  </properties>
+ </tile>
+ <tile id="138">
+  <properties>
+   <property name="accepts" value="item_boxed_forge,item_boxed_coop,item_boxed_bush"/>
+   <property name="entity" value="slot"/>
+   <property name="x" type="int" value="0"/>
+   <property name="y" type="int" value="0"/>
+  </properties>
+ </tile>
+ <tile id="139">
+  <properties>
+   <property name="accepts" value="item_boxed_forge,item_boxed_coop,item_boxed_bush"/>
+   <property name="entity" value="slot"/>
+   <property name="x" type="int" value="1"/>
+   <property name="y" type="int" value="0"/>
   </properties>
  </tile>
  <tile id="147">
@@ -165,6 +187,22 @@
    <property name="type" value="item_leather_armor"/>
   </properties>
  </tile>
+ <tile id="170">
+  <properties>
+   <property name="accepts" value="item_boxed_forge,item_boxed_coop,item_boxed_bush"/>
+   <property name="entity" value="slot"/>
+   <property name="x" type="int" value="0"/>
+   <property name="y" type="int" value="1"/>
+  </properties>
+ </tile>
+ <tile id="171">
+  <properties>
+   <property name="accepts" value="item_boxed_forge,item_boxed_coop,item_boxed_bush"/>
+   <property name="entity" value="slot"/>
+   <property name="x" type="int" value="1"/>
+   <property name="y" type="int" value="1"/>
+  </properties>
+ </tile>
  <tile id="179">
   <properties>
    <property name="entity" value="item"/>
@@ -234,19 +272,19 @@
  <tile id="190">
   <properties>
    <property name="entity" value="item"/>
-   <property name="type" value=""/>
+   <property name="type" value="item_boxed_forge"/>
   </properties>
  </tile>
  <tile id="191">
   <properties>
    <property name="entity" value="item"/>
-   <property name="type" value=""/>
+   <property name="type" value="item_boxed_bush"/>
   </properties>
  </tile>
  <tile id="211">
   <properties>
    <property name="entity" value="item"/>
-   <property name="type" value=""/>
+   <property name="type" value="item_boxed_coop"/>
   </properties>
  </tile>
  <tile id="212">

@@ -43,12 +43,12 @@ public class PickupSystem extends FluidIteratingSystem {
         followCarrier(e);
     }
 
-    Tint carriedItemTint = new Tint(1f,1f,1f,0.8f);
+    Tint carriedItemTint = new Tint(1f, 1f, 1f, 0.8f);
 
     private void followCarrier(E actor) {
         if (actor.hasLifting() && actor.getLifting().id != -1) {
             E lifting = E.E(actor.getLifting().id);
-            if ( actor.hasShopper() ) {
+            if (actor.hasShopper()) {
                 lifting.scale(0.5f);
                 lifting.tint(carriedItemTint);
                 lifting.posX(actor.getPos().xy.x + 16);
@@ -67,6 +67,12 @@ public class PickupSystem extends FluidIteratingSystem {
         if (!actor.isMoving()) {
             E itemOnFloor = pickupManager.getOverlapping(actor);
 
+            // can't drop the wrong thing on a stack and can't swap a stack.
+            boolean matchesFloorItem = itemOnFloor != null && itemOnFloor.itemType().equals(item.itemType());
+            if (itemOnFloor != null && !matchesFloorItem && itemOnFloor.getItem().count > 1 ) {
+                return;
+            }
+
             actor.removeLifting();
             item.scale(1f);
             item.tint(Tint.WHITE);
@@ -74,14 +80,19 @@ public class PickupSystem extends FluidIteratingSystem {
             renderBatchingSystem.sortedDirty = true;
 
             if (itemOnFloor != null) {
-                if (itemOnFloor.itemType().equals(item.itemType())) {
+                if (matchesFloorItem) {
                     // merge items if identical.
                     itemOnFloor.getItem().count++;
                     item.deleteFromWorld();
+                    if (actor.hasPlayer())
+                        gameScreenAssetSystem.playSfx("sfx_putdown");
                 } else {
                     attemptPickup(actor, itemOnFloor);
                     actor.lifterAttemptLifting(true); // we swapped something, ontinue lifting.
                 }
+            } else {
+                if (actor.hasPlayer())
+                    gameScreenAssetSystem.playSfx("sfx_putdown");
             }
         }
     }
@@ -93,7 +104,7 @@ public class PickupSystem extends FluidIteratingSystem {
 
     public void attemptPickup(E actor, E item) {
         if (item != null) {
-            if ( item.itemCount() > 1 ) {
+            if (item.itemCount() > 1) {
                 // take from stack.
                 item.getItem().count--;
                 E clonedItem = mapSpawnerSystem.spawnItem(0, 0, item.itemType())
@@ -116,7 +127,8 @@ public class PickupSystem extends FluidIteratingSystem {
                 renderBatchingSystem.sortedDirty = true;
             }
             actor.getLifter().itemsLifted++;
-            gameScreenAssetSystem.playSfx("sfx_interact_6");
+            if (actor.hasPlayer())
+                gameScreenAssetSystem.playSfx("sfx_pickup");
         }
     }
 }

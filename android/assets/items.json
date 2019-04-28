@@ -217,8 +217,8 @@
       "desireChance": 0
     },
     {
-      "id": "item_boxed_herb_bush",
-      "sprite": "item_boxed_herb_bush",
+      "id": "item_boxed_bush",
+      "sprite": "item_boxed_bush",
       "consumed": true,
       "reward": false,
       "gold": -1,
@@ -226,8 +226,8 @@
       "desireChance": 0
     },
     {
-      "id": "item_boxed_chicken_coop",
-      "sprite": "item_boxed_chicken_coop",
+      "id": "item_boxed_coop",
+      "sprite": "item_boxed_coop",
       "consumed": true,
       "reward": false,
       "gold": -1,

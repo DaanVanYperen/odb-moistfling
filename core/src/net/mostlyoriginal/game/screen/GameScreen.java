@@ -81,6 +81,7 @@ public class GameScreen extends WorldScreen {
                         new MachineHopperDetectionSystem(),
                         new MachineRecipeSystem(),
                         new RecipeIngredientHintSystem(),
+                        new SlotHighlightingSystem(),
 
                         new MapRenderSystem(),
                         renderBatchingSystem = new RenderBatchingSystem(),

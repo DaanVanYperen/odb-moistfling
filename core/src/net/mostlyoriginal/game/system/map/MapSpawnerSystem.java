@@ -55,6 +55,9 @@ public class MapSpawnerSystem extends BaseSystem {
         } else if ("player".equals(entity)) {
             spawnPlayer(x, y);
             return true;
+        }else if ("slot".equals(entity)) {
+            spawnSlot(x, y,  (String) properties.get("accepts"));
+            return false;
         } else if ("hopper".equals(entity)) {
             spawnHopper(x, y);
             return true;
@@ -69,10 +72,19 @@ public class MapSpawnerSystem extends BaseSystem {
         return false;
     }
 
+    private void spawnSlot(int x, int y, String accepts) {
+        E altar = E.E()
+                .gridPos(x, y)
+                .tint(1f,1f,1f,0.7f)
+                .slotAccepts(accepts.split(","))
+                .renderLayer(GameRules.LAYER_SLOTS);
+    }
+
     private void spawnMachine(int x, int y, String type) {
         E altar = E.E()
                 .gridPos(x, y)
                 .anim("altar")
+
                 .machineType(Machine.Type.ALTAR)
                 .renderLayer(GameRules.LAYER_MACHINES);
         machines.add(altar);
