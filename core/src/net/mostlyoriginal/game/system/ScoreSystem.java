@@ -59,7 +59,14 @@ public class ScoreSystem extends BaseSystem {
     }
 
     private String dayLabel(int day) {
-        return "Day "+ day +": Elderly Grubling";
+        return "Day "+ day + ": " + playerRank();
+    }
+    private String nightLabel(int day) {
+        return "Night "+ day + ": " + playerRank();
+    }
+
+    private String playerRank() {
+        return "Elderly Grubling";
     }
 
     private boolean nighttimeMode = false;
@@ -84,6 +91,8 @@ public class ScoreSystem extends BaseSystem {
             if (!nighttimeMode) {
                 hintLabel.labelText(randomNighttimeHint());
                 flash(hintLabel);
+                rankLabel.labelText(nightLabel(lastDay));
+                flash(rankLabel);
             }
             nighttimeMode = true;
         } else {

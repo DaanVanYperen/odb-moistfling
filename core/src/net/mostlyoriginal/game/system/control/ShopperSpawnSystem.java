@@ -5,7 +5,9 @@ import com.artemis.E;
 import com.artemis.EntitySubscription;
 import com.artemis.FluidIteratingSystem;
 import com.artemis.annotations.All;
+import com.artemis.utils.IntBag;
 import com.badlogic.gdx.math.MathUtils;
+import net.mostlyoriginal.game.component.GridPos;
 import net.mostlyoriginal.game.component.Shopper;
 import net.mostlyoriginal.game.component.ShopperSpawner;
 import net.mostlyoriginal.game.system.map.MapSpawnerSystem;
@@ -33,7 +35,7 @@ public class ShopperSpawnSystem extends FluidIteratingSystem {
     @Override
     protected void process(E e) {
         ShopperSpawner shopperSpawner = e.getShopperSpawner();
-        if ( shopperSpawner.shopperId == -1 && !enoughShoppers()) {
+        if ( shopperSpawner.shopperId == -1 && !enoughShoppers() && !isShopperAtSpawner(e.getGridPos())) {
             shopperSpawner.cooldown -= world.delta;
             if (shopperSpawner.cooldown < 0) {
                 shopperSpawner.cooldown += MathUtils.random(5,10);
@@ -46,6 +48,18 @@ public class ShopperSpawnSystem extends FluidIteratingSystem {
                 mapSpawnerSystem.spawnShopper(e.gridPosX(),e.gridPosY());
             }
         }
+    }
+
+    private boolean isShopperAtSpawner(GridPos spawnerGridPos) {
+        IntBag entities = shoppers.getEntities();
+        int[] data = entities.getData();
+        for (int i = 0, s = entities.size(); i < s; i++) {
+            E e = E.E(data[i]);
+            if ( e.hasGridPos() && e.gridPosOverlaps(spawnerGridPos) ) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private boolean spawnScriptedShopper(int gridPosX, int gridPosY, int day) {

@@ -42,7 +42,7 @@
       "consumed": true,
       "reward": true,
       "gold": 10,
-      "rewardChance": 0,
+      "rewardChance": 50,
       "desireChance": 0
     },
     {
