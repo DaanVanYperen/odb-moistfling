@@ -18,7 +18,7 @@ import net.mostlyoriginal.game.system.ItemLibrary;
  */
 public class ItemRepository extends BaseSystem {
 
-    private ItemLibrary itemLibrary;
+    public ItemLibrary itemLibrary;
     private int rewardDropTotal = 0;
     private int desireDropTotal = 0;
 

@@ -11,7 +11,10 @@ import net.mostlyoriginal.api.utils.MapMask;
 import net.mostlyoriginal.game.GameRules;
 import net.mostlyoriginal.game.component.GridPos;
 import net.mostlyoriginal.game.component.Item;
+import net.mostlyoriginal.game.component.ItemData;
 import net.mostlyoriginal.game.component.Player;
+import net.mostlyoriginal.game.manager.ItemRepository;
+import net.mostlyoriginal.game.system.map.MapSpawnerSystem;
 import net.mostlyoriginal.game.system.map.MapSystem;
 
 import java.security.Key;
@@ -28,6 +31,8 @@ public class PlayerControlSystem extends FluidIteratingSystem {
 
     @All(Item.class)
     private EntitySubscription items;
+    private MapSpawnerSystem mapSpawnSystem;
+    private ItemRepository itemRepository;
 
     @Override
     protected void initialize() {
@@ -59,6 +64,14 @@ public class PlayerControlSystem extends FluidIteratingSystem {
             }
             if (Gdx.input.isKeyPressed(Input.Keys.F8)) {
                 E.withTag("player").playerAge(3);
+            }
+
+            if (Gdx.input.isKeyJustPressed(Input.Keys.F9)) {
+                int index=0;
+                for (ItemData data : itemRepository.itemLibrary.items) {
+                    mapSpawnSystem.spawnItem(index++ % 20,index / 20,data.id).itemCount(99);
+                }
+
             }
         }
 
