@@ -46,7 +46,7 @@ public class LogoScreenAssetSystem extends AbstractAssetSystem {
 		if (GameRules.musicOn ) {
 			GameRules.music.play();
 		}
-		GameRules.music.setPan(0, 0.1f);
+		GameRules.music.setPan(0, 0.08f);
 	}
 
 
