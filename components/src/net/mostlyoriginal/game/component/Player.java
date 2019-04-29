@@ -12,4 +12,6 @@ public class Player extends Component {
     public int age=1;
     public boolean nighttime=true;
     public int day=1;
+
+    public int visitorsRemaining = 2;
 }

@@ -8,6 +8,7 @@ import com.artemis.annotations.All;
 import com.artemis.utils.IntBag;
 import com.badlogic.gdx.math.MathUtils;
 import net.mostlyoriginal.game.component.GridPos;
+import net.mostlyoriginal.game.component.Player;
 import net.mostlyoriginal.game.component.Shopper;
 import net.mostlyoriginal.game.component.ShopperSpawner;
 import net.mostlyoriginal.game.system.map.MapSpawnerSystem;
@@ -26,6 +27,7 @@ public class ShopperSpawnSystem extends FluidIteratingSystem {
 
     private float spawnCooldown = 0;
     private int lastScriptedSpawnDay = 0;
+    private E player;
 
     @Override
     protected boolean checkProcessing() {
@@ -33,19 +35,32 @@ public class ShopperSpawnSystem extends FluidIteratingSystem {
     }
 
     @Override
+    protected void begin() {
+        super.begin();
+        player = E.withTag("player");
+    }
+
+    @Override
     protected void process(E e) {
         ShopperSpawner shopperSpawner = e.getShopperSpawner();
-            if ( shopperSpawner.shopperId == -1 && !enoughShoppers() && !isShopperAtSpawner(e.getGridPos())) {
+        if (shopperSpawner.shopperId == -1 && !enoughShoppers() && !isShopperAtSpawner(e.getGridPos())) {
             shopperSpawner.cooldown -= world.delta;
             if (shopperSpawner.cooldown < 0) {
-                shopperSpawner.cooldown += MathUtils.random(5,10);
-                int day = E.withTag("player").playerDay();
-                if ( lastScriptedSpawnDay != day) {
-                    lastScriptedSpawnDay = day;
-                    if ( spawnScriptedShopper(e.gridPosX(),e.gridPosY(),day))
-                        return;
+                shopperSpawner.cooldown += 8;
+
+                Player player = this.player.getPlayer();
+                if (player.visitorsRemaining > 0) {
+                    int day = E.withTag("player").playerDay();
+                    if (lastScriptedSpawnDay != day) {
+                        lastScriptedSpawnDay = day;
+                        if (spawnScriptedShopper(e.gridPosX(), e.gridPosY(), day)) {
+                            player.visitorsRemaining--;
+                            return;
+                        }
+                    }
+                    mapSpawnerSystem.spawnShopper(e.gridPosX(), e.gridPosY());
+                    player.visitorsRemaining--;
                 }
-                mapSpawnerSystem.spawnShopper(e.gridPosX(),e.gridPosY());
             }
         }
     }
@@ -55,7 +70,7 @@ public class ShopperSpawnSystem extends FluidIteratingSystem {
         int[] data = entities.getData();
         for (int i = 0, s = entities.size(); i < s; i++) {
             E e = E.E(data[i]);
-            if ( e.hasGridPos() && e.gridPosOverlaps(spawnerGridPos) ) {
+            if (e.hasGridPos() && e.gridPosOverlaps(spawnerGridPos)) {
                 return true;
             }
         }
@@ -64,23 +79,23 @@ public class ShopperSpawnSystem extends FluidIteratingSystem {
 
     private boolean spawnScriptedShopper(int gridPosX, int gridPosY, int day) {
 
-        if ( day == 1 ) {
-            mapSpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY, "item_enchanted_bow","item_boxed_coop");
+        if (day == 1) {
+            mapSpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY, "item_enchanted_bow", "item_boxed_coop");
             return true;
         }
 
-        if ( day == 2 ) {
-            mapSpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY, "item_magical_sword","item_unicorn");
+        if (day == 2) {
+            mapSpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY, "item_magical_sword", "item_unicorn");
             return true;
         }
 
-        if ( day == 3 ) {
-            mapSpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY, "item_enchanted_armor","item_boxed_forge");
+        if (day == 3) {
+            mapSpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY, "item_enchanted_armor", "item_boxed_forge");
             return true;
         }
 
-        if ( day % 5 == 4 ) {
-            mapSpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY, "item_magical_staff","item_mystical_tome");
+        if (day % 5 == 4) {
+            mapSpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY, "item_magical_staff", "item_mystical_tome");
             return true;
         }
 

@@ -4,9 +4,11 @@ import com.artemis.E;
 import com.artemis.FluidIteratingSystem;
 import com.artemis.annotations.All;
 import com.badlogic.gdx.math.Interpolation;
+import com.badlogic.gdx.math.MathUtils;
 import net.mostlyoriginal.api.component.graphics.Tint;
 import net.mostlyoriginal.api.operation.JamOperationFactory;
 import net.mostlyoriginal.game.component.AffectedByNight;
+import net.mostlyoriginal.game.component.Player;
 
 /**
  * @author Daan van Yperen
@@ -44,8 +46,10 @@ public class NightSystem extends FluidIteratingSystem {
         cooldown = nighttime ? CYCLE_DURATION : CYCLE_DURATION_DAY;
         flipped = true;
         player.playerNighttime(nighttime);
+        Player playerComp = player.getPlayer();
         if (nighttime) {
-            player.getPlayer().day++;
+            playerComp.day++;
+            playerComp.visitorsRemaining = MathUtils.clamp(playerComp.day, 2, 5);
         }
     }
 
