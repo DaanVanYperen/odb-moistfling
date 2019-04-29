@@ -118,7 +118,7 @@ public class NightShopperSpawnSystem extends FluidIteratingSystem {
             dialogSystem.queue(NameHelper.getActor_player_face(), "What do you need sam, spit it out.");
             dialogSystem.queue("actor_postal_face", "The druid herb delivery had a letter.");
             dialogSystem.queue(NameHelper.getActor_player_face(), "Oh.");
-            dialogSystem.queue("actor_postal_face", "I found it behind the chouch.");
+            dialogSystem.queue("actor_postal_face", "I found it behind the couch.");
             dialogSystem.queue(NameHelper.getActor_player_face(), "Oh.");
             dialogSystem.queue("actor_postal_face", "It reads:");
             dialogSystem.queue("actor_postal_face", "Bla bla.. Druid jousting festival");
