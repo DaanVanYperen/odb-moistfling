@@ -88,14 +88,14 @@ public class TradeSystem extends FluidIteratingSystem {
             dialogSystem.queue("actor_postal_face", "You picked right, lets beat up this hag!");
             dialogSystem.queue("actor_hag_face", "Wait no.");
             dialogSystem.queue("actor_postal_face", "Eat postage you cretin!");
-            dialogSystem.queue("actor_player_face", "That's my sam!");
+            dialogSystem.queue(NameHelper.getActor_player_face(), "That's my sam!");
         } else {
             dialogSystem.queue("actor_hag_face", "Wow I can't believe that worked.");
-            dialogSystem.queue("actor_player_face", "Wait what?");
+            dialogSystem.queue(NameHelper.getActor_player_face(), "Wait what?");
             dialogSystem.queue("actor_hag_face", "Nothing! Now teach me rejuvenation");
             dialogSystem.queue("actor_hag_face", "and I will show you some gyration!");
             dialogSystem.queue("actor_postal_face", "Uhhhhhhhhhhhhhh.");
-            dialogSystem.queue("actor_player_face", "I think we need arbitration.");
+            dialogSystem.queue(NameHelper.getActor_player_face(), "I think we need arbitration.");
             dialogSystem.queue("actor_postal_face", "I'm out of here!");
         }
     }

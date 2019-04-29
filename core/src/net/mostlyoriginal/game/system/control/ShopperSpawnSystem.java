@@ -99,14 +99,14 @@ public class ShopperSpawnSystem extends FluidIteratingSystem {
             mapSpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY,
                     desiredItem, itemRepository.randomReward(), "customer", 1);
             if (spawns==1) {
-                dialogSystem.queue("actor_player_face", "Patrons want to buy specific items!");
-                dialogSystem.queue("actor_player_face", "All these guys want sticks!");
-                dialogSystem.queue("actor_player_face", "Use space near the sticks to pick one up.");
-                dialogSystem.queue("actor_player_face", "Stand at a patron and use space to trade.");
+                dialogSystem.queue(NameHelper.getActor_player_face(), "Patrons want to buy specific items!");
+                dialogSystem.queue(NameHelper.getActor_player_face(), "All these guys want sticks!");
+                dialogSystem.queue(NameHelper.getActor_player_face(), "Use space near the sticks to pick one up.");
+                dialogSystem.queue(NameHelper.getActor_player_face(), "Stand at a patron and use space to trade.");
             }
             if (player.visitorsRemaining==4) {
-                dialogSystem.queue("actor_player_face", "When things slow down or out of stock,");
-                dialogSystem.queue("actor_player_face", "just close the door and patrons will leave");
+                dialogSystem.queue(NameHelper.getActor_player_face(), "When things slow down or out of stock,");
+                dialogSystem.queue(NameHelper.getActor_player_face(), "just close the door and patrons will leave");
             }
             return true;
         }

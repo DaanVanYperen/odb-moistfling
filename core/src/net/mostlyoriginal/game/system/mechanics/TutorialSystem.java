@@ -6,6 +6,7 @@ import com.artemis.utils.IntBag;
 import net.mostlyoriginal.game.component.Player;
 import net.mostlyoriginal.game.system.DialogSystem;
 import net.mostlyoriginal.game.system.control.Days;
+import net.mostlyoriginal.game.system.control.NameHelper;
 
 /**
  * @author Daan van Yperen
@@ -82,14 +83,14 @@ public class TutorialSystem extends BaseSystem {
     }
 
     private void firstDayPhase0() {
-        dialogSystem.queue("actor_player_face", "...");
-        dialogSystem.queue("actor_player_face", "Well that's a bummer.");
-        dialogSystem.queue("actor_player_face", "No time to dwell upon it.");
-        dialogSystem.queue("actor_player_face", "I need some stock to deal with this.");
-        dialogSystem.queue("actor_player_face", "I'll start by selling some items!");
-        dialogSystem.queue("actor_player_face", "Time to open the shop.");
-        dialogSystem.queue("actor_player_face", "ADSW/cursor to move, space to interact.");
-        dialogSystem.queue("actor_player_face", "Space on the door to start the day.");
+        dialogSystem.queue(NameHelper.getActor_player_face(), "...");
+        dialogSystem.queue(NameHelper.getActor_player_face(), "Well that's a bummer.");
+        dialogSystem.queue(NameHelper.getActor_player_face(), "No time to dwell upon it.");
+        dialogSystem.queue(NameHelper.getActor_player_face(), "I need some stock to deal with this.");
+        dialogSystem.queue(NameHelper.getActor_player_face(), "I'll start by selling some items!");
+        dialogSystem.queue(NameHelper.getActor_player_face(), "Time to open the shop.");
+        dialogSystem.queue(NameHelper.getActor_player_face(), "ADSW/cursor to move, space to interact.");
+        dialogSystem.queue(NameHelper.getActor_player_face(), "Space on the door to start the day.");
         stage++;
     }
 
@@ -127,41 +128,41 @@ public class TutorialSystem extends BaseSystem {
 
     private void doorInstructions() {
         if (isHolding("item_enchanted_bow")) {
-            dialogSystem.queue("actor_player_face", "There we go!");
-            dialogSystem.queue("actor_player_face", "Time to open the shop.");
-            dialogSystem.queue("actor_player_face", "Click the door when ready.");
+            dialogSystem.queue(NameHelper.getActor_player_face(), "There we go!");
+            dialogSystem.queue(NameHelper.getActor_player_face(), "Time to open the shop.");
+            dialogSystem.queue(NameHelper.getActor_player_face(), "Click the door when ready.");
             stage++;
         }
     }
 
     private void chickOnAltarInstructions() {
         if (isHolding(null)) {
-            dialogSystem.queue("actor_player_face", "A chick on the altar should do the trick.");
+            dialogSystem.queue(NameHelper.getActor_player_face(), "A chick on the altar should do the trick.");
             stage++;
         }
     }
 
     private void selfOnAltarInstructions() {
         if (isSlotted("item_chick")) {
-            dialogSystem.queue("actor_player_face", "Now to step on an empty altar spot...");
+            dialogSystem.queue(NameHelper.getActor_player_face(), "Now to step on an empty altar spot...");
             stage++;
         }
     }
 
     private void deagedSuccess() {
         if (player.age <= 2) {
-            dialogSystem.queue("actor_player_face", "Ah to be young again.");
-            dialogSystem.queue("actor_player_face", "I need to be younger though.");
-            dialogSystem.queue("actor_player_face", "Twice more.");
+            dialogSystem.queue(NameHelper.getActor_player_face(), "Ah to be young again.");
+            dialogSystem.queue(NameHelper.getActor_player_face(), "I need to be younger though.");
+            dialogSystem.queue(NameHelper.getActor_player_face(), "Twice more.");
             stage++;
         }
     }
 
     private void deagedSuccess2() {
         if (player.age == 0) {
-            dialogSystem.queue("actor_player_face", "Ah to be young again!");
-            dialogSystem.queue("actor_player_face", "My youth will enchant the bow!");
-            dialogSystem.queue("actor_player_face", "Bow + boy on altar...");
+            dialogSystem.queue(NameHelper.getActor_player_face(), "Ah to be young again!");
+            dialogSystem.queue(NameHelper.getActor_player_face(), "My youth will enchant the bow!");
+            dialogSystem.queue(NameHelper.getActor_player_face(), "Bow + boy on altar...");
             stage++;
         }
     }
@@ -169,8 +170,8 @@ public class TutorialSystem extends BaseSystem {
 
     private void twigInstructions() {
         if (isHolding("item_wood")) {
-            dialogSystem.queue("actor_player_face", "Great!");
-            dialogSystem.queue("actor_player_face", "Now to drop it on the altar.");
+            dialogSystem.queue(NameHelper.getActor_player_face(), "Great!");
+            dialogSystem.queue(NameHelper.getActor_player_face(), "Now to drop it on the altar.");
             stage++;
         }
 
@@ -178,8 +179,8 @@ public class TutorialSystem extends BaseSystem {
 
     private void herbInstructions() {
         if (isSlotted("item_wood")) {
-            dialogSystem.queue("actor_player_face", "Recipes appear below the altar.");
-            dialogSystem.queue("actor_player_face", "Add the missing bow ingredients.");
+            dialogSystem.queue(NameHelper.getActor_player_face(), "Recipes appear below the altar.");
+            dialogSystem.queue(NameHelper.getActor_player_face(), "Add the missing bow ingredients.");
             stage++;
         }
 
@@ -188,11 +189,11 @@ public class TutorialSystem extends BaseSystem {
 
     private void storageInstructions() {
         if (isHolding("item_bow")) {
-            dialogSystem.queue("actor_player_face", "Bow! Now to imbue it with youth.");
-            dialogSystem.queue("actor_player_face", "Drats.. I'm an old fart.");
-            dialogSystem.queue("actor_player_face", "Time for some necromancy.");
-            dialogSystem.queue("actor_player_face", "Eh eh eh.");
-            dialogSystem.queue("actor_player_face", "Lets put the bow away for now");
+            dialogSystem.queue(NameHelper.getActor_player_face(), "Bow! Now to imbue it with youth.");
+            dialogSystem.queue(NameHelper.getActor_player_face(), "Drats.. I'm an old fart.");
+            dialogSystem.queue(NameHelper.getActor_player_face(), "Time for some necromancy.");
+            dialogSystem.queue(NameHelper.getActor_player_face(), "Eh eh eh.");
+            dialogSystem.queue(NameHelper.getActor_player_face(), "Lets put the bow away for now");
             stage++;
         }
 
@@ -212,25 +213,25 @@ public class TutorialSystem extends BaseSystem {
     }
 
     private void startTutorial() {
-        dialogSystem.queue("actor_player_face", "An enchanted bow eh? I'll make it!");
-        dialogSystem.queue("actor_player_face", "First I need to grab a twig!");
+        dialogSystem.queue(NameHelper.getActor_player_face(), "An enchanted bow eh? I'll make it!");
+        dialogSystem.queue(NameHelper.getActor_player_face(), "First I need to grab a twig!");
         stage++;
     }
 
     private void startTutorialSecondNight() {
-        dialogSystem.queue("actor_player_face", "Herbs are great for potions.");
-        dialogSystem.queue("actor_player_face", "I should put these away.");
-        dialogSystem.queue("actor_player_face", "Perhaps craft some things to restock.");
-        dialogSystem.queue("actor_player_face", "Click the door when ready.");
+        dialogSystem.queue(NameHelper.getActor_player_face(), "Herbs are great for potions.");
+        dialogSystem.queue(NameHelper.getActor_player_face(), "I should put these away.");
+        dialogSystem.queue(NameHelper.getActor_player_face(), "Perhaps craft some things to restock.");
+        dialogSystem.queue(NameHelper.getActor_player_face(), "Click the door when ready.");
         stage++;
     }
 
 
     private void startTutorialThirdNight() {
-        dialogSystem.queue("actor_player_face", "Imp skin makes great armor.");
-        dialogSystem.queue("actor_player_face", "Fairly easy to breed as well!");
-        dialogSystem.queue("actor_player_face", "I should save my chicks.");
-        dialogSystem.queue("actor_player_face", "Click the door when ready.");
+        dialogSystem.queue(NameHelper.getActor_player_face(), "Imp skin makes great armor.");
+        dialogSystem.queue(NameHelper.getActor_player_face(), "Fairly easy to breed as well!");
+        dialogSystem.queue(NameHelper.getActor_player_face(), "I should save my chicks.");
+        dialogSystem.queue(NameHelper.getActor_player_face(), "Click the door when ready.");
         stage++;
     }
 
@@ -239,11 +240,11 @@ public class TutorialSystem extends BaseSystem {
         if ( "item_boxed_forge".equals(itemType) ||
                 "item_boxed_bush".equals(itemType) ||
                 "item_boxed_coop".equals(itemType)) {
-            dialogSystem.queue("actor_player_face", "A magical tome!");
-            dialogSystem.queue("actor_player_face", "This will passively create items for me.");
-            dialogSystem.queue("actor_player_face", "I just need some space.");
-            dialogSystem.queue("actor_player_face", "Lots of space in the left of my shop!");
-            dialogSystem.queue("actor_player_face", "LEts drop it on one of these spots..");
+            dialogSystem.queue(NameHelper.getActor_player_face(), "A magical tome!");
+            dialogSystem.queue(NameHelper.getActor_player_face(), "This will passively create items for me.");
+            dialogSystem.queue(NameHelper.getActor_player_face(), "I just need some space.");
+            dialogSystem.queue(NameHelper.getActor_player_face(), "Lots of space in the left of my shop!");
+            dialogSystem.queue(NameHelper.getActor_player_face(), "LEts drop it on one of these spots..");
         }
     }
 }

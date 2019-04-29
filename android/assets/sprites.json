@@ -812,14 +812,6 @@
       "width": 32,
       "height": 48
     },
-    {
-      "id": "actor_hag",
-      "comment": "A customer disguised as a hag.",
-      "x": 64,
-      "y": 96,
-      "width": 32,
-      "height": 48
-    },
 	{
       "id": "hopper",
       "comment": "Hopper.",
@@ -1003,6 +995,14 @@
       "y": 352,
       "width": 32,
       "height": 32
+    },
+    {
+      "id": "actor_hag",
+      "comment": "A customer disguised as a hag.",
+      "x": 64,
+      "y": 96,
+      "width": 32,
+      "height": 48
     }
   ]
 }
