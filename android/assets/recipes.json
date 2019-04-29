@@ -140,6 +140,19 @@
       ]
     },
     {
+      "id": "recipe_wedding_ring",
+      "ageCost": 3,
+      "machine": "ALTAR",
+      "ingredients": [
+        "item_dragonheart",
+        "item_player_young"
+      ],
+      "produces": [
+        "item_ring",
+        "item_player_old"
+      ]
+    },
+    {
       "id": "recipe_soul_orb_tier_3",
       "machine": "ALTAR",
       "ingredients": [

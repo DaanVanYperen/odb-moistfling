@@ -49,11 +49,23 @@ public class NightShopperSpawnSystem extends FluidIteratingSystem {
 
     private boolean spawnScriptedShopper(int gridPosX, int gridPosY, int day) {
 
-        if (day == 1) {
+        if (day == Days.FIRST_DAY_IN_THE_SHOP) {
             mapSpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY, "item_talk", null, "actor_hag", 0).shopperType(Shopper.Type.HAG);
             dialogSystem.queue("actor_player_face", "Who are you!?");
             dialogSystem.queue("actor_hag_face", "I am the hag with unclear motives!");
             dialogSystem.queue("actor_player_face", "Typical haggery. What do you want?");
+            dialogSystem.queue("actor_hag_face", "A grave warning I bring, master of life.");
+            dialogSystem.queue("actor_hag_face", "in exactly ten days, make me your wife!");
+            dialogSystem.queue("actor_player_face", "Whaaaaaaat? Why?");
+            dialogSystem.queue("actor_hag_face", "In exactly ten days, a choice I will gave");
+            dialogSystem.queue("actor_hag_face", "Into my bed, or into a grave!");
+            return true;
+        }
+
+        if (day == Days.ENCHANTED_BOW_BUYER) {
+            mapSpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY, "item_talk", null, "actor_hag", 0).shopperType(Shopper.Type.HAG);
+            dialogSystem.queue("actor_player_face", "Not you again.");
+            dialogSystem.queue("actor_hag_face", "Hello future husband.");
             dialogSystem.queue("actor_hag_face", "Prepare an enchanted blue bow,");
             dialogSystem.queue("actor_hag_face", "and tomorrow, riches you will know!");
             dialogSystem.queue("actor_player_face", "Your rhymes really blow.");
@@ -66,8 +78,8 @@ public class NightShopperSpawnSystem extends FluidIteratingSystem {
             return true;
         }
 
-        if (day == 2) {
-            mapSpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY, "item_talk", "item_herb_branch", "actor_postal", 5)
+        if (day == Days.DRUID_PACKAGE) {
+            mapSpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY, "item_talk", "item_herb_branch", "actor_postal", 8)
                     .shopperType(Shopper.Type.POSTAL);
             dialogSystem.queue("actor_player_face", "Hi there Sam! Another delivery?");
             dialogSystem.queue("actor_postal_face", "You look.. different!");
@@ -79,7 +91,7 @@ public class NightShopperSpawnSystem extends FluidIteratingSystem {
             return true;
         }
 
-        if (day == 3) {
+        if (day == Days.CURIOUS_IMP) {
             mapSpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY, "item_talk", "item_imp", "actor_hag", 1).shopperType(Shopper.Type.HAG);
             dialogSystem.queue("actor_player_face", "Not you again.");
             dialogSystem.queue("actor_hag_face", "My familiar is too familiar with me.");
@@ -87,10 +99,89 @@ public class NightShopperSpawnSystem extends FluidIteratingSystem {
             dialogSystem.queue("actor_player_face", "Leave it here you old hag,");
             dialogSystem.queue("actor_player_face", "I'll skin it for free!");
             dialogSystem.queue("actor_hag_face", "Teee heee heee heee. Now I will Flee!");
+            return true;
+        }
 
-            //dialogSystem.queue("actor_player_face", "Hello i'm talking about my banana.");
-            //dialogSystem.queue("actor_hag_face", "EEK EEEK. EEEEEK.");
-            //dialogSystem.queue("actor_postal_face", "I'm not even here!");
+        if (day == Days.SPLINTERS_EVERYWHERE) {
+            mapSpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY, "item_talk", null, "actor_postal", 0)
+                    .shopperType(Shopper.Type.POSTAL);
+
+            dialogSystem.queue("actor_postal_face", "...");
+            dialogSystem.queue("actor_player_face", "Don't worry Sam, I already ate.");
+            dialogSystem.queue("actor_postal_face", "Ha! ha! ..");
+            dialogSystem.queue("actor_player_face", "What do you need sam, spit it out.");
+            dialogSystem.queue("actor_postal_face", "The druid herb delivery had a letter.");
+            dialogSystem.queue("actor_player_face", "Oh.");
+            dialogSystem.queue("actor_postal_face", "I found it behind the chouch.");
+            dialogSystem.queue("actor_player_face", "Oh.");
+            dialogSystem.queue("actor_postal_face", "It reads:");
+            dialogSystem.queue("actor_postal_face", "Bla bla.. Druid jousting festival");
+            dialogSystem.queue("actor_postal_face", "Bla bla bla.. Bad case of splinters");
+            dialogSystem.queue("actor_postal_face", "Bla bla. Herbs for potions");
+            dialogSystem.queue("actor_postal_face", "Bla. Otherwise massive druid death.");
+            dialogSystem.queue("actor_postal_face", "Sounds bad. Hope you didn't waste all herbs?");
+            dialogSystem.queue("actor_player_face", "I might eat you after all.");
+            return true;
+        }
+
+        if (day == Days.DUNGEON_DELVED) {
+            mapSpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY, "item_talk", "item_boxed_forge", "actor_hag", 1).shopperType(Shopper.Type.HAG);
+            dialogSystem.queue("actor_hag_face", "I opened a dungeon deep under your lawn.");
+            dialogSystem.queue("actor_hag_face", "Its gates bursting forth my demonic spawn");
+            dialogSystem.queue("actor_player_face", "Please don't say burst. or spawn.");
+            dialogSystem.queue("actor_hag_face", "The village will need protection from harm.");
+            dialogSystem.queue("actor_hag_face", "Don't prepare anything protective or arm.");
+            dialogSystem.queue("actor_player_face", "Yes, I will avoid making armor, and boots.");
+            dialogSystem.queue("actor_player_face", "Or bows. And lots and lots of swords!");
+            dialogSystem.queue("actor_hag_face", "Thank you my lovely. My thanks I will show.");
+            dialogSystem.queue("actor_hag_face", "A magical door to the imps down below!");
+            return true;
+        }
+
+        if (day == Days.TRAVELING_CIRCUS) {
+            mapSpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY, "item_talk", null, "actor_postal", 0)
+                    .shopperType(Shopper.Type.POSTAL);
+            dialogSystem.queue("actor_postal_face", "Giants! Giants! AHHHHH.");
+            dialogSystem.queue("actor_player_face", "Sam slow down, what's going on?");
+            dialogSystem.queue("actor_postal_face", "A traveling troupe.");
+            dialogSystem.queue("actor_postal_face", "Elephants. Clowns. EVERYWHERE!");
+            dialogSystem.queue("actor_player_face", "The horror.");
+            dialogSystem.queue("actor_postal_face", "They even have unicorns!!!");
+            dialogSystem.queue("actor_player_face", "Oh?");
+            dialogSystem.queue("actor_postal_face", "Here, look at this poster!");
+            dialogSystem.queue("actor_postal_face", "Grand opening tomorrow.");
+            dialogSystem.queue("actor_player_face", "Maybe they're looking to expand..");
+            return true;
+        }
+
+        if (day == Days.MAGE_COURT) { // druids need health potions. Will trade it for a health tome.
+            mapSpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY, "item_talk", "item_imp", "actor_hag", 1).shopperType(Shopper.Type.HAG);
+            //dialogSystem.queue("actor_player_face", "Not you again.");
+            //dialogSystem.queue("actor_hag_face", "My familiar is too familiar with me.");
+            return true;
+        }
+
+        if (day == Days.DRAGON_HEART) { // Unicorn chicken for a dragon heart (part of the end).
+            mapSpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY, "item_talk", "item_imp", "actor_hag", 1).shopperType(Shopper.Type.HAG);
+
+            dialogSystem.queue("actor_hag_face", "Did you miss me, future husband?");
+            dialogSystem.queue("actor_player_face", "Like a headache. I got both now.");
+            dialogSystem.queue("actor_hag_face", "A knight slayed a dragon a fortnite away");
+            dialogSystem.queue("actor_hag_face", "Perfect reagents for love I would say!");
+            dialogSystem.queue("actor_player_face", "I wish further away you could stay.");
+            dialogSystem.queue("actor_hag_face", "He searched the world for a dish he faves!");
+            dialogSystem.queue("actor_hag_face", "A rainbow chicken roast is what he craves!");
+            dialogSystem.queue("actor_hag_face", "Prepare a chicken prismatic can be!");
+            dialogSystem.queue("actor_hag_face", "And forge a ring, weddingengly!");
+            dialogSystem.queue("actor_player_face", "Stop stabbing me with bad rhymes.");
+
+            return true;
+        }
+
+        if (day == Days.MARRIAGE_NIGHT) { // Marriage night.
+            mapSpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY, "item_talk", "item_imp", "actor_hag", 1).shopperType(Shopper.Type.HAG);
+            //dialogSystem.queue("actor_player_face", "Not you again.");
+            //dialogSystem.queue("actor_hag_face", "My familiar is too familiar with me.");
             return true;
         }
 

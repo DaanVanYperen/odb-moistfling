@@ -1,6 +1,7 @@
 package net.mostlyoriginal.game.component;
 
 import com.artemis.Component;
+import net.mostlyoriginal.game.system.control.Days;
 
 /**
  * @author Daan van Yperen
@@ -11,7 +12,7 @@ public class Player extends Component {
     public int gold;
     public int age=3;
     public boolean nighttime=true;
-    public int day=1;
+    public int day= Days.TRAVELING_CIRCUS;
 
-    public int visitorsRemaining = 2;
+    public int visitorsRemaining = 10; // sync with GameRules.VISITORS_EACH_DAY
 }

@@ -5,6 +5,7 @@ import com.artemis.E;
 import com.artemis.utils.IntBag;
 import net.mostlyoriginal.game.component.Player;
 import net.mostlyoriginal.game.system.DialogSystem;
+import net.mostlyoriginal.game.system.control.Days;
 
 /**
  * @author Daan van Yperen
@@ -40,13 +41,13 @@ public class TutorialSystem extends BaseSystem {
 
         cooldown -= world.delta;
         if (cooldown <= 0) {
-            if (this.player.day == 1 && this.player.nighttime) {
+            if (this.player.day == Days.ENCHANTED_BOW_BUYER && this.player.nighttime) {
                 firstNightTutorials();
             }
-            if (this.player.day == 2 && this.player.nighttime) {
-                startTutorialSecondNight();
+            if (this.player.day == Days.DRUID_PACKAGE && this.player.nighttime) {
+                secondNightTutorials();
             }
-            if (this.player.day == 3 && this.player.nighttime) {
+            if (this.player.day == Days.CURIOUS_IMP && this.player.nighttime) {
                 thirdNightTutorials();
             }
         }

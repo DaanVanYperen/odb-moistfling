@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.MathUtils;
 import net.mostlyoriginal.api.component.graphics.Tint;
 import net.mostlyoriginal.api.operation.JamOperationFactory;
+import net.mostlyoriginal.game.GameRules;
 import net.mostlyoriginal.game.component.AffectedByNight;
 import net.mostlyoriginal.game.component.Player;
 
@@ -45,7 +46,7 @@ public class NightSystem extends FluidIteratingSystem {
             Player playerComp = player.getPlayer();
             if (nighttime) {
                 playerComp.day++;
-                playerComp.visitorsRemaining = MathUtils.clamp(playerComp.day, 2, 5);
+                playerComp.visitorsRemaining = GameRules.VISITORS_EACH_DAY;
             }
         }
     }

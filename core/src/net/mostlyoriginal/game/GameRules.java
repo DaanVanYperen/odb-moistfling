@@ -32,7 +32,7 @@ public abstract class GameRules {
 
     public static final boolean DEBUG_ENABLED = true;
     public static final boolean MUSIC_ENABLED = false;
-
+    public static final int VISITORS_EACH_DAY = 10;
 
 
     public static int lastScore = -1;
