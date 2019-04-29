@@ -98,6 +98,9 @@ public class PlayerControlSystem extends FluidIteratingSystem {
         int dy = Gdx.input.isKeyPressed(Input.Keys.W) || Gdx.input.isKeyPressed(Input.Keys.UP)? 1 :
                 Gdx.input.isKeyPressed(Input.Keys.S)|| Gdx.input.isKeyPressed(Input.Keys.DOWN) ? -1 : 0;
 
+        e.playerDx(dx);
+        e.playerDy(dy);
+
         Vector2 movementVector = vector2.set(dx, dy).nor();
 
         if ( movementVector.x != 0 ) {

@@ -33,14 +33,18 @@ public class PlayerAgeSystem extends FluidIteratingSystem {
         }
 
 
-        if ( e.physicsVx() != 0 || e.physicsVy() != 0 ) {
+        if ( e.playerDx() != 0 || e.playerDy() != 0 ) {
             anim = anim + "_walk";
         }
 
-        if ( e.physicsVx() < 0 ) anim = anim + "_left";
-        else if ( e.physicsVx() > 0 ) anim = anim + "_right";
-        else if ( e.physicsVy() < 0 ) anim = anim + "_down";
-        else if ( e.physicsVy() > 0 ) anim = anim + "_up";
+        if ( e.playerDx() < 0 ) anim = anim + "_left" ;
+        else if ( e.playerDx() > 0 ) anim = anim + "_right";
+        else if ( e.playerDy() < 0 ) anim = anim + "_down";
+        else if ( e.playerDy() > 0 ) anim = anim + "_up";
+
+        if ( e.hasLifting() ) {
+            anim = anim + "_lift";
+        }
 
         e.anim(anim);
 
