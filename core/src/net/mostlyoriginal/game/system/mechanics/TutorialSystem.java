@@ -89,7 +89,7 @@ public class TutorialSystem extends BaseSystem {
         dialogSystem.queue(NameHelper.getActor_player_face(), "I need some stock to deal with this.");
         dialogSystem.queue(NameHelper.getActor_player_face(), "I'll start by selling some items!");
         dialogSystem.queue(NameHelper.getActor_player_face(), "Time to open the shop.");
-        dialogSystem.queue(NameHelper.getActor_player_face(), "ADSW/cursor to move, space to interact.");
+        dialogSystem.queue(NameHelper.getActor_player_face(), "ADSW or cursors to move, space to interact.");
         dialogSystem.queue(NameHelper.getActor_player_face(), "Space on the door to start the day.");
         stage++;
     }

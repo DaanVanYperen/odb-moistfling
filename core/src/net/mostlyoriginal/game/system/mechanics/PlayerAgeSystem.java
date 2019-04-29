@@ -5,12 +5,15 @@ import com.artemis.FluidIteratingSystem;
 import com.artemis.annotations.All;
 import com.badlogic.gdx.math.MathUtils;
 import net.mostlyoriginal.game.component.Player;
+import net.mostlyoriginal.game.system.DialogSystem;
 
 /**
  * @author Daan van Yperen
  */
 @All(Player.class)
 public class PlayerAgeSystem extends FluidIteratingSystem {
+    private DialogSystem dialogSystem;
+
     @Override
     protected void process(E e) {
         Player player = e.getPlayer();
@@ -33,18 +36,18 @@ public class PlayerAgeSystem extends FluidIteratingSystem {
         }
 
 
-        if ( e.playerDx() != 0 || e.playerDy() != 0 ) {
+        if ( (e.playerDx() != 0 || e.playerDy() != 0) && !dialogSystem.isDialogActive() ) {
             anim = anim + "_walk";
+            if ( e.playerDx() < 0 ) anim = anim + "_left" ;
+            else if ( e.playerDx() > 0 ) anim = anim + "_right";
+            else if ( e.playerDy() < 0 ) anim = anim + "_down";
+            else if ( e.playerDy() > 0 ) anim = anim + "_up";
         }
-
-        if ( e.playerDx() < 0 ) anim = anim + "_left" ;
-        else if ( e.playerDx() > 0 ) anim = anim + "_right";
-        else if ( e.playerDy() < 0 ) anim = anim + "_down";
-        else if ( e.playerDy() > 0 ) anim = anim + "_up";
 
         if ( e.hasLifting() ) {
             anim = anim + "_lift";
         }
+        //System.out.println(anim);
 
         e.anim(anim);
 
