@@ -709,10 +709,26 @@
       "height": 32
     },
     {
+      "id": "item_ring",
+      "comment": "A wedding ring.",
+      "x": 576,
+      "y": 128,
+      "width": 32,
+      "height": 32
+    },
+    {
+      "id": "item_dragonheart",
+      "comment": "The heart of like a dragon you know.",
+      "x": 576,
+      "y": 160,
+      "width": 32,
+      "height": 32
+    },
+    {
       "id": "talk_box",
       "comment": "hey i'm talking here!",
-      "x": 717,
-      "y": 230,
+      "x": 724,
+      "y": 232,
       "width": 300,
       "height": 88
     },
