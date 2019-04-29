@@ -8,6 +8,7 @@ import net.mostlyoriginal.api.component.graphics.Tint;
 import net.mostlyoriginal.api.system.graphics.RenderBatchingSystem;
 import net.mostlyoriginal.game.GameRules;
 import net.mostlyoriginal.game.Slot;
+import net.mostlyoriginal.game.component.GridPos;
 import net.mostlyoriginal.game.component.Lifter;
 import net.mostlyoriginal.game.manager.ItemRepository;
 import net.mostlyoriginal.game.system.SlotHighlightingSystem;
@@ -55,7 +56,7 @@ public class PickupSystem extends FluidIteratingSystem {
                 lifting.scale(1f);
                 lifting.tint(carriedItemTint);
                 lifting.posX(actor.getPos().xy.x + 8);
-                lifting.posY(actor.getPos().xy.y + CARRIED_OBJECT_SHOPPER_LIFTING_HEIGHT-8);
+                lifting.posY(actor.getPos().xy.y + CARRIED_OBJECT_SHOPPER_LIFTING_HEIGHT - 8);
             } else {
                 lifting.scale(1f);
                 lifting.tint(Tint.WHITE);
@@ -68,17 +69,26 @@ public class PickupSystem extends FluidIteratingSystem {
     private void attemptDrop(E actor) {
         E item = E.E(actor.liftingId());
         if (!actor.isMoving()) {
-            E slot = slotHighlightingSystem.getSlotAt(actor.getGridPos());
+            E slot = bestDropSlot(actor);
 
-            if ( slot != null  && slotHighlightingSystem.acceptsItemType(slot, item.itemType()) ) {
-                if ( slot.slotMode() == Slot.Mode.STORE ) {
-                    storeItemHere(actor, item);
+            if (slot != null && slotHighlightingSystem.acceptsItemType(slot, item.itemType())) {
+                if (slot.slotMode() == Slot.Mode.STORE) {
+                    storeItemHere(actor, item, slot);
                 }
-                if ( slot.slotMode() == Slot.Mode.EXPAND ) {
+                if (slot.slotMode() == Slot.Mode.EXPAND) {
                     deployItemHere(actor, item);
                 }
             } else actor.lifterAttemptLifting(true); // failed, continue lifting.
         } else actor.lifterAttemptLifting(true); // failed, continue lifting.
+    }
+
+    private E bestDropSlot(E actor) {
+        E slotAt = slotHighlightingSystem.getSlotAt(actor.getGridPos());
+        if (slotAt == null) slotAt = slotHighlightingSystem.getSlotAt(actor.getGridPos(), 1, 0);
+        if (slotAt == null) slotAt = slotHighlightingSystem.getSlotAt(actor.getGridPos(), 0, 1);
+        if (slotAt == null) slotAt = slotHighlightingSystem.getSlotAt(actor.getGridPos(), -1, 0);
+        if (slotAt == null) slotAt = slotHighlightingSystem.getSlotAt(actor.getGridPos(), 0, -1);
+        return slotAt;
     }
 
     DeploySystem deploySystem;
@@ -89,8 +99,8 @@ public class PickupSystem extends FluidIteratingSystem {
         actor.removeLifting();
     }
 
-    private void storeItemHere(E actor, E item) {
-        E itemOnFloor = pickupManager.getOverlapping(actor);
+    private void storeItemHere(E actor, E item, E slot) {
+        E itemOnFloor = pickupManager.getOverlapping(slot);
 
         // can't drop the wrong thing on a stack and can't swap a stack.
         boolean matchesFloorItem = itemOnFloor != null && itemOnFloor.itemType().equals(item.itemType());
@@ -102,7 +112,7 @@ public class PickupSystem extends FluidIteratingSystem {
         item.scale(1f);
         item.tint(Tint.WHITE);
 //        item.castsShadow();
-        item.gridPos(actor.getGridPos()).removeLifted().renderLayer(GameRules.LAYER_ITEM);
+        item.gridPos(slot.getGridPos()).removeLifted().renderLayer(GameRules.LAYER_ITEM);
         renderBatchingSystem.sortedDirty = true;
 
         if (itemOnFloor != null) {
@@ -123,8 +133,16 @@ public class PickupSystem extends FluidIteratingSystem {
     }
 
     private void attemptPickup(E actor) {
+        attemptPickup(actor, bestItemToPickup(actor));
+    }
+
+    private E bestItemToPickup(E actor) {
         E item = pickupManager.getOverlapping(actor);
-        attemptPickup(actor, item);
+        if (item == null) item = pickupManager.getOverlapping(actor, 1, 0);
+        if (item == null) item = pickupManager.getOverlapping(actor, 0, 1);
+        if (item == null) item = pickupManager.getOverlapping(actor, -1, 0);
+        if (item == null) item = pickupManager.getOverlapping(actor, 0, -1);
+        return item;
     }
 
     public void attemptPickup(E actor, E item) {

@@ -118,11 +118,21 @@
    <property name="type" value="ALTAR"/>
   </properties>
  </tile>
+ <tile id="71">
+  <properties>
+   <property name="accepts" value="any"/>
+   <property name="entity" value="slot"/>
+   <property name="mode" value="store"/>
+   <property name="x" type="int" value="0"/>
+   <property name="y" type="int" value="0"/>
+  </properties>
+ </tile>
  <tile id="103">
   <properties>
    <property name="accepts" value="any"/>
    <property name="entity" value="slot"/>
    <property name="mode" value="store"/>
+   <property name="solid" type="bool" value="true"/>
    <property name="x" type="int" value="0"/>
    <property name="y" type="int" value="0"/>
   </properties>

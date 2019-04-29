@@ -25,11 +25,17 @@ public class PickupManager extends BaseSystem{
     }
 
     public E getOverlapping(E actor) {
+        return getOverlapping(actor,0,0);
+    }
+
+    public E getOverlapping(E actor, int offsetX, int offsetY) {
         IntBag pickupEntities = pickupables.getEntities();
         E overlaps = null;
+        final int gridX = actor.getGridPos().x + offsetX;
+        final int gridY = actor.getGridPos().y + offsetY;
         for (int i = 0, s = pickupEntities.size(); i < s; i++) {
             E item = E.E(pickupEntities.get(i));
-            if (!item.hasLifted() && canPickup(item) && item.getGridPos().overlaps(actor.getGridPos())) {
+            if (!item.hasLifted() && canPickup(item) && item.getGridPos().overlaps(gridX, gridY)) {
                 overlaps = item;
             }
         }

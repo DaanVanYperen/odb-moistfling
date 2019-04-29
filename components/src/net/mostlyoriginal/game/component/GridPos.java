@@ -23,4 +23,8 @@ public class GridPos extends Component {
     public boolean overlaps(GridPos gridPos) {
         return this.x == gridPos.x && this.y == gridPos.y;
     }
+
+    public boolean overlaps(int gridX, int  gridY) {
+        return this.x == gridX && this.y == gridY;
+    }
 }

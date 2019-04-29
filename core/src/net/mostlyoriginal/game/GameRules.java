@@ -26,7 +26,9 @@ public abstract class GameRules {
 
     public static final int LAYER_PAYMENT = 2000;
     public static final int LAYER_INGREDIENT_HINTS = 600;
+
     public static final boolean DEBUG_ENABLED = true;
+    public static final boolean MUSIC_ENABLED = false;
 
 
     public static int lastScore = -1;

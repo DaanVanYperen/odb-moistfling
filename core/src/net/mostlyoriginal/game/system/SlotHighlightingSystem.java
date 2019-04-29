@@ -72,4 +72,16 @@ public class SlotHighlightingSystem extends FluidIteratingSystem {
         }
         return null;
     }
+
+    public E getSlotAt(GridPos gridPos, int x, int y) {
+        IntBag actives = subscription.getEntities();
+        int[] ids = actives.getData();
+        final int gridX = gridPos.x + x;
+        final int gridY = gridPos.y + y;
+        for (int i = 0, s = actives.size(); s > i; i++) {
+            E slot = E.E(ids[i]);
+            if (slot.gridPosOverlaps(gridX, gridY)) return slot;
+        }
+        return null;
+    }
 }

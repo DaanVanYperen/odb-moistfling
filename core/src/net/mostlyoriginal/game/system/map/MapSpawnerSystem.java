@@ -124,7 +124,7 @@ public class MapSpawnerSystem extends BaseSystem {
                 .gridPosDeriveFromPos(true)
                 .anim("player_kid")
                 .itemType("item_player")
-                .bounds(4,4,16-4,32-4)
+                .bounds(4,0,16-4,16-4)
                 .player()
                 .castsShadow()
                 .physics()

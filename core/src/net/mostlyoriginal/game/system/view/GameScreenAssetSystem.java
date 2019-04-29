@@ -84,7 +84,9 @@ public class GameScreenAssetSystem extends AbstractAssetSystem {
 
         sfxVolume = 0.15f;
 
-        playMusic("sfx/music_shop.mp3");
+        if ( GameRules.MUSIC_ENABLED ) {
+            playMusic("sfx/music_shop.mp3");
+        }
     }
 
     public void playMusic(String mp3) {
