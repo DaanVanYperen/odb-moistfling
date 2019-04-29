@@ -160,7 +160,9 @@ public class PickupSystem extends FluidIteratingSystem {
 
     public void attemptPickup(E actor, E item) {
         if (item != null) {
-            tutorialSystem.triggerItemTutorial(item.id());
+            if ( actor.hasPlayer()) {
+                tutorialSystem.triggerItemTutorial(item.id());
+            }
             if (item.itemCount() > 1 && !actor.hasShopper()) { // shoppers grab the whole stack.
                 // take from stack.
                 item.getItem().count--;
