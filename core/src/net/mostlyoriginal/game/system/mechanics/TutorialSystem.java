@@ -85,7 +85,7 @@ public class TutorialSystem extends BaseSystem {
     private void firstDayPhase0() {
         dialogSystem.queue(NameHelper.getActor_player_face(), "...");
         dialogSystem.queue(NameHelper.getActor_player_face(), "Well that's a bummer.");
-        dialogSystem.queue(NameHelper.getActor_player_face(), "No time to dwell upon it.");
+        dialogSystem.queue(NameHelper.getActor_player_face(), "No time to dwell on it.");
         dialogSystem.queue(NameHelper.getActor_player_face(), "I need some stock to deal with this.");
         dialogSystem.queue(NameHelper.getActor_player_face(), "I'll start by selling some items!");
         dialogSystem.queue(NameHelper.getActor_player_face(), "Time to open the shop.");
