@@ -560,7 +560,7 @@
       "id": "player_kid_lift",
       "comment": "The player.",
       "x": 192,
-      "y": 144,
+      "y": 192,
       "width": 32,
       "height": 48
     },
@@ -568,7 +568,7 @@
       "id": "player_young_adult_lift",
       "comment": "The player.",
       "x": 224,
-      "y": 144,
+      "y": 192,
       "width": 32,
       "height": 48
     },
@@ -576,7 +576,7 @@
       "id": "player_adult_lift",
       "comment": "The adult player.",
       "x": 256,
-      "y": 144,
+      "y": 192,
       "width": 32,
       "height": 48
     },
@@ -584,7 +584,7 @@
       "id": "player_elderly_lift",
       "comment": "The player.",
       "x": 288,
-      "y": 144,
+      "y": 192,
       "width": 32,
       "height": 48
     },
@@ -604,7 +604,7 @@
       "id": "player_adult_walk_up_lift",
       "comment": "The adult player walking up on screen.",
       "x": 256,
-      "y": 276,
+      "y": 576,
       "width": 32,
       "height": 48,
       "countX": 4,
