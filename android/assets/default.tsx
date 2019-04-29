@@ -105,7 +105,11 @@
  </tile>
  <tile id="66">
   <properties>
-   <property name="entity" value="hopper"/>
+   <property name="accepts" value="any"/>
+   <property name="entity" value="slot"/>
+   <property name="mode" value="store"/>
+   <property name="x" type="int" value="0"/>
+   <property name="y" type="int" value="0"/>
   </properties>
  </tile>
  <tile id="67">
@@ -117,15 +121,6 @@
   <properties>
    <property name="entity" value="machine"/>
    <property name="type" value="ALTAR"/>
-  </properties>
- </tile>
- <tile id="71">
-  <properties>
-   <property name="accepts" value="any"/>
-   <property name="entity" value="slot"/>
-   <property name="mode" value="store"/>
-   <property name="x" type="int" value="0"/>
-   <property name="y" type="int" value="0"/>
   </properties>
  </tile>
  <tile id="103">

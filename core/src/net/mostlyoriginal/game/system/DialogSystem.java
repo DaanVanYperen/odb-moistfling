@@ -138,7 +138,7 @@ public class DialogSystem extends BaseSystem {
     }
 
     private void preventPlayerAccidentallyClickingStuff() {
-        playerControlSystem.interactCooldown=0.4f;
+        playerControlSystem.interactCooldown=0.2f;
     }
 
     private void popDialog() {
