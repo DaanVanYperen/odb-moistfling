@@ -572,13 +572,29 @@
       "width": 32,
       "height": 48
     },
-	{
+    {
       "id": "customer",
       "comment": "A customer.",
       "x": 32,
       "y": 96,
       "width": 32,
       "height": 48,
+    },
+    {
+      "id": "actor_postal",
+      "comment": "A customer disguised as a postal worker.",
+      "x": 96,
+      "y": 96,
+      "width": 32,
+      "height": 48
+    },
+    {
+      "id": "actor_hag",
+      "comment": "A customer disguised as a hag.",
+      "x": 64,
+      "y": 96,
+      "width": 32,
+      "height": 48
     },
 	{
       "id": "hopper",
@@ -612,5 +628,117 @@
       "width": 4,
       "height": 4,
     },
+    {
+      "id": "item_happy",
+      "comment": "Happy! :)",
+      "x": 608,
+      "y": 320,
+      "width": 32,
+      "height": 32
+    },
+    {
+      "id": "item_sad",
+      "comment": "Sad :(",
+      "x": 640,
+      "y": 320,
+      "width": 32,
+      "height": 32
+    },
+    {
+      "id": "item_talk",
+      "comment": "I wanna talk!",
+      "x": 672,
+      "y": 320,
+      "width": 32,
+      "height": 32
+    },
+    {
+      "id": "item_unichicken",
+      "comment": "Unichicken! This isn't healthy.",
+      "x": 704,
+      "y": 320,
+      "width": 32,
+      "height": 32
+    },
+    {
+      "id": "item_superpotion",
+      "comment": "The one percenter of potions.",
+      "x": 736,
+      "y": 320,
+      "width": 32,
+      "height": 32
+    },
+    {
+      "id": "item_bag_o_money",
+      "comment": "Bag of money.",
+      "x": 768,
+      "y": 320,
+      "width": 32,
+      "height": 32
+    },
+    {
+      "id": "item_rainbow_armor",
+      "comment": "Lick the rainbow!.",
+      "x": 800,
+      "y": 320,
+      "width": 32,
+      "height": 32
+    },
+    {
+      "id": "item_hydra_chicken",
+      "comment": "Why. WHY.",
+      "x": 832,
+      "y": 320,
+      "width": 32,
+      "height": 32
+    },
+    {
+      "id": "item_knight_chicken",
+      "comment": "He is a real knight.",
+      "x": 864,
+      "y": 320,
+      "width": 32,
+      "height": 32
+    },
+    {
+      "id": "item_postage",
+      "comment": "postage for free.",
+      "x": 896,
+      "y": 320,
+      "width": 32,
+      "height": 32
+    },
+    {
+      "id": "talk_box",
+      "comment": "hey i'm talking here!",
+      "x": 717,
+      "y": 230,
+      "width": 300,
+      "height": 88
+    },
+    {
+      "id": "actor_player_face",
+      "comment": "face of player.",
+      "x": 608,
+      "y": 352,
+      "width": 32,
+      "height": 32
+    },
+    {
+      "id": "actor_hag_face",
+      "comment": "face of hag.",
+      "x": 640,
+      "y": 352,
+      "width": 32,
+      "height": 32
+    },
+    {
+      "id": "actor_postal_face",
+      "comment": "face of player.",
+      "x": 672,
+      "y": 352,
+      "width": 32,
+      "height": 32
+    }
   ]
 }

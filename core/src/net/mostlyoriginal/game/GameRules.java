@@ -13,6 +13,8 @@ public abstract class GameRules {
     public static final int CAMERA_ZOOM = 2;
     public static final int CELL_SIZE = 32;
 
+    public static final int LAYER_DIALOG_TEXT = 2010;
+    public static final int LAYER_DIALOG_BOX= 2000;
     public static final int LAYER_PLAYER = 1000;
     public static final int LAYER_SHOPPER = 900;
     public static final int LAYER_SLOTS = 800;
@@ -30,6 +32,7 @@ public abstract class GameRules {
 
     public static final boolean DEBUG_ENABLED = true;
     public static final boolean MUSIC_ENABLED = false;
+
 
 
     public static int lastScore = -1;

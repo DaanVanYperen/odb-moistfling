@@ -16,6 +16,10 @@ public class Scripts {
         return OperationFactory.sequence(JamOperationFactory.tintBetween(Tint.TRANSPARENT,Tint.WHITE,0.8f));
     }
 
+    public static Operation appearOverTime(Tint startTint) {
+        return OperationFactory.sequence(JamOperationFactory.tintBetween(startTint,Tint.WHITE,0.8f));
+    }
+
     public static Operation fadeOverTime() {
         return OperationFactory.sequence(
                 JamOperationFactory.tintBetween(Tint.WHITE,Tint.TRANSPARENT,0.8f),

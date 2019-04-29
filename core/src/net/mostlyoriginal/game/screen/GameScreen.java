@@ -55,8 +55,10 @@ public class GameScreen extends WorldScreen {
 
                         new MapSpawnerSystem(),
                         new MapSystem(),
+                        new DialogSystem(),
 
                         new ShopperSpawnSystem(),
+                        new NightShopperSpawnSystem(),
 
                         new PlayerControlSystem(),
                         new MapCollisionSystem(),

@@ -4,11 +4,13 @@ import com.artemis.E;
 import com.artemis.EntitySubscription;
 import com.artemis.FluidIteratingSystem;
 import com.artemis.annotations.All;
+import com.artemis.annotations.Exclude;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.math.Vector2;
 import net.mostlyoriginal.api.utils.MapMask;
 import net.mostlyoriginal.game.GameRules;
+import net.mostlyoriginal.game.InDialog;
 import net.mostlyoriginal.game.component.GridPos;
 import net.mostlyoriginal.game.component.Item;
 import net.mostlyoriginal.game.component.ItemData;
@@ -24,6 +26,7 @@ import java.security.Key;
  * @author Daan van Yperen
  */
 @All(Player.class)
+@Exclude(InDialog.class)
 public class PlayerControlSystem extends FluidIteratingSystem {
 
     private static final float PLAYER_MOVEMENT_SPEED = 220f;

@@ -131,6 +131,16 @@ public class PickupSystem extends FluidIteratingSystem {
         }
     }
 
+    public void forceDropAll(E actor) {
+        E item = E.E(actor.liftingId());
+        actor.removeLifting();
+        item.scale(1f);
+        item.tint(Tint.WHITE);
+//        item.castsShadow();
+        item.gridPos(actor.getGridPos()).removeLifted().renderLayer(GameRules.LAYER_ITEM);
+        renderBatchingSystem.sortedDirty = true;
+    }
+
     private void attemptPickup(E actor) {
         attemptPickup(actor, bestItemToPickup(actor));
     }
@@ -146,7 +156,7 @@ public class PickupSystem extends FluidIteratingSystem {
 
     public void attemptPickup(E actor, E item) {
         if (item != null) {
-            if (item.itemCount() > 1) {
+            if (item.itemCount() > 1 && !actor.hasShopper()) { // shoppers grab the whole stack.
                 // take from stack.
                 item.getItem().count--;
                 E clonedItem = mapSpawnerSystem.spawnItem(0, 0, item.itemType())

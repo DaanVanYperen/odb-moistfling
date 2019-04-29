@@ -151,19 +151,19 @@ public class MapSpawnerSystem extends BaseSystem {
 
 
 
-    public void spawnShopper(int x, int y) {
+    public void spawnShopper(int x, int y, String anim) {
 
         String desiredItem = itemRepository.randomDesire();
         String rewardItem  = itemRepository.randomReward();
 
-        spawnShopperWithSpecificItems(x, y, desiredItem, rewardItem);
+        spawnShopperWithSpecificItems(x, y, desiredItem, rewardItem, anim, 1);
     }
 
-    public void spawnShopperWithSpecificItems(int x, int y, String desiredItem, String rewardItem) {
-        E.E()
+    public E spawnShopperWithSpecificItems(int x, int y, String desiredItem, String rewardItem, String anim, int awardItemCount) {
+        E shopper = E.E()
                 .gridPos(x, y)
-                .pos(500,300)
-                .anim("customer")
+                .pos(500, 300)
+                .anim(anim)
                 .lifterAttemptLifting(true)
                 .desireDesiredItem(desiredItem)
                 .shopper()
@@ -173,7 +173,10 @@ public class MapSpawnerSystem extends BaseSystem {
                 .script(Scripts.appearOverTime())
                 .renderLayer(GameRules.LAYER_SHOPPER);
 
-        spawnItem(x,y, rewardItem);
+        if ( rewardItem != null )
+        spawnItem(x,y, rewardItem).itemCount(awardItemCount);
+
+        return shopper;
     }
 
     private void spawnShopperSpawner(int x, int y) {

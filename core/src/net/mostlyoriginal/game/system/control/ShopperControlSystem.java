@@ -4,8 +4,11 @@ import com.artemis.E;
 import com.artemis.FluidIteratingSystem;
 import com.artemis.annotations.All;
 import com.badlogic.gdx.graphics.Color;
+import net.mostlyoriginal.api.component.graphics.Tint;
+import net.mostlyoriginal.api.system.graphics.RenderBatchingSystem;
 import net.mostlyoriginal.game.GameRules;
 import net.mostlyoriginal.game.component.Shopper;
+import net.mostlyoriginal.game.system.DialogSystem;
 import net.mostlyoriginal.game.system.map.Scripts;
 
 /**
@@ -16,6 +19,9 @@ public class ShopperControlSystem extends FluidIteratingSystem {
 
     PickupManager pickupManager;
     private E player;
+    private DialogSystem dialogSystem;
+    private RenderBatchingSystem renderBatchingSystem;
+    private PickupSystem pickupSystem;
 
     @Override
     protected void begin() {
@@ -37,6 +43,11 @@ public class ShopperControlSystem extends FluidIteratingSystem {
         if (timeToLeaveFor(shopper)) {
             if (e.getLifter().itemsLifted != 3) {
                 e.getLifter().itemsLifted = 3;
+                if ( isHereForTalking(shopper)) {
+                    if ( e.hasLifting() ) {
+                        pickupSystem.forceDropAll(e);
+                    }
+                }
                 walkOffscreen(e);
                 deleteWhenOffscreen(e);
             }
@@ -55,7 +66,18 @@ public class ShopperControlSystem extends FluidIteratingSystem {
     }
 
     private boolean timeToLeaveFor(Shopper shopper) {
-        return shopper.age >= shopper.leaveAge || player.playerNighttime();
+
+        if (isHereForTalking(shopper)) {
+            if ( !dialogSystem.isDialogActive() ) {
+                return true;
+            }
+        }
+
+        return shopper.age >= shopper.leaveAge || ((shopper.type == Shopper.Type.SHOPPER ) == player.playerNighttime());
+    }
+
+    private boolean isHereForTalking(Shopper shopper) {
+        return shopper.type == Shopper.Type.POSTAL || shopper.type == Shopper.Type.HAG;
     }
 
     private void deleteWhenOffscreen(E e) {

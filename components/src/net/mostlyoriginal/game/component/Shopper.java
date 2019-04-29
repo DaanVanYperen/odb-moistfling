@@ -10,4 +10,11 @@ public class Shopper extends Component {
 
     public float age=0;
     public float leaveAge=SECONDS_BEFORE_LEAVING;
+    public Type type = Type.SHOPPER;
+
+    public enum Type {
+        SHOPPER,
+        HAG,
+        POSTAL
+    }
 }

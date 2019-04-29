@@ -95,7 +95,7 @@
       "sprite": "item_mana_potion",
       "consumed": true,
       "reward": true,
-      "gold": 30,
+      "gold": 400,
       "rewardChance": 30,
       "desireChance": 100
     },
@@ -277,6 +277,100 @@
       "id": "item_player_young",
       "sprite": "item_player_young",
       "identicalTo": "item_player",
+      "consumed": false,
+      "reward": false,
+      "gold": -1,
+      "rewardChance": 0,
+      "desireChance": 0
+    },
+
+    {
+      "id": "item_happy",
+      "sprite": "item_happy",
+      "consumed": false,
+      "reward": false,
+      "gold": -1,
+      "rewardChance": 0,
+      "desireChance": 0
+    },
+    {
+      "id": "item_sad",
+      "sprite": "item_sad",
+      "consumed": false,
+      "reward": false,
+      "gold": -1,
+      "rewardChance": 0,
+      "desireChance": 0
+    },
+    {
+      "id": "item_talk",
+      "sprite": "item_talk",
+      "consumed": false,
+      "reward": false,
+      "gold": -1,
+      "rewardChance": 0,
+      "desireChance": 0
+    },
+    {
+      "id": "item_unichicken",
+      "sprite": "item_unichicken",
+      "consumed": true,
+      "reward": false,
+      "gold": 6000,
+      "coveted": true,
+      "rewardChance": 0,
+      "desireChance": 0
+    },
+    {
+      "id": "item_superpotion",
+      "sprite": "item_superpotion",
+      "consumed": true,
+      "reward": false,
+      "gold": 1000,
+      "coveted": true,
+      "rewardChance": 0,
+      "desireChance": 0
+    },
+    {
+      "id": "item_bag_o_money",
+      "sprite": "item_bag_o_money",
+      "consumed": true,
+      "reward": false,
+      "gold": -1,
+      "rewardChance": 0,
+      "desireChance": 0
+    },
+    {
+      "id": "item_rainbow_armor",
+      "sprite": "item_rainbow_armor",
+      "consumed": true,
+      "reward": false,
+      "coveted": true,
+      "gold": 2000,
+      "rewardChance": 0,
+      "desireChance": 0
+    },
+    {
+      "id": "item_hydra_chicken",
+      "sprite": "item_hydra_chicken",
+      "consumed": true,
+      "reward": false,
+      "gold": 50,
+      "rewardChance": 0,
+      "desireChance": 5
+    },
+    {
+      "id": "item_knight_chicken",
+      "sprite": "item_knight_chicken",
+      "consumed": true,
+      "reward": false,
+      "gold": 2000,
+      "rewardChance": 0,
+      "desireChance": 0
+    },
+    {
+      "id": "item_postage",
+      "sprite": "item_postage",
       "consumed": false,
       "reward": false,
       "gold": -1,
