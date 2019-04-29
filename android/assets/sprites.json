@@ -827,10 +827,14 @@
 	{
       "id": "hopper",
       "comment": "Hopper.",
-      "x": 96,
-      "y": 64,
+      "x": 576,
+      "y": 0,
       "width": 32,
       "height": 32,
+      "countX": 14,
+      "countY": 1,
+      "milliseconds": 100,
+      "repeat": true,
     },
 	{
       "id": "altar",
