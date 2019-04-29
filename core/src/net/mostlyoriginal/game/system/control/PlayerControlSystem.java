@@ -19,6 +19,7 @@ import net.mostlyoriginal.game.manager.ItemRepository;
 import net.mostlyoriginal.game.system.NightSystem;
 import net.mostlyoriginal.game.system.map.MapSpawnerSystem;
 import net.mostlyoriginal.game.system.map.MapSystem;
+import net.mostlyoriginal.game.system.view.GameScreenAssetSystem;
 
 import java.security.Key;
 
@@ -40,6 +41,7 @@ public class PlayerControlSystem extends FluidIteratingSystem {
     private NightSystem nightSystem;
 
     public float interactCooldown = 0;
+    private GameScreenAssetSystem gameScreenAssetSystem;
 
     @Override
     protected void initialize() {
@@ -49,8 +51,8 @@ public class PlayerControlSystem extends FluidIteratingSystem {
 
     @Override
     protected void process(E e) {
+        interactCooldown -= world.delta;
         if (!e.hasMoving()) {
-            interactCooldown -= world.delta;
             handleMovement(e);
         }
     }
@@ -87,6 +89,7 @@ public class PlayerControlSystem extends FluidIteratingSystem {
             if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE) || Gdx.input.isKeyJustPressed(Input.Keys.SHIFT_RIGHT) || Gdx.input.isKeyJustPressed(Input.Keys.SHIFT_LEFT)) {
                 if (e.getGridPos().x >= 15 && e.getGridPos().x <= 18 && e.getGridPos().y >= 8) {
                     nightSystem.toggle();
+                    gameScreenAssetSystem.playSfx("sfx_pickup");
                 } else {
                     e.getLifter().attemptLifting = !e.getLifter().attemptLifting;
                 }
