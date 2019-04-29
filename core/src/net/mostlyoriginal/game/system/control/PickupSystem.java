@@ -13,6 +13,7 @@ import net.mostlyoriginal.game.component.Lifter;
 import net.mostlyoriginal.game.manager.ItemRepository;
 import net.mostlyoriginal.game.system.SlotHighlightingSystem;
 import net.mostlyoriginal.game.system.map.MapSpawnerSystem;
+import net.mostlyoriginal.game.system.mechanics.TutorialSystem;
 import net.mostlyoriginal.game.system.view.GameScreenAssetSystem;
 
 
@@ -32,6 +33,7 @@ public class PickupSystem extends FluidIteratingSystem {
 
     private GameScreenAssetSystem gameScreenAssetSystem;
     private SlotHighlightingSystem slotHighlightingSystem;
+    private TutorialSystem tutorialSystem;
 
     @Override
     protected void process(E e) {
@@ -156,6 +158,7 @@ public class PickupSystem extends FluidIteratingSystem {
 
     public void attemptPickup(E actor, E item) {
         if (item != null) {
+            tutorialSystem.triggerItemTutorial(item.id());
             if (item.itemCount() > 1 && !actor.hasShopper()) { // shoppers grab the whole stack.
                 // take from stack.
                 item.getItem().count--;

@@ -51,6 +51,11 @@ public class NightShopperSpawnSystem extends FluidIteratingSystem {
 
         if (day == Days.FIRST_DAY_IN_THE_SHOP) {
             mapSpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY, "item_talk", null, "actor_hag", 0).shopperType(Shopper.Type.HAG);
+            dialogSystem.queue("actor_player_face", "Enough sitting behind the geraniums!");
+            dialogSystem.queue("actor_player_face", "It's been a while since I opened the shop.");
+            dialogSystem.queue("actor_player_face", "I missed this place.");
+            dialogSystem.queue("actor_player_face", "It really needs a dusting.");
+            dialogSystem.queue("actor_player_face", "...");
             dialogSystem.queue("actor_player_face", "Who are you!?");
             dialogSystem.queue("actor_hag_face", "I am the hag with unclear motives!");
             dialogSystem.queue("actor_player_face", "Typical haggery. What do you want?");
@@ -64,6 +69,7 @@ public class NightShopperSpawnSystem extends FluidIteratingSystem {
 
         if (day == Days.ENCHANTED_BOW_BUYER) {
             mapSpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY, "item_talk", null, "actor_hag", 0).shopperType(Shopper.Type.HAG);
+            dialogSystem.queue("actor_player_face", "Pfew, good thing I stocked up on sticks.");
             dialogSystem.queue("actor_player_face", "Not you again.");
             dialogSystem.queue("actor_hag_face", "Hello future husband.");
             dialogSystem.queue("actor_hag_face", "Prepare an enchanted blue bow,");
@@ -191,9 +197,24 @@ public class NightShopperSpawnSystem extends FluidIteratingSystem {
         }
 
         if (day == Days.MARRIAGE_NIGHT) { // Marriage night.
-            mapSpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY, "item_talk", "item_imp", "actor_hag", 1).shopperType(Shopper.Type.HAG);
-            //dialogSystem.queue("actor_player_face", "Not you again.");
-            //dialogSystem.queue("actor_hag_face", "My familiar is too familiar with me.");
+            mapSpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY, "item_talk", null, "actor_postal", 0)
+                    .shopperType(Shopper.Type.POSTAL);
+            dialogSystem.queue("actor_player_face", "Oh, hi Sam.");
+            dialogSystem.queue("actor_postal_face", "Why so glum?");
+            dialogSystem.queue("actor_player_face", "It's the hag with unclear motives...");
+            dialogSystem.queue("actor_player_face", ".. She is forcing me to marry her.");
+            dialogSystem.queue("actor_postal_face", "Sounds like that hag of clear motives to me.");
+            dialogSystem.queue("actor_hag_face", "I'm actually pretty nice!");
+            dialogSystem.queue("actor_postal_face", "What?");
+            dialogSystem.queue("actor_hag_face", "I made a dungeon for him!");
+            dialogSystem.queue("actor_postal_face", "Wait that was you?");
+            dialogSystem.queue("actor_hag_face", "I forgot I'm not in this scene. carry on!");
+            dialogSystem.queue("actor_player_face", "I don't know what to do!");
+            dialogSystem.queue("actor_postal_face", "Chin up bud. You could have any man!");
+            dialogSystem.queue("actor_player_face", "Wait what?");
+            dialogSystem.queue("actor_postal_face", "What?");
+            dialogSystem.queue("actor_player_face", "Huh?");
+            dialogSystem.queue("actor_postal_face", "Oh look at the time, got to run, bye!");
             return true;
         }
 

@@ -11,6 +11,7 @@ import net.mostlyoriginal.game.component.Player;
 import net.mostlyoriginal.game.component.Shopper;
 import net.mostlyoriginal.game.component.ShopperSpawner;
 import net.mostlyoriginal.game.manager.ItemRepository;
+import net.mostlyoriginal.game.system.DialogSystem;
 import net.mostlyoriginal.game.system.map.MapSpawnerSystem;
 
 /**
@@ -30,6 +31,7 @@ public class ShopperSpawnSystem extends FluidIteratingSystem {
     private int spawns = 0;
     private E player;
     private ItemRepository itemRepository;
+    private DialogSystem dialogSystem;
 
     @Override
     protected boolean checkProcessing() {
@@ -85,6 +87,24 @@ public class ShopperSpawnSystem extends FluidIteratingSystem {
     }
 
     private boolean spawnScriptedShopper(int gridPosX, int gridPosY, int day) {
+
+
+        if (day == Days.FIRST_DAY_IN_THE_SHOP) {
+            Player player = E.withTag("player").getPlayer();
+            if ( player.visitorsRemaining > 5 ) {
+                player.visitorsRemaining = 5;
+            }
+            lastScriptedSpawnDay=-1; // run this over and over.
+            String desiredItem = "item_wood";
+            mapSpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY,
+                    desiredItem, itemRepository.randomReward(), "customer", 1);
+            if (player.visitorsRemaining==3) {
+                dialogSystem.queue("actor_player_face", "It's slowing down.");
+                dialogSystem.queue("actor_player_face", "I'll close the door when I'm out of stock.");
+            }
+            return true;
+        }
+
 
         if (day == Days.ENCHANTED_BOW_BUYER) {
             mapSpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY, "item_enchanted_bow", "item_boxed_coop", "customer", 1);
@@ -153,6 +173,21 @@ public class ShopperSpawnSystem extends FluidIteratingSystem {
 
             mapSpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY,
                     desiredItem, rewardItem, "customer", 1);
+            return true;
+        }
+
+
+        if (day == Days.MARRIAGE_NIGHT) {
+            lastScriptedSpawnDay=-1; // run this over and over.
+            if ( spawns == 1 ) {
+                mapSpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY,
+                        "item_ring", "item_ring", "actor_hag", 1);
+            }
+            if ( spawns == 2 ) {
+                mapSpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY,
+                        "item_ring", "item_ring", "actor_postal", 1);
+                E.withTag("player").playerVisitorsRemaining(0);
+            }
             return true;
         }
 

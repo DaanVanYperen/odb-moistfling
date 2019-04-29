@@ -9,6 +9,8 @@ import net.mostlyoriginal.game.GameRules;
 import net.mostlyoriginal.game.component.Lifter;
 import net.mostlyoriginal.game.component.Shopper;
 import net.mostlyoriginal.game.manager.ItemRepository;
+import net.mostlyoriginal.game.system.DialogSystem;
+import net.mostlyoriginal.game.system.mechanics.TutorialSystem;
 import net.mostlyoriginal.game.system.view.GameScreenAssetSystem;
 
 
@@ -27,6 +29,8 @@ public class TradeSystem extends FluidIteratingSystem {
     private E player;
     private RenderBatchingSystem renderBatchingSystem;
     private GameScreenAssetSystem gameScreenAssetSystem;
+    private DialogSystem dialogSystem;
+    private TutorialSystem tutorialSystem;
 
     @Override
     protected void begin() {
@@ -45,6 +49,9 @@ public class TradeSystem extends FluidIteratingSystem {
                     final int patronItemId = patron.hasLifting() ? patron.liftingId() : -1;
 
                     if (patronItemId != -1) {
+
+                        tutorialSystem.triggerItemTutorial(patronItemId);
+
                         player.liftingId(patronItemId);
                         player.getLifter().itemsLifted++;
                         player.lifterAttemptLifting(true);
@@ -62,12 +69,34 @@ public class TradeSystem extends FluidIteratingSystem {
                         patron.getLifter().itemsLifted++;
                         patron.removeDesire();
                         renderBatchingSystem.sortedDirty = true;
+
+                        if ( E.E(playerItemId).itemType().equals("item_ring")) {
+                            startFinalDialog(patron);
+                        }
+
                     }
                 } else {
                     // cancel drop if trade can't be made.
                     player.lifterAttemptLifting(true);
                 }
             }
+        }
+    }
+
+    private void startFinalDialog(E patron) {
+        if ( patron.getAnim().id.equals("actor_postal")) {
+            dialogSystem.queue("actor_postal_face", "You picked right, lets beat up this hag!");
+            dialogSystem.queue("actor_hag_face", "Wait no.");
+            dialogSystem.queue("actor_postal_face", "Eat postage you cretin!");
+            dialogSystem.queue("actor_player_face", "That's my sam!");
+        } else {
+            dialogSystem.queue("actor_hag_face", "Wow I can't believe that worked.");
+            dialogSystem.queue("actor_player_face", "Wait what?");
+            dialogSystem.queue("actor_hag_face", "Nothing! Now teach me rejuvenation");
+            dialogSystem.queue("actor_hag_face", "and I will show you some gyration!");
+            dialogSystem.queue("actor_postal_face", "Uhhhhhhhhhhhhhh.");
+            dialogSystem.queue("actor_player_face", "I think we need arbitration.");
+            dialogSystem.queue("actor_postal_face", "I'm out of here!");
         }
     }
 

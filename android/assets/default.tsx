@@ -402,7 +402,7 @@
  </tile>
  <tile id="220">
   <properties>
-   <property name="count" type="int" value="5"/>
+   <property name="count" type="int" value="15"/>
    <property name="entity" value="item"/>
    <property name="type" value="item_wood"/>
   </properties>

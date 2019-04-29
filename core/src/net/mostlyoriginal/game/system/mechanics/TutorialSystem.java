@@ -33,7 +33,7 @@ public class TutorialSystem extends BaseSystem {
 
     @Override
     protected void processSystem() {
-        if ( previousDay != this.player.day ) {
+        if (previousDay != this.player.day) {
             previousDay = this.player.day;
             stage = 0;
             cooldown = 3;
@@ -41,18 +41,22 @@ public class TutorialSystem extends BaseSystem {
 
         cooldown -= world.delta;
         if (cooldown <= 0) {
+            if (this.player.day == Days.FIRST_DAY_IN_THE_SHOP && this.player.nighttime) {
+                firstDayInTheShopTutorials();
+            }
             if (this.player.day == Days.ENCHANTED_BOW_BUYER && this.player.nighttime) {
-                firstNightTutorials();
+                bowBuyerTutorials();
             }
             if (this.player.day == Days.DRUID_PACKAGE && this.player.nighttime) {
-                secondNightTutorials();
+                druidTutorials();
             }
             if (this.player.day == Days.CURIOUS_IMP && this.player.nighttime) {
-                thirdNightTutorials();
+                curiousImpTutorials();
             }
         }
     }
-    private void secondNightTutorials() {
+
+    private void druidTutorials() {
         switch (stage) {
             case 0:
                 startTutorialSecondNight();
@@ -60,7 +64,7 @@ public class TutorialSystem extends BaseSystem {
         }
     }
 
-    private void thirdNightTutorials() {
+    private void curiousImpTutorials() {
         switch (stage) {
             case 0:
                 startTutorialThirdNight();
@@ -68,7 +72,28 @@ public class TutorialSystem extends BaseSystem {
         }
     }
 
-    private void firstNightTutorials() {
+
+    private void firstDayInTheShopTutorials() {
+        switch (stage) {
+            case 0:
+                firstDayPhase0();
+                break;
+        }
+    }
+
+    private void firstDayPhase0() {
+        dialogSystem.queue("actor_player_face", "...");
+        dialogSystem.queue("actor_player_face", "Well that's a bummer.");
+        dialogSystem.queue("actor_player_face", "No time to dwell upon it.");
+        dialogSystem.queue("actor_player_face", "I need some stock to deal with this.");
+        dialogSystem.queue("actor_player_face", "I'll start by selling some items!");
+        dialogSystem.queue("actor_player_face", "Time to open the shop.");
+        dialogSystem.queue("actor_player_face", "ADSW/cursor to move, space to interact.");
+        dialogSystem.queue("actor_player_face", "Space on the door to start the day.");
+        stage++;
+    }
+
+    private void bowBuyerTutorials() {
         switch (stage) {
             case 0:
                 startTutorial();
@@ -207,5 +232,18 @@ public class TutorialSystem extends BaseSystem {
         dialogSystem.queue("actor_player_face", "I should save my chicks.");
         dialogSystem.queue("actor_player_face", "Click the door when ready.");
         stage++;
+    }
+
+    public void triggerItemTutorial(int patronItemId) {
+        String itemType = E.E(patronItemId).itemType();
+        if ( "item_boxed_forge".equals(itemType) ||
+                "item_boxed_bush".equals(itemType) ||
+                "item_boxed_coop".equals(itemType)) {
+            dialogSystem.queue("actor_player_face", "A magical tome!");
+            dialogSystem.queue("actor_player_face", "This will passively create items for me.");
+            dialogSystem.queue("actor_player_face", "I just need some space.");
+            dialogSystem.queue("actor_player_face", "Lots of space in the left of my shop!");
+            dialogSystem.queue("actor_player_face", "LEts drop it on one of these spots..");
+        }
     }
 }
