@@ -957,7 +957,31 @@
       "height": 88
     },
     {
-      "id": "actor_player_face",
+      "id": "actor_player_face_1",
+      "comment": "face of player.",
+      "x": 512,
+      "y": 352,
+      "width": 32,
+      "height": 32
+    },
+    {
+      "id": "actor_player_face_2",
+      "comment": "face of player.",
+      "x": 544,
+      "y": 352,
+      "width": 32,
+      "height": 32
+    },
+    {
+      "id": "actor_player_face_3",
+      "comment": "face of player.",
+      "x": 576,
+      "y": 352,
+      "width": 32,
+      "height": 32
+    },
+    {
+      "id": "actor_player_face_4",
       "comment": "face of player.",
       "x": 608,
       "y": 352,
