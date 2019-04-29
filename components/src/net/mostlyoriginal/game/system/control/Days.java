@@ -10,8 +10,8 @@ public class Days {
     public static final int CURIOUS_IMP = 4; // DONE (Basic selling)
     public static final int SPLINTERS_EVERYWHERE = 5; // DONE - druids need health potions. Will trade it for a health tome.
     public static final int DUNGEON_DELVED = 6; // DONE - weapons and armor.
-    public static final int TRAVELING_CIRCUS = 7; // Hydra chicken for a show.
-    public static final int MAGE_COURT = 8; // Unicorn armor.
+    public static final int TRAVELING_CIRCUS = 7; // DONE - Hydra chicken for a show.
+    public static final int MAGE_COURT = 8; // DONE - Unicorn armor.
     public static final int DRAGON_HEART = 9; // DONE - Unicorn chicken for a dragon heart (part of the end).
     public static final int MARRIAGE_NIGHT = 10; // Marriage night.
 }

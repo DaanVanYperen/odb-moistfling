@@ -134,6 +134,29 @@ public class ShopperSpawnSystem extends FluidIteratingSystem {
             return true;
         }
 
+
+        if (day == Days.MAGE_COURT) {
+            lastScriptedSpawnDay=-1; // run this over and over.
+            String desiredItem = "item_magical_staff";
+            switch (MathUtils.random(0,4)) {
+                case 0: desiredItem = "item_magical_staff"; break;
+                case 1: desiredItem = "item_mana_potion"; break;
+                case 2: desiredItem = "item_mana_potion"; break;
+                case 3: desiredItem = "item_winged_boots"; break;
+                case 4: desiredItem = "item_imp"; break;
+            }
+            String rewardItem = itemRepository.randomReward();
+            if ( spawns == 4 ) {
+                desiredItem = "item_rainbow_armor";
+                rewardItem = "item_boxed_forge";
+            }
+
+            mapSpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY,
+                    desiredItem, rewardItem, "customer", 1);
+            return true;
+        }
+
+
         if (day % 2 == 1) {
             mapSpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY, "item_magical_staff", "item_mystical_tome", "customer", 1);
             return true;

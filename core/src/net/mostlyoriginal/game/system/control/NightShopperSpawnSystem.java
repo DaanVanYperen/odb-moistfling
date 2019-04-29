@@ -155,14 +155,26 @@ public class NightShopperSpawnSystem extends FluidIteratingSystem {
         }
 
         if (day == Days.MAGE_COURT) { // druids need health potions. Will trade it for a health tome.
-            mapSpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY, "item_talk", "item_imp", "actor_hag", 1).shopperType(Shopper.Type.HAG);
-            //dialogSystem.queue("actor_player_face", "Not you again.");
-            //dialogSystem.queue("actor_hag_face", "My familiar is too familiar with me.");
+            mapSpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY, "item_talk", null, "actor_postal", 0)
+                    .shopperType(Shopper.Type.POSTAL);
+            dialogSystem.queue("actor_postal_face", "Can I hide in here for a while?");
+            dialogSystem.queue("actor_player_face", "What now Sam.");
+            dialogSystem.queue("actor_postal_face", "The Elephants collapsed the wizard tower.");
+            dialogSystem.queue("actor_postal_face", "Who knew crushed elephants explode.");
+            dialogSystem.queue("actor_player_face", "Sam.");
+            dialogSystem.queue("actor_postal_face", "Explode like giant melons.");
+            dialogSystem.queue("actor_player_face", "Sam!");
+            dialogSystem.queue("actor_postal_face", "Screaming trumpets. The darnest thing.");
+            dialogSystem.queue("actor_player_face", "SAM!!!!");
+            dialogSystem.queue("actor_postal_face", "Oh right. Thanks for the breather.");
+            dialogSystem.queue("actor_postal_face", "Wanna get out of here anyway.");
+            dialogSystem.queue("actor_postal_face", "Can see a horde of wizards heading this way.");
+            dialogSystem.queue("actor_postal_face", "Probably have some trinkets to replace!");
             return true;
         }
 
         if (day == Days.DRAGON_HEART) { // Unicorn chicken for a dragon heart (part of the end).
-            mapSpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY, "item_talk", "item_imp", "actor_hag", 1).shopperType(Shopper.Type.HAG);
+            mapSpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY, "item_talk", null, "actor_hag", 1).shopperType(Shopper.Type.HAG);
 
             dialogSystem.queue("actor_hag_face", "Did you miss me, future husband?");
             dialogSystem.queue("actor_player_face", "Like a headache. I got both now.");

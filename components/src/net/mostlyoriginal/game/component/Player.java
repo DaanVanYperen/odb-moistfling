@@ -12,7 +12,7 @@ public class Player extends Component {
     public int gold;
     public int age=3;
     public boolean nighttime=true;
-    public int day= Days.TRAVELING_CIRCUS;
+    public int day= Days.MAGE_COURT;
 
-    public int visitorsRemaining = 10; // sync with GameRules.VISITORS_EACH_DAY
+    public int visitorsRemaining = 20; // sync with GameRules.VISITORS_EACH_DAY
 }
