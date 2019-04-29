@@ -39,6 +39,8 @@ public class PlayerControlSystem extends FluidIteratingSystem {
     private ItemRepository itemRepository;
     private NightSystem nightSystem;
 
+    public float interactCooldown = 0;
+
     @Override
     protected void initialize() {
         super.initialize();
@@ -48,6 +50,7 @@ public class PlayerControlSystem extends FluidIteratingSystem {
     @Override
     protected void process(E e) {
         if (!e.hasMoving()) {
+            interactCooldown -= world.delta;
             handleMovement(e);
         }
     }
@@ -80,11 +83,13 @@ public class PlayerControlSystem extends FluidIteratingSystem {
             }
         }
 
-        if ( Gdx.input.isKeyJustPressed(Input.Keys.SPACE)||Gdx.input.isKeyJustPressed(Input.Keys.SHIFT_RIGHT)||Gdx.input.isKeyJustPressed(Input.Keys.SHIFT_LEFT) ) {
-            if ( e.getGridPos().x >= 15 && e.getGridPos().x <= 18 && e.getGridPos().y >= 8 ) {
-                nightSystem.toggle();
-            } else {
-                e.getLifter().attemptLifting = !e.getLifter().attemptLifting;
+        if ( interactCooldown <= 0 ) {
+            if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE) || Gdx.input.isKeyJustPressed(Input.Keys.SHIFT_RIGHT) || Gdx.input.isKeyJustPressed(Input.Keys.SHIFT_LEFT)) {
+                if (e.getGridPos().x >= 15 && e.getGridPos().x <= 18 && e.getGridPos().y >= 8) {
+                    nightSystem.toggle();
+                } else {
+                    e.getLifter().attemptLifting = !e.getLifter().attemptLifting;
+                }
             }
         }
 

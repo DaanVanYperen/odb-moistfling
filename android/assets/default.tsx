@@ -222,7 +222,7 @@
  </tile>
  <tile id="156">
   <properties>
-   <property name="count" type="int" value="3"/>
+   <property name="count" type="int" value="2"/>
    <property name="entity" value="item"/>
    <property name="type" value="item_herb_branch"/>
   </properties>
@@ -353,6 +353,7 @@
  </tile>
  <tile id="212">
   <properties>
+   <property name="count" type="int" value="3"/>
    <property name="entity" value="item"/>
    <property name="type" value="item_chick"/>
   </properties>

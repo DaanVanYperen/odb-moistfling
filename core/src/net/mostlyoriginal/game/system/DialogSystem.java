@@ -7,6 +7,7 @@ import com.badlogic.gdx.Input;
 import net.mostlyoriginal.api.component.graphics.Tint;
 import net.mostlyoriginal.api.component.ui.Label;
 import net.mostlyoriginal.game.GameRules;
+import net.mostlyoriginal.game.system.control.PlayerControlSystem;
 import net.mostlyoriginal.game.system.map.Scripts;
 
 import java.util.LinkedList;
@@ -19,6 +20,7 @@ import static net.mostlyoriginal.api.operation.JamOperationFactory.tintBetween;
 public class DialogSystem extends BaseSystem {
 
     private NightSystem nightSystem;
+    private PlayerControlSystem playerControlSystem;
 
     public static class Dialog {
         String faceAnim;
@@ -117,13 +119,19 @@ public class DialogSystem extends BaseSystem {
         if (isDialogActive() && (Gdx.input.isKeyJustPressed(Input.Keys.SPACE) || Gdx.input.isKeyJustPressed(Input.Keys.SHIFT_LEFT) || Gdx.input.isKeyJustPressed(Input.Keys.SHIFT_RIGHT))) {
             popDialog();
             nightSystem.preventAccidentalReactivation();
+            preventPlayerAccidentallyClickingStuff();
         }
 
         if (isDialogActive() &&Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
             clear();
             nightSystem.preventAccidentalReactivation();
+            preventPlayerAccidentallyClickingStuff();
         }
 
+    }
+
+    private void preventPlayerAccidentallyClickingStuff() {
+        playerControlSystem.interactCooldown=0.4f;
     }
 
     private void popDialog() {

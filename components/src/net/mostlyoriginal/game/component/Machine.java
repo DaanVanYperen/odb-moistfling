@@ -8,6 +8,7 @@ import com.artemis.utils.IntBag;
  * @author Daan van Yperen
  */
 public class Machine extends Component {
+
     public enum Type {
         ALTAR
     }

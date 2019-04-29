@@ -120,7 +120,7 @@ public class MapSpawnerSystem extends BaseSystem {
                 .anim("altar")
 
                 .machineType(Machine.Type.ALTAR)
-                .renderLayer(GameRules.LAYER_MACHINES);
+                .renderLayer(GameRules.LAYER_MACHINES).tag("altar");
         machines.add(altar);
     }
 
