@@ -16,7 +16,7 @@ import static net.mostlyoriginal.api.operation.JamOperationFactory.*;
  */
 public class ScoreSystem extends BaseSystem {
 
-    private static final Tint STONE_FONT_TINT = new Tint("798292");
+    private static final Tint STONE_FONT_TINT = new Tint("FEF3C0");
     private static final int BOTTOM_Y = 200 + 16;
     private static final float MIDDLE_X = (float) (GameRules.SCREEN_WIDTH / GameRules.CAMERA_ZOOM) / 2f - 16;
     private static final int LINE_HEIGHT = 12;
@@ -45,10 +45,11 @@ public class ScoreSystem extends BaseSystem {
                 .fontFontName("5x5")
                 .labelAlign(Label.Align.RIGHT)
                 .renderLayer(GameRules.LAYER_SCORE_TEXT)
+                .invisible()
                 .labelText(randomDaytimeHint());
 
         rankLabel = E.E()
-                .pos(MIDDLE_X, BOTTOM_Y + LINE_HEIGHT * 2)
+                .pos(MIDDLE_X, BOTTOM_Y + LINE_HEIGHT )
                 .tint(STONE_FONT_TINT)
                 .fontFontName("5x5")
                 .labelAlign(Label.Align.RIGHT)
@@ -59,10 +60,10 @@ public class ScoreSystem extends BaseSystem {
     }
 
     private String dayLabel(int day) {
-        return "Day "+ day + ": " + playerRank();
+        return "Day "+ day;
     }
     private String nightLabel(int day) {
-        return "Night "+ day + ": " + playerRank();
+        return "Night "+ day;
     }
 
     private String playerRank() {
