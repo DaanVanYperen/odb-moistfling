@@ -103,6 +103,7 @@ public class PlayerControlSystem extends FluidIteratingSystem {
 
         Vector2 movementVector = vector2.set(dx, dy).nor();
 
+        e.physics();
         if ( movementVector.x != 0 ) {
             e.getPhysics().vx = movementVector.x * PLAYER_MOVEMENT_SPEED * 1.1f;
         }

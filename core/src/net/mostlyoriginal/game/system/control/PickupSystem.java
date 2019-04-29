@@ -85,6 +85,7 @@ public class PickupSystem extends FluidIteratingSystem {
 
     private E bestDropSlot(E actor) {
         E slotAt = slotHighlightingSystem.getSlotAt(actor.getGridPos());
+        if (slotAt == null) slotAt = slotHighlightingSystem.getSlotAt(actor.getGridPos(), actor.playerDx(), actor.playerDy());
         if (slotAt == null) slotAt = slotHighlightingSystem.getSlotAt(actor.getGridPos(), 1, 0);
         if (slotAt == null) slotAt = slotHighlightingSystem.getSlotAt(actor.getGridPos(), 0, 1);
         if (slotAt == null) slotAt = slotHighlightingSystem.getSlotAt(actor.getGridPos(), -1, 0);
@@ -149,6 +150,7 @@ public class PickupSystem extends FluidIteratingSystem {
 
     private E bestItemToPickup(E actor) {
         E item = pickupManager.getOverlapping(actor);
+        if (item == null) item = pickupManager.getOverlapping(actor, actor.playerDx(), actor.playerDy());
         if (item == null) item = pickupManager.getOverlapping(actor, 1, 0);
         if (item == null) item = pickupManager.getOverlapping(actor, 0, 1);
         if (item == null) item = pickupManager.getOverlapping(actor, -1, 0);
