@@ -4,11 +4,9 @@ import com.artemis.BaseSystem;
 import com.artemis.E;
 import com.badlogic.gdx.maps.MapProperties;
 import net.mostlyoriginal.api.component.graphics.Tint;
-import net.mostlyoriginal.api.operation.JamOperationFactory;
-import net.mostlyoriginal.api.operation.OperationFactory;
-import net.mostlyoriginal.api.operation.flow.SequenceOperation;
 import net.mostlyoriginal.game.GameRules;
 import net.mostlyoriginal.game.Slot;
+import net.mostlyoriginal.game.component.AffectedByNight;
 import net.mostlyoriginal.game.component.Machine;
 import net.mostlyoriginal.game.manager.ItemRepository;
 
@@ -75,9 +73,11 @@ public class MapSpawnerSystem extends BaseSystem {
         } else if ("shopperspawner".equals(entity)) {
             spawnShopperSpawner(x, y);
             return true;
-        }
-        if ("window".equals(entity)) {
+        } else  if ("window".equals(entity)) {
             spawnWindow(x, y);
+            return false;
+        }else  if ("door".equals(entity)) {
+            spawnLockedDoor(x, y);
             return false;
         }
 
@@ -85,15 +85,26 @@ public class MapSpawnerSystem extends BaseSystem {
     }
 
     private void spawnWindow(int x, int y) {
-        E hopper = E.E()
+        E.E()
                 .gridPos(x, y-3)
-                .invisibleDuringNight()
+                .affectedByNight()
+                .tint(Tint.TRANSPARENT)
                 .anim("godray_window")
                 .renderLayer(GameRules.LAYER_WINDOWS);
     }
 
+    private void spawnLockedDoor(int x, int y) {
+        E.E()
+                .gridPos(x, y)
+                .tint(Tint.WHITE)
+                .affectedByNightVisibleAt(AffectedByNight.Moment.NIGHT)
+                .affectedByNightDuration(0.5f)
+                .anim("locked_door")
+                .renderLayer(GameRules.LAYER_DOORS);
+    }
+
     private void spawnSlot(int x, int y, String accepts, Slot.Mode mode, int slotX, int slotY) {
-        E altar = E.E()
+        E.E()
                 .gridPos(x, y)
                 .tint(1f,1f,1f,0.7f)
                 .slotAccepts(accepts.split(","))

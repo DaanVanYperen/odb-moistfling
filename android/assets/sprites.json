@@ -557,6 +557,14 @@
       "height": 128,
     },
     {
+      "id": "locked_door",
+      "comment": "Door flat is a poopnose.",
+      "x": 512,
+      "y": 0,
+      "width": 64,
+      "height": 64
+    },
+    {
       "id": "player_elderly",
       "comment": "The player.",
       "x": 160,

@@ -30,7 +30,11 @@ public class ShadowSystem extends FluidIteratingSystem {
                     shadowEntity.id();
         }
 
-        E.E(castsShadow.shadowId)
+        E shadow = E.E(castsShadow.shadowId);
+        if ( e.hasTint() ) {
+            shadow.tintColor().a = e.tintColor().a * 0.7f;
+        }
+        shadow
                 .posX(e.posX())
                 .posY(e.posY() +castsShadow.yOffset);
     }

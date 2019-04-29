@@ -74,6 +74,7 @@
  </tile>
  <tile id="38">
   <properties>
+   <property name="entity" value="door"/>
    <property name="solid" type="bool" value="true"/>
   </properties>
  </tile>

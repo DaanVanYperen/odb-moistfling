@@ -23,6 +23,7 @@ public abstract class GameRules {
     public static final int LAYER_DESIRE_INDICATOR = 1010;
     public static final int LAYER_SCORE_TEXT = 60;
     public static final int LAYER_WINDOWS = 50;
+    public static final int LAYER_DOORS = 50;
 
     public static final int LAYER_PAYMENT = 2000;
     public static final int LAYER_INGREDIENT_HINTS = 600;

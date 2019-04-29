@@ -35,7 +35,7 @@ public class ShopperSpawnSystem extends FluidIteratingSystem {
     @Override
     protected void process(E e) {
         ShopperSpawner shopperSpawner = e.getShopperSpawner();
-        if ( shopperSpawner.shopperId == -1 && !enoughShoppers() && !isShopperAtSpawner(e.getGridPos())) {
+            if ( shopperSpawner.shopperId == -1 && !enoughShoppers() && !isShopperAtSpawner(e.getGridPos())) {
             shopperSpawner.cooldown -= world.delta;
             if (shopperSpawner.cooldown < 0) {
                 shopperSpawner.cooldown += MathUtils.random(5,10);

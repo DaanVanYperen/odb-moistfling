@@ -14,6 +14,7 @@ import net.mostlyoriginal.game.component.Item;
 import net.mostlyoriginal.game.component.ItemData;
 import net.mostlyoriginal.game.component.Player;
 import net.mostlyoriginal.game.manager.ItemRepository;
+import net.mostlyoriginal.game.system.NightSystem;
 import net.mostlyoriginal.game.system.map.MapSpawnerSystem;
 import net.mostlyoriginal.game.system.map.MapSystem;
 
@@ -33,6 +34,7 @@ public class PlayerControlSystem extends FluidIteratingSystem {
     private EntitySubscription items;
     private MapSpawnerSystem mapSpawnSystem;
     private ItemRepository itemRepository;
+    private NightSystem nightSystem;
 
     @Override
     protected void initialize() {
@@ -76,7 +78,11 @@ public class PlayerControlSystem extends FluidIteratingSystem {
         }
 
         if ( Gdx.input.isKeyJustPressed(Input.Keys.SPACE)||Gdx.input.isKeyJustPressed(Input.Keys.SHIFT_RIGHT)||Gdx.input.isKeyJustPressed(Input.Keys.SHIFT_LEFT) ) {
-            e.getLifter().attemptLifting = !e.getLifter().attemptLifting;
+            if ( e.getGridPos().x >= 15 && e.getGridPos().x <= 18 && e.getGridPos().y >= 8 ) {
+                nightSystem.toggle();
+            } else {
+                e.getLifter().attemptLifting = !e.getLifter().attemptLifting;
+            }
         }
 
         int dx = Gdx.input.isKeyPressed(Input.Keys.A) || Gdx.input.isKeyPressed(Input.Keys.LEFT) ? -1 :
