@@ -71,10 +71,14 @@
 	{
       "id": "item_tier1_orb",
       "comment": "Tier 1 orb.",
-      "x": 800,
-      "y": 128,
+      "x": 512,
+      "y": 384,
       "width": 32,
       "height": 32,
+      "countX": 12,
+      "countY": 1,
+      "milliseconds": 70,
+      "repeat": true,
     },
 	{
       "id": "item_tier2_orb",
