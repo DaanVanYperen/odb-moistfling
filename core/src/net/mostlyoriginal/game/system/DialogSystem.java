@@ -7,7 +7,10 @@ import com.badlogic.gdx.Input;
 import net.mostlyoriginal.api.component.graphics.Tint;
 import net.mostlyoriginal.api.component.ui.Label;
 import net.mostlyoriginal.game.GameRules;
+import net.mostlyoriginal.game.screen.GameScreen;
+import net.mostlyoriginal.game.screen.LogoScreen;
 import net.mostlyoriginal.game.system.control.PlayerControlSystem;
+import net.mostlyoriginal.game.system.logic.TransitionSystem;
 import net.mostlyoriginal.game.system.map.Scripts;
 
 import java.util.LinkedList;
@@ -58,7 +61,11 @@ public class DialogSystem extends BaseSystem {
         faceIcon.invisible();
         targetText=null;
         dialogBox.invisible();
-        E.withTag("player").inDialog(false);
+        E player = E.withTag("player");
+        player.inDialog(false);
+        if (player.playerDone() ) {
+            world.getSystem(TransitionSystem.class).transition(LogoScreen.class, 0.55f);
+        }
     }
 
     protected void set(String faceAnim, String text) {

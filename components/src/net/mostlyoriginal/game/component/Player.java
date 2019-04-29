@@ -11,6 +11,7 @@ public class Player extends Component {
     public static final int MIN_AGE = 0;
     public int gold;
     public int age=3;
+    public boolean done=false;
     public int dx;
     public int dy;
     public boolean nighttime=true;

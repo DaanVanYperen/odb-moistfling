@@ -9,7 +9,9 @@ import net.mostlyoriginal.game.GameRules;
 import net.mostlyoriginal.game.component.Lifter;
 import net.mostlyoriginal.game.component.Shopper;
 import net.mostlyoriginal.game.manager.ItemRepository;
+import net.mostlyoriginal.game.screen.GameScreen;
 import net.mostlyoriginal.game.system.DialogSystem;
+import net.mostlyoriginal.game.system.logic.TransitionSystem;
 import net.mostlyoriginal.game.system.mechanics.TutorialSystem;
 import net.mostlyoriginal.game.system.view.GameScreenAssetSystem;
 
@@ -84,7 +86,8 @@ public class TradeSystem extends FluidIteratingSystem {
     }
 
     private void startFinalDialog(E patron) {
-        if ( patron.getAnim().id.equals("actor_postal")) {
+        boolean isPostal = patron.getAnim().id.equals("actor_postal");
+        if (isPostal) {
             dialogSystem.queue("actor_postal_face", "You picked right, lets beat up this hag!");
             dialogSystem.queue("actor_hag_face", "Wait no.");
             dialogSystem.queue("actor_postal_face", "Eat postage you cretin!");
@@ -98,6 +101,15 @@ public class TradeSystem extends FluidIteratingSystem {
             dialogSystem.queue(NameHelper.getActor_player_face(), "I think we need arbitration.");
             dialogSystem.queue("actor_postal_face", "I'm out of here!");
         }
+        dialogSystem.queue(NameHelper.getActor_player_face(), "Thanks for playing!");
+        dialogSystem.queue(NameHelper.getActor_player_face(), "Hope you enjoyed our game.");
+        dialogSystem.queue(NameHelper.getActor_player_face(), "I sure did!");
+        if ( isPostal ) {
+            dialogSystem.queue("actor_hag_face", "I didn't.");
+        } else {
+            dialogSystem.queue("actor_hag_face", "Me too!");
+        }
+        E.withTag("player").playerDone(true);
     }
 
     private boolean patronHasntTradedYet(E patron) {
