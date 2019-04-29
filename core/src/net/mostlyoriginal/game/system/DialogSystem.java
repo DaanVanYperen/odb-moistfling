@@ -58,9 +58,9 @@ public class DialogSystem extends BaseSystem {
     protected void clear() {
         dialogs.clear();
         talkLabel.invisible();
-        faceIcon.invisible();
+        faceIcon.invisible().tint(1f,1f,1f,0f);
         targetText=null;
-        dialogBox.invisible();
+        dialogBox.invisible().tint(1f,1f,1f,0f);
         E player = E.withTag("player");
         player.inDialog(false);
         if (player.playerDone() ) {

@@ -2,6 +2,7 @@ package net.mostlyoriginal.game.system.view;
 
 import com.artemis.annotations.Wire;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.utils.Json;
 import net.mostlyoriginal.api.manager.AbstractAssetSystem;
@@ -21,6 +22,18 @@ public class LogoScreenAssetSystem extends AbstractAssetSystem {
 
 	public LogoScreenAssetSystem() {
 		super("tileset.png");
+	}
+
+	@Override
+	protected void processSystem() {
+		super.processSystem();
+		if (Gdx.input.isKeyJustPressed(Input.Keys.M)) {
+			if (GameRules.music.isPlaying()) {
+				GameRules.music.pause();
+			} else {
+				GameRules.music.play();
+			}
+		}
 	}
 
 	@Override
@@ -48,6 +61,8 @@ public class LogoScreenAssetSystem extends AbstractAssetSystem {
 		}
 		GameRules.music.setPan(0, 0.08f);
 	}
+
+
 
 
 

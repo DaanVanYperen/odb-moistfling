@@ -3,6 +3,7 @@ package net.mostlyoriginal.game.system.view;
 import com.artemis.E;
 import com.artemis.annotations.Wire;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.Animation;
@@ -88,6 +89,18 @@ public class GameScreenAssetSystem extends AbstractAssetSystem {
 
         if ( GameRules.MUSIC_ENABLED ) {
             playMusic("sfx/music_shop.mp3");
+        }
+    }
+
+    @Override
+    protected void processSystem() {
+        super.processSystem();
+        if (Gdx.input.isKeyJustPressed(Input.Keys.M)) {
+            if (GameRules.music.isPlaying()) {
+                GameRules.music.pause();
+            } else {
+                GameRules.music.play();
+            }
         }
     }
 
