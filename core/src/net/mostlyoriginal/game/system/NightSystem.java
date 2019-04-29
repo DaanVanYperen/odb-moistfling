@@ -16,11 +16,9 @@ import net.mostlyoriginal.game.component.Player;
 @All(AffectedByNight.class)
 public class NightSystem extends FluidIteratingSystem {
 
-    private static final int CYCLE_DURATION = 30;
-    private static final int CYCLE_DURATION_DAY = 45;
 
     private boolean nighttime = true;
-    private float cooldown = CYCLE_DURATION;
+    private float cooldown = 0;
 
     private boolean flipped = true;
 
@@ -28,9 +26,6 @@ public class NightSystem extends FluidIteratingSystem {
     protected void begin() {
         super.begin();
         cooldown -= world.delta;
-        //if (cooldown <= 0) {
-        //    toggle();
-        //};
     }
 
     @Override
@@ -40,17 +35,23 @@ public class NightSystem extends FluidIteratingSystem {
     }
 
     public void toggle() {
-        E player = E.withTag("player");
-        nighttime = player.playerNighttime();
-        nighttime = !nighttime;
-        cooldown = nighttime ? CYCLE_DURATION : CYCLE_DURATION_DAY;
-        flipped = true;
-        player.playerNighttime(nighttime);
-        Player playerComp = player.getPlayer();
-        if (nighttime) {
-            playerComp.day++;
-            playerComp.visitorsRemaining = MathUtils.clamp(playerComp.day, 2, 5);
+        if ( cooldown < 0 ) {
+            preventAccidentalReactivation();
+            E player = E.withTag("player");
+            nighttime = player.playerNighttime();
+            nighttime = !nighttime;
+            flipped = true;
+            player.playerNighttime(nighttime);
+            Player playerComp = player.getPlayer();
+            if (nighttime) {
+                playerComp.day++;
+                playerComp.visitorsRemaining = MathUtils.clamp(playerComp.day, 2, 5);
+            }
         }
+    }
+
+    public void preventAccidentalReactivation() {
+        cooldown = 2; // don't allow toggling too quickly.
     }
 
     @Override

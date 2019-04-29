@@ -183,6 +183,6 @@ public class PickupSystem extends FluidIteratingSystem {
             actor.getLifter().itemsLifted++;
             if (actor.hasPlayer())
                 gameScreenAssetSystem.playSfx("sfx_pickup");
-        }
+        }  else actor.lifterAttemptLifting(false);
     }
 }

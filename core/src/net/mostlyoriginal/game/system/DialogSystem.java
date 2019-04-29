@@ -18,6 +18,8 @@ import static net.mostlyoriginal.api.operation.JamOperationFactory.tintBetween;
  */
 public class DialogSystem extends BaseSystem {
 
+    private NightSystem nightSystem;
+
     public static class Dialog {
         String faceAnim;
         String text;
@@ -49,6 +51,7 @@ public class DialogSystem extends BaseSystem {
     }
 
     protected void clear() {
+        dialogs.clear();
         talkLabel.invisible();
         faceIcon.invisible();
         targetText=null;
@@ -111,8 +114,14 @@ public class DialogSystem extends BaseSystem {
         }
 
 
-        if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE) || Gdx.input.isKeyJustPressed(Input.Keys.SHIFT_LEFT) || Gdx.input.isKeyJustPressed(Input.Keys.SHIFT_RIGHT)) {
+        if (isDialogActive() && (Gdx.input.isKeyJustPressed(Input.Keys.SPACE) || Gdx.input.isKeyJustPressed(Input.Keys.SHIFT_LEFT) || Gdx.input.isKeyJustPressed(Input.Keys.SHIFT_RIGHT))) {
             popDialog();
+            nightSystem.preventAccidentalReactivation();
+        }
+
+        if (isDialogActive() &&Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
+            clear();
+            nightSystem.preventAccidentalReactivation();
         }
 
     }
