@@ -3,6 +3,10 @@ package net.mostlyoriginal.game.system.map;
 import com.artemis.BaseSystem;
 import com.artemis.E;
 import com.badlogic.gdx.maps.MapProperties;
+import net.mostlyoriginal.api.component.graphics.Tint;
+import net.mostlyoriginal.api.operation.JamOperationFactory;
+import net.mostlyoriginal.api.operation.OperationFactory;
+import net.mostlyoriginal.api.operation.flow.SequenceOperation;
 import net.mostlyoriginal.game.GameRules;
 import net.mostlyoriginal.game.Slot;
 import net.mostlyoriginal.game.component.Machine;
@@ -147,18 +151,19 @@ public class MapSpawnerSystem extends BaseSystem {
     public void spawnShopperWithSpecificItems(int x, int y, String desiredItem, String rewardItem) {
         E.E()
                 .gridPos(x, y)
-                .pos(GameRules.SCREEN_WIDTH/(float)GameRules.CAMERA_ZOOM+1,y * GameRules.CELL_SIZE)
+                .pos(500,300)
                 .anim("customer")
                 .lifterAttemptLifting(true)
                 .desireDesiredItem(desiredItem)
                 .shopper()
+                .tint(Tint.TRANSPARENT)
                 .castsShadow()
                 .castsShadowYOffset(-4)
+                .script(Scripts.appearOverTime())
                 .renderLayer(GameRules.LAYER_SHOPPER);
 
         spawnItem(x,y, rewardItem);
     }
-
 
     private void spawnShopperSpawner(int x, int y) {
         E.E()

@@ -3,11 +3,10 @@ package net.mostlyoriginal.game.system.control;
 import com.artemis.E;
 import com.artemis.FluidIteratingSystem;
 import com.artemis.annotations.All;
-import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.graphics.Color;
 import net.mostlyoriginal.game.GameRules;
 import net.mostlyoriginal.game.component.Shopper;
-import net.mostlyoriginal.game.screen.GameScreen;
-import net.mostlyoriginal.game.system.map.MapSpawnerSystem;
+import net.mostlyoriginal.game.system.map.Scripts;
 
 /**
  * @author Daan van Yperen
@@ -29,14 +28,26 @@ public class ShopperControlSystem extends FluidIteratingSystem {
         Shopper shopper = e.getShopper();
         shopper.age += world.delta;
 
+        if (e.hasLifting()) {
+            // mirror parent tint.
+            Color color = E.E(e.getLifting().id).tint(e.getTint()).getTint().color;
+            color.a = color.a * 0.8f;
+        }
+
         if (timeToLeaveFor(shopper)) {
-            walkOffscreen(e);
-            deleteWhenOffscreen(e);
+            if (e.getLifter().itemsLifted != 3) {
+                e.getLifter().itemsLifted = 3;
+                walkOffscreen(e);
+                deleteWhenOffscreen(e);
+            }
         } else {
             int itemsLifted = e.getLifter().itemsLifted;
 
             if (itemsLifted == 2) {
+                e.getLifter().itemsLifted++;
                 walkOffscreen(e);
+            }
+            if (itemsLifted >= 3) {
                 deleteWhenOffscreen(e);
             }
         }
@@ -48,7 +59,7 @@ public class ShopperControlSystem extends FluidIteratingSystem {
     }
 
     private void deleteWhenOffscreen(E e) {
-        if (e.posX() > GameRules.SCREEN_WIDTH) {
+        if (!e.hasScript()) {
             if (e.liftingId() != -1) {
                 E.E(e.liftingId()).deleteFromWorld();
             }
@@ -57,7 +68,7 @@ public class ShopperControlSystem extends FluidIteratingSystem {
     }
 
     private void walkOffscreen(E e) {
-        e.gridPosX(GameRules.SCREEN_WIDTH / GameRules.CELL_SIZE + GameRules.CELL_SIZE);
+        e.gridPosY(GameRules.SCREEN_HEIGHT / GameRules.CELL_SIZE).removeScript().script(Scripts.fadeOverTime());
     }
 
     private void attemptToExchangeCarriedItem(E e) {

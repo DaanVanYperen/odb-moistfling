@@ -46,8 +46,8 @@ public class GridPosSystem extends FluidIteratingSystem {
                 if ( dx < 0 && pos.x < goalX) pos.x = goalX;
 
                 pos.y = pos.y + (dy * world.delta * MOVEMENT_SPEED);
-                if ( dx > 0 && pos.y > goalY) pos.y = goalY;
-                if ( dx < 0 && pos.y < goalY) pos.y = goalY;
+                if ( dy > 0 && pos.y > goalY) pos.y = goalY;
+                if ( dy < 0 && pos.y < goalY) pos.y = goalY;
 
 
                 boolean atTarget = MathUtils.isEqual(pos.x, goalX, 1f) && MathUtils.isEqual(pos.y, goalY, 1f);

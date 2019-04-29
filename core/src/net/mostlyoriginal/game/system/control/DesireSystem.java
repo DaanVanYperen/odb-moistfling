@@ -39,9 +39,12 @@ public class DesireSystem extends FluidIteratingSystem {
         }
 
         // follow shopper.
-        E.E(desire.desireIndicatorId).posX(e.posX()-2)
+        E.E(desire.desireIndicatorId)
+                .tint(e.getTint())
+                .posX(e.posX()-2)
                 .posY(e.posY() + DESIRE_INDICATOR_OFFSET_Y+2);
         E.E(desire.desireIndicatorCloudId).posX(e.posX()-4)
+                .tint(e.getTint())
                 .posY(e.posY() + DESIRE_INDICATOR_OFFSET_Y-4);
     }
 

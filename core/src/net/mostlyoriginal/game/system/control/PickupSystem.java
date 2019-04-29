@@ -54,7 +54,6 @@ public class PickupSystem extends FluidIteratingSystem {
             E lifting = E.E(actor.getLifting().id);
             if (actor.hasShopper()) {
                 lifting.scale(1f);
-                lifting.tint(carriedItemTint);
                 lifting.posX(actor.getPos().xy.x + 8);
                 lifting.posY(actor.getPos().xy.y + CARRIED_OBJECT_SHOPPER_LIFTING_HEIGHT - 8);
             } else {
