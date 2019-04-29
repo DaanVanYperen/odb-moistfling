@@ -66,11 +66,77 @@
       "id": "recipe_brundle_imp",
       "machine": "ALTAR",
       "ingredients": [
-        "item_demon_hide",
+        "item_imp",
+        "item_chick"
+      ],
+      "produces": [
+        "item_imp",
+        "item_imp"
+      ]
+    },
+    {
+      "id": "recipe_unichicken",
+      "ageCost": 1,
+      "machine": "ALTAR",
+      "ingredients": [
+        "item_chicken",
+        "item_unicorn_horn",
+        "item_player_young"
+      ],
+      "produces": [
+        "item_unichicken",
+        "item_player_old"
+      ]
+    },
+    {
+      "id": "recipe_hydrachicken",
+      "machine": "ALTAR",
+      "ingredients": [
+        "item_chicken",
+        "item_chicken",
         "item_chicken"
       ],
       "produces": [
-        "item_imp"
+        "item_hydra_chicken"
+      ]
+    },
+    {
+      "id": "recipe_knight_chicken",
+      "machine": "ALTAR",
+      "ingredients": [
+        "item_chicken",
+        "item_winged_boots",
+        "item_enchanted_armor"
+      ],
+      "produces": [
+        "item_knight_chicken"
+      ]
+    },
+    {
+      "id": "recipe_superpotion",
+      "ageCost": 1,
+      "machine": "ALTAR",
+      "ingredients": [
+        "item_mana_potion",
+        "item_healing_potion",
+        "item_player_young"
+      ],
+      "produces": [
+        "item_superpotion",
+        "item_player_old"
+      ]
+    },
+    {
+      "id": "recipe_unichicken_to_orb",
+      "machine": "ALTAR",
+      "ingredients": [
+        "item_unichicken",
+        "item_sword"
+      ],
+      "produces": [
+        "item_tier1_orb",
+        "item_tier1_orb",
+        "item_tier1_orb"
       ]
     },
     {
@@ -263,7 +329,7 @@
       "produces": [
         "item_enchanted_armor"
       ]
-    },
+    }
     {
       "id": "recipe_enchanted_armor_drain_cost",
       "machine": "ALTAR",
@@ -274,6 +340,20 @@
       ],
       "produces": [
         "item_enchanted_armor",
+        "item_player_old"
+      ]
+    },
+    {
+      "id": "recipe_rainbow_armor",
+      "machine": "ALTAR",
+      "ageCost": 3,
+      "ingredients": [
+        "item_enchanted_armor",
+        "item_unicorn_horn",
+        "item_player_young"
+      ],
+      "produces": [
+        "item_rainbow_armor",
         "item_player_old"
       ]
     },

@@ -25,42 +25,77 @@ public class TutorialSystem extends BaseSystem {
         playerE = E.withTag("player");
         altarE = E.withTag("altar");
         player = playerE != null ? playerE.getPlayer() : null;
-        return player != null && !dialogSystem.isDialogActive() && (this.player.day == 1 && this.player.nighttime);
+        return player != null && !dialogSystem.isDialogActive();
     }
+
+    int previousDay = -1;
 
     @Override
     protected void processSystem() {
+        if ( previousDay != this.player.day ) {
+            previousDay = this.player.day;
+            stage = 0;
+            cooldown = 3;
+        }
+
         cooldown -= world.delta;
         if (cooldown <= 0) {
-            switch (stage) {
-                case 0:
-                    startTutorial();
-                    break;
-                case 1:
-                    twigInstructions();
-                    break;
-                case 2:
-                    herbInstructions();
-                    break;
-                case 3:
-                    storageInstructions();
-                    break;
-                case 4:
-                    chickOnAltarInstructions();
-                    break;
-                case 5:
-                    selfOnAltarInstructions();
-                    break;
-                case 6:
-                    deagedSuccess();
-                    break;
-                case 7:
-                    deagedSuccess2();
-                    break;
-                case 8:
-                    doorInstructions();
-                    break;
+            if (this.player.day == 1 && this.player.nighttime) {
+                firstNightTutorials();
             }
+            if (this.player.day == 2 && this.player.nighttime) {
+                startTutorialSecondNight();
+            }
+            if (this.player.day == 3 && this.player.nighttime) {
+                thirdNightTutorials();
+            }
+        }
+    }
+    private void secondNightTutorials() {
+        switch (stage) {
+            case 0:
+                startTutorialSecondNight();
+                break;
+        }
+    }
+
+    private void thirdNightTutorials() {
+        switch (stage) {
+            case 0:
+                startTutorialThirdNight();
+                break;
+        }
+    }
+
+    private void firstNightTutorials() {
+        switch (stage) {
+            case 0:
+                startTutorial();
+                break;
+            case 1:
+                twigInstructions();
+                break;
+            case 2:
+                herbInstructions();
+                break;
+            case 3:
+                storageInstructions();
+                break;
+            case 4:
+                chickOnAltarInstructions();
+                break;
+            case 5:
+                selfOnAltarInstructions();
+                break;
+            case 6:
+                deagedSuccess();
+                break;
+            case 7:
+                deagedSuccess2();
+                break;
+            case 8:
+                doorInstructions();
+                break;
         }
     }
 
@@ -88,7 +123,7 @@ public class TutorialSystem extends BaseSystem {
     }
 
     private void deagedSuccess() {
-        if (player.age == 2) {
+        if (player.age <= 2) {
             dialogSystem.queue("actor_player_face", "Ah to be young again.");
             dialogSystem.queue("actor_player_face", "I need to be younger though.");
             dialogSystem.queue("actor_player_face", "Twice more.");
@@ -153,6 +188,23 @@ public class TutorialSystem extends BaseSystem {
     private void startTutorial() {
         dialogSystem.queue("actor_player_face", "An enchanted bow eh? I'll make it!");
         dialogSystem.queue("actor_player_face", "First I need to grab a twig!");
+        stage++;
+    }
+
+    private void startTutorialSecondNight() {
+        dialogSystem.queue("actor_player_face", "Herbs are great for potions.");
+        dialogSystem.queue("actor_player_face", "I should put these away.");
+        dialogSystem.queue("actor_player_face", "Perhaps craft some things to restock.");
+        dialogSystem.queue("actor_player_face", "Click the door when ready.");
+        stage++;
+    }
+
+
+    private void startTutorialThirdNight() {
+        dialogSystem.queue("actor_player_face", "Imp skin makes great armor.");
+        dialogSystem.queue("actor_player_face", "Fairly easy to breed as well!");
+        dialogSystem.queue("actor_player_face", "I should save my chicks.");
+        dialogSystem.queue("actor_player_face", "Click the door when ready.");
         stage++;
     }
 }

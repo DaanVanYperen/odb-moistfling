@@ -56,7 +56,7 @@ public class NightShopperSpawnSystem extends FluidIteratingSystem {
             dialogSystem.queue("actor_player_face", "Typical haggery. What do you want?");
             dialogSystem.queue("actor_hag_face", "Prepare an enchanted blue bow,");
             dialogSystem.queue("actor_hag_face", "and tomorrow, riches you will know!");
-            dialogSystem.queue("actor_player_face", "Your rimes really blow.");
+            dialogSystem.queue("actor_player_face", "Your rhymes really blow.");
             dialogSystem.queue("actor_hag_face", "They are only for show.");
             dialogSystem.queue("actor_hag_face", "Now I will go..w! g.. never mind.");
 
@@ -78,6 +78,22 @@ public class NightShopperSpawnSystem extends FluidIteratingSystem {
             dialogSystem.queue("actor_postal_face", "Package from the druids. See ya!");
             return true;
         }
+
+        if (day == 3) {
+            mapSpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY, "item_talk", "item_imp", "actor_hag", 1).shopperType(Shopper.Type.HAG);
+            dialogSystem.queue("actor_player_face", "Not you again.");
+            dialogSystem.queue("actor_hag_face", "My familiar is too familiar with me.");
+            dialogSystem.queue("actor_hag_face", "Impish behaviour i wish not to see.");
+            dialogSystem.queue("actor_player_face", "Leave it here you old hag,");
+            dialogSystem.queue("actor_player_face", "I'll skin it for free!");
+            dialogSystem.queue("actor_hag_face", "Teee heee heee heee. Now I will Flee!");
+
+            //dialogSystem.queue("actor_player_face", "Hello i'm talking about my banana.");
+            //dialogSystem.queue("actor_hag_face", "EEK EEEK. EEEEEK.");
+            //dialogSystem.queue("actor_postal_face", "I'm not even here!");
+            return true;
+        }
+
         return false;
     }
 
