@@ -87,7 +87,7 @@ public class LogoScreenSetupSystem extends BaseSystem {
                 hasScore ? 280 : 220);
         //scheduleTransitionToGameScreen();
         GameRules.lastScore = NO_SCORE;
-        GameRules.level = 1;
+        GameRules.level = 0;
     }
 
     private void addScore(int lastScore) {
@@ -99,7 +99,7 @@ public class LogoScreenSetupSystem extends BaseSystem {
                 .fontFontName("5x5")
                 .renderLayer(10)
                 .fontScale(6f);
-        String scoreText = "You earned " + lastScore + " tips! ";
+        String scoreText = "You earned " + lastScore + " gold! ";
         message3 = E.E()
                 .pos((Gdx.graphics.getWidth() / 2) - scoreText.length()*15, 32 + 64 + 16)
                 .labelText(scoreText)
@@ -139,7 +139,7 @@ public class LogoScreenSetupSystem extends BaseSystem {
 
         // approximate percentage of screen size with logo. Use rounded numbers to keep the logo crisp.
 
-        float zoom = Anims.scaleToScreenRounded(scale, LogoScreenAssetSystem.LOGO_WIDTH);
+        float zoom = 1.4f;
 
         logo = Anims.createCenteredAt(
                 LogoScreenAssetSystem.LOGO_WIDTH,

@@ -78,6 +78,7 @@ public class ScoreSystem extends BaseSystem {
 
         if (lastGold != player.playerGold()) {
             lastGold = player.playerGold();
+            GameRules.lastScore = lastGold;
             goldLabel.labelText("Banked " + player.playerGold() + " gold");
             flash(goldLabel);
         }

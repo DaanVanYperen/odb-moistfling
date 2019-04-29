@@ -16,7 +16,7 @@ public class GdxArtemisGame extends Game {
 	}
 
 	public void restart() {
-		setScreen(new GameScreen());
+		setScreen(new LogoScreen());
 	}
 
 	public static GdxArtemisGame getInstance()

@@ -81,18 +81,18 @@ public class TransitionSystem extends EntityProcessingSystem {
         }
 
         if (percentCovered > 0) {
-            if (transition_red == null) {
-                transition_red = (TextureRegion) abstractAssetSystem.get("transition_red").getKeyFrame(0);
-                transition_white = (TextureRegion) abstractAssetSystem.get("transition_white").getKeyFrame(0);
-            }
+            //if (transition_red == null) {
+//                transition_red = (TextureRegion) abstractAssetSystem.get("transition_red").getKeyFrame(0);
+//                transition_white = (TextureRegion) abstractAssetSystem.get("transition_white").getKeyFrame(0);
+//            }
 
             batch.setProjectionMatrix(cameraSystem.camera.combined);
             batch.setColor(1f,1f,1f,1f);
             batch.begin();
             int actualWidth = (int)(GameRules.SCREEN_WIDTH / cameraSystem.zoom);
             int actualHeight = (int)(GameRules.SCREEN_HEIGHT / cameraSystem.zoom);
-            batch.draw(transition_red, 0, 0, actualWidth * percentCovered*0.01f, actualHeight);
-            batch.draw(transition_white, actualWidth -(actualWidth * percentCovered*0.01f), 0, actualWidth * percentCovered*0.01f, actualHeight);
+//            batch.draw(transition_red, 0, 0, actualWidth * percentCovered*0.01f, actualHeight);
+//            batch.draw(transition_white, actualWidth -(actualWidth * percentCovered*0.01f), 0, actualWidth * percentCovered*0.01f, actualHeight);
             batch.end();
         }
 
