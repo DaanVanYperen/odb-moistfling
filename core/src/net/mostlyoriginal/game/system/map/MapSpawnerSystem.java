@@ -8,7 +8,7 @@ import net.mostlyoriginal.game.GameRules;
 import net.mostlyoriginal.game.component.Slot;
 import net.mostlyoriginal.game.component.AffectedByNight;
 import net.mostlyoriginal.game.component.Machine;
-import net.mostlyoriginal.game.manager.ItemRepository;
+import net.mostlyoriginal.game.system.ItemRepository;
 
 import java.util.ArrayList;
 import java.util.List;

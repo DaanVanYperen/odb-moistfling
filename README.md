@@ -1,14 +1,12 @@
 Necromarket
 ===========
 
-WIP
-
 #### Summary
 Jam game made in 72 hours, made with [LibGDX](https://github.com/libgdx/libgdx) and [Artemis-ODB](https://github.com/junkdog/artemis-odb). Tested for desktop and html5 via gwt.
 
 This particular game uses odb 2.1 fluid entities!
 
-![](https://static.jam.vg/raw/64d/z/1dcf7.gif)
+![](https://static.jam.vg/raw/64d/z/22bc3.png)
 
 #### Grab what you need!
 Artemis Entity System takes a way a lot of the lifecycle management, and composition is a natural match for a time constrained Jam. While made in a rush, I hope this code gives you an idea or two how to benefit from using an entity system in your project.

@@ -8,7 +8,7 @@ import net.mostlyoriginal.api.component.basic.Pos;
 import net.mostlyoriginal.game.GameRules;
 import net.mostlyoriginal.game.component.Desire;
 import net.mostlyoriginal.game.component.GridPos;
-import net.mostlyoriginal.game.manager.ItemRepository;
+import net.mostlyoriginal.game.system.ItemRepository;
 
 /**
  * @author Daan van Yperen

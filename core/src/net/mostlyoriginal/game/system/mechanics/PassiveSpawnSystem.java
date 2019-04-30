@@ -6,7 +6,7 @@ import com.artemis.annotations.All;
 import com.badlogic.gdx.math.MathUtils;
 import net.mostlyoriginal.game.GameRules;
 import net.mostlyoriginal.game.component.PassiveSpawner;
-import net.mostlyoriginal.game.manager.ItemRepository;
+import net.mostlyoriginal.game.system.ItemRepository;
 import net.mostlyoriginal.game.system.ParticleSystem;
 import net.mostlyoriginal.game.system.control.PickupManager;
 import net.mostlyoriginal.game.system.map.MapSpawnerSystem;

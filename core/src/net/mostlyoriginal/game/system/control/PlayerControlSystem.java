@@ -15,7 +15,7 @@ import net.mostlyoriginal.game.component.GridPos;
 import net.mostlyoriginal.game.component.Item;
 import net.mostlyoriginal.game.component.ItemData;
 import net.mostlyoriginal.game.component.Player;
-import net.mostlyoriginal.game.manager.ItemRepository;
+import net.mostlyoriginal.game.system.ItemRepository;
 import net.mostlyoriginal.game.system.NightSystem;
 import net.mostlyoriginal.game.system.map.MapSpawnerSystem;
 import net.mostlyoriginal.game.system.map.MapSystem;

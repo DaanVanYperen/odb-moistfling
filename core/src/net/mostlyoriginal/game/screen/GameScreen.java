@@ -7,12 +7,11 @@ import com.artemis.link.EntityLinkManager;
 import com.artemis.managers.TagManager;
 import com.badlogic.gdx.graphics.Color;
 import net.mostlyoriginal.api.manager.FontManager;
-import net.mostlyoriginal.api.screen.core.WorldScreen;
 import net.mostlyoriginal.api.system.camera.CameraSystem;
 import net.mostlyoriginal.api.system.graphics.RenderBatchingSystem;
 import net.mostlyoriginal.game.GdxArtemisGame;
-import net.mostlyoriginal.game.manager.ItemRepository;
-import net.mostlyoriginal.game.manager.RecipeRepository;
+import net.mostlyoriginal.game.system.ItemRepository;
+import net.mostlyoriginal.game.system.RecipeRepository;
 import net.mostlyoriginal.game.system.*;
 import net.mostlyoriginal.game.system.control.*;
 import net.mostlyoriginal.game.system.logic.TransitionSystem;
@@ -22,8 +21,6 @@ import net.mostlyoriginal.game.system.view.GameScreenAssetSystem;
 import net.mostlyoriginal.game.system.view.MyClearScreenSystem;
 import net.mostlyoriginal.plugin.OperationsPlugin;
 import net.mostlyoriginal.plugin.ProfilerPlugin;
-
-import static org.reflections.util.ConfigurationBuilder.build;
 
 /**
  * Example main game screen.

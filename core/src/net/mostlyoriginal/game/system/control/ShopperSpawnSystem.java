@@ -10,7 +10,7 @@ import net.mostlyoriginal.game.component.GridPos;
 import net.mostlyoriginal.game.component.Player;
 import net.mostlyoriginal.game.component.Shopper;
 import net.mostlyoriginal.game.component.ShopperSpawner;
-import net.mostlyoriginal.game.manager.ItemRepository;
+import net.mostlyoriginal.game.system.ItemRepository;
 import net.mostlyoriginal.game.system.DialogSystem;
 import net.mostlyoriginal.game.system.map.MapSpawnerSystem;
 

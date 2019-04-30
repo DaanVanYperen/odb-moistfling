@@ -5,7 +5,7 @@ import com.artemis.E;
 import net.mostlyoriginal.game.GameRules;
 import net.mostlyoriginal.game.component.GridPos;
 import net.mostlyoriginal.game.component.ItemData;
-import net.mostlyoriginal.game.manager.ItemRepository;
+import net.mostlyoriginal.game.system.ItemRepository;
 import net.mostlyoriginal.game.system.ParticleSystem;
 import net.mostlyoriginal.game.system.SlotHighlightingSystem;
 

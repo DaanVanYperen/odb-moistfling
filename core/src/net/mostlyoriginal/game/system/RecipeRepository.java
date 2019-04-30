@@ -1,17 +1,12 @@
-package net.mostlyoriginal.game.manager;
+package net.mostlyoriginal.game.system;
 
 import com.artemis.BaseSystem;
 import com.artemis.utils.IntBag;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.utils.IntMap;
 import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.ObjectIntMap;
 import net.mostlyoriginal.game.component.Item;
 import net.mostlyoriginal.game.component.RecipeData;
-import net.mostlyoriginal.game.system.ItemLibrary;
-import net.mostlyoriginal.game.system.RecipeLibrary;
-
-import java.util.HashMap;
 
 import static com.artemis.E.E;
 

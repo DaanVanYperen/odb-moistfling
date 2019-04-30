@@ -1,4 +1,4 @@
-package net.mostlyoriginal.game.manager;
+package net.mostlyoriginal.game.system;
 
 import com.artemis.BaseSystem;
 import com.artemis.E;

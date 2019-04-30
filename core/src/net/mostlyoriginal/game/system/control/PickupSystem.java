@@ -9,7 +9,7 @@ import net.mostlyoriginal.api.system.graphics.RenderBatchingSystem;
 import net.mostlyoriginal.game.GameRules;
 import net.mostlyoriginal.game.component.Slot;
 import net.mostlyoriginal.game.component.Lifter;
-import net.mostlyoriginal.game.manager.ItemRepository;
+import net.mostlyoriginal.game.system.ItemRepository;
 import net.mostlyoriginal.game.system.SlotHighlightingSystem;
 import net.mostlyoriginal.game.system.map.MapSpawnerSystem;
 import net.mostlyoriginal.game.system.mechanics.TutorialSystem;

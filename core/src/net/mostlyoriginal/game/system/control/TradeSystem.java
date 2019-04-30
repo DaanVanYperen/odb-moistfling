@@ -5,13 +5,10 @@ import com.artemis.FluidIteratingSystem;
 import com.artemis.annotations.All;
 import net.mostlyoriginal.api.component.basic.Pos;
 import net.mostlyoriginal.api.system.graphics.RenderBatchingSystem;
-import net.mostlyoriginal.game.GameRules;
 import net.mostlyoriginal.game.component.Lifter;
 import net.mostlyoriginal.game.component.Shopper;
-import net.mostlyoriginal.game.manager.ItemRepository;
-import net.mostlyoriginal.game.screen.GameScreen;
+import net.mostlyoriginal.game.system.ItemRepository;
 import net.mostlyoriginal.game.system.DialogSystem;
-import net.mostlyoriginal.game.system.logic.TransitionSystem;
 import net.mostlyoriginal.game.system.mechanics.TutorialSystem;
 import net.mostlyoriginal.game.system.view.GameScreenAssetSystem;
 
