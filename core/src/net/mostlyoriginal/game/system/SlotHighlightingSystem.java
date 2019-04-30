@@ -9,8 +9,7 @@ import net.mostlyoriginal.api.component.graphics.Anim;
 import net.mostlyoriginal.api.component.graphics.Tint;
 import net.mostlyoriginal.api.operation.JamOperationFactory;
 import net.mostlyoriginal.api.operation.OperationFactory;
-import net.mostlyoriginal.api.operation.common.Operation;
-import net.mostlyoriginal.game.Slot;
+import net.mostlyoriginal.game.component.Slot;
 import net.mostlyoriginal.game.component.GridPos;
 
 /**

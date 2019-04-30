@@ -5,7 +5,7 @@ import com.artemis.E;
 import com.badlogic.gdx.maps.MapProperties;
 import net.mostlyoriginal.api.component.graphics.Tint;
 import net.mostlyoriginal.game.GameRules;
-import net.mostlyoriginal.game.Slot;
+import net.mostlyoriginal.game.component.Slot;
 import net.mostlyoriginal.game.component.AffectedByNight;
 import net.mostlyoriginal.game.component.Machine;
 import net.mostlyoriginal.game.manager.ItemRepository;

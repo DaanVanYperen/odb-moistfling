@@ -10,7 +10,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.math.Vector2;
 import net.mostlyoriginal.api.utils.MapMask;
 import net.mostlyoriginal.game.GameRules;
-import net.mostlyoriginal.game.InDialog;
+import net.mostlyoriginal.game.component.InDialog;
 import net.mostlyoriginal.game.component.GridPos;
 import net.mostlyoriginal.game.component.Item;
 import net.mostlyoriginal.game.component.ItemData;
@@ -20,8 +20,6 @@ import net.mostlyoriginal.game.system.NightSystem;
 import net.mostlyoriginal.game.system.map.MapSpawnerSystem;
 import net.mostlyoriginal.game.system.map.MapSystem;
 import net.mostlyoriginal.game.system.view.GameScreenAssetSystem;
-
-import java.security.Key;
 
 /**
  * @author Daan van Yperen
