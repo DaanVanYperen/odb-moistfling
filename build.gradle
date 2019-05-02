@@ -135,6 +135,11 @@ project(":core") {
         main {
             compileClasspath += configurations.provided
         }
+        test {
+            java {
+                srcDir 'test'
+            }
+        }
     }
 
     dependencies {
@@ -165,9 +170,23 @@ project(":core") {
         testImplementation 'org.junit.jupiter:junit-jupiter-api:5.3.1'
         testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.3.1'
     }
+
+    test {
+        useJUnitPlatform()
+    }
 }
 
 // dependency matrix does not output component usage when using fluid entities.
 tasks.eclipse.doLast {
     delete ".project"
+}
+
+subprojects {
+    apply plugin: 'idea'
+
+    idea {
+        module {
+            testSourceDirs += file('test')
+        }
+    }
 }
