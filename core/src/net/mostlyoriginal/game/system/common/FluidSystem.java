@@ -27,10 +27,4 @@ public abstract class FluidSystem extends EntityProcessingSystem {
     }
 
     protected abstract void process(E e);
-
-    protected E entityWithTag(String tag) {
-        final Entity entity = world.getSystem(TagManager.class).getEntity(tag);
-        return entity != null ? E(entity) : null;
-
-    }
 }

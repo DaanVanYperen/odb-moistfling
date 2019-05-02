@@ -19,8 +19,6 @@ import net.mostlyoriginal.game.util.Anims;
 import static net.mostlyoriginal.api.operation.JamOperationFactory.moveBetween;
 import static net.mostlyoriginal.api.operation.JamOperationFactory.scaleBetween;
 import static net.mostlyoriginal.api.operation.OperationFactory.*;
-import static net.mostlyoriginal.game.system.view.FeatureScreenSetupSystem.COLOR_LOGO_FADED;
-import static net.mostlyoriginal.game.system.view.FeatureScreenSetupSystem.COLOR_LOGO_FULL;
 
 /**
  * @author Daan van Yperen
@@ -42,6 +40,9 @@ public class LogoScreenSetupSystem extends BaseSystem {
     private E message3;
 
     private float cooldown =0.5f;
+
+    public static final Tint COLOR_LOGO_FADED = new Tint(1.0f, 1.0f, 1.0f, 0.0f);
+    public static final Tint COLOR_LOGO_FULL = new Tint(1.0f, 1.0f, 1.0f, 1.0f);
 
     private boolean finished=false;
 

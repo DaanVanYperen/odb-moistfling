@@ -1,22 +1,18 @@
 package net.mostlyoriginal.game.system.logic;
 
 import com.artemis.Aspect;
-import com.artemis.E;
 import com.artemis.Entity;
 import com.artemis.annotations.Wire;
 import com.artemis.systems.EntityProcessingSystem;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.graphics.g3d.shaders.BaseShader;
 import net.mostlyoriginal.api.manager.AbstractAssetSystem;
 import net.mostlyoriginal.api.system.camera.CameraSystem;
 import net.mostlyoriginal.game.GameRules;
 import net.mostlyoriginal.game.component.logic.Transition;
 import net.mostlyoriginal.game.screen.TransitionableWorldScreen;
-import net.mostlyoriginal.game.system.view.FeatureScreenAssetSystem;
 
 import static com.artemis.E.*;
 import static net.mostlyoriginal.api.operation.OperationFactory.*;
