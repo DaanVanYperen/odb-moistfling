@@ -11,6 +11,7 @@ import net.mostlyoriginal.game.system.ParticleSystem;
 import net.mostlyoriginal.game.system.control.PickupManager;
 import net.mostlyoriginal.game.system.map.MapSpawnerSystem;
 import net.mostlyoriginal.game.system.view.GameScreenAssetSystem;
+import net.mostlyoriginal.api.util.Cooldown;
 
 /**
  * @author Daan van Yperen
@@ -21,20 +22,14 @@ public class PassiveSpawnSystem extends FluidIteratingSystem {
     private MapSpawnerSystem mapSpawnerSystem;
     private GameScreenAssetSystem gameScreenAssetSystem;
 
-    private float cooldown = 1f;
+    private Cooldown cooldown = Cooldown.withInterval(UPDATE_EVERY_SECONDS);
     private ParticleSystem particleSystem;
     private ItemRepository itemRepository;
     private PickupManager pickupManager;
 
     @Override
     protected boolean checkProcessing() {
-        cooldown -= world.delta;
-        if (cooldown <= 0) {
-            cooldown = UPDATE_EVERY_SECONDS;
-            return true;
-        } else {
-            return false;
-        }
+        return cooldown.ready(world.delta);
     }
 
     @Override

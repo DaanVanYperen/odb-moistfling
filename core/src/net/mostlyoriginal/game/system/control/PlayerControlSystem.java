@@ -20,6 +20,7 @@ import net.mostlyoriginal.game.system.NightSystem;
 import net.mostlyoriginal.game.system.map.MapSpawnerSystem;
 import net.mostlyoriginal.game.system.map.MapSystem;
 import net.mostlyoriginal.game.system.view.GameScreenAssetSystem;
+import net.mostlyoriginal.api.util.Cooldown;
 
 /**
  * @author Daan van Yperen
@@ -38,7 +39,7 @@ public class PlayerControlSystem extends FluidIteratingSystem {
     private ItemRepository itemRepository;
     private NightSystem nightSystem;
 
-    public float interactCooldown = 0;
+    public Cooldown interactCooldown = Cooldown.withInterval(0.2f).autoReset(false);
     private GameScreenAssetSystem gameScreenAssetSystem;
 
     @Override
@@ -49,7 +50,7 @@ public class PlayerControlSystem extends FluidIteratingSystem {
 
     @Override
     protected void process(E e) {
-        interactCooldown -= world.delta;
+        interactCooldown.decreaseBy(world.delta);
         if (!e.hasMoving()) {
             handleMovement(e);
         }
@@ -83,7 +84,7 @@ public class PlayerControlSystem extends FluidIteratingSystem {
             }
         }
 
-        if ( interactCooldown <= 0 ) {
+        if ( interactCooldown.ready() ) {
             if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE) || Gdx.input.isKeyJustPressed(Input.Keys.SHIFT_RIGHT) || Gdx.input.isKeyJustPressed(Input.Keys.SHIFT_LEFT)) {
                 if (e.getGridPos().x >= 15 && e.getGridPos().x <= 18 && e.getGridPos().y >= 8) {
                     nightSystem.toggle();

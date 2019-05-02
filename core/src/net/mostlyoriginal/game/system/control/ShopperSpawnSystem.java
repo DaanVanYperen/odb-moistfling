@@ -26,7 +26,6 @@ public class ShopperSpawnSystem extends FluidIteratingSystem {
     private EntitySubscription shoppers;
     MapSpawnerSystem mapSpawnerSystem;
 
-    private float spawnCooldown = 0;
     private int lastScriptedSpawnDay = 0;
     private int spawns = 0;
     private E player;
@@ -36,8 +35,8 @@ public class ShopperSpawnSystem extends FluidIteratingSystem {
     @Override
     protected boolean checkProcessing() {
         boolean daytime = !E.withTag("player").playerNighttime();
-        if ( !daytime ) {
-            spawns=0;
+        if (!daytime) {
+            spawns = 0;
         }
         return daytime;
     }
@@ -52,10 +51,7 @@ public class ShopperSpawnSystem extends FluidIteratingSystem {
     protected void process(E e) {
         ShopperSpawner shopperSpawner = e.getShopperSpawner();
         if (shopperSpawner.shopperId == -1 && !enoughShoppers() && !isShopperAtSpawner(e.getGridPos())) {
-            shopperSpawner.cooldown -= world.delta;
-            if (shopperSpawner.cooldown < 0) {
-                shopperSpawner.cooldown += 8;
-
+            if (shopperSpawner.cooldown.ready(world.delta)) {
                 Player player = this.player.getPlayer();
                 if (player.visitorsRemaining > 0) {
                     spawns++;
@@ -91,20 +87,20 @@ public class ShopperSpawnSystem extends FluidIteratingSystem {
 
         if (day == Days.FIRST_DAY_IN_THE_SHOP) {
             Player player = E.withTag("player").getPlayer();
-            if ( player.visitorsRemaining > 5 ) {
+            if (player.visitorsRemaining > 5) {
                 player.visitorsRemaining = 5;
             }
-            lastScriptedSpawnDay=-1; // run this over and over.
+            lastScriptedSpawnDay = -1; // run this over and over.
             String desiredItem = "item_wood";
             mapSpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY,
                     desiredItem, itemRepository.randomReward(), "customer", 1);
-            if (spawns==1) {
+            if (spawns == 1) {
                 dialogSystem.queue(NameHelper.getActor_player_face(), "Patrons want to buy specific items!");
                 dialogSystem.queue(NameHelper.getActor_player_face(), "All these guys want sticks!");
                 dialogSystem.queue(NameHelper.getActor_player_face(), "Use space near the sticks to pick one up.");
                 dialogSystem.queue(NameHelper.getActor_player_face(), "Stand at a patron and use space to trade.");
             }
-            if (player.visitorsRemaining==4) {
+            if (player.visitorsRemaining == 4) {
                 dialogSystem.queue(NameHelper.getActor_player_face(), "When things slow down or out of stock,");
                 dialogSystem.queue(NameHelper.getActor_player_face(), "just close the door and patrons will leave");
             }
@@ -123,37 +119,57 @@ public class ShopperSpawnSystem extends FluidIteratingSystem {
         }
 
         if (day == Days.SPLINTERS_EVERYWHERE) {
-            lastScriptedSpawnDay=-1; // run this over and over.
+            lastScriptedSpawnDay = -1; // run this over and over.
             mapSpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY,
                     "item_healing_potion",
-                    spawns == 4 ?  "item_boxed_bush" : itemRepository.randomReward(), "customer", 1);
+                    spawns == 4 ? "item_boxed_bush" : itemRepository.randomReward(), "customer", 1);
             return true;
         }
 
         if (day == Days.DUNGEON_DELVED) {
-            lastScriptedSpawnDay=-1; // run this over and over.
+            lastScriptedSpawnDay = -1; // run this over and over.
             String desiredItem = "item_bow";
-            switch (MathUtils.random(0,4)) {
-                case 0: desiredItem = "item_sword"; break;
-                case 1: desiredItem = "item_sword"; break;
-                case 2: desiredItem = "item_leather_armor"; break;
-                case 3: desiredItem = "item_bow"; break;
-                case 4: desiredItem = "item_boots"; break;
+            switch (MathUtils.random(0, 4)) {
+                case 0:
+                    desiredItem = "item_sword";
+                    break;
+                case 1:
+                    desiredItem = "item_sword";
+                    break;
+                case 2:
+                    desiredItem = "item_leather_armor";
+                    break;
+                case 3:
+                    desiredItem = "item_bow";
+                    break;
+                case 4:
+                    desiredItem = "item_boots";
+                    break;
             }
             mapSpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY,
-                    desiredItem,itemRepository.randomReward() , "customer", 1);
+                    desiredItem, itemRepository.randomReward(), "customer", 1);
             return true;
         }
 
         if (day == Days.TRAVELING_CIRCUS) {
-            lastScriptedSpawnDay=-1; // run this over and over.
+            lastScriptedSpawnDay = -1; // run this over and over.
             String desiredItem = "item_imp";
-            switch (MathUtils.random(0,4)) {
-                case 0: desiredItem = "item_hydra_chicken"; break;
-                case 1: desiredItem = "item_hydra_chicken"; break;
-                case 2: desiredItem = "item_hydra_chicken"; break;
-                case 3: desiredItem = "item_imp"; break;
-                case 4: desiredItem = "item_imp"; break;
+            switch (MathUtils.random(0, 4)) {
+                case 0:
+                    desiredItem = "item_hydra_chicken";
+                    break;
+                case 1:
+                    desiredItem = "item_hydra_chicken";
+                    break;
+                case 2:
+                    desiredItem = "item_hydra_chicken";
+                    break;
+                case 3:
+                    desiredItem = "item_imp";
+                    break;
+                case 4:
+                    desiredItem = "item_imp";
+                    break;
             }
             mapSpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY,
                     desiredItem, "item_unicorn", "customer", 1);
@@ -162,17 +178,27 @@ public class ShopperSpawnSystem extends FluidIteratingSystem {
 
 
         if (day == Days.MAGE_COURT) {
-            lastScriptedSpawnDay=-1; // run this over and over.
+            lastScriptedSpawnDay = -1; // run this over and over.
             String desiredItem = "item_magical_staff";
-            switch (MathUtils.random(0,4)) {
-                case 0: desiredItem = "item_magical_staff"; break;
-                case 1: desiredItem = "item_mana_potion"; break;
-                case 2: desiredItem = "item_mana_potion"; break;
-                case 3: desiredItem = "item_winged_boots"; break;
-                case 4: desiredItem = "item_imp"; break;
+            switch (MathUtils.random(0, 4)) {
+                case 0:
+                    desiredItem = "item_magical_staff";
+                    break;
+                case 1:
+                    desiredItem = "item_mana_potion";
+                    break;
+                case 2:
+                    desiredItem = "item_mana_potion";
+                    break;
+                case 3:
+                    desiredItem = "item_winged_boots";
+                    break;
+                case 4:
+                    desiredItem = "item_imp";
+                    break;
             }
             String rewardItem = itemRepository.randomReward();
-            if ( spawns == 4 ) {
+            if (spawns == 4) {
                 desiredItem = "item_rainbow_armor";
                 rewardItem = "item_boxed_forge";
             }
@@ -184,12 +210,12 @@ public class ShopperSpawnSystem extends FluidIteratingSystem {
 
 
         if (day == Days.MARRIAGE_NIGHT) {
-            lastScriptedSpawnDay=-1; // run this over and over.
-            if ( spawns == 1 ) {
+            lastScriptedSpawnDay = -1; // run this over and over.
+            if (spawns == 1) {
                 mapSpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY,
                         "item_ring", "item_ring", "actor_hag", 1);
             }
-            if ( spawns == 2 ) {
+            if (spawns == 2) {
                 mapSpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY,
                         "item_ring", "item_ring", "actor_postal", 1);
                 E.withTag("player").playerVisitorsRemaining(0);

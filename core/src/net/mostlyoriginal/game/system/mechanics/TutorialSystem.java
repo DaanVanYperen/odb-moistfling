@@ -7,6 +7,9 @@ import net.mostlyoriginal.game.component.Player;
 import net.mostlyoriginal.game.system.DialogSystem;
 import net.mostlyoriginal.game.system.control.Days;
 import net.mostlyoriginal.game.system.control.NameHelper;
+import net.mostlyoriginal.api.util.Cooldown;
+
+import static net.mostlyoriginal.api.utils.Duration.seconds;
 
 /**
  * @author Daan van Yperen
@@ -16,7 +19,7 @@ public class TutorialSystem extends BaseSystem {
     DialogSystem dialogSystem;
     private Player player;
 
-    public float cooldown = 3;
+    public Cooldown cooldown = Cooldown.withInterval(seconds(3)).autoReset(false);
     public int stage = 0;
     private E playerE;
     private E altarE;
@@ -37,11 +40,10 @@ public class TutorialSystem extends BaseSystem {
         if (previousDay != this.player.day) {
             previousDay = this.player.day;
             stage = 0;
-            cooldown = 3;
+            cooldown.restart();
         }
 
-        cooldown -= world.delta;
-        if (cooldown <= 0) {
+        if (cooldown.ready(world.delta)) {
             if (this.player.day == Days.FIRST_DAY_IN_THE_SHOP && this.player.nighttime) {
                 firstDayInTheShopTutorials();
             }

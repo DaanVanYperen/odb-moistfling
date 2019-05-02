@@ -1,4 +1,4 @@
-package net.mostlyoriginal.game.system.map;
+package net.mostlyoriginal.game.util;
 
 import net.mostlyoriginal.api.component.graphics.Invisible;
 import net.mostlyoriginal.api.component.graphics.Tint;

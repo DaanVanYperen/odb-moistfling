@@ -21,7 +21,6 @@ public class NightShopperSpawnSystem extends FluidIteratingSystem {
     private EntitySubscription shoppers;
     MapSpawnerSystem mapSpawnerSystem;
 
-    private float spawnCooldown = 0;
     private int lastScriptedSpawnDay = 0;
     private E player;
     private DialogSystem dialogSystem;

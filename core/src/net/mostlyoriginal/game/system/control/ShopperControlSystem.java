@@ -4,12 +4,11 @@ import com.artemis.E;
 import com.artemis.FluidIteratingSystem;
 import com.artemis.annotations.All;
 import com.badlogic.gdx.graphics.Color;
-import net.mostlyoriginal.api.component.graphics.Tint;
 import net.mostlyoriginal.api.system.graphics.RenderBatchingSystem;
 import net.mostlyoriginal.game.GameRules;
 import net.mostlyoriginal.game.component.Shopper;
 import net.mostlyoriginal.game.system.DialogSystem;
-import net.mostlyoriginal.game.system.map.Scripts;
+import net.mostlyoriginal.game.util.Scripts;
 
 /**
  * @author Daan van Yperen

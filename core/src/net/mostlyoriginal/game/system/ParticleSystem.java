@@ -32,8 +32,6 @@ public class ParticleSystem extends BaseSystem {
     private GameScreenAssetSystem assetSystem;
     private CameraSystem cameraSystem;
 
-    public float cooldown = 0;
-
     private void triggerSprinkler(E e) {
         for (int i = 0; i < MathUtils.random(1, 2); i++) {
             sand(e.posX() + MathUtils.random(0, e.boundsMaxx()), e.posY(), -90 + MathUtils.random(-2, 2), MathUtils.random(10, 40));
@@ -173,8 +171,6 @@ public class ParticleSystem extends BaseSystem {
                 .physicsVr(angularMomentum)
                 .physicsFriction(friction);
     }
-
-    float cooldown2 = 0;
 
     @Override
     protected void processSystem() {

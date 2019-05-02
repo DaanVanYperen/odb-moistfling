@@ -7,11 +7,11 @@ import com.badlogic.gdx.Input;
 import net.mostlyoriginal.api.component.graphics.Tint;
 import net.mostlyoriginal.api.component.ui.Label;
 import net.mostlyoriginal.game.GameRules;
-import net.mostlyoriginal.game.screen.GameScreen;
 import net.mostlyoriginal.game.screen.LogoScreen;
 import net.mostlyoriginal.game.system.control.PlayerControlSystem;
 import net.mostlyoriginal.game.system.logic.TransitionSystem;
-import net.mostlyoriginal.game.system.map.Scripts;
+import net.mostlyoriginal.api.util.Cooldown;
+import net.mostlyoriginal.game.util.Scripts;
 
 import java.util.LinkedList;
 
@@ -49,7 +49,7 @@ public class DialogSystem extends BaseSystem {
     private E dialogBox;
     private String targetText;
     private int revealedLength;
-    private float revealCooldown;
+    private Cooldown revealCooldown = Cooldown.withInterval(1f / 60f).autoReset(false);
 
     public boolean isDialogActive() {
         return (dialogs.size() > 0) || (targetText != null);
@@ -58,12 +58,12 @@ public class DialogSystem extends BaseSystem {
     protected void clear() {
         dialogs.clear();
         talkLabel.invisible();
-        faceIcon.invisible().tint(1f,1f,1f,0f);
-        targetText=null;
-        dialogBox.invisible().tint(1f,1f,1f,0f);
+        faceIcon.invisible().tint(1f, 1f, 1f, 0f);
+        targetText = null;
+        dialogBox.invisible().tint(1f, 1f, 1f, 0f);
         E player = E.withTag("player");
         player.inDialog(false);
-        if (player.playerDone() ) {
+        if (player.playerDone()) {
             world.getSystem(TransitionSystem.class).transition(LogoScreen.class, 0.55f);
         }
     }
@@ -85,7 +85,7 @@ public class DialogSystem extends BaseSystem {
     }
 
     public void queue(String faceAnim, String text) {
-        dialogs.add(new Dialog(faceAnim, "\""+text+"\""));
+        dialogs.add(new Dialog(faceAnim, "\"" + text + "\""));
     }
 
     @Override
@@ -109,9 +109,8 @@ public class DialogSystem extends BaseSystem {
 
     @Override
     protected void processSystem() {
-        revealCooldown -= world.delta;
-        if (revealCooldown <= 0 && targetText != null) {
-            revealCooldown += 1f / 60f;
+        if (revealCooldown.ready(world.delta) && targetText != null) {
+            revealCooldown.restart();
             revealedLength++;
             if (revealedLength < targetText.length()) {
                 talkLabel.labelText(targetText.substring(0, revealedLength));
@@ -125,20 +124,20 @@ public class DialogSystem extends BaseSystem {
 
         if (isDialogActive() && (Gdx.input.isKeyJustPressed(Input.Keys.SPACE) || Gdx.input.isKeyJustPressed(Input.Keys.SHIFT_LEFT) || Gdx.input.isKeyJustPressed(Input.Keys.SHIFT_RIGHT))) {
             popDialog();
-            nightSystem.preventAccidentalReactivation();
+            //todo nightSystem.preventAccidentalReactivation();
             preventPlayerAccidentallyClickingStuff();
         }
 
-        if (isDialogActive() &&Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
+        if (isDialogActive() && Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
             clear();
-            nightSystem.preventAccidentalReactivation();
+            //@todo nightSystem.preventAccidentalReactivation();
             preventPlayerAccidentallyClickingStuff();
         }
 
     }
 
     private void preventPlayerAccidentallyClickingStuff() {
-        playerControlSystem.interactCooldown=0.2f;
+        playerControlSystem.interactCooldown.restart();
     }
 
     private void popDialog() {

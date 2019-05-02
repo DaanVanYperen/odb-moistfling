@@ -14,6 +14,7 @@ import net.mostlyoriginal.game.system.common.FluidSystem;
 import net.mostlyoriginal.game.system.control.PickupSystem;
 import net.mostlyoriginal.game.system.map.MapSpawnerSystem;
 import net.mostlyoriginal.game.system.view.GameScreenAssetSystem;
+import net.mostlyoriginal.api.util.Cooldown;
 
 /**
  * @author Daan van Yperen
@@ -28,19 +29,13 @@ public class MachineRecipeSystem extends FluidSystem {
     private PickupSystem pickupSystem;
     private GameScreenAssetSystem gameScreenAssetSystem;
     private ParticleSystem particleSystem;
-    private float cooldown;
+    private Cooldown systemCooldown = Cooldown.withInterval(UPDATE_EVERY_SECONDS);
     private static final float UPDATE_EVERY_SECONDS = 0.1f;
 
     @Override
     protected boolean checkProcessing() {
         // don't run this too aggressively.
-        cooldown -= world.delta;
-        if (cooldown <= 0) {
-            cooldown = UPDATE_EVERY_SECONDS;
-            return true;
-        } else {
-            return false;
-        }
+        return systemCooldown.ready(world.delta);
     }
 
     @Override

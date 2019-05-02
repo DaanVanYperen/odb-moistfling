@@ -4,12 +4,14 @@ import com.artemis.E;
 import com.artemis.FluidIteratingSystem;
 import com.artemis.annotations.All;
 import com.badlogic.gdx.math.Interpolation;
-import com.badlogic.gdx.math.MathUtils;
 import net.mostlyoriginal.api.component.graphics.Tint;
 import net.mostlyoriginal.api.operation.JamOperationFactory;
 import net.mostlyoriginal.game.GameRules;
 import net.mostlyoriginal.game.component.AffectedByNight;
 import net.mostlyoriginal.game.component.Player;
+import net.mostlyoriginal.api.util.Cooldown;
+
+import static net.mostlyoriginal.api.utils.Duration.seconds;
 
 /**
  * @author Daan van Yperen
@@ -17,16 +19,14 @@ import net.mostlyoriginal.game.component.Player;
 @All(AffectedByNight.class)
 public class NightSystem extends FluidIteratingSystem {
 
-
     private boolean nighttime = true;
-    private float cooldown = 0;
-
     private boolean flipped = true;
+    private Cooldown cooldown = Cooldown.withInterval(seconds(1));
 
     @Override
     protected void begin() {
         super.begin();
-        cooldown -= world.delta;
+        cooldown.decreaseBy(world.delta);
     }
 
     @Override
@@ -36,8 +36,7 @@ public class NightSystem extends FluidIteratingSystem {
     }
 
     public void toggle() {
-        if ( cooldown < 0 ) {
-            preventAccidentalReactivation();
+        if (cooldown.ready()) {
             E player = E.withTag("player");
             nighttime = player.playerNighttime();
             nighttime = !nighttime;
@@ -49,10 +48,6 @@ public class NightSystem extends FluidIteratingSystem {
                 playerComp.visitorsRemaining = GameRules.VISITORS_EACH_DAY;
             }
         }
-    }
-
-    public void preventAccidentalReactivation() {
-        cooldown = 2; // don't allow toggling too quickly.
     }
 
     @Override
