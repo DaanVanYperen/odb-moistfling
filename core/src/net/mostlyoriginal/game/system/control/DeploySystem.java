@@ -5,9 +5,9 @@ import com.artemis.E;
 import net.mostlyoriginal.game.GameRules;
 import net.mostlyoriginal.game.component.GridPos;
 import net.mostlyoriginal.game.component.ItemData;
-import net.mostlyoriginal.game.system.ItemRepository;
-import net.mostlyoriginal.game.system.ParticleSystem;
-import net.mostlyoriginal.game.system.SlotHighlightingSystem;
+import net.mostlyoriginal.game.system.repository.ItemRepository;
+import net.mostlyoriginal.game.system.render.ParticleSystem;
+import net.mostlyoriginal.game.system.render.SlotHighlightingSystem;
 
 /**
  * @author Daan van Yperen
@@ -26,7 +26,6 @@ public class DeploySystem extends BaseSystem {
     public void deploy(E item, GridPos gridPos) {
         E standingOnSlot = slotHighlightingSystem.getSlotAt(gridPos);
         ItemData itemData = itemRepository.get(item.itemType());
-
 
         int originGridX = gridPos.x;
         int originGridY = gridPos.y;

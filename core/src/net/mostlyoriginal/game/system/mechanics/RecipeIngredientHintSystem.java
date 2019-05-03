@@ -7,8 +7,8 @@ import com.artemis.utils.IntBag;
 import net.mostlyoriginal.api.component.graphics.Tint;
 import net.mostlyoriginal.game.GameRules;
 import net.mostlyoriginal.game.component.*;
-import net.mostlyoriginal.game.system.ItemRepository;
-import net.mostlyoriginal.game.system.RecipeRepository;
+import net.mostlyoriginal.game.system.repository.ItemRepository;
+import net.mostlyoriginal.game.system.repository.RecipeRepository;
 import net.mostlyoriginal.game.system.common.FluidSystem;
 import net.mostlyoriginal.game.system.map.MapSpawnerSystem;
 

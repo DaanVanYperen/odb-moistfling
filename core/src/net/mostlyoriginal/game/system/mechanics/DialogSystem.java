@@ -1,4 +1,4 @@
-package net.mostlyoriginal.game.system;
+package net.mostlyoriginal.game.system.mechanics;
 
 import com.artemis.BaseSystem;
 import com.artemis.E;
@@ -14,8 +14,6 @@ import net.mostlyoriginal.api.util.Cooldown;
 import net.mostlyoriginal.game.util.Scripts;
 
 import java.util.LinkedList;
-
-import static net.mostlyoriginal.api.operation.JamOperationFactory.tintBetween;
 
 /**
  * @author Daan van Yperen

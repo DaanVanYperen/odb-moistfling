@@ -5,7 +5,6 @@ import com.artemis.FluidIteratingSystem;
 import com.artemis.annotations.All;
 import com.badlogic.gdx.math.MathUtils;
 import net.mostlyoriginal.game.component.Player;
-import net.mostlyoriginal.game.system.DialogSystem;
 
 /**
  * @author Daan van Yperen

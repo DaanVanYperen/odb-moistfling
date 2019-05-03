@@ -7,8 +7,8 @@ import net.mostlyoriginal.api.component.basic.Pos;
 import net.mostlyoriginal.api.system.graphics.RenderBatchingSystem;
 import net.mostlyoriginal.game.component.Lifter;
 import net.mostlyoriginal.game.component.Shopper;
-import net.mostlyoriginal.game.system.ItemRepository;
-import net.mostlyoriginal.game.system.DialogSystem;
+import net.mostlyoriginal.game.system.repository.ItemRepository;
+import net.mostlyoriginal.game.system.mechanics.DialogSystem;
 import net.mostlyoriginal.game.system.mechanics.TutorialSystem;
 import net.mostlyoriginal.game.system.view.GameScreenAssetSystem;
 

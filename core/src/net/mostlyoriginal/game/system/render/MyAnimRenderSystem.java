@@ -1,4 +1,4 @@
-package net.mostlyoriginal.game.system;
+package net.mostlyoriginal.game.system.render;
 /**
  * @author Daan van Yperen
  */

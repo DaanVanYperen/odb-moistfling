@@ -38,25 +38,6 @@ public class MapSystem extends BaseSystem {
         }
         width = layers.get(0).getWidth();
         height = layers.get(0).getHeight();
-//
-//        for (TiledMapTileSet tileSet : map.getTileSets()) {
-//            for (TiledMapTile tile : tileSet) {
-//                final MapProperties props = tile.getProperties();
-//                if (props.containsKey("entity")) {
-//                    Animation<TextureRegion> anim = new Animation<>(10, tile.getTextureRegion());
-//                    String id = (String) props.get("entity");
-//                    if (props.containsKey("cable-type")) {
-//                        id = cableIdentifier(tile);
-//                    } else if (props.containsKey("powered")) {
-//                        id = props.get("entity") + "_" + (((Boolean) props.get("powered")) ? "on" : "off");
-//                        if (props.containsKey("accept")) {
-//                            id = id + "_" + props.get("accept");
-//                        }
-//                    }
-//                    assetSystem.sprites.put(id, anim);
-//                }
-//            }
-//        }
     }
 
     public MapMask getMask(String property) {

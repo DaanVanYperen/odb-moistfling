@@ -4,7 +4,6 @@ import com.artemis.BaseSystem;
 import com.artemis.E;
 import com.artemis.utils.IntBag;
 import net.mostlyoriginal.game.component.Player;
-import net.mostlyoriginal.game.system.DialogSystem;
 import net.mostlyoriginal.game.system.control.Days;
 import net.mostlyoriginal.game.system.control.NameHelper;
 import net.mostlyoriginal.api.util.Cooldown;

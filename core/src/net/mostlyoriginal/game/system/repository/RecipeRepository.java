@@ -1,4 +1,4 @@
-package net.mostlyoriginal.game.system;
+package net.mostlyoriginal.game.system.repository;
 
 import com.artemis.BaseSystem;
 import com.artemis.utils.IntBag;
@@ -48,10 +48,6 @@ public class RecipeRepository extends BaseSystem {
 
         Item ingredientItem = E(ingredients.get(0)).getItem();
         final String ingredient = ingredientItem.type;
-//
-//        System.out.println("==============");
-//        System.out.println("==============");
-//        System.out.println("==============");
 
         for (int j = 0, s2 = recipeLibrary.recipes.length; j < s2; j++) {
             final RecipeData recipe = recipeLibrary.recipes[j];

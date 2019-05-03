@@ -1,4 +1,4 @@
-package net.mostlyoriginal.game.system;
+package net.mostlyoriginal.game.system.logic;
 
 import com.artemis.Aspect;
 import com.artemis.ComponentMapper;

@@ -1,4 +1,4 @@
-package net.mostlyoriginal.game.system;
+package net.mostlyoriginal.game.system.repository;
 
 import net.mostlyoriginal.game.component.ItemData;
 import net.mostlyoriginal.game.component.SpriteData;

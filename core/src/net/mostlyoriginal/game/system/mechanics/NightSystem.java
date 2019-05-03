@@ -1,16 +1,16 @@
-package net.mostlyoriginal.game.system;
+package net.mostlyoriginal.game.system.mechanics;
 
 import com.artemis.E;
 import com.artemis.FluidIteratingSystem;
 import com.artemis.annotations.All;
 import com.badlogic.gdx.math.Interpolation;
 import net.mostlyoriginal.api.component.graphics.Tint;
-import net.mostlyoriginal.api.operation.JamOperationFactory;
+import net.mostlyoriginal.api.util.Cooldown;
 import net.mostlyoriginal.game.GameRules;
 import net.mostlyoriginal.game.component.AffectedByNight;
 import net.mostlyoriginal.game.component.Player;
-import net.mostlyoriginal.api.util.Cooldown;
 
+import static net.mostlyoriginal.api.operation.JamOperationFactory.tintBetween;
 import static net.mostlyoriginal.api.utils.Duration.seconds;
 
 /**
@@ -53,12 +53,11 @@ public class NightSystem extends FluidIteratingSystem {
     @Override
     protected void process(E e) {
         if (flipped) {
-            boolean fade = (e.getAffectedByNight().visibleAt == AffectedByNight.Moment.NIGHT) != nighttime;
-
+            final boolean fade = (e.getAffectedByNight().visibleAt == AffectedByNight.Moment.NIGHT) != nighttime;
             if (fade) {
-                e.script(JamOperationFactory.tintBetween(e.getTint(), Tint.TRANSPARENT, e.affectedByNightDuration(), Interpolation.fade));
+                e.script(tintBetween(e.getTint(), Tint.TRANSPARENT, e.affectedByNightDuration(), Interpolation.fade));
             } else {
-                e.script(JamOperationFactory.tintBetween(e.getTint(), Tint.WHITE, e.affectedByNightDuration(), Interpolation.fade));
+                e.script(tintBetween(e.getTint(), Tint.WHITE, e.affectedByNightDuration(), Interpolation.fade));
             }
         }
     }

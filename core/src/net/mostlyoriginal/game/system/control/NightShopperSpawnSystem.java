@@ -6,7 +6,7 @@ import com.artemis.FluidIteratingSystem;
 import com.artemis.annotations.All;
 import net.mostlyoriginal.game.component.Shopper;
 import net.mostlyoriginal.game.component.ShopperSpawner;
-import net.mostlyoriginal.game.system.DialogSystem;
+import net.mostlyoriginal.game.system.mechanics.DialogSystem;
 import net.mostlyoriginal.game.system.map.MapSpawnerSystem;
 
 /**

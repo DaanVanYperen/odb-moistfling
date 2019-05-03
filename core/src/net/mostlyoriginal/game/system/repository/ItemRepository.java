@@ -1,4 +1,4 @@
-package net.mostlyoriginal.game.system;
+package net.mostlyoriginal.game.system.repository;
 
 import com.artemis.BaseSystem;
 import com.artemis.E;
@@ -11,7 +11,6 @@ import com.badlogic.gdx.utils.Json;
 import net.mostlyoriginal.game.component.Item;
 import net.mostlyoriginal.game.component.ItemData;
 import net.mostlyoriginal.game.component.Lifted;
-import net.mostlyoriginal.game.system.ItemLibrary;
 
 /**
  * @author Daan van Yperen
