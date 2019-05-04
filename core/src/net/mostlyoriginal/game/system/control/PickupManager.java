@@ -2,8 +2,8 @@ package net.mostlyoriginal.game.system.control;
 
 import com.artemis.BaseSystem;
 import com.artemis.E;
+import com.artemis.ESubscription;
 import com.artemis.annotations.All;
-import net.mostlyoriginal.api.plugin.fluidextensions.ESubscription;
 import net.mostlyoriginal.game.component.CanPickup;
 import net.mostlyoriginal.game.component.GridPos;
 

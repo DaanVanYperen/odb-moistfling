@@ -1,6 +1,6 @@
 package net.mostlyoriginal.game.screen;
 
-import com.artemis.SuperMapper;
+import com.artemis.FluidEntityPlugin;
 import com.artemis.World;
 import com.artemis.WorldConfigurationBuilder;
 import com.artemis.link.EntityLinkManager;
@@ -8,7 +8,6 @@ import com.artemis.managers.TagManager;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import net.mostlyoriginal.api.manager.FontManager;
-import net.mostlyoriginal.api.plugin.fluidextensions.ESubscriptionPlugin;
 import net.mostlyoriginal.api.plugin.singleton.SingletonPlugin;
 import net.mostlyoriginal.api.system.camera.CameraSystem;
 import net.mostlyoriginal.api.system.graphics.RenderBatchingSystem;
@@ -46,13 +45,12 @@ public class GameScreen extends TransitionableWorldScreen {
 
         WorldConfigurationBuilder worldConfigurationBuilder = new WorldConfigurationBuilder()
                 .dependsOn(
+                        FluidEntityPlugin.class,
                         EntityLinkManager.class,
                         ProfilerPlugin.class,
                         OperationsPlugin.class,
-                        SingletonPlugin.class,
-                        ESubscriptionPlugin.class)
+                        SingletonPlugin.class)
                 .with(
-                        new SuperMapper(), // decoupled
                         new FontManager(), // decoupled
                         new TagManager(), // decoupled
                         new TiledMapManager("map0.tmx"),

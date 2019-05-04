@@ -1,10 +1,10 @@
 package net.mostlyoriginal.game.system.mechanics;
 
 import com.artemis.E;
+import com.artemis.ESubscription;
 import com.artemis.annotations.All;
 import com.artemis.utils.IntBag;
 import net.mostlyoriginal.api.component.graphics.Tint;
-import net.mostlyoriginal.api.plugin.fluidextensions.ESubscription;
 import net.mostlyoriginal.game.GameRules;
 import net.mostlyoriginal.game.component.Item;
 import net.mostlyoriginal.game.component.Machine;

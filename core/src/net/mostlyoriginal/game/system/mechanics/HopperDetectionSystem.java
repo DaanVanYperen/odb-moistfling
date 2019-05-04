@@ -1,8 +1,8 @@
 package net.mostlyoriginal.game.system.mechanics;
 
 import com.artemis.E;
+import com.artemis.ESubscription;
 import com.artemis.annotations.All;
-import net.mostlyoriginal.api.plugin.fluidextensions.ESubscription;
 import net.mostlyoriginal.game.component.GridPos;
 import net.mostlyoriginal.game.component.Hopper;
 import net.mostlyoriginal.game.component.Item;

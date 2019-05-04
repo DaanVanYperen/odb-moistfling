@@ -2,12 +2,12 @@ package net.mostlyoriginal.game.system.repository;
 
 import com.artemis.BaseSystem;
 import com.artemis.E;
+import com.artemis.ESubscription;
 import com.artemis.annotations.All;
 import com.artemis.annotations.Exclude;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Json;
-import net.mostlyoriginal.api.plugin.fluidextensions.ESubscription;
 import net.mostlyoriginal.game.component.Item;
 import net.mostlyoriginal.game.component.ItemData;
 import net.mostlyoriginal.game.component.Lifted;

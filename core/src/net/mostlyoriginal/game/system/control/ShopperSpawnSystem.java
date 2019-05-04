@@ -1,10 +1,10 @@
 package net.mostlyoriginal.game.system.control;
 
 import com.artemis.E;
+import com.artemis.ESubscription;
 import com.artemis.FluidIteratingSystem;
 import com.artemis.annotations.All;
 import com.badlogic.gdx.math.MathUtils;
-import net.mostlyoriginal.api.plugin.fluidextensions.ESubscription;
 import net.mostlyoriginal.game.component.GridPos;
 import net.mostlyoriginal.game.component.Player;
 import net.mostlyoriginal.game.component.Shopper;
