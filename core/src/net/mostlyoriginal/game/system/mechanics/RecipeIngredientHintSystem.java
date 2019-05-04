@@ -7,7 +7,7 @@ import com.artemis.utils.IntBag;
 import net.mostlyoriginal.api.component.graphics.Tint;
 import net.mostlyoriginal.game.GameRules;
 import net.mostlyoriginal.game.component.*;
-import net.mostlyoriginal.game.system.repository.ItemRepository;
+import net.mostlyoriginal.game.system.repository.ItemManager;
 import net.mostlyoriginal.game.system.repository.RecipeRepository;
 import net.mostlyoriginal.game.system.common.FluidSystem;
 import net.mostlyoriginal.game.system.map.MapSpawnerSystem;
@@ -24,7 +24,7 @@ public class RecipeIngredientHintSystem extends FluidSystem {
     private static final int SPACING_BETWEEN_ITEMS = -19;
     private static final int MAX_LINES_AT_ONCE = 4;
     private RecipeRepository recipeRepository;
-    private ItemRepository itemRepository;
+    private ItemManager itemManager;
     private MapSpawnerSystem mapSpawnerSystem;
     private PlayerAgeSystem playerAgeSystem;
 
@@ -104,7 +104,7 @@ public class RecipeIngredientHintSystem extends FluidSystem {
         for (String ingredient : recipe.produces) {
             E.E()
                     .pos(x- ICON_OFFSET_X,y- ICON_OFFSET_Y)
-                    .anim(itemRepository.get(ingredient).sprite)
+                    .anim(itemManager.get(ingredient).sprite)
                     .recipeIngredientHintMachineId(machineId)
                     .tint(hintTint)
                     .scale(HINT_SCALE)
@@ -125,7 +125,7 @@ public class RecipeIngredientHintSystem extends FluidSystem {
             E.E()
                     .pos(x- ICON_OFFSET_X,y- ICON_OFFSET_Y)
                     .tint(hintTint)
-                    .anim(itemRepository.get(ingredient).sprite)
+                    .anim(itemManager.get(ingredient).sprite)
                     .recipeIngredientHintMachineId(machineId)
                     .scale(HINT_SCALE)
                     .renderLayer(GameRules.LAYER_INGREDIENT_HINTS+count*2);

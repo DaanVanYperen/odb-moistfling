@@ -6,13 +6,17 @@ import com.artemis.WorldConfigurationBuilder;
 import com.artemis.link.EntityLinkManager;
 import com.artemis.managers.TagManager;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import net.mostlyoriginal.api.manager.FontManager;
+import net.mostlyoriginal.api.plugin.singleton.SingletonPlugin;
 import net.mostlyoriginal.api.system.camera.CameraSystem;
+import net.mostlyoriginal.api.system.delegate.EntityProcessPrincipal;
 import net.mostlyoriginal.api.system.graphics.RenderBatchingSystem;
+import net.mostlyoriginal.game.GameRules;
 import net.mostlyoriginal.game.GdxArtemisGame;
 import net.mostlyoriginal.game.system.logic.MyPhysicsSystem;
 import net.mostlyoriginal.game.system.render.*;
-import net.mostlyoriginal.game.system.repository.ItemRepository;
+import net.mostlyoriginal.game.system.repository.ItemManager;
 import net.mostlyoriginal.game.system.repository.RecipeRepository;
 import net.mostlyoriginal.game.system.control.*;
 import net.mostlyoriginal.game.system.logic.TransitionSystem;
@@ -37,14 +41,22 @@ public class GameScreen extends TransitionableWorldScreen {
     @Override
     protected World createWorld() {
         RenderBatchingSystem renderBatchingSystem;
+
+        final SpriteBatch batch = new SpriteBatch(2000);
+
         return new World(new WorldConfigurationBuilder()
-                .dependsOn(EntityLinkManager.class, ProfilerPlugin.class, OperationsPlugin.class)
+                .dependsOn(
+                        EntityLinkManager.class,
+                        ProfilerPlugin.class,
+                        OperationsPlugin.class,
+                        SingletonPlugin.class)
                 .with(
                         new SuperMapper(),
                         //new EmotionService(),
                         new FontManager(),
                         new TagManager(),
-                        new ItemRepository(),
+                        new TiledMapManager("map" + (GameRules.level) + ".tmx"),
+                        new ItemManager(),
                         new RecipeRepository(),
                         new PickupManager()
                         //new TutorialService()
@@ -56,7 +68,7 @@ public class GameScreen extends TransitionableWorldScreen {
                         new GameScreenAssetSystem(),
 
                         new MapSpawnerSystem(),
-                        new MapSystem(),
+
                         new DialogSystem(),
 
                         new ShopperSpawnSystem(),
@@ -94,11 +106,10 @@ public class GameScreen extends TransitionableWorldScreen {
                         new ScoreSystem(),
 
                         new ParticleSystem(),
-                        new MapRenderSystem(),
                         renderBatchingSystem = new RenderBatchingSystem(),
                         new MyAnimRenderSystem(renderBatchingSystem),
                         new MyLabelRenderSystem(renderBatchingSystem),
-                        new MapRenderInFrontSystem(),
+                        new MapLayerRenderSystem(renderBatchingSystem, batch),
 
                         new TransitionSystem(GdxArtemisGame.getInstance(), this)
                 ).build());

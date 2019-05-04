@@ -43,7 +43,9 @@ public class LogoScreenAssetSystem extends AbstractAssetSystem {
 		//add("logo", 359,665, LOGO_WIDTH, LOGO_HEIGHT, 1);
 //		add("transition_red", 0,312, 1, 13, 1);
 //		add("trans//		ition_white", 1,312, 1, 13, 1);
-		playMusic("sfx/music_title.mp3");
+		if ( GameRules.MUSIC_ENABLED ) {
+			playMusic("sfx/music_title.mp3");
+		}
 	}
 
 	public void playMusic(String mp3) {

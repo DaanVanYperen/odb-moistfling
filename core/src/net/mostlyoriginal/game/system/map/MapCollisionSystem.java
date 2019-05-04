@@ -7,6 +7,7 @@ import net.mostlyoriginal.api.component.basic.Bounds;
 import net.mostlyoriginal.api.component.basic.Pos;
 import net.mostlyoriginal.api.component.physics.Physics;
 import net.mostlyoriginal.api.utils.MapMask;
+import net.mostlyoriginal.game.component.map.TiledMapSingleton;
 
 /**
  * @author Daan van Yperen
@@ -15,7 +16,7 @@ public class MapCollisionSystem extends FluidIteratingSystem {
 
     public static boolean DEBUG = false;
 
-    private MapSystem mapSystem;
+    private TiledMapSingleton map;
 
     private boolean initialized;
     private MapMask solidMask;
@@ -28,7 +29,7 @@ public class MapCollisionSystem extends FluidIteratingSystem {
     protected void begin() {
         if (!initialized) {
             initialized = true;
-            solidMask = mapSystem.getMask("solid");
+            solidMask = map.createMask("solid");
         }
         solidMask.refresh();
     }

@@ -16,7 +16,7 @@ import static com.artemis.E.E;
 public class RecipeRepository extends BaseSystem {
 
     public RecipeLibrary recipeLibrary;
-    private ItemRepository itemRepository;
+    private ItemManager itemManager;
 
     @Override
     protected void initialize() {
@@ -30,11 +30,11 @@ public class RecipeRepository extends BaseSystem {
     public void validateRecipes() {
         for (RecipeData o : recipeLibrary.recipes) {
             for (String ingredient : o.ingredients) {
-                if (itemRepository.get(ingredient) == null)
+                if (itemManager.get(ingredient) == null)
                     throw new RuntimeException("Unknown ingredient " + ingredient);
             }
             for (String product : o.produces) {
-                if (itemRepository.get(product) == null) throw new RuntimeException("Unknown product " + product);
+                if (itemManager.get(product) == null) throw new RuntimeException("Unknown product " + product);
             }
         }
     }
@@ -53,8 +53,8 @@ public class RecipeRepository extends BaseSystem {
             final RecipeData recipe = recipeLibrary.recipes[j];
 
             for (String recipeIngredient : recipe.ingredients) {
-                recipeIngredient = itemRepository.substitute(recipeIngredient);
-                if (recipeIngredient.equals(itemRepository.substitute(ingredient))) {
+                recipeIngredient = itemManager.substitute(recipeIngredient);
+                if (recipeIngredient.equals(itemManager.substitute(ingredient))) {
                     if (matchesRecipe(ingredients, recipe)) return recipe;
                     break;
                 }
@@ -70,14 +70,14 @@ public class RecipeRepository extends BaseSystem {
 
         // Take stock of ingredients in hoppers.
         for (int j = 0, s = ingredients.size(); j < s; j++) {
-            final String ingredient = itemRepository.substitute(E(ingredients.get(j)).getItem().type);
+            final String ingredient = itemManager.substitute(E(ingredients.get(j)).getItem().type);
             reagents.getAndIncrement(ingredient, 0, 1);
 //            System.out.println("Increment ingredient + 1 " + ingredient);
         }
 
         // track each reagent, we need to do this for repeated reagents.
         for (String recipeIngredient : recipe.ingredients) {
-            recipeIngredient=itemRepository.substitute(recipeIngredient);
+            recipeIngredient= itemManager.substitute(recipeIngredient);
             if (reagents.get(recipeIngredient, 0) <= 0) {
 //                System.out.println("MISSING ingredient "+recipeIngredient );
                 return false;

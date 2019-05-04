@@ -9,7 +9,7 @@ import net.mostlyoriginal.api.system.graphics.RenderBatchingSystem;
 import net.mostlyoriginal.game.GameRules;
 import net.mostlyoriginal.game.component.Slot;
 import net.mostlyoriginal.game.component.Lifter;
-import net.mostlyoriginal.game.system.repository.ItemRepository;
+import net.mostlyoriginal.game.system.repository.ItemManager;
 import net.mostlyoriginal.game.system.render.SlotHighlightingSystem;
 import net.mostlyoriginal.game.system.map.MapSpawnerSystem;
 import net.mostlyoriginal.game.system.mechanics.TutorialSystem;
@@ -27,7 +27,7 @@ public class PickupSystem extends FluidIteratingSystem {
 
     RenderBatchingSystem renderBatchingSystem;
     PickupManager pickupManager;
-    private ItemRepository itemRepository;
+    private ItemManager itemManager;
     private MapSpawnerSystem mapSpawnerSystem;
 
     private GameScreenAssetSystem gameScreenAssetSystem;

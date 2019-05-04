@@ -6,7 +6,7 @@ import com.artemis.annotations.All;
 import com.badlogic.gdx.math.MathUtils;
 import net.mostlyoriginal.game.GameRules;
 import net.mostlyoriginal.game.component.PassiveSpawner;
-import net.mostlyoriginal.game.system.repository.ItemRepository;
+import net.mostlyoriginal.game.system.repository.ItemManager;
 import net.mostlyoriginal.game.system.render.ParticleSystem;
 import net.mostlyoriginal.game.system.control.PickupManager;
 import net.mostlyoriginal.game.system.map.MapSpawnerSystem;
@@ -24,7 +24,7 @@ public class PassiveSpawnSystem extends FluidIteratingSystem {
 
     private Cooldown cooldown = Cooldown.withInterval(UPDATE_EVERY_SECONDS);
     private ParticleSystem particleSystem;
-    private ItemRepository itemRepository;
+    private ItemManager itemManager;
     private PickupManager pickupManager;
 
     @Override

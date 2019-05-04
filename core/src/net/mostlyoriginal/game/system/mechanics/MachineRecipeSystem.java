@@ -7,7 +7,7 @@ import net.mostlyoriginal.game.component.GridPos;
 import net.mostlyoriginal.game.component.ItemData;
 import net.mostlyoriginal.game.component.Machine;
 import net.mostlyoriginal.game.component.RecipeData;
-import net.mostlyoriginal.game.system.repository.ItemRepository;
+import net.mostlyoriginal.game.system.repository.ItemManager;
 import net.mostlyoriginal.game.system.repository.RecipeRepository;
 import net.mostlyoriginal.game.system.render.ParticleSystem;
 import net.mostlyoriginal.game.system.common.FluidSystem;
@@ -23,7 +23,7 @@ import net.mostlyoriginal.api.util.Cooldown;
 public class MachineRecipeSystem extends FluidSystem {
 
     private RecipeRepository recipeRepository;
-    private ItemRepository itemRepository;
+    private ItemManager itemManager;
     private MapSpawnerSystem mapSpawnerSystem;
     private PlayerAgeSystem playerAgeSystem;
     private PickupSystem pickupSystem;
@@ -96,7 +96,7 @@ public class MachineRecipeSystem extends FluidSystem {
     private void consumeIngredients(Machine machine) {
         for (int i = 0, s = machine.contents.size(); i < s; i++) {
             final E ingredient = E.E(machine.contents.get(i));
-            final ItemData itemData = itemRepository.get(ingredient.getItem().type);
+            final ItemData itemData = itemManager.get(ingredient.getItem().type);
             if (itemData.consumed) {
                 particleSystem.poof(ingredient.posX() + 16, ingredient.posY() + 16, 40, 40, ParticleSystem.COLOR_WHITE_TRANSPARENT);
                 ingredient.deleteFromWorld();

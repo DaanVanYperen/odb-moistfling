@@ -15,7 +15,7 @@ import net.mostlyoriginal.game.component.Lifted;
 /**
  * @author Daan van Yperen
  */
-public class ItemRepository extends BaseSystem {
+public class ItemManager extends BaseSystem {
 
     public ItemLibrary itemLibrary;
     private int rewardDropTotal = 0;

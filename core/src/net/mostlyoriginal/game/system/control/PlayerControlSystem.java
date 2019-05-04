@@ -15,10 +15,10 @@ import net.mostlyoriginal.game.component.GridPos;
 import net.mostlyoriginal.game.component.Item;
 import net.mostlyoriginal.game.component.ItemData;
 import net.mostlyoriginal.game.component.Player;
-import net.mostlyoriginal.game.system.repository.ItemRepository;
+import net.mostlyoriginal.game.component.map.TiledMapSingleton;
+import net.mostlyoriginal.game.system.repository.ItemManager;
 import net.mostlyoriginal.game.system.mechanics.NightSystem;
 import net.mostlyoriginal.game.system.map.MapSpawnerSystem;
-import net.mostlyoriginal.game.system.map.MapSystem;
 import net.mostlyoriginal.game.system.view.GameScreenAssetSystem;
 import net.mostlyoriginal.api.util.Cooldown;
 
@@ -30,22 +30,27 @@ import net.mostlyoriginal.api.util.Cooldown;
 public class PlayerControlSystem extends FluidIteratingSystem {
 
     private static final float PLAYER_MOVEMENT_SPEED = 220f;
-    private MapSystem mapSystem;
+
+    private TiledMapSingleton tiledMap;
+
     private MapMask solid;
 
     @All(Item.class)
     private EntitySubscription items;
     private MapSpawnerSystem mapSpawnSystem;
-    private ItemRepository itemRepository;
+    private ItemManager itemManager;
     private NightSystem nightSystem;
 
     public Cooldown interactCooldown = Cooldown.withInterval(0.2f).autoReset(false);
     private GameScreenAssetSystem gameScreenAssetSystem;
 
     @Override
-    protected void initialize() {
-        super.initialize();
-        solid = mapSystem.getMask("solid");
+    protected void begin() {
+        super.begin();
+        if ( solid == null ) {
+            solid = tiledMap.createMask("solid");
+        }
+
     }
 
     @Override
@@ -77,7 +82,7 @@ public class PlayerControlSystem extends FluidIteratingSystem {
 
             if (Gdx.input.isKeyJustPressed(Input.Keys.F9)) {
                 int index=0;
-                for (ItemData data : itemRepository.itemLibrary.items) {
+                for (ItemData data : itemManager.itemLibrary.items) {
                     mapSpawnSystem.spawnItem(index++ % 20,index / 20,data.id).itemCount(99);
                 }
 

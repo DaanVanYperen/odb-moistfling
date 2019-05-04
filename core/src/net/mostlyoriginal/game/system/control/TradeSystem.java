@@ -7,7 +7,7 @@ import net.mostlyoriginal.api.component.basic.Pos;
 import net.mostlyoriginal.api.system.graphics.RenderBatchingSystem;
 import net.mostlyoriginal.game.component.Lifter;
 import net.mostlyoriginal.game.component.Shopper;
-import net.mostlyoriginal.game.system.repository.ItemRepository;
+import net.mostlyoriginal.game.system.repository.ItemManager;
 import net.mostlyoriginal.game.system.mechanics.DialogSystem;
 import net.mostlyoriginal.game.system.mechanics.TutorialSystem;
 import net.mostlyoriginal.game.system.view.GameScreenAssetSystem;
@@ -24,7 +24,7 @@ public class TradeSystem extends FluidIteratingSystem {
     private static final int CARRIED_OBJECT_LIFTING_HEIGHT = 0;
 
     private PickupManager pickupManager;
-    private ItemRepository itemRepository;
+    private ItemManager itemManager;
     private E player;
     private RenderBatchingSystem renderBatchingSystem;
     private GameScreenAssetSystem gameScreenAssetSystem;
@@ -56,7 +56,7 @@ public class TradeSystem extends FluidIteratingSystem {
                         player.lifterAttemptLifting(true);
                         renderBatchingSystem.sortedDirty = true;
 
-                        final int goldValue = itemRepository.get(E.E(playerItemId).itemType()).gold;
+                        final int goldValue = itemManager.get(E.E(playerItemId).itemType()).gold;
                         if (goldValue > 0) {
                             patron.paying(goldValue);
                             gameScreenAssetSystem.playSfx("sfx_money_1");

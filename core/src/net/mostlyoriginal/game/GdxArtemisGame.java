@@ -4,6 +4,8 @@ import com.badlogic.gdx.Game;
 import net.mostlyoriginal.game.screen.GameScreen;
 import net.mostlyoriginal.game.screen.LogoScreen;
 
+import static net.mostlyoriginal.game.GameRules.LOGO_ENABLED;
+
 public class GdxArtemisGame extends Game {
 
 	private static GdxArtemisGame instance;
@@ -16,7 +18,7 @@ public class GdxArtemisGame extends Game {
 	}
 
 	public void restart() {
-		setScreen(new LogoScreen());
+		setScreen(LOGO_ENABLED ? new LogoScreen() : new GameScreen());
 	}
 
 	public static GdxArtemisGame getInstance()

@@ -10,7 +10,7 @@ import net.mostlyoriginal.game.component.GridPos;
 import net.mostlyoriginal.game.component.Player;
 import net.mostlyoriginal.game.component.Shopper;
 import net.mostlyoriginal.game.component.ShopperSpawner;
-import net.mostlyoriginal.game.system.repository.ItemRepository;
+import net.mostlyoriginal.game.system.repository.ItemManager;
 import net.mostlyoriginal.game.system.mechanics.DialogSystem;
 import net.mostlyoriginal.game.system.map.MapSpawnerSystem;
 
@@ -29,7 +29,7 @@ public class ShopperSpawnSystem extends FluidIteratingSystem {
     private int lastScriptedSpawnDay = 0;
     private int spawns = 0;
     private E player;
-    private ItemRepository itemRepository;
+    private ItemManager itemManager;
     private DialogSystem dialogSystem;
 
     @Override
@@ -93,7 +93,7 @@ public class ShopperSpawnSystem extends FluidIteratingSystem {
             lastScriptedSpawnDay = -1; // run this over and over.
             String desiredItem = "item_wood";
             mapSpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY,
-                    desiredItem, itemRepository.randomReward(), "customer", 1);
+                    desiredItem, itemManager.randomReward(), "customer", 1);
             if (spawns == 1) {
                 dialogSystem.queue(NameHelper.getActor_player_face(), "Patrons want to buy specific items!");
                 dialogSystem.queue(NameHelper.getActor_player_face(), "All these guys want sticks!");
@@ -122,7 +122,7 @@ public class ShopperSpawnSystem extends FluidIteratingSystem {
             lastScriptedSpawnDay = -1; // run this over and over.
             mapSpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY,
                     "item_healing_potion",
-                    spawns == 4 ? "item_boxed_bush" : itemRepository.randomReward(), "customer", 1);
+                    spawns == 4 ? "item_boxed_bush" : itemManager.randomReward(), "customer", 1);
             return true;
         }
 
@@ -147,7 +147,7 @@ public class ShopperSpawnSystem extends FluidIteratingSystem {
                     break;
             }
             mapSpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY,
-                    desiredItem, itemRepository.randomReward(), "customer", 1);
+                    desiredItem, itemManager.randomReward(), "customer", 1);
             return true;
         }
 
@@ -197,7 +197,7 @@ public class ShopperSpawnSystem extends FluidIteratingSystem {
                     desiredItem = "item_imp";
                     break;
             }
-            String rewardItem = itemRepository.randomReward();
+            String rewardItem = itemManager.randomReward();
             if (spawns == 4) {
                 desiredItem = "item_rainbow_armor";
                 rewardItem = "item_boxed_forge";

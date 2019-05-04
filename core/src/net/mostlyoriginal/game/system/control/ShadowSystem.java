@@ -8,7 +8,7 @@ import net.mostlyoriginal.api.component.basic.Pos;
 import net.mostlyoriginal.game.GameRules;
 import net.mostlyoriginal.game.component.CastsShadow;
 import net.mostlyoriginal.game.component.GridPos;
-import net.mostlyoriginal.game.system.repository.ItemRepository;
+import net.mostlyoriginal.game.system.repository.ItemManager;
 
 /**
  * @author Daan van Yperen
@@ -16,7 +16,7 @@ import net.mostlyoriginal.game.system.repository.ItemRepository;
 @All({CastsShadow.class, Pos.class, GridPos.class})
 public class ShadowSystem extends FluidIteratingSystem {
 
-    private ItemRepository itemRepository;
+    private ItemManager itemManager;
 
     @Override
     protected void process(E e) {

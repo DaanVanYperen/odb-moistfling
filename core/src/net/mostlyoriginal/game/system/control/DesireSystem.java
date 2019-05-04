@@ -8,7 +8,7 @@ import net.mostlyoriginal.api.component.basic.Pos;
 import net.mostlyoriginal.game.GameRules;
 import net.mostlyoriginal.game.component.Desire;
 import net.mostlyoriginal.game.component.GridPos;
-import net.mostlyoriginal.game.system.repository.ItemRepository;
+import net.mostlyoriginal.game.system.repository.ItemManager;
 
 /**
  * @author Daan van Yperen
@@ -17,7 +17,7 @@ import net.mostlyoriginal.game.system.repository.ItemRepository;
 public class DesireSystem extends FluidIteratingSystem {
 
     private static final int DESIRE_INDICATOR_OFFSET_Y = 48;
-    private ItemRepository itemRepository;
+    private ItemManager itemManager;
 
     @Override
     protected void process(E e) {
@@ -31,7 +31,7 @@ public class DesireSystem extends FluidIteratingSystem {
                     indicatorCloud.id();
 
             final E indicator = E.E()
-                    .anim(itemRepository.get(desire.desiredItem).sprite)
+                    .anim(itemManager.get(desire.desiredItem).sprite)
                     .renderLayer(GameRules.LAYER_DESIRE_INDICATOR)
                     .tint(1f, 1f, 1f, 0.9f);
             desire.desireIndicatorId =
