@@ -14,7 +14,7 @@ import net.mostlyoriginal.game.component.Paying;
  * @author Daan van Yperen
  */
 @All(Paying.class)
-public class PayingSystem extends FluidIteratingSystem {
+public class PaymentAnimationSystem extends FluidIteratingSystem {
 
     @Override
     protected void begin() {

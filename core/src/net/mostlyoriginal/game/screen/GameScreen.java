@@ -83,17 +83,16 @@ public class GameScreen extends TransitionableWorldScreen {
 
                         new MyPhysicsSystem(), // @todo replace.
 
-                        new TradeSystem(), // must be before pickup system!
-                        new PickupSystem(),
+                        new TradeSystem(), //  must be before pickup system! @todo decrease coupling.
+                        new PickupSystem(), // @todo decrease coupling.
 
-                        new DesireSystem(),
-                        new ShadowSystem(),
-                        new GridPosSystem(),
-                        new GridPosFloatSystem(),
+                        new DesireSystem(), // decouple.
+                        new ShadowSystem(), // Separate shadow, create a relationship component with parent.
+                        new GridPosSystem(), // Separate the Snap to grid behaviour.
+                        new GridPosFloatSystem(), // Move floating to separate mechanic. (Mount it on something?)
 
-                        new PlayerAgeSystem(),
-
-                        new PayingSystem(),
+                        new PlayerAnimationSystem(), // is there a more generic what to do this?
+                        new PaymentAnimationSystem(), // is there a more generic what to do this?
 
                         new HopperDetectionSystem(),
                         new MachineHopperDetectionSystem(),

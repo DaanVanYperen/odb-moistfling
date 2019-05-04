@@ -3,7 +3,6 @@ package net.mostlyoriginal.game.system.mechanics;
 import com.artemis.E;
 import com.artemis.FluidIteratingSystem;
 import com.artemis.annotations.All;
-import com.badlogic.gdx.math.MathUtils;
 import net.mostlyoriginal.game.component.Player;
 import net.mostlyoriginal.game.component.dialog.DialogSingleton;
 
@@ -11,7 +10,7 @@ import net.mostlyoriginal.game.component.dialog.DialogSingleton;
  * @author Daan van Yperen
  */
 @All(Player.class)
-public class PlayerAgeSystem extends FluidIteratingSystem {
+public class PlayerAnimationSystem extends FluidIteratingSystem {
 
     private DialogSingleton dialog;
 
@@ -53,20 +52,5 @@ public class PlayerAgeSystem extends FluidIteratingSystem {
         e.anim(anim);
 
         // for debugging until we have sprites.
-    }
-
-    public boolean attemptPayment(int ageCost) {
-        Player player = E.withTag("player").getPlayer();
-        if (ageCost < 0) {
-            // de-age
-            player.age = MathUtils.clamp(player.age + ageCost, Player.MIN_AGE, Player.MAX_AGE);
-            return true;
-        }
-        if (player.age + ageCost <= Player.MAX_AGE) {
-            // age!
-            player.age += ageCost;
-            return true;
-        }
-        return false;
     }
 }

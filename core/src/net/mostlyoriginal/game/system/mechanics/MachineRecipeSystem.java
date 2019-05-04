@@ -2,12 +2,10 @@ package net.mostlyoriginal.game.system.mechanics;
 
 import com.artemis.E;
 import com.artemis.annotations.All;
+import com.badlogic.gdx.math.MathUtils;
 import net.mostlyoriginal.api.util.Cooldown;
 import net.mostlyoriginal.game.GameRules;
-import net.mostlyoriginal.game.component.GridPos;
-import net.mostlyoriginal.game.component.ItemData;
-import net.mostlyoriginal.game.component.Machine;
-import net.mostlyoriginal.game.component.RecipeData;
+import net.mostlyoriginal.game.component.*;
 import net.mostlyoriginal.game.system.common.FluidSystem;
 import net.mostlyoriginal.game.system.control.PickupSystem;
 import net.mostlyoriginal.game.system.map.MapEntitySpawnerSystem;
@@ -25,7 +23,7 @@ public class MachineRecipeSystem extends FluidSystem {
     private RecipeManager recipeManager;
     private ItemManager itemManager;
     private MapEntitySpawnerSystem mapEntitySpawnerSystem;
-    private PlayerAgeSystem playerAgeSystem;
+    private PlayerAnimationSystem playerAnimationSystem;
     private PickupSystem pickupSystem;
     private GameScreenAssetSystem gameScreenAssetSystem;
     private ParticleSystem particleSystem;
@@ -57,7 +55,7 @@ public class MachineRecipeSystem extends FluidSystem {
 
     private void executeRecipe(Machine machine, GridPos machineGridPos, RecipeData recipe) {
 
-        if (!playerAgeSystem.attemptPayment(recipe.ageCost)) {
+        if (!attemptAging(recipe.ageCost)) {
             //System.out.println("Cannot afford payment for " + recipe.id + ".");
             E player = E.withTag("player");
             particleSystem.poof(player.gridPosX() * GameRules.CELL_SIZE + 16,
@@ -102,5 +100,20 @@ public class MachineRecipeSystem extends FluidSystem {
                 ingredient.deleteFromWorld();
             }
         }
+    }
+
+    public boolean attemptAging(int ageCost) {
+        Player player = E.withTag("player").getPlayer();
+        if (ageCost < 0) {
+            // de-age
+            player.age = MathUtils.clamp(player.age + ageCost, Player.MIN_AGE, Player.MAX_AGE);
+            return true;
+        }
+        if (player.age + ageCost <= Player.MAX_AGE) {
+            // age!
+            player.age += ageCost;
+            return true;
+        }
+        return false;
     }
 }

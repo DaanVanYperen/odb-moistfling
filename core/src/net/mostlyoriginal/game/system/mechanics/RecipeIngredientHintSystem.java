@@ -11,7 +11,6 @@ import net.mostlyoriginal.game.component.Machine;
 import net.mostlyoriginal.game.component.RecipeData;
 import net.mostlyoriginal.game.component.RecipeIngredientHint;
 import net.mostlyoriginal.game.system.common.FluidSystem;
-import net.mostlyoriginal.game.system.map.MapEntitySpawnerSystem;
 import net.mostlyoriginal.game.system.repository.ItemManager;
 import net.mostlyoriginal.game.system.repository.RecipeManager;
 
@@ -28,8 +27,6 @@ public class RecipeIngredientHintSystem extends FluidSystem {
     private static final int MAX_LINES_AT_ONCE = 4;
     private RecipeManager recipeManager;
     private ItemManager itemManager;
-    private MapEntitySpawnerSystem mapEntitySpawnerSystem;
-    private PlayerAgeSystem playerAgeSystem;
 
     private int firstLine = 0;
     private float scrollCooldown = 3f;
