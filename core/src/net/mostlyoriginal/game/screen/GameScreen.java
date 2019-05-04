@@ -7,8 +7,8 @@ import com.artemis.link.EntityLinkManager;
 import com.artemis.managers.TagManager;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import net.mostlyoriginal.api.SingletonPlugin;
 import net.mostlyoriginal.api.manager.FontManager;
-import net.mostlyoriginal.api.plugin.singleton.SingletonPlugin;
 import net.mostlyoriginal.api.system.camera.CameraSystem;
 import net.mostlyoriginal.api.system.graphics.RenderBatchingSystem;
 import net.mostlyoriginal.game.GameRules;
@@ -56,7 +56,8 @@ public class GameScreen extends TransitionableWorldScreen {
                         new TiledMapManager("map0.tmx"),
                         new ItemManager(), // @todo decouple? convert to component?
                         new RecipeManager(), // @todo decouple? convert to component?
-                        new PickupManager()
+                        new PickupManager(),
+                        new MachinePlaceManager() // @todo decouple!!!
                 )
                 .with(
                         // Replace with your own systems!
@@ -70,16 +71,17 @@ public class GameScreen extends TransitionableWorldScreen {
 
                         new ShopperSpawnSystem(), // @todo decrease coupling.
                         new NightShopperSpawnSystem(), // @todo decrease coupling.
-                        new TutorialSystem(),
+                        new TutorialSystem(), // @todo internals to singleton.
 
-                        new PlayerControlSystem(),
+                        new PlayerControlSystem(), // @todo decrease coupling. separate movement from key binding to control.
                         new MapCollisionSystem(),
-                        new DeploySystem(),
-                        new PassiveSpawnSystem(),
 
-                        new ShopperControlSystem(),
+                        // Mechanics.
+                        new PassiveSpawnSystem(), // @todo decrease coupling.
 
-                        new MyPhysicsSystem(),
+                        new ShopperControlSystem(), // @todo decrease coupling.
+
+                        new MyPhysicsSystem(), // @todo replace.
 
                         new TradeSystem(), // must be before pickup system!
                         new PickupSystem(),
@@ -111,7 +113,7 @@ public class GameScreen extends TransitionableWorldScreen {
                         new TransitionSystem(GdxArtemisGame.getInstance(), this)
                 );
 
-        if ( GameRules.DEBUG_ENABLED ) {
+        if (GameRules.DEBUG_ENABLED) {
             worldConfigurationBuilder.with(new DebugOptionControlSystem());
         }
 

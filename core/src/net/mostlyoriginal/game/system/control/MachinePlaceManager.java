@@ -5,17 +5,17 @@ import com.artemis.E;
 import net.mostlyoriginal.game.GameRules;
 import net.mostlyoriginal.game.component.GridPos;
 import net.mostlyoriginal.game.component.ItemData;
-import net.mostlyoriginal.game.system.repository.ItemManager;
 import net.mostlyoriginal.game.system.render.ParticleSystem;
 import net.mostlyoriginal.game.system.render.SlotHighlightingSystem;
+import net.mostlyoriginal.game.system.repository.ItemManager;
 
 /**
  * @author Daan van Yperen
  */
-public class DeploySystem extends BaseSystem {
+public class MachinePlaceManager extends BaseSystem {
 
-    ItemManager itemManager;
-    SlotHighlightingSystem slotHighlightingSystem;
+    private ItemManager itemManager;
+    private SlotHighlightingSystem slotHighlightingSystem;
     private ParticleSystem particleSystem;
 
     @Override

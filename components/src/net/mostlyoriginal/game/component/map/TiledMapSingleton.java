@@ -5,7 +5,7 @@ import com.artemis.annotations.Transient;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.utils.Array;
-import net.mostlyoriginal.api.component.Singleton;
+import net.mostlyoriginal.api.Singleton;
 import net.mostlyoriginal.api.utils.MapMask;
 
 /**

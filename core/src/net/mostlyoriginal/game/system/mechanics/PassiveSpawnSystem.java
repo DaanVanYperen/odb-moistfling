@@ -10,7 +10,6 @@ import net.mostlyoriginal.game.component.PassiveSpawner;
 import net.mostlyoriginal.game.system.control.PickupManager;
 import net.mostlyoriginal.game.system.map.MapEntitySpawnerSystem;
 import net.mostlyoriginal.game.system.render.ParticleSystem;
-import net.mostlyoriginal.game.system.repository.ItemManager;
 import net.mostlyoriginal.game.system.view.GameScreenAssetSystem;
 
 /**
@@ -18,13 +17,13 @@ import net.mostlyoriginal.game.system.view.GameScreenAssetSystem;
  */
 @All(PassiveSpawner.class)
 public class PassiveSpawnSystem extends FluidIteratingSystem {
+
     private static final float UPDATE_EVERY_SECONDS = 10f;
     private MapEntitySpawnerSystem mapEntitySpawnerSystem;
     private GameScreenAssetSystem gameScreenAssetSystem;
 
     private Cooldown cooldown = Cooldown.withInterval(UPDATE_EVERY_SECONDS);
     private ParticleSystem particleSystem;
-    private ItemManager itemManager;
     private PickupManager pickupManager;
 
     @Override

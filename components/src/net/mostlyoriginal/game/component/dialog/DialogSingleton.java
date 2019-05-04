@@ -2,7 +2,7 @@ package net.mostlyoriginal.game.component.dialog;
 
 import com.artemis.Component;
 import com.artemis.annotations.Transient;
-import net.mostlyoriginal.api.component.Singleton;
+import net.mostlyoriginal.api.Singleton;
 
 import java.util.LinkedList;
 

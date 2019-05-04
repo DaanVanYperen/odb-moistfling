@@ -4,7 +4,7 @@ import com.artemis.E;
 import com.artemis.FluidIteratingSystem;
 import com.artemis.annotations.All;
 import net.mostlyoriginal.api.component.basic.Pos;
-import net.mostlyoriginal.api.system.graphics.RenderBatchingSystem;
+import net.mostlyoriginal.api.component.graphics.RendererSingleton;
 import net.mostlyoriginal.game.component.Lifter;
 import net.mostlyoriginal.game.component.Shopper;
 import net.mostlyoriginal.game.component.dialog.DialogSingleton;
@@ -26,7 +26,7 @@ public class TradeSystem extends FluidIteratingSystem {
     private PickupManager pickupManager;
     private ItemManager itemManager;
     private E player;
-    private RenderBatchingSystem renderBatchingSystem;
+    private RendererSingleton rendererSingleton;
     private GameScreenAssetSystem gameScreenAssetSystem;
     private DialogSingleton dialog;
     private TutorialSystem tutorialSystem;
@@ -54,7 +54,7 @@ public class TradeSystem extends FluidIteratingSystem {
                         player.liftingId(patronItemId);
                         player.getLifter().itemsLifted++;
                         player.lifterAttemptLifting(true);
-                        renderBatchingSystem.sortedDirty = true;
+                        rendererSingleton.sortedDirty = true;
 
                         final int goldValue = itemManager.get(E.E(playerItemId).itemType()).gold;
                         if (goldValue > 0) {
@@ -67,7 +67,7 @@ public class TradeSystem extends FluidIteratingSystem {
                         patron.liftingId(playerItemId);
                         patron.getLifter().itemsLifted++;
                         patron.removeDesire();
-                        renderBatchingSystem.sortedDirty = true;
+                        rendererSingleton.sortedDirty = true;
 
                         if ( E.E(playerItemId).itemType().equals("item_ring")) {
                             startFinalDialog(patron);

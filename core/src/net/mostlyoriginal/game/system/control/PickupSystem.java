@@ -4,8 +4,8 @@ import com.artemis.E;
 import com.artemis.FluidIteratingSystem;
 import com.artemis.annotations.All;
 import net.mostlyoriginal.api.component.basic.Pos;
+import net.mostlyoriginal.api.component.graphics.RendererSingleton;
 import net.mostlyoriginal.api.component.graphics.Tint;
-import net.mostlyoriginal.api.system.graphics.RenderBatchingSystem;
 import net.mostlyoriginal.game.GameRules;
 import net.mostlyoriginal.game.component.Lifter;
 import net.mostlyoriginal.game.component.Slot;
@@ -25,8 +25,9 @@ public class PickupSystem extends FluidIteratingSystem {
     private static final int CARRIED_OBJECT_PLAYER_LIFTING_HEIGHT = 32;
     private static final int CARRIED_OBJECT_SHOPPER_LIFTING_HEIGHT = 4;
 
-    RenderBatchingSystem renderBatchingSystem;
-    PickupManager pickupManager;
+    private RendererSingleton rendererSingleton;
+
+    private PickupManager pickupManager;
     private ItemManager itemManager;
     private MapEntitySpawnerSystem mapEntitySpawnerSystem;
 
@@ -92,10 +93,10 @@ public class PickupSystem extends FluidIteratingSystem {
         return slotAt;
     }
 
-    DeploySystem deploySystem;
+    MachinePlaceManager machinePlaceManager;
 
     private void deployItemHere(E actor, E item) {
-        deploySystem.deploy(item, actor.getGridPos());
+        machinePlaceManager.deploy(item, actor.getGridPos());
         item.deleteFromWorld();
         actor.removeLifting();
     }
@@ -114,7 +115,7 @@ public class PickupSystem extends FluidIteratingSystem {
         item.tint(Tint.WHITE);
 //        item.castsShadow();
         item.gridPos(slot.getGridPos()).removeLifted().renderLayer(GameRules.LAYER_ITEM);
-        renderBatchingSystem.sortedDirty = true;
+        rendererSingleton.sortedDirty = true;
 
         if (itemOnFloor != null) {
             if (matchesFloorItem) {
@@ -140,7 +141,7 @@ public class PickupSystem extends FluidIteratingSystem {
         item.tint(Tint.WHITE);
 //        item.castsShadow();
         item.gridPos(actor.getGridPos()).removeLifted().renderLayer(GameRules.LAYER_ITEM);
-        renderBatchingSystem.sortedDirty = true;
+        rendererSingleton.sortedDirty = true;
     }
 
     private void attemptPickup(E actor) {
@@ -184,7 +185,7 @@ public class PickupSystem extends FluidIteratingSystem {
                         //.removeCastsShadow()
                         .lifted()
                         .renderLayer(GameRules.LAYER_ITEM_CARRIED);
-                renderBatchingSystem.sortedDirty = true;
+                rendererSingleton.sortedDirty = true;
             }
             actor.getLifter().itemsLifted++;
             if (actor.hasPlayer())
