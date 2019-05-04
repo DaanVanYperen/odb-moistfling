@@ -6,9 +6,9 @@ import com.artemis.annotations.All;
 import com.artemis.annotations.Exclude;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import net.mostlyoriginal.game.component.InDialog;
 import net.mostlyoriginal.game.component.ItemData;
 import net.mostlyoriginal.game.component.Player;
+import net.mostlyoriginal.game.component.dialog.InDialog;
 import net.mostlyoriginal.game.system.map.MapEntitySpawnerSystem;
 import net.mostlyoriginal.game.system.repository.ItemManager;
 

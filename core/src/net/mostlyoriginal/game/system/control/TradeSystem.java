@@ -7,9 +7,9 @@ import net.mostlyoriginal.api.component.basic.Pos;
 import net.mostlyoriginal.api.system.graphics.RenderBatchingSystem;
 import net.mostlyoriginal.game.component.Lifter;
 import net.mostlyoriginal.game.component.Shopper;
-import net.mostlyoriginal.game.system.repository.ItemManager;
-import net.mostlyoriginal.game.system.mechanics.DialogSystem;
+import net.mostlyoriginal.game.component.dialog.DialogSingleton;
 import net.mostlyoriginal.game.system.mechanics.TutorialSystem;
+import net.mostlyoriginal.game.system.repository.ItemManager;
 import net.mostlyoriginal.game.system.view.GameScreenAssetSystem;
 
 
@@ -28,7 +28,7 @@ public class TradeSystem extends FluidIteratingSystem {
     private E player;
     private RenderBatchingSystem renderBatchingSystem;
     private GameScreenAssetSystem gameScreenAssetSystem;
-    private DialogSystem dialogSystem;
+    private DialogSingleton dialog;
     private TutorialSystem tutorialSystem;
 
     @Override
@@ -85,26 +85,26 @@ public class TradeSystem extends FluidIteratingSystem {
     private void startFinalDialog(E patron) {
         boolean isPostal = patron.getAnim().id.equals("actor_postal");
         if (isPostal) {
-            dialogSystem.queue("actor_postal_face", "You picked right, lets beat up this hag!");
-            dialogSystem.queue("actor_hag_face", "Wait no.");
-            dialogSystem.queue("actor_postal_face", "Eat postage you cretin!");
-            dialogSystem.queue(NameHelper.getActor_player_face(), "That's my sam!");
+            dialog.add("actor_postal_face", "You picked right, lets beat up this hag!");
+            dialog.add("actor_hag_face", "Wait no.");
+            dialog.add("actor_postal_face", "Eat postage you cretin!");
+            dialog.add(NameHelper.getActor_player_face(), "That's my sam!");
         } else {
-            dialogSystem.queue("actor_hag_face", "Wow I can't believe that worked.");
-            dialogSystem.queue(NameHelper.getActor_player_face(), "Wait what?");
-            dialogSystem.queue("actor_hag_face", "Nothing! Now teach me rejuvenation");
-            dialogSystem.queue("actor_hag_face", "and I will show you some gyration!");
-            dialogSystem.queue("actor_postal_face", "Uhhhhhhhhhhhhhh.");
-            dialogSystem.queue(NameHelper.getActor_player_face(), "I think we need arbitration.");
-            dialogSystem.queue("actor_postal_face", "I'm out of here!");
+            dialog.add("actor_hag_face", "Wow I can't believe that worked.");
+            dialog.add(NameHelper.getActor_player_face(), "Wait what?");
+            dialog.add("actor_hag_face", "Nothing! Now teach me rejuvenation");
+            dialog.add("actor_hag_face", "and I will show you some gyration!");
+            dialog.add("actor_postal_face", "Uhhhhhhhhhhhhhh.");
+            dialog.add(NameHelper.getActor_player_face(), "I think we need arbitration.");
+            dialog.add("actor_postal_face", "I'm out of here!");
         }
-        dialogSystem.queue(NameHelper.getActor_player_face(), "Thanks for playing!");
-        dialogSystem.queue(NameHelper.getActor_player_face(), "Hope you enjoyed our game.");
-        dialogSystem.queue(NameHelper.getActor_player_face(), "I sure did!");
+        dialog.add(NameHelper.getActor_player_face(), "Thanks for playing!");
+        dialog.add(NameHelper.getActor_player_face(), "Hope you enjoyed our game.");
+        dialog.add(NameHelper.getActor_player_face(), "I sure did!");
         if ( isPostal ) {
-            dialogSystem.queue("actor_hag_face", "I didn't.");
+            dialog.add("actor_hag_face", "I didn't.");
         } else {
-            dialogSystem.queue("actor_hag_face", "Me too!");
+            dialog.add("actor_hag_face", "Me too!");
         }
         E.withTag("player").playerDone(true);
     }

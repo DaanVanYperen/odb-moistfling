@@ -9,8 +9,8 @@ import net.mostlyoriginal.game.component.GridPos;
 import net.mostlyoriginal.game.component.Player;
 import net.mostlyoriginal.game.component.Shopper;
 import net.mostlyoriginal.game.component.ShopperSpawner;
+import net.mostlyoriginal.game.component.dialog.DialogSingleton;
 import net.mostlyoriginal.game.system.map.MapEntitySpawnerSystem;
-import net.mostlyoriginal.game.system.mechanics.DialogSystem;
 import net.mostlyoriginal.game.system.repository.ItemManager;
 
 /**
@@ -26,7 +26,7 @@ public class ShopperSpawnSystem extends FluidIteratingSystem {
 
     private MapEntitySpawnerSystem mapEntitySpawnerSystem;
     private ItemManager itemManager;
-    private DialogSystem dialogSystem;
+    private DialogSingleton dialog;
 
     private int lastScriptedSpawnDay = 0;
     private int spawns = 0;
@@ -92,14 +92,14 @@ public class ShopperSpawnSystem extends FluidIteratingSystem {
             mapEntitySpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY,
                     desiredItem, itemManager.randomReward(), "customer", 1);
             if (spawns == 1) {
-                dialogSystem.queue(NameHelper.getActor_player_face(), "Patrons want to buy specific items!");
-                dialogSystem.queue(NameHelper.getActor_player_face(), "All these guys want sticks!");
-                dialogSystem.queue(NameHelper.getActor_player_face(), "Use space near the sticks to pick one up.");
-                dialogSystem.queue(NameHelper.getActor_player_face(), "Stand at a patron and use space to trade.");
+                dialog.add(NameHelper.getActor_player_face(), "Patrons want to buy specific items!");
+                dialog.add(NameHelper.getActor_player_face(), "All these guys want sticks!");
+                dialog.add(NameHelper.getActor_player_face(), "Use space near the sticks to pick one up.");
+                dialog.add(NameHelper.getActor_player_face(), "Stand at a patron and use space to trade.");
             }
             if (player.visitorsRemaining == 4) {
-                dialogSystem.queue(NameHelper.getActor_player_face(), "When things slow down or out of stock,");
-                dialogSystem.queue(NameHelper.getActor_player_face(), "just close the door and patrons will leave");
+                dialog.add(NameHelper.getActor_player_face(), "When things slow down or out of stock,");
+                dialog.add(NameHelper.getActor_player_face(), "just close the door and patrons will leave");
             }
             return true;
         }

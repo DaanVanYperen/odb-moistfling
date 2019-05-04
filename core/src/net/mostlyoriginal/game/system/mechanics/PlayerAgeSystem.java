@@ -5,13 +5,15 @@ import com.artemis.FluidIteratingSystem;
 import com.artemis.annotations.All;
 import com.badlogic.gdx.math.MathUtils;
 import net.mostlyoriginal.game.component.Player;
+import net.mostlyoriginal.game.component.dialog.DialogSingleton;
 
 /**
  * @author Daan van Yperen
  */
 @All(Player.class)
 public class PlayerAgeSystem extends FluidIteratingSystem {
-    private DialogSystem dialogSystem;
+
+    private DialogSingleton dialog;
 
     @Override
     protected void process(E e) {
@@ -35,15 +37,15 @@ public class PlayerAgeSystem extends FluidIteratingSystem {
         }
 
 
-        if ( (e.playerDx() != 0 || e.playerDy() != 0) && !dialogSystem.isDialogActive() ) {
+        if ((e.playerDx() != 0 || e.playerDy() != 0) && !e.isInDialog()) {
             anim = anim + "_walk";
-            if ( e.playerDx() < 0 ) anim = anim + "_left" ;
-            else if ( e.playerDx() > 0 ) anim = anim + "_right";
-            else if ( e.playerDy() < 0 ) anim = anim + "_down";
-            else if ( e.playerDy() > 0 ) anim = anim + "_up";
+            if (e.playerDx() < 0) anim = anim + "_left";
+            else if (e.playerDx() > 0) anim = anim + "_right";
+            else if (e.playerDy() < 0) anim = anim + "_down";
+            else if (e.playerDy() > 0) anim = anim + "_up";
         }
 
-        if ( e.hasLifting() ) {
+        if (e.hasLifting()) {
             anim = anim + "_lift";
         }
         //System.out.println(anim);
@@ -55,12 +57,12 @@ public class PlayerAgeSystem extends FluidIteratingSystem {
 
     public boolean attemptPayment(int ageCost) {
         Player player = E.withTag("player").getPlayer();
-        if ( ageCost < 0 ) {
+        if (ageCost < 0) {
             // de-age
-            player.age = MathUtils.clamp(player.age + ageCost ,Player.MIN_AGE, Player.MAX_AGE);
+            player.age = MathUtils.clamp(player.age + ageCost, Player.MIN_AGE, Player.MAX_AGE);
             return true;
         }
-        if ( player.age + ageCost <= Player.MAX_AGE ) {
+        if (player.age + ageCost <= Player.MAX_AGE) {
             // age!
             player.age += ageCost;
             return true;

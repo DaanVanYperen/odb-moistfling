@@ -1,4 +1,4 @@
-package net.mostlyoriginal.game.component;
+package net.mostlyoriginal.game.component.dialog;
 
 import com.artemis.Component;
 

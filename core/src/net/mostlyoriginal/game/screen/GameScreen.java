@@ -66,10 +66,10 @@ public class GameScreen extends TransitionableWorldScreen {
 
                         new MapEntitySpawnerSystem(), // @todo decrease coupling, can we create a non map locked solution?
 
-                        new DialogSystem(), // @todo decouple PlayerControlSystem
+                        new DialogSystem(), // @todo transform singleton into a component system bound to parent entities. Freeze actors in the dialog.
 
-                        new ShopperSpawnSystem(),
-                        new NightShopperSpawnSystem(),
+                        new ShopperSpawnSystem(), // @todo decrease coupling.
+                        new NightShopperSpawnSystem(), // @todo decrease coupling.
                         new TutorialSystem(),
 
                         new PlayerControlSystem(),

@@ -8,12 +8,11 @@ import net.mostlyoriginal.api.component.graphics.Tint;
 import net.mostlyoriginal.api.component.ui.Label;
 import net.mostlyoriginal.api.util.Cooldown;
 import net.mostlyoriginal.game.GameRules;
+import net.mostlyoriginal.game.component.dialog.DialogSingleton;
 import net.mostlyoriginal.game.screen.LogoScreen;
 import net.mostlyoriginal.game.system.control.PlayerControlSystem;
 import net.mostlyoriginal.game.system.logic.TransitionSystem;
 import net.mostlyoriginal.game.util.Scripts;
-
-import java.util.LinkedList;
 
 /**
  * @author Daan van Yperen
@@ -21,26 +20,10 @@ import java.util.LinkedList;
 public class DialogSystem extends BaseSystem {
 
     private PlayerControlSystem playerControlSystem;
-
-    public static class Dialog {
-        String faceAnim;
-        String text;
-
-        public Dialog(String faceAnim, String text) {
-            this.faceAnim = faceAnim;
-            this.text = text;
-        }
-    }
-
-    private LinkedList<Dialog> dialogs = new LinkedList<>();
+    private DialogSingleton dialog;
 
     private static final Tint DIALOG_TINT = new Tint("444444");
-    private static final int BOTTOM_Y = 200 + 16;
-    private static final float MIDDLE_X = (float) (GameRules.SCREEN_WIDTH / GameRules.CAMERA_ZOOM) / 2f - 16;
-    private static final int LINE_HEIGHT = 12;
 
-    private int lastGold = -1;
-    private int lastDay = -1;
     private E talkLabel;
     private E faceIcon;
     private E dialogBox;
@@ -48,12 +31,14 @@ public class DialogSystem extends BaseSystem {
     private int revealedLength;
     private Cooldown revealCooldown = Cooldown.withInterval(1f / 60f).autoReset(false);
 
+    // @todo destroyyyy!
+    @Deprecated
     public boolean isDialogActive() {
-        return (dialogs.size() > 0) || (targetText != null);
+        return (dialog.size() > 0) || (targetText != null);
     }
 
     protected void clear() {
-        dialogs.clear();
+        dialog.clear();
         talkLabel.invisible();
         faceIcon.invisible().tint(1f, 1f, 1f, 0f);
         targetText = null;
@@ -81,10 +66,6 @@ public class DialogSystem extends BaseSystem {
         revealedLength = 0;
     }
 
-    public void queue(String faceAnim, String text) {
-        dialogs.add(new Dialog(faceAnim, "\"" + text + "\""));
-    }
-
     @Override
     protected void initialize() {
         super.initialize();
@@ -106,6 +87,9 @@ public class DialogSystem extends BaseSystem {
 
     @Override
     protected void processSystem() {
+        if (!dialog.isEmpty() ) {
+            E.withTag("player").inDialog(true);
+        }
         if (revealCooldown.ready(world.delta) && targetText != null) {
             revealCooldown.restart();
             revealedLength++;
@@ -138,9 +122,9 @@ public class DialogSystem extends BaseSystem {
     }
 
     private void popDialog() {
-        if (!dialogs.isEmpty()) {
+        if (!dialog.isEmpty()) {
             E.withTag("player").inDialog(true);
-            Dialog pop = dialogs.pop();
+            DialogSingleton.Dialog pop = dialog.pop();
             set(pop.faceAnim, pop.text);
         } else clear();
     }

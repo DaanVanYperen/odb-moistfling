@@ -4,10 +4,9 @@ import com.artemis.E;
 import com.artemis.FluidIteratingSystem;
 import com.artemis.annotations.All;
 import com.badlogic.gdx.graphics.Color;
-import net.mostlyoriginal.api.system.graphics.RenderBatchingSystem;
 import net.mostlyoriginal.game.GameRules;
 import net.mostlyoriginal.game.component.Shopper;
-import net.mostlyoriginal.game.system.mechanics.DialogSystem;
+import net.mostlyoriginal.game.component.dialog.DialogSingleton;
 import net.mostlyoriginal.game.util.Scripts;
 
 /**
@@ -16,10 +15,9 @@ import net.mostlyoriginal.game.util.Scripts;
 @All(Shopper.class)
 public class ShopperControlSystem extends FluidIteratingSystem {
 
-    PickupManager pickupManager;
+    private PickupManager pickupManager;
     private E player;
-    private DialogSystem dialogSystem;
-    private RenderBatchingSystem renderBatchingSystem;
+    private DialogSingleton dialog;
     private PickupSystem pickupSystem;
 
     @Override
@@ -65,11 +63,8 @@ public class ShopperControlSystem extends FluidIteratingSystem {
     }
 
     private boolean timeToLeaveFor(Shopper shopper) {
-
-        if (isHereForTalking(shopper)) {
-            if ( !dialogSystem.isDialogActive() ) {
-                return true;
-            }
+        if (isHereForTalking(shopper) && !player.isInDialog() && shopper.age > 2f ) {
+            return true;
         }
 
         return shopper.age >= shopper.leaveAge || ((shopper.type == Shopper.Type.SHOPPER ) == player.playerNighttime());
