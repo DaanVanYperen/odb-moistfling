@@ -13,7 +13,7 @@ import static com.artemis.E.E;
 /**
  * @author Daan van Yperen
  */
-public class RecipeRepository extends BaseSystem {
+public class RecipeManager extends BaseSystem {
 
     public RecipeLibrary recipeLibrary;
     private ItemManager itemManager;

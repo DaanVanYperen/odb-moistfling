@@ -6,11 +6,14 @@ import com.artemis.annotations.All;
 import com.artemis.utils.IntBag;
 import net.mostlyoriginal.api.component.graphics.Tint;
 import net.mostlyoriginal.game.GameRules;
-import net.mostlyoriginal.game.component.*;
-import net.mostlyoriginal.game.system.repository.ItemManager;
-import net.mostlyoriginal.game.system.repository.RecipeRepository;
+import net.mostlyoriginal.game.component.Item;
+import net.mostlyoriginal.game.component.Machine;
+import net.mostlyoriginal.game.component.RecipeData;
+import net.mostlyoriginal.game.component.RecipeIngredientHint;
 import net.mostlyoriginal.game.system.common.FluidSystem;
 import net.mostlyoriginal.game.system.map.MapSpawnerSystem;
+import net.mostlyoriginal.game.system.repository.ItemManager;
+import net.mostlyoriginal.game.system.repository.RecipeManager;
 
 /**
  * @author Daan van Yperen
@@ -23,7 +26,7 @@ public class RecipeIngredientHintSystem extends FluidSystem {
     private static final int ICON_OFFSET_Y = 4;
     private static final int SPACING_BETWEEN_ITEMS = -19;
     private static final int MAX_LINES_AT_ONCE = 4;
-    private RecipeRepository recipeRepository;
+    private RecipeManager recipeManager;
     private ItemManager itemManager;
     private MapSpawnerSystem mapSpawnerSystem;
     private PlayerAgeSystem playerAgeSystem;
@@ -76,7 +79,7 @@ public class RecipeIngredientHintSystem extends FluidSystem {
             firstLine = 0;
         }
         matchingRecipes=0;
-        RecipeData[] recipes = recipeRepository.recipeLibrary.recipes;
+        RecipeData[] recipes = recipeManager.recipeLibrary.recipes;
         for (int j = 0, s2 = recipes.length; j < s2; j++) {
 
             // limit the amount of crap on the screen.

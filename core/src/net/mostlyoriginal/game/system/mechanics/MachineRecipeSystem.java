@@ -2,19 +2,19 @@ package net.mostlyoriginal.game.system.mechanics;
 
 import com.artemis.E;
 import com.artemis.annotations.All;
+import net.mostlyoriginal.api.util.Cooldown;
 import net.mostlyoriginal.game.GameRules;
 import net.mostlyoriginal.game.component.GridPos;
 import net.mostlyoriginal.game.component.ItemData;
 import net.mostlyoriginal.game.component.Machine;
 import net.mostlyoriginal.game.component.RecipeData;
-import net.mostlyoriginal.game.system.repository.ItemManager;
-import net.mostlyoriginal.game.system.repository.RecipeRepository;
-import net.mostlyoriginal.game.system.render.ParticleSystem;
 import net.mostlyoriginal.game.system.common.FluidSystem;
 import net.mostlyoriginal.game.system.control.PickupSystem;
 import net.mostlyoriginal.game.system.map.MapSpawnerSystem;
+import net.mostlyoriginal.game.system.render.ParticleSystem;
+import net.mostlyoriginal.game.system.repository.ItemManager;
+import net.mostlyoriginal.game.system.repository.RecipeManager;
 import net.mostlyoriginal.game.system.view.GameScreenAssetSystem;
-import net.mostlyoriginal.api.util.Cooldown;
 
 /**
  * @author Daan van Yperen
@@ -22,7 +22,7 @@ import net.mostlyoriginal.api.util.Cooldown;
 @All(Machine.class)
 public class MachineRecipeSystem extends FluidSystem {
 
-    private RecipeRepository recipeRepository;
+    private RecipeManager recipeManager;
     private ItemManager itemManager;
     private MapSpawnerSystem mapSpawnerSystem;
     private PlayerAgeSystem playerAgeSystem;
@@ -43,7 +43,7 @@ public class MachineRecipeSystem extends FluidSystem {
         Machine machine = e.getMachine();
         if (!machine.contents.isEmpty()) {
             // we can just bruteforce this as there won't be many machines initially.
-            RecipeData recipe = recipeRepository.firstMatching(machine.contents);
+            RecipeData recipe = recipeManager.firstMatching(machine.contents);
             if (recipe != null) {
                 machine.warmupAge += UPDATE_EVERY_SECONDS;
                 if (machine.warmupAge > 0.5f) {

@@ -1,26 +1,19 @@
 package net.mostlyoriginal.game.system.control;
 
 import com.artemis.E;
-import com.artemis.EntitySubscription;
 import com.artemis.FluidIteratingSystem;
 import com.artemis.annotations.All;
 import com.artemis.annotations.Exclude;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.math.Vector2;
-import net.mostlyoriginal.api.utils.MapMask;
-import net.mostlyoriginal.game.GameRules;
-import net.mostlyoriginal.game.component.InDialog;
+import net.mostlyoriginal.api.util.Cooldown;
 import net.mostlyoriginal.game.component.GridPos;
-import net.mostlyoriginal.game.component.Item;
-import net.mostlyoriginal.game.component.ItemData;
+import net.mostlyoriginal.game.component.InDialog;
 import net.mostlyoriginal.game.component.Player;
 import net.mostlyoriginal.game.component.map.TiledMapSingleton;
-import net.mostlyoriginal.game.system.repository.ItemManager;
 import net.mostlyoriginal.game.system.mechanics.NightSystem;
-import net.mostlyoriginal.game.system.map.MapSpawnerSystem;
 import net.mostlyoriginal.game.system.view.GameScreenAssetSystem;
-import net.mostlyoriginal.api.util.Cooldown;
 
 /**
  * @author Daan van Yperen
@@ -32,26 +25,10 @@ public class PlayerControlSystem extends FluidIteratingSystem {
     private static final float PLAYER_MOVEMENT_SPEED = 220f;
 
     private TiledMapSingleton tiledMap;
-
-    private MapMask solid;
-
-    @All(Item.class)
-    private EntitySubscription items;
-    private MapSpawnerSystem mapSpawnSystem;
-    private ItemManager itemManager;
     private NightSystem nightSystem;
 
     public Cooldown interactCooldown = Cooldown.withInterval(0.2f).autoReset(false);
     private GameScreenAssetSystem gameScreenAssetSystem;
-
-    @Override
-    protected void begin() {
-        super.begin();
-        if ( solid == null ) {
-            solid = tiledMap.createMask("solid");
-        }
-
-    }
 
     @Override
     protected void process(E e) {
@@ -65,29 +42,6 @@ public class PlayerControlSystem extends FluidIteratingSystem {
 
     private void handleMovement(E e) {
         final GridPos gridPos = e.getGridPos();
-
-        if ( GameRules.DEBUG_ENABLED  ) {
-            if (Gdx.input.isKeyPressed(Input.Keys.F5)) {
-                E.withTag("player").playerAge(0);
-            }
-            if (Gdx.input.isKeyPressed(Input.Keys.F6)) {
-                E.withTag("player").playerAge(1);
-            }
-            if (Gdx.input.isKeyPressed(Input.Keys.F7)) {
-                E.withTag("player").playerAge(2);
-            }
-            if (Gdx.input.isKeyPressed(Input.Keys.F8)) {
-                E.withTag("player").playerAge(3);
-            }
-
-            if (Gdx.input.isKeyJustPressed(Input.Keys.F9)) {
-                int index=0;
-                for (ItemData data : itemManager.itemLibrary.items) {
-                    mapSpawnSystem.spawnItem(index++ % 20,index / 20,data.id).itemCount(99);
-                }
-
-            }
-        }
 
         if ( interactCooldown.ready() ) {
             if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE) || Gdx.input.isKeyJustPressed(Input.Keys.SHIFT_RIGHT) || Gdx.input.isKeyJustPressed(Input.Keys.SHIFT_LEFT)) {
