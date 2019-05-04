@@ -1,13 +1,12 @@
 package net.mostlyoriginal.game.system.control;
 
 import com.artemis.E;
-import com.artemis.EntitySubscription;
 import com.artemis.FluidIteratingSystem;
 import com.artemis.annotations.All;
 import net.mostlyoriginal.game.component.Shopper;
 import net.mostlyoriginal.game.component.ShopperSpawner;
+import net.mostlyoriginal.game.system.map.MapEntitySpawnerSystem;
 import net.mostlyoriginal.game.system.mechanics.DialogSystem;
-import net.mostlyoriginal.game.system.map.MapSpawnerSystem;
 
 /**
  * @author Daan van Yperen
@@ -15,11 +14,7 @@ import net.mostlyoriginal.game.system.map.MapSpawnerSystem;
 @All(ShopperSpawner.class)
 public class NightShopperSpawnSystem extends FluidIteratingSystem {
 
-    private static final int TARGET_SHOPPER_COUNT = 3;
-
-    @All(Shopper.class)
-    private EntitySubscription shoppers;
-    MapSpawnerSystem mapSpawnerSystem;
+    MapEntitySpawnerSystem mapEntitySpawnerSystem;
 
     private int lastScriptedSpawnDay = 0;
     private E player;
@@ -49,7 +44,7 @@ public class NightShopperSpawnSystem extends FluidIteratingSystem {
     private boolean spawnScriptedShopper(int gridPosX, int gridPosY, int day) {
 
         if (day == Days.FIRST_DAY_IN_THE_SHOP) {
-            mapSpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY, "item_talk", null, "actor_hag", 0).shopperType(Shopper.Type.HAG);
+            mapEntitySpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY, "item_talk", null, "actor_hag", 0).shopperType(Shopper.Type.HAG);
             dialogSystem.queue(NameHelper.getActor_player_face(), "Enough sitting behind the geraniums!");
             dialogSystem.queue(NameHelper.getActor_player_face(), "It's been a while since I opened the shop.");
             dialogSystem.queue(NameHelper.getActor_player_face(), "I missed this place.");
@@ -67,7 +62,7 @@ public class NightShopperSpawnSystem extends FluidIteratingSystem {
         }
 
         if (day == Days.ENCHANTED_BOW_BUYER) {
-            mapSpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY, "item_talk", null, "actor_hag", 0).shopperType(Shopper.Type.HAG);
+            mapEntitySpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY, "item_talk", null, "actor_hag", 0).shopperType(Shopper.Type.HAG);
             dialogSystem.queue(NameHelper.getActor_player_face(), "Pfew, good thing I stocked up on sticks.");
             dialogSystem.queue(NameHelper.getActor_player_face(), "Not you again.");
             dialogSystem.queue("actor_hag_face", "Hello future husband.");
@@ -84,7 +79,7 @@ public class NightShopperSpawnSystem extends FluidIteratingSystem {
         }
 
         if (day == Days.DRUID_PACKAGE) {
-            mapSpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY, "item_talk", "item_herb_branch", "actor_postal", 8)
+            mapEntitySpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY, "item_talk", "item_herb_branch", "actor_postal", 8)
                     .shopperType(Shopper.Type.POSTAL);
             dialogSystem.queue(NameHelper.getActor_player_face(), "Hi there Sam! Another delivery?");
             dialogSystem.queue("actor_postal_face", "You look.. different!");
@@ -97,7 +92,7 @@ public class NightShopperSpawnSystem extends FluidIteratingSystem {
         }
 
         if (day == Days.CURIOUS_IMP) {
-            mapSpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY, "item_talk", "item_imp", "actor_hag", 1).shopperType(Shopper.Type.HAG);
+            mapEntitySpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY, "item_talk", "item_imp", "actor_hag", 1).shopperType(Shopper.Type.HAG);
             dialogSystem.queue(NameHelper.getActor_player_face(), "Not you again.");
             dialogSystem.queue("actor_hag_face", "My familiar is too familiar with me.");
             dialogSystem.queue("actor_hag_face", "Impish behaviour i wish not to see.");
@@ -108,7 +103,7 @@ public class NightShopperSpawnSystem extends FluidIteratingSystem {
         }
 
         if (day == Days.SPLINTERS_EVERYWHERE) {
-            mapSpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY, "item_talk", null, "actor_postal", 0)
+            mapEntitySpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY, "item_talk", null, "actor_postal", 0)
                     .shopperType(Shopper.Type.POSTAL);
 
             dialogSystem.queue("actor_postal_face", "...");
@@ -130,7 +125,7 @@ public class NightShopperSpawnSystem extends FluidIteratingSystem {
         }
 
         if (day == Days.DUNGEON_DELVED) {
-            mapSpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY, "item_talk", "item_boxed_forge", "actor_hag", 1).shopperType(Shopper.Type.HAG);
+            mapEntitySpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY, "item_talk", "item_boxed_forge", "actor_hag", 1).shopperType(Shopper.Type.HAG);
             dialogSystem.queue("actor_hag_face", "I opened a dungeon deep under your lawn.");
             dialogSystem.queue("actor_hag_face", "Its gates bursting forth my demonic spawn");
             dialogSystem.queue(NameHelper.getActor_player_face(), "Please don't say burst. or spawn.");
@@ -144,7 +139,7 @@ public class NightShopperSpawnSystem extends FluidIteratingSystem {
         }
 
         if (day == Days.TRAVELING_CIRCUS) {
-            mapSpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY, "item_talk", null, "actor_postal", 0)
+            mapEntitySpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY, "item_talk", null, "actor_postal", 0)
                     .shopperType(Shopper.Type.POSTAL);
             dialogSystem.queue("actor_postal_face", "Giants! Giants! AHHHHH.");
             dialogSystem.queue(NameHelper.getActor_player_face(), "Sam slow down, what's going on?");
@@ -160,7 +155,7 @@ public class NightShopperSpawnSystem extends FluidIteratingSystem {
         }
 
         if (day == Days.MAGE_COURT) { // druids need health potions. Will trade it for a health tome.
-            mapSpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY, "item_talk", null, "actor_postal", 0)
+            mapEntitySpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY, "item_talk", null, "actor_postal", 0)
                     .shopperType(Shopper.Type.POSTAL);
             dialogSystem.queue("actor_postal_face", "Can I hide in here for a while?");
             dialogSystem.queue(NameHelper.getActor_player_face(), "What now Sam.");
@@ -179,7 +174,7 @@ public class NightShopperSpawnSystem extends FluidIteratingSystem {
         }
 
         if (day == Days.DRAGON_HEART) { // Unicorn chicken for a dragon heart (part of the end).
-            mapSpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY, "item_talk", null, "actor_hag", 1).shopperType(Shopper.Type.HAG);
+            mapEntitySpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY, "item_talk", null, "actor_hag", 1).shopperType(Shopper.Type.HAG);
 
             dialogSystem.queue("actor_hag_face", "Did you miss me, future husband?");
             dialogSystem.queue(NameHelper.getActor_player_face(), "Like a headache. I got both now.");
@@ -196,7 +191,7 @@ public class NightShopperSpawnSystem extends FluidIteratingSystem {
         }
 
         if (day == Days.MARRIAGE_NIGHT) { // Marriage night.
-            mapSpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY, "item_talk", null, "actor_postal", 0)
+            mapEntitySpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY, "item_talk", null, "actor_postal", 0)
                     .shopperType(Shopper.Type.POSTAL);
             dialogSystem.queue(NameHelper.getActor_player_face(), "Oh, hi Sam.");
             dialogSystem.queue("actor_postal_face", "Why so glum?");
@@ -220,7 +215,4 @@ public class NightShopperSpawnSystem extends FluidIteratingSystem {
         return false;
     }
 
-    private boolean enoughShoppers() {
-        return shoppers.getEntities().size() >= TARGET_SHOPPER_COUNT;
-    }
 }

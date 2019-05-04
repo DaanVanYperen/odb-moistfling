@@ -8,6 +8,7 @@ import com.artemis.managers.TagManager;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import net.mostlyoriginal.api.manager.FontManager;
+import net.mostlyoriginal.api.plugin.fluidextensions.ESubscriptionPlugin;
 import net.mostlyoriginal.api.plugin.singleton.SingletonPlugin;
 import net.mostlyoriginal.api.system.camera.CameraSystem;
 import net.mostlyoriginal.api.system.graphics.RenderBatchingSystem;
@@ -48,27 +49,26 @@ public class GameScreen extends TransitionableWorldScreen {
                         EntityLinkManager.class,
                         ProfilerPlugin.class,
                         OperationsPlugin.class,
-                        SingletonPlugin.class)
+                        SingletonPlugin.class,
+                        ESubscriptionPlugin.class)
                 .with(
-                        new SuperMapper(),
-                        //new EmotionService(),
-                        new FontManager(),
-                        new TagManager(),
-                        new TiledMapManager("map" + (GameRules.level) + ".tmx"),
-                        new ItemManager(),
-                        new RecipeManager(),
+                        new SuperMapper(), // decoupled
+                        new FontManager(), // decoupled
+                        new TagManager(), // decoupled
+                        new TiledMapManager("map0.tmx"),
+                        new ItemManager(), // @todo decouple? convert to component?
+                        new RecipeManager(), // @todo decouple? convert to component?
                         new PickupManager()
-                        //new TutorialService()
                 )
                 .with(
                         // Replace with your own systems!
-                        new CameraSystem(2),
-                        new MyClearScreenSystem(Color.valueOf(BACKGROUND_COLOR_HEX)),
-                        new GameScreenAssetSystem(),
+                        new CameraSystem(2), // Make reusable?
+                        new MyClearScreenSystem(Color.valueOf(BACKGROUND_COLOR_HEX)), // probably fine.
+                        new GameScreenAssetSystem(), // Make reusable?
 
-                        new MapSpawnerSystem(),
+                        new MapEntitySpawnerSystem(), // @todo decrease coupling, can we create a non map locked solution?
 
-                        new DialogSystem(),
+                        new DialogSystem(), // @todo decouple PlayerControlSystem
 
                         new ShopperSpawnSystem(),
                         new NightShopperSpawnSystem(),

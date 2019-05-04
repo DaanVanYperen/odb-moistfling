@@ -1,15 +1,11 @@
 package net.mostlyoriginal.game.system.mechanics;
 
 import com.artemis.E;
-import com.artemis.EBag;
-import com.artemis.EntitySubscription;
 import com.artemis.annotations.All;
-import com.artemis.utils.IntBag;
-import com.badlogic.gdx.math.MathUtils;
+import net.mostlyoriginal.api.plugin.fluidextensions.ESubscription;
 import net.mostlyoriginal.game.component.GridPos;
 import net.mostlyoriginal.game.component.Hopper;
 import net.mostlyoriginal.game.component.Item;
-import net.mostlyoriginal.game.component.Machine;
 import net.mostlyoriginal.game.system.common.FluidSystem;
 
 import static net.mostlyoriginal.game.system.mechanics.MachineHopperDetectionSystem.MINIMUM_SLOTTED_DURATION_SECONDS;
@@ -21,7 +17,7 @@ import static net.mostlyoriginal.game.system.mechanics.MachineHopperDetectionSys
 public class HopperDetectionSystem extends FluidSystem {
 
     @All({Item.class, GridPos.class})
-    public EntitySubscription items;
+    public ESubscription items;
 
     @Override
     protected void process(E hopperE) {
@@ -35,13 +31,11 @@ public class HopperDetectionSystem extends FluidSystem {
         hopper.slottedId = -1;
 
         // find first item to slot.
-        final IntBag itemEntities = items.getEntities();
-        for (int i = 0, s = itemEntities.size(); i < s; i++) {
-            final E item = E.E(itemEntities.get(i));
+        for (E item : items) {
             if (canBeSlotted(item) && item.getGridPos().overlaps(hopperE.getGridPos())) {
                 hopper.slottedId = item.id();
-                hopper.slottedDuration  += world.delta;
-                if ( hopper.slottedDuration > MINIMUM_SLOTTED_DURATION_SECONDS && !item.hasFloating() && !item.hasPlayer() ) {
+                hopper.slottedDuration += world.delta;
+                if (hopper.slottedDuration > MINIMUM_SLOTTED_DURATION_SECONDS && !item.hasFloating() && !item.hasPlayer()) {
                     item.floating();
                 }
                 //item.angleRotation(MathUtils.random(0f,100f));

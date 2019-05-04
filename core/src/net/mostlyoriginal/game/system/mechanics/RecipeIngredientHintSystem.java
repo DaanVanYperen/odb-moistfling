@@ -1,17 +1,17 @@
 package net.mostlyoriginal.game.system.mechanics;
 
 import com.artemis.E;
-import com.artemis.EntitySubscription;
 import com.artemis.annotations.All;
 import com.artemis.utils.IntBag;
 import net.mostlyoriginal.api.component.graphics.Tint;
+import net.mostlyoriginal.api.plugin.fluidextensions.ESubscription;
 import net.mostlyoriginal.game.GameRules;
 import net.mostlyoriginal.game.component.Item;
 import net.mostlyoriginal.game.component.Machine;
 import net.mostlyoriginal.game.component.RecipeData;
 import net.mostlyoriginal.game.component.RecipeIngredientHint;
 import net.mostlyoriginal.game.system.common.FluidSystem;
-import net.mostlyoriginal.game.system.map.MapSpawnerSystem;
+import net.mostlyoriginal.game.system.map.MapEntitySpawnerSystem;
 import net.mostlyoriginal.game.system.repository.ItemManager;
 import net.mostlyoriginal.game.system.repository.RecipeManager;
 
@@ -28,21 +28,21 @@ public class RecipeIngredientHintSystem extends FluidSystem {
     private static final int MAX_LINES_AT_ONCE = 4;
     private RecipeManager recipeManager;
     private ItemManager itemManager;
-    private MapSpawnerSystem mapSpawnerSystem;
+    private MapEntitySpawnerSystem mapEntitySpawnerSystem;
     private PlayerAgeSystem playerAgeSystem;
 
     private int firstLine = 0;
     private float scrollCooldown = 3f;
 
     @All(RecipeIngredientHint.class)
-    public EntitySubscription recipeIngredientHints;
+    public ESubscription recipeIngredientHints;
 
     @Override
     protected void begin() {
         super.begin();
 
         scrollCooldown -= world.delta;
-        if ( scrollCooldown < 0 ) {
+        if (scrollCooldown < 0) {
             scrollCooldown += 5f;
             firstLine += MAX_LINES_AT_ONCE;
         }
@@ -60,25 +60,23 @@ public class RecipeIngredientHintSystem extends FluidSystem {
     }
 
     private void purgeRecipesForMachine(int machineId) {
-        IntBag hints = recipeIngredientHints.getEntities();
-        for (int i = 0, s = hints.size(); i < s; i++) {
-            E recipeIngredientHint = E.E(hints.get(i));
-            if ( recipeIngredientHint.recipeIngredientHintMachineId() == machineId ) {
+        for (E recipeIngredientHint : recipeIngredientHints) {
+            if (recipeIngredientHint.recipeIngredientHintMachineId() == machineId) {
                 recipeIngredientHint.removeRecipeIngredientHint().deleteFromWorld();
             }
         }
     }
 
-    int matchingRecipes=0;
+    int matchingRecipes = 0;
 
     private void displayValidRecipes(int machineId, IntBag contents) {
 
         int y = 100;
         int line = 0;
-        if ( firstLine > matchingRecipes ) {
+        if (firstLine > matchingRecipes) {
             firstLine = 0;
         }
-        matchingRecipes=0;
+        matchingRecipes = 0;
         RecipeData[] recipes = recipeManager.recipeLibrary.recipes;
         for (int j = 0, s2 = recipes.length; j < s2; j++) {
 
@@ -87,7 +85,7 @@ public class RecipeIngredientHintSystem extends FluidSystem {
             final RecipeData recipe = recipes[j];
             if (hasIngredients(recipe, contents)) {
                 matchingRecipes++;
-                if (  ++line < firstLine+1 || line > firstLine + MAX_LINES_AT_ONCE)
+                if (++line < firstLine + 1 || line > firstLine + MAX_LINES_AT_ONCE)
                     continue;
 
                 createIngridientHints(recipe, 340, y, machineId);
@@ -97,7 +95,7 @@ public class RecipeIngredientHintSystem extends FluidSystem {
 
     }
 
-    private static final Tint hintTint = new Tint(1f,1f,1f,0.7f);
+    private static final Tint hintTint = new Tint(1f, 1f, 1f, 0.7f);
 
     private void createIngridientHints(RecipeData recipe, int startX, int startY, int machineId) {
 
@@ -106,41 +104,41 @@ public class RecipeIngredientHintSystem extends FluidSystem {
 
         for (String ingredient : recipe.produces) {
             E.E()
-                    .pos(x- ICON_OFFSET_X,y- ICON_OFFSET_Y)
+                    .pos(x - ICON_OFFSET_X, y - ICON_OFFSET_Y)
                     .anim(itemManager.get(ingredient).sprite)
                     .recipeIngredientHintMachineId(machineId)
                     .tint(hintTint)
                     .scale(HINT_SCALE)
                     .renderLayer(GameRules.LAYER_INGREDIENT_HINTS);
-            x+=SPACING_BETWEEN_ITEMS;
+            x += SPACING_BETWEEN_ITEMS;
         }
         E.E()
-                .pos(x,y)
+                .pos(x, y)
                 .anim("equals")
                 .tint(hintTint)
                 .scale(0.5f)
                 .recipeIngredientHintMachineId(machineId)
-                .renderLayer(GameRules.LAYER_INGREDIENT_HINTS+1);
-        x+=SPACING_BETWEEN_ITEMS;
+                .renderLayer(GameRules.LAYER_INGREDIENT_HINTS + 1);
+        x += SPACING_BETWEEN_ITEMS;
 
-        int count=0;
+        int count = 0;
         for (String ingredient : recipe.ingredients) {
             E.E()
-                    .pos(x- ICON_OFFSET_X,y- ICON_OFFSET_Y)
+                    .pos(x - ICON_OFFSET_X, y - ICON_OFFSET_Y)
                     .tint(hintTint)
                     .anim(itemManager.get(ingredient).sprite)
                     .recipeIngredientHintMachineId(machineId)
                     .scale(HINT_SCALE)
-                    .renderLayer(GameRules.LAYER_INGREDIENT_HINTS+count*2);
-            x+=SPACING_BETWEEN_ITEMS;
-            if ( count < recipe.ingredients.length-1 ) {
+                    .renderLayer(GameRules.LAYER_INGREDIENT_HINTS + count * 2);
+            x += SPACING_BETWEEN_ITEMS;
+            if (count < recipe.ingredients.length - 1) {
                 E.E()
                         .pos(x, y)
                         .tint(hintTint)
                         .anim("plus")
                         .recipeIngredientHintMachineId(machineId)
                         .scale(0.5f)
-                        .renderLayer(GameRules.LAYER_INGREDIENT_HINTS+count*2+1);
+                        .renderLayer(GameRules.LAYER_INGREDIENT_HINTS + count * 2 + 1);
                 x +=
                         SPACING_BETWEEN_ITEMS;
             }
@@ -154,7 +152,7 @@ public class RecipeIngredientHintSystem extends FluidSystem {
             Item ingredientItem = E.E(contents.get(0)).getItem();
             final String ingredient = ingredientItem.type;
             if (!recipe.hasIngredient(ingredient)) return false;
-            if ( "item_player".equals(ingredient) ) return false;
+            if ("item_player".equals(ingredient)) return false;
         }
         return true;
     }

@@ -1,15 +1,14 @@
 package net.mostlyoriginal.game.system.map;
 
-import com.artemis.BaseSystem;
 import com.artemis.E;
 import com.artemis.FluidIteratingSystem;
 import com.artemis.annotations.All;
 import com.badlogic.gdx.maps.MapProperties;
 import net.mostlyoriginal.api.component.graphics.Tint;
 import net.mostlyoriginal.game.GameRules;
-import net.mostlyoriginal.game.component.Slot;
 import net.mostlyoriginal.game.component.AffectedByNight;
 import net.mostlyoriginal.game.component.Machine;
+import net.mostlyoriginal.game.component.Slot;
 import net.mostlyoriginal.game.component.map.MapEntityMarker;
 import net.mostlyoriginal.game.system.repository.ItemManager;
 import net.mostlyoriginal.game.util.Scripts;
@@ -21,7 +20,7 @@ import java.util.List;
  * @author Daan van Yperen
  */
 @All(MapEntityMarker.class)
-public class MapSpawnerSystem extends FluidIteratingSystem {
+public class MapEntitySpawnerSystem extends FluidIteratingSystem {
     ItemManager itemManager;
 
     private List<E> machines = new ArrayList<>();

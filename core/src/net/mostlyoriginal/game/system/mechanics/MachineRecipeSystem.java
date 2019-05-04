@@ -10,7 +10,7 @@ import net.mostlyoriginal.game.component.Machine;
 import net.mostlyoriginal.game.component.RecipeData;
 import net.mostlyoriginal.game.system.common.FluidSystem;
 import net.mostlyoriginal.game.system.control.PickupSystem;
-import net.mostlyoriginal.game.system.map.MapSpawnerSystem;
+import net.mostlyoriginal.game.system.map.MapEntitySpawnerSystem;
 import net.mostlyoriginal.game.system.render.ParticleSystem;
 import net.mostlyoriginal.game.system.repository.ItemManager;
 import net.mostlyoriginal.game.system.repository.RecipeManager;
@@ -24,7 +24,7 @@ public class MachineRecipeSystem extends FluidSystem {
 
     private RecipeManager recipeManager;
     private ItemManager itemManager;
-    private MapSpawnerSystem mapSpawnerSystem;
+    private MapEntitySpawnerSystem mapEntitySpawnerSystem;
     private PlayerAgeSystem playerAgeSystem;
     private PickupSystem pickupSystem;
     private GameScreenAssetSystem gameScreenAssetSystem;
@@ -75,7 +75,7 @@ public class MachineRecipeSystem extends FluidSystem {
         boolean first = true;
         for (String producesItem : recipe.produces) {
             if (producesItem.startsWith("item_player_")) continue;
-            E item = mapSpawnerSystem.spawnItem(machineGridPos.x, machineGridPos.y, producesItem);
+            E item = mapEntitySpawnerSystem.spawnItem(machineGridPos.x, machineGridPos.y, producesItem);
             if (item != null && first) {
                 first = false;
                 giveItemToPlayerIfHandsEmpty(item);

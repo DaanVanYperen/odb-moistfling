@@ -7,12 +7,12 @@ import net.mostlyoriginal.api.component.basic.Pos;
 import net.mostlyoriginal.api.component.graphics.Tint;
 import net.mostlyoriginal.api.system.graphics.RenderBatchingSystem;
 import net.mostlyoriginal.game.GameRules;
-import net.mostlyoriginal.game.component.Slot;
 import net.mostlyoriginal.game.component.Lifter;
-import net.mostlyoriginal.game.system.repository.ItemManager;
-import net.mostlyoriginal.game.system.render.SlotHighlightingSystem;
-import net.mostlyoriginal.game.system.map.MapSpawnerSystem;
+import net.mostlyoriginal.game.component.Slot;
+import net.mostlyoriginal.game.system.map.MapEntitySpawnerSystem;
 import net.mostlyoriginal.game.system.mechanics.TutorialSystem;
+import net.mostlyoriginal.game.system.render.SlotHighlightingSystem;
+import net.mostlyoriginal.game.system.repository.ItemManager;
 import net.mostlyoriginal.game.system.view.GameScreenAssetSystem;
 
 
@@ -28,7 +28,7 @@ public class PickupSystem extends FluidIteratingSystem {
     RenderBatchingSystem renderBatchingSystem;
     PickupManager pickupManager;
     private ItemManager itemManager;
-    private MapSpawnerSystem mapSpawnerSystem;
+    private MapEntitySpawnerSystem mapEntitySpawnerSystem;
 
     private GameScreenAssetSystem gameScreenAssetSystem;
     private SlotHighlightingSystem slotHighlightingSystem;
@@ -165,7 +165,7 @@ public class PickupSystem extends FluidIteratingSystem {
             if (item.itemCount() > 1 && !actor.hasShopper()) { // shoppers grab the whole stack.
                 // take from stack.
                 item.getItem().count--;
-                E clonedItem = mapSpawnerSystem.spawnItem(0, 0, item.itemType())
+                E clonedItem = mapEntitySpawnerSystem.spawnItem(0, 0, item.itemType())
                         .removeGridPos()
                         .removeFloating()
                         //.removeCastsShadow()

@@ -1,18 +1,17 @@
 package net.mostlyoriginal.game.system.control;
 
 import com.artemis.E;
-import com.artemis.EntitySubscription;
 import com.artemis.FluidIteratingSystem;
 import com.artemis.annotations.All;
-import com.artemis.utils.IntBag;
 import com.badlogic.gdx.math.MathUtils;
+import net.mostlyoriginal.api.plugin.fluidextensions.ESubscription;
 import net.mostlyoriginal.game.component.GridPos;
 import net.mostlyoriginal.game.component.Player;
 import net.mostlyoriginal.game.component.Shopper;
 import net.mostlyoriginal.game.component.ShopperSpawner;
-import net.mostlyoriginal.game.system.repository.ItemManager;
+import net.mostlyoriginal.game.system.map.MapEntitySpawnerSystem;
 import net.mostlyoriginal.game.system.mechanics.DialogSystem;
-import net.mostlyoriginal.game.system.map.MapSpawnerSystem;
+import net.mostlyoriginal.game.system.repository.ItemManager;
 
 /**
  * @author Daan van Yperen
@@ -23,14 +22,15 @@ public class ShopperSpawnSystem extends FluidIteratingSystem {
     private static final int TARGET_SHOPPER_COUNT = 3;
 
     @All(Shopper.class)
-    private EntitySubscription shoppers;
-    MapSpawnerSystem mapSpawnerSystem;
+    private ESubscription shoppers;
+
+    private MapEntitySpawnerSystem mapEntitySpawnerSystem;
+    private ItemManager itemManager;
+    private DialogSystem dialogSystem;
 
     private int lastScriptedSpawnDay = 0;
     private int spawns = 0;
     private E player;
-    private ItemManager itemManager;
-    private DialogSystem dialogSystem;
 
     @Override
     protected boolean checkProcessing() {
@@ -63,7 +63,7 @@ public class ShopperSpawnSystem extends FluidIteratingSystem {
                             return;
                         }
                     }
-                    mapSpawnerSystem.spawnShopper(e.gridPosX(), e.gridPosY(), "customer");
+                    mapEntitySpawnerSystem.spawnShopper(e.gridPosX(), e.gridPosY(), "customer");
                     player.visitorsRemaining--;
                 }
             }
@@ -71,10 +71,7 @@ public class ShopperSpawnSystem extends FluidIteratingSystem {
     }
 
     private boolean isShopperAtSpawner(GridPos spawnerGridPos) {
-        IntBag entities = shoppers.getEntities();
-        int[] data = entities.getData();
-        for (int i = 0, s = entities.size(); i < s; i++) {
-            E e = E.E(data[i]);
+        for (E e : shoppers) {
             if (e.hasGridPos() && e.gridPosOverlaps(spawnerGridPos)) {
                 return true;
             }
@@ -92,7 +89,7 @@ public class ShopperSpawnSystem extends FluidIteratingSystem {
             }
             lastScriptedSpawnDay = -1; // run this over and over.
             String desiredItem = "item_wood";
-            mapSpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY,
+            mapEntitySpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY,
                     desiredItem, itemManager.randomReward(), "customer", 1);
             if (spawns == 1) {
                 dialogSystem.queue(NameHelper.getActor_player_face(), "Patrons want to buy specific items!");
@@ -109,18 +106,18 @@ public class ShopperSpawnSystem extends FluidIteratingSystem {
 
 
         if (day == Days.ENCHANTED_BOW_BUYER) {
-            mapSpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY, "item_enchanted_bow", "item_boxed_coop", "customer", 1);
+            mapEntitySpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY, "item_enchanted_bow", "item_boxed_coop", "customer", 1);
             return true;
         }
 
         if (day == Days.DRAGON_HEART) {
-            mapSpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY, "item_unichicken", "item_dragonheart", "customer", 1);
+            mapEntitySpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY, "item_unichicken", "item_dragonheart", "customer", 1);
             return true;
         }
 
         if (day == Days.SPLINTERS_EVERYWHERE) {
             lastScriptedSpawnDay = -1; // run this over and over.
-            mapSpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY,
+            mapEntitySpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY,
                     "item_healing_potion",
                     spawns == 4 ? "item_boxed_bush" : itemManager.randomReward(), "customer", 1);
             return true;
@@ -146,7 +143,7 @@ public class ShopperSpawnSystem extends FluidIteratingSystem {
                     desiredItem = "item_boots";
                     break;
             }
-            mapSpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY,
+            mapEntitySpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY,
                     desiredItem, itemManager.randomReward(), "customer", 1);
             return true;
         }
@@ -171,7 +168,7 @@ public class ShopperSpawnSystem extends FluidIteratingSystem {
                     desiredItem = "item_imp";
                     break;
             }
-            mapSpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY,
+            mapEntitySpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY,
                     desiredItem, "item_unicorn", "customer", 1);
             return true;
         }
@@ -203,7 +200,7 @@ public class ShopperSpawnSystem extends FluidIteratingSystem {
                 rewardItem = "item_boxed_forge";
             }
 
-            mapSpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY,
+            mapEntitySpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY,
                     desiredItem, rewardItem, "customer", 1);
             return true;
         }
@@ -212,11 +209,11 @@ public class ShopperSpawnSystem extends FluidIteratingSystem {
         if (day == Days.MARRIAGE_NIGHT) {
             lastScriptedSpawnDay = -1; // run this over and over.
             if (spawns == 1) {
-                mapSpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY,
+                mapEntitySpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY,
                         "item_ring", "item_ring", "actor_hag", 1);
             }
             if (spawns == 2) {
-                mapSpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY,
+                mapEntitySpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY,
                         "item_ring", "item_ring", "actor_postal", 1);
                 E.withTag("player").playerVisitorsRemaining(0);
             }
@@ -225,25 +222,14 @@ public class ShopperSpawnSystem extends FluidIteratingSystem {
 
 
         if (day % 2 == 1) {
-            mapSpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY, "item_magical_staff", "item_mystical_tome", "customer", 1);
+            mapEntitySpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY, "item_magical_staff", "item_mystical_tome", "customer", 1);
             return true;
         }
-//
-//        if (day == 3) {
-//            mapSpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY, "item_enchanted_armor", "item_boxed_forge", "customer", 1);
-//            return true;
-//        }
-//
-//        if (day == 3) {
-//            mapSpawnerSystem.spawnShopperWithSpecificItems(gridPosX, gridPosY, "item_enchanted_armor", "item_boxed_forge", "customer", 1);
-//            return true;
-//        }
-
 
         return false;
     }
 
     private boolean enoughShoppers() {
-        return shoppers.getEntities().size() >= TARGET_SHOPPER_COUNT;
+        return shoppers.size() >= TARGET_SHOPPER_COUNT;
     }
 }

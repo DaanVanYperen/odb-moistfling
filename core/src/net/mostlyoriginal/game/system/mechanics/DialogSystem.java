@@ -6,11 +6,11 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import net.mostlyoriginal.api.component.graphics.Tint;
 import net.mostlyoriginal.api.component.ui.Label;
+import net.mostlyoriginal.api.util.Cooldown;
 import net.mostlyoriginal.game.GameRules;
 import net.mostlyoriginal.game.screen.LogoScreen;
 import net.mostlyoriginal.game.system.control.PlayerControlSystem;
 import net.mostlyoriginal.game.system.logic.TransitionSystem;
-import net.mostlyoriginal.api.util.Cooldown;
 import net.mostlyoriginal.game.util.Scripts;
 
 import java.util.LinkedList;
@@ -20,7 +20,6 @@ import java.util.LinkedList;
  */
 public class DialogSystem extends BaseSystem {
 
-    private NightSystem nightSystem;
     private PlayerControlSystem playerControlSystem;
 
     public static class Dialog {

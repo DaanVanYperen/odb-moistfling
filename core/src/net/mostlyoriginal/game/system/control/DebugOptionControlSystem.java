@@ -9,7 +9,7 @@ import com.badlogic.gdx.Input;
 import net.mostlyoriginal.game.component.InDialog;
 import net.mostlyoriginal.game.component.ItemData;
 import net.mostlyoriginal.game.component.Player;
-import net.mostlyoriginal.game.system.map.MapSpawnerSystem;
+import net.mostlyoriginal.game.system.map.MapEntitySpawnerSystem;
 import net.mostlyoriginal.game.system.repository.ItemManager;
 
 /**
@@ -19,7 +19,7 @@ import net.mostlyoriginal.game.system.repository.ItemManager;
 @Exclude(InDialog.class)
 public class DebugOptionControlSystem extends FluidIteratingSystem {
 
-    private MapSpawnerSystem mapSpawnSystem;
+    private MapEntitySpawnerSystem mapSpawnSystem;
     private ItemManager itemManager;
 
     @Override

@@ -4,14 +4,14 @@ import com.artemis.E;
 import com.artemis.FluidIteratingSystem;
 import com.artemis.annotations.All;
 import com.badlogic.gdx.math.MathUtils;
+import net.mostlyoriginal.api.util.Cooldown;
 import net.mostlyoriginal.game.GameRules;
 import net.mostlyoriginal.game.component.PassiveSpawner;
-import net.mostlyoriginal.game.system.repository.ItemManager;
-import net.mostlyoriginal.game.system.render.ParticleSystem;
 import net.mostlyoriginal.game.system.control.PickupManager;
-import net.mostlyoriginal.game.system.map.MapSpawnerSystem;
+import net.mostlyoriginal.game.system.map.MapEntitySpawnerSystem;
+import net.mostlyoriginal.game.system.render.ParticleSystem;
+import net.mostlyoriginal.game.system.repository.ItemManager;
 import net.mostlyoriginal.game.system.view.GameScreenAssetSystem;
-import net.mostlyoriginal.api.util.Cooldown;
 
 /**
  * @author Daan van Yperen
@@ -19,7 +19,7 @@ import net.mostlyoriginal.api.util.Cooldown;
 @All(PassiveSpawner.class)
 public class PassiveSpawnSystem extends FluidIteratingSystem {
     private static final float UPDATE_EVERY_SECONDS = 10f;
-    private MapSpawnerSystem mapSpawnerSystem;
+    private MapEntitySpawnerSystem mapEntitySpawnerSystem;
     private GameScreenAssetSystem gameScreenAssetSystem;
 
     private Cooldown cooldown = Cooldown.withInterval(UPDATE_EVERY_SECONDS);
@@ -53,7 +53,7 @@ public class PassiveSpawnSystem extends FluidIteratingSystem {
     private void spawn(E e, String item) {
 
         if ( pickupManager.getOverlapping(e) == null ) {
-            mapSpawnerSystem
+            mapEntitySpawnerSystem
                     .spawnItem(e.gridPosX(), e.gridPosY(), item);
             gameScreenAssetSystem.playSfx("sfx_putdown");
             particleSystem.poof(e.gridPosX() * GameRules.CELL_SIZE + 16, e.gridPosY() * GameRules.CELL_SIZE + 16, 40, 40, ParticleSystem.COLOR_WHITE_TRANSPARENT);
