@@ -9,8 +9,8 @@ import com.badlogic.gdx.Input;
 import net.mostlyoriginal.game.component.ItemData;
 import net.mostlyoriginal.game.component.Player;
 import net.mostlyoriginal.game.component.dialog.InDialog;
-import net.mostlyoriginal.game.system.map.MapEntitySpawnerSystem;
-import net.mostlyoriginal.game.system.repository.ItemManager;
+import net.mostlyoriginal.game.system.future.FutureSpawnUtility;
+import net.mostlyoriginal.game.system.repository.ItemTypeManager;
 
 /**
  * @author Daan van Yperen
@@ -19,31 +19,30 @@ import net.mostlyoriginal.game.system.repository.ItemManager;
 @Exclude(InDialog.class)
 public class DebugOptionControlSystem extends FluidIteratingSystem {
 
-    private MapEntitySpawnerSystem mapSpawnSystem;
-    private ItemManager itemManager;
+    private ItemTypeManager itemManager;
 
     @Override
     protected void process(E e) {
-            if (Gdx.input.isKeyPressed(Input.Keys.F5)) {
-                E.withTag("player").playerAge(0);
-            }
-            if (Gdx.input.isKeyPressed(Input.Keys.F6)) {
-                E.withTag("player").playerAge(1);
-            }
-            if (Gdx.input.isKeyPressed(Input.Keys.F7)) {
-                E.withTag("player").playerAge(2);
-            }
-            if (Gdx.input.isKeyPressed(Input.Keys.F8)) {
-                E.withTag("player").playerAge(3);
+        if (Gdx.input.isKeyPressed(Input.Keys.F5)) {
+            E.withTag("player").playerAge(0);
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.F6)) {
+            E.withTag("player").playerAge(1);
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.F7)) {
+            E.withTag("player").playerAge(2);
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.F8)) {
+            E.withTag("player").playerAge(3);
+        }
+
+        if (Gdx.input.isKeyJustPressed(Input.Keys.F9)) {
+            int index = 0;
+            for (ItemData data : itemManager.itemLibrary.items) {
+                FutureSpawnUtility.item(data.id, 99, index++ % 20, index / 20);
             }
 
-            if (Gdx.input.isKeyJustPressed(Input.Keys.F9)) {
-                int index = 0;
-                for (ItemData data : itemManager.itemLibrary.items) {
-                    mapSpawnSystem.spawnItem(index++ % 20, index / 20, data.id).itemCount(99);
-                }
-
-            }
+        }
     }
 
 }

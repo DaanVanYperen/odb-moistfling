@@ -107,16 +107,9 @@
   <properties>
    <property name="accepts" value="any"/>
    <property name="entity" value="slot"/>
-   <property name="invisible" type="bool" value="true"/>
-   <property name="mode" value="store"/>
+   <property name="mode" value="hopper"/>
    <property name="x" type="int" value="0"/>
    <property name="y" type="int" value="0"/>
-  </properties>
- </tile>
- <tile id="67">
-  <properties>
-   <property name="entity" value="hopper"/>
-   <property name="invisible" type="bool" value="true"/>
   </properties>
  </tile>
  <tile id="68">

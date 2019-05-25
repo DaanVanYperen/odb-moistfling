@@ -10,16 +10,17 @@ import net.mostlyoriginal.api.util.Cooldown;
 import net.mostlyoriginal.game.GameRules;
 import net.mostlyoriginal.game.component.dialog.DialogSingleton;
 import net.mostlyoriginal.game.screen.LogoScreen;
-import net.mostlyoriginal.game.system.control.PlayerControlSystem;
 import net.mostlyoriginal.game.system.logic.TransitionSystem;
 import net.mostlyoriginal.game.util.Scripts;
 
 /**
+ * Handles dialog UI lifecycle.
+ *
  * @author Daan van Yperen
  */
-public class DialogSystem extends BaseSystem {
+public class DialogUISystem extends BaseSystem {
 
-    private PlayerControlSystem playerControlSystem;
+    private final DialogFactory dialogFactory;
     private DialogSingleton dialog;
 
     private static final Tint DIALOG_TINT = new Tint("444444");
@@ -30,6 +31,10 @@ public class DialogSystem extends BaseSystem {
     private String targetText;
     private int revealedLength;
     private Cooldown revealCooldown = Cooldown.withInterval(1f / 60f).autoReset(false);
+
+    public DialogUISystem(DialogFactory dialogFactory) {
+        this.dialogFactory = dialogFactory;
+    }
 
     // @todo destroyyyy!
     @Deprecated
@@ -69,6 +74,7 @@ public class DialogSystem extends BaseSystem {
     @Override
     protected void initialize() {
         super.initialize();
+        world.inject(dialogFactory);
 
         talkLabel = E.E()
                 .pos(220, 98)
@@ -87,9 +93,12 @@ public class DialogSystem extends BaseSystem {
 
     @Override
     protected void processSystem() {
+        startNextDialogIfQueued();
+
         if (!dialog.isEmpty() ) {
             E.withTag("player").inDialog(true);
         }
+
         if (revealCooldown.ready(world.delta) && targetText != null) {
             revealCooldown.restart();
             revealedLength++;
@@ -105,20 +114,19 @@ public class DialogSystem extends BaseSystem {
 
         if (isDialogActive() && (Gdx.input.isKeyJustPressed(Input.Keys.SPACE) || Gdx.input.isKeyJustPressed(Input.Keys.SHIFT_LEFT) || Gdx.input.isKeyJustPressed(Input.Keys.SHIFT_RIGHT))) {
             popDialog();
-            //todo nightSystem.preventAccidentalReactivation();
-            preventPlayerAccidentallyClickingStuff();
         }
 
         if (isDialogActive() && Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
             clear();
-            //@todo nightSystem.preventAccidentalReactivation();
-            preventPlayerAccidentallyClickingStuff();
         }
 
     }
 
-    private void preventPlayerAccidentallyClickingStuff() {
-        playerControlSystem.interactCooldown.restart();
+    private void startNextDialogIfQueued() {
+        if ( dialog.startNextDialog != null ) {
+            dialogFactory.startDialog(dialog.startNextDialog);
+            dialog.startNextDialog = null;
+        }
     }
 
     private void popDialog() {
@@ -127,5 +135,9 @@ public class DialogSystem extends BaseSystem {
             DialogSingleton.Dialog pop = dialog.pop();
             set(pop.faceAnim, pop.text);
         } else clear();
+    }
+
+    public interface DialogFactory {
+        void startDialog(String dialogId);
     }
 }

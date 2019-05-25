@@ -10,10 +10,14 @@ import net.mostlyoriginal.game.component.CastsShadow;
 import net.mostlyoriginal.game.component.GridPos;
 
 /**
+ * Attach shadow to parent.
+ *
  * @author Daan van Yperen
  */
 @All({CastsShadow.class, Pos.class, GridPos.class})
 public class ShadowSystem extends FluidIteratingSystem {
+
+    private ComponentMapper<CastsShadow> mShadow;
 
     @Override
     protected void process(E e) {
@@ -35,8 +39,6 @@ public class ShadowSystem extends FluidIteratingSystem {
                 .posX(e.posX())
                 .posY(e.posY() +castsShadow.yOffset);
     }
-
-    private ComponentMapper<CastsShadow> mShadow;
 
     @Override
     protected void removed(int entityId) {

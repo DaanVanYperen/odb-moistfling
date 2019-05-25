@@ -1,20 +1,15 @@
 package net.mostlyoriginal.game.system.view;
 
-import com.artemis.E;
 import com.artemis.annotations.Wire;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Json;
 import net.mostlyoriginal.api.manager.AbstractAssetSystem;
 import net.mostlyoriginal.game.GameRules;
 import net.mostlyoriginal.game.component.SpriteData;
 import net.mostlyoriginal.game.system.render.SpriteLibrary;
-
-import static com.artemis.E.E;
 
 /**
  * @author Daan van Yperen
@@ -71,22 +66,6 @@ public class GameScreenAssetSystem extends AbstractAssetSystem {
 
         loadSprites();
 
-        sfxVolume = 0.3f;
-
-        loadSounds(new String[]{
-                "sfx_interact_6",
-                "sfx_magic_1",
-                "sfx_magic_2",
-                "sfx_magic_3",
-                "sfx_money_1",
-                "sfx_pickup",
-                "sfx_putdown",
-                "sfx_walk",
-                "sfx_hag"
-        });
-
-        sfxVolume = 0.15f;
-
         if ( GameRules.MUSIC_ENABLED ) {
             playMusic("sfx/music_shop.mp3");
         }
@@ -129,32 +108,6 @@ public class GameScreenAssetSystem extends AbstractAssetSystem {
             if (!sprite.repeat) {
                 animation.setPlayMode(Animation.PlayMode.NORMAL);
             } else animation.setPlayMode(Animation.PlayMode.LOOP);
-        }
-    }
-
-
-    public void playSfx(String... names) {
-        playSfx(names[MathUtils.random(0, names.length - 1)], sfxVolume);
-    }
-
-    public void playSfx(float volume, String... names) {
-        playSfx(names[MathUtils.random(0, names.length - 1)]);
-    }
-
-
-    public void playSfx(String name, float volume) {
-        if (volume > 0 && GameRules.sfxOn) {
-            Sound sfx = getSfx(name);
-            if (sfx != null) {
-                sfx.stop();
-                sfx.play(volume, MathUtils.random(1f, 1.04f), 0);
-            }
-        }
-    }
-
-    public void playSfx(String name) {
-        if ( GameRules.sfxOn) {
-            super.playSfx(name);
         }
     }
 }

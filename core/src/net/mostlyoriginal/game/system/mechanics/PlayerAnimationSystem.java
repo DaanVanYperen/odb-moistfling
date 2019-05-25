@@ -4,15 +4,12 @@ import com.artemis.E;
 import com.artemis.FluidIteratingSystem;
 import com.artemis.annotations.All;
 import net.mostlyoriginal.game.component.Player;
-import net.mostlyoriginal.game.component.dialog.DialogSingleton;
 
 /**
  * @author Daan van Yperen
  */
 @All(Player.class)
 public class PlayerAnimationSystem extends FluidIteratingSystem {
-
-    private DialogSingleton dialog;
 
     @Override
     protected void process(E e) {
@@ -44,7 +41,7 @@ public class PlayerAnimationSystem extends FluidIteratingSystem {
             else if (e.playerDy() > 0) anim = anim + "_up";
         }
 
-        if (e.hasLifting()) {
+        if (e.hasHolding()) {
             anim = anim + "_lift";
         }
         //System.out.println(anim);

@@ -101,7 +101,7 @@ project(":html") {
         // Artemis-odb optional functionality (systems, events, components).
         compile "net.mostlyoriginal.artemis-odb:contrib-core:$artemisContribVersion:sources"
         compile "net.mostlyoriginal.artemis-odb:contrib-jam:$artemisContribVersion:sources"
-        //compile "net.mostlyoriginal.artemis-odb:contrib-eventbus:$artemisContribVersion:sources"
+        compile "net.mostlyoriginal.artemis-odb:contrib-eventbus:$artemisContribVersion:sources"
         compile "net.mostlyoriginal.artemis-odb:contrib-plugin-operations:$artemisContribVersion:sources"
         compile "net.mostlyoriginal.artemis-odb:contrib-plugin-profiler:$artemisContribVersion:sources"
     }
@@ -163,9 +163,10 @@ project(":core") {
         // Artemis-odb bonus functionality (systems, events, components).
         compile "net.mostlyoriginal.artemis-odb:contrib-core:$artemisContribVersion"
         compile "net.mostlyoriginal.artemis-odb:contrib-jam:$artemisContribVersion"
-        //compile "net.mostlyoriginal.artemis-odb:contrib-eventbus:$artemisContribVersion"
+        compile "net.mostlyoriginal.artemis-odb:contrib-eventbus:$artemisContribVersion"
         compile "net.mostlyoriginal.artemis-odb:contrib-plugin-operations:$artemisContribVersion"
         compile "net.mostlyoriginal.artemis-odb:contrib-plugin-profiler:$artemisContribVersion"
+        compile "net.mostlyoriginal.artemis-odb:contrib-plugin-debug:$artemisContribVersion"
 
         testImplementation 'org.junit.jupiter:junit-jupiter-api:5.3.1'
         testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.3.1'

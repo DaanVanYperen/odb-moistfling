@@ -25,6 +25,7 @@ public class DialogSingleton extends Component {
 
     }
     private LinkedList<Dialog> conversations = new LinkedList<>();
+    public String startNextDialog = null;
 
     /**
      * Queue a message for display to the player.

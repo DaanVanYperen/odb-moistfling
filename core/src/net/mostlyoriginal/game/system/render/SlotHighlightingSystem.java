@@ -3,19 +3,20 @@ package net.mostlyoriginal.game.system.render;
 import com.artemis.E;
 import com.artemis.FluidIteratingSystem;
 import com.artemis.annotations.All;
-import com.artemis.utils.IntBag;
+import com.artemis.annotations.Exclude;
 import com.badlogic.gdx.math.Interpolation;
 import net.mostlyoriginal.api.component.graphics.Anim;
 import net.mostlyoriginal.api.component.graphics.Tint;
 import net.mostlyoriginal.api.operation.JamOperationFactory;
 import net.mostlyoriginal.api.operation.OperationFactory;
-import net.mostlyoriginal.game.component.Slot;
-import net.mostlyoriginal.game.component.GridPos;
+import net.mostlyoriginal.game.component.Player;
+import net.mostlyoriginal.game.component.inventory.Inventory;
 
 /**
  * @author Daan van Yperen
  */
-@All(Slot.class)
+@All(Inventory.class)
+@Exclude(Player.class)
 public class SlotHighlightingSystem extends FluidIteratingSystem {
 
     private String liftingType;
@@ -24,14 +25,14 @@ public class SlotHighlightingSystem extends FluidIteratingSystem {
     protected void begin() {
         super.begin();
         E player = E.withTag("player");
-        liftingType = player.hasLifting() && player.liftingId() != -1 ? E.E(player.liftingId()).itemType() : null;
+        liftingType = player.hasHolding() && player.holdingId() != -1 ? E.E(player.holdingId()).itemType() : null;
     }
 
     private static final Tint HIGHLIGHTED = new Tint(1f,1f,1f,0.6f);
 
     @Override
     protected void process(E e) {
-        boolean highlight = acceptsItemType(e,liftingType);
+        boolean highlight = e.getInventory().acceptsType(liftingType);
         if (highlight ) {
             if ( !e.hasAnim() ) {
                 e.anim("hopper_highlight").tint(Tint.TRANSPARENT).script(
@@ -48,39 +49,5 @@ public class SlotHighlightingSystem extends FluidIteratingSystem {
                     )
             );
         }
-    }
-
-    public boolean acceptsItemType(E e, String type) {
-        boolean result = false;
-        if (type != null) {
-            for (String s : e.slotAccepts()) {
-                if (type.equals(s) || s.equals("any")) {
-                    result = true;
-                }
-            }
-        }
-        return result;
-    }
-
-    public E getSlotAt(GridPos gridPos) {
-        IntBag actives = subscription.getEntities();
-        int[] ids = actives.getData();
-        for (int i = 0, s = actives.size(); s > i; i++) {
-            E slot = E.E(ids[i]);
-            if (slot.gridPosOverlaps(gridPos)) return slot;
-        }
-        return null;
-    }
-
-    public E getSlotAt(GridPos gridPos, int x, int y) {
-        IntBag actives = subscription.getEntities();
-        int[] ids = actives.getData();
-        final int gridX = gridPos.x + x;
-        final int gridY = gridPos.y + y;
-        for (int i = 0, s = actives.size(); s > i; i++) {
-            E slot = E.E(ids[i]);
-            if (slot.gridPosOverlaps(gridX, gridY)) return slot;
-        }
-        return null;
     }
 }

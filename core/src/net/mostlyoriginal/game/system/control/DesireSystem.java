@@ -8,7 +8,7 @@ import net.mostlyoriginal.api.component.basic.Pos;
 import net.mostlyoriginal.game.GameRules;
 import net.mostlyoriginal.game.component.Desire;
 import net.mostlyoriginal.game.component.GridPos;
-import net.mostlyoriginal.game.system.repository.ItemManager;
+import net.mostlyoriginal.game.system.repository.ItemTypeManager;
 
 /**
  * @author Daan van Yperen
@@ -17,7 +17,7 @@ import net.mostlyoriginal.game.system.repository.ItemManager;
 public class DesireSystem extends FluidIteratingSystem {
 
     private static final int DESIRE_INDICATOR_OFFSET_Y = 48;
-    private ItemManager itemManager;
+    private ItemTypeManager itemManager;
 
     @Override
     protected void process(E e) {

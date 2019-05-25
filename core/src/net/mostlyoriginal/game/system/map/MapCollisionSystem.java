@@ -50,69 +50,43 @@ public class MapCollisionSystem extends FluidIteratingSystem {
             float px = pos.xy.x + physics.vx * world.delta;
             float py = pos.xy.y + physics.vy * world.delta;
 
-            int bounce = 0;
-            boolean hitWall = false;
-
             if ((physics.vx > 0 && collides(e, px + bounds.maxx, py + bounds.miny + (bounds.maxy - bounds.miny) * 0.5f)) ||
                     (physics.vx < 0 && collides(e, px + bounds.minx, py + bounds.miny + (bounds.maxy - bounds.miny) * 0.5f))) {
                 physics.vx = physics.bounce > 0 ? -physics.vx * physics.bounce : 0;
-                if (physics.bounce > 0) bounce = 1;
-                hitWall = true;
                 px = pos.xy.x;
             }
 
             if ((physics.vx > 0 && collides(e, px + bounds.maxx, py + bounds.miny + (bounds.maxy - bounds.miny) * 0.25f + 3)) ||
                     (physics.vx < 0 && collides(e, px + bounds.minx, py + bounds.miny + (bounds.maxy - bounds.miny) * 0.25f + 3))) {
                 physics.vx = physics.bounce > 0 ? -physics.vx * physics.bounce : 0;
-                if (physics.bounce > 0) bounce = 1;
-                hitWall = true;
                 px = pos.xy.x;
             }
 
             if ((physics.vx > 0 && collides(e, px + bounds.maxx, py + bounds.miny + (bounds.maxy - bounds.miny) * 0.75f)) ||
                     (physics.vx < 0 && collides(e, px + bounds.minx, py + bounds.miny + (bounds.maxy - bounds.miny) * 0.75f))) {
                 physics.vx = physics.bounce > 0 ? -physics.vx * physics.bounce : 0;
-                if (physics.bounce > 0) bounce = 1;
-                hitWall = true;
                 px = pos.xy.x;
             }
 
             if ((physics.vy > 0 && collides(e, px + bounds.minx + (bounds.maxx - bounds.minx) * 0.5f, py + bounds.maxy)) ||
                     (physics.vy < 0 && collides(e, px + bounds.minx + (bounds.maxx - bounds.minx) * 0.5f, py + bounds.miny))) {
                 physics.vy = physics.bounce > 0 ? -physics.vy * physics.bounce : 0;
-                if (physics.bounce > 0) bounce = 1;
-                hitWall = true;
             }
 
             if ((physics.vy > 0 && collides(e, px + bounds.minx + (bounds.maxx - bounds.minx) * 0.25f, py + bounds.maxy)) ||
                     (physics.vy < 0 && collides(e, px + bounds.minx + (bounds.maxx - bounds.minx) * 0.25f, py + bounds.miny))) {
                 physics.vy = physics.bounce > 0 ? -physics.vy * physics.bounce : 0;
-                if (physics.bounce > 0) bounce = 1;
-                hitWall = true;
             }
 
             if ((physics.vy > 0 && collides(e, px + bounds.minx + (bounds.maxx - bounds.minx) * 0.75f, py + bounds.maxy)) ||
                     (physics.vy < 0 && collides(e, px + bounds.minx + (bounds.maxx - bounds.minx) * 0.75f, py + bounds.miny))) {
                 physics.vy = physics.bounce > 0 ? -physics.vy * physics.bounce : 0;
-                if (physics.bounce > 0) bounce = 1;
-                hitWall = true;
             }
         }
 
     }
 
-    public boolean collides(final float x, final float y) {
-//        if (DEBUG) {
-//            E.E().pos(x - 2, y - 2).anim("marker").render(5000).terminal();
-//        }
-
-        return solidMask != null && solidMask.atScreen(x, y, true);
-    }
-
-    public boolean collides(final E e, final float x, final float y) {
-//        if (DEBUG) {
-//            E.E().pos(x - 2, y - 2).anim("marker").render(5000).terminal();
-//        }
+    private boolean collides(final E e, final float x, final float y) {
         return solidMask != null && solidMask.atScreen(x, y, false);
     }
 

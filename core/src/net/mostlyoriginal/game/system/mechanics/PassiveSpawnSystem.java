@@ -8,22 +8,19 @@ import net.mostlyoriginal.api.util.Cooldown;
 import net.mostlyoriginal.game.GameRules;
 import net.mostlyoriginal.game.component.PassiveSpawner;
 import net.mostlyoriginal.game.system.control.PickupManager;
-import net.mostlyoriginal.game.system.map.MapEntitySpawnerSystem;
-import net.mostlyoriginal.game.system.render.ParticleSystem;
-import net.mostlyoriginal.game.system.view.GameScreenAssetSystem;
+import net.mostlyoriginal.game.system.future.FutureSpawnUtility;
 
 /**
+ * Passive spawners produce items over time.
+ *
  * @author Daan van Yperen
  */
 @All(PassiveSpawner.class)
 public class PassiveSpawnSystem extends FluidIteratingSystem {
 
     private static final float UPDATE_EVERY_SECONDS = 10f;
-    private MapEntitySpawnerSystem mapEntitySpawnerSystem;
-    private GameScreenAssetSystem gameScreenAssetSystem;
 
     private Cooldown cooldown = Cooldown.withInterval(UPDATE_EVERY_SECONDS);
-    private ParticleSystem particleSystem;
     private PickupManager pickupManager;
 
     @Override
@@ -52,10 +49,10 @@ public class PassiveSpawnSystem extends FluidIteratingSystem {
     private void spawn(E e, String item) {
 
         if ( pickupManager.getOverlapping(e) == null ) {
-            mapEntitySpawnerSystem
-                    .spawnItem(e.gridPosX(), e.gridPosY(), item);
-            gameScreenAssetSystem.playSfx("sfx_putdown");
-            particleSystem.poof(e.gridPosX() * GameRules.CELL_SIZE + 16, e.gridPosY() * GameRules.CELL_SIZE + 16, 40, 40, ParticleSystem.COLOR_WHITE_TRANSPARENT);
+            FutureSpawnUtility.item(item, 1, e.gridPosX(), e.gridPosY());
+            E.E().playSound("sfx_putdown");
+
+            E.E().particleEffect("poof").pos(e.gridPosX() * GameRules.CELL_SIZE + 16, e.gridPosY() * GameRules.CELL_SIZE + 16);
         }
     }
 }

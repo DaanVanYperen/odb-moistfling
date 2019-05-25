@@ -2,6 +2,7 @@ package net.mostlyoriginal.game.component;
 
 import com.artemis.Component;
 import com.artemis.annotations.EntityId;
+import com.artemis.annotations.LinkPolicy;
 import com.artemis.utils.IntBag;
 
 /**
@@ -20,5 +21,6 @@ public class Machine extends Component {
     public IntBag hoppers = new IntBag();
 
     @EntityId
+    @LinkPolicy(LinkPolicy.Policy.CHECK_SOURCE_AND_TARGETS)
     public IntBag contents = new IntBag();
 }

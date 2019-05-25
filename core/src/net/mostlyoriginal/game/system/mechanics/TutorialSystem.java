@@ -3,9 +3,11 @@ package net.mostlyoriginal.game.system.mechanics;
 import com.artemis.BaseSystem;
 import com.artemis.E;
 import com.artemis.utils.IntBag;
+import net.mostlyoriginal.api.event.common.Subscribe;
 import net.mostlyoriginal.api.util.Cooldown;
 import net.mostlyoriginal.game.component.Player;
 import net.mostlyoriginal.game.component.dialog.DialogSingleton;
+import net.mostlyoriginal.game.events.EventItemPickup;
 import net.mostlyoriginal.game.system.control.Days;
 import net.mostlyoriginal.game.system.control.NameHelper;
 
@@ -85,14 +87,6 @@ public class TutorialSystem extends BaseSystem {
     }
 
     private void firstDayPhase0() {
-        dialog.add(NameHelper.getActor_player_face(), "...");
-        dialog.add(NameHelper.getActor_player_face(), "Well that's a bummer.");
-        dialog.add(NameHelper.getActor_player_face(), "No time to dwell on it.");
-        dialog.add(NameHelper.getActor_player_face(), "I need some stock to deal with this.");
-        dialog.add(NameHelper.getActor_player_face(), "I'll start by selling some items!");
-        dialog.add(NameHelper.getActor_player_face(), "Time to open the shop.");
-        dialog.add(NameHelper.getActor_player_face(), "ADSW or cursors to move, space to interact.");
-        dialog.add(NameHelper.getActor_player_face(), "Space on the door to start the day.");
         stage++;
     }
 
@@ -210,8 +204,8 @@ public class TutorialSystem extends BaseSystem {
     }
 
     private boolean isHolding(String itemType) {
-        if (itemType == null) return !playerE.hasLifting();
-        return playerE.hasLifting() && E.E(playerE.liftingId()).itemType().equals(itemType);
+        if (itemType == null) return !playerE.hasHolding();
+        return playerE.hasHolding() && E.E(playerE.holdingId()).itemType().equals(itemType);
     }
 
     private void startTutorial() {
@@ -237,8 +231,9 @@ public class TutorialSystem extends BaseSystem {
         stage++;
     }
 
-    public void triggerItemTutorial(int patronItemId) {
-        String itemType = E.E(patronItemId).itemType();
+    @Subscribe
+    public void onItemPickupTriggerTutorial(EventItemPickup event) {
+        String itemType = E.E(event.id).itemType();
         if ("item_boxed_forge".equals(itemType) ||
                 "item_boxed_bush".equals(itemType) ||
                 "item_boxed_coop".equals(itemType)) {

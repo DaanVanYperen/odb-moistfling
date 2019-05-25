@@ -9,7 +9,7 @@ import net.mostlyoriginal.api.operation.OperationFactory;
 import net.mostlyoriginal.api.utils.Duration;
 import net.mostlyoriginal.game.GameRules;
 
-import static net.mostlyoriginal.api.operation.JamOperationFactory.*;
+import static net.mostlyoriginal.api.operation.JamOperationFactory.tintBetween;
 
 /**
  * @author Daan van Yperen
@@ -23,8 +23,7 @@ public class ScoreSystem extends BaseSystem {
     private E goldLabel;
     private E hintLabel;
     private E rankLabel;
-    private int lastGold=-1;
-    private int lastDay=-1;
+    private int lastGold = -1;
 
     @Override
     protected void initialize() {
@@ -39,31 +38,21 @@ public class ScoreSystem extends BaseSystem {
                 .labelText("Banked: 5.000.000 Gold");
 
 
-        hintLabel = E.E()
+        rankLabel = E.E()
                 .pos(MIDDLE_X, BOTTOM_Y + LINE_HEIGHT)
                 .tint(STONE_FONT_TINT)
                 .fontFontName("5x5")
                 .labelAlign(Label.Align.RIGHT)
                 .renderLayer(GameRules.LAYER_SCORE_TEXT)
-                .invisible()
-                .labelText(randomDaytimeHint());
-
-        rankLabel = E.E()
-                .pos(MIDDLE_X, BOTTOM_Y + LINE_HEIGHT )
-                .tint(STONE_FONT_TINT)
-                .fontFontName("5x5")
-                .labelAlign(Label.Align.RIGHT)
-                .renderLayer(GameRules.LAYER_SCORE_TEXT)
                 .labelText(dayLabel(10));
-
-        flash(hintLabel);
     }
 
     private String dayLabel(int day) {
-        return "Day "+ day;
+        return "Day " + day;
     }
+
     private String nightLabel(int day) {
-        return "Night "+ day;
+        return "Night " + day;
     }
 
     private String playerRank() {
@@ -83,27 +72,16 @@ public class ScoreSystem extends BaseSystem {
             flash(goldLabel);
         }
 
-        if (lastDay != player.playerDay()) {
-            lastDay = player.playerDay();
-            rankLabel.labelText(dayLabel(lastDay));
-            flash(rankLabel);
-        }
-
         if (player.playerNighttime()) {
             if (!nighttimeMode) {
-                hintLabel.labelText(randomNighttimeHint());
-                flash(hintLabel);
-                rankLabel.labelText(nightLabel(lastDay));
+                rankLabel.labelText(nightLabel(player.playerDay()));
                 flash(rankLabel);
             }
             nighttimeMode = true;
         } else {
             if (nighttimeMode) {
-                if (!nighttimeMode) {
-                    hintLabel
-                            .labelText(randomDaytimeHint());
-                    flash(hintLabel);
-                }
+                rankLabel.labelText(dayLabel(player.playerDay()));
+                flash(rankLabel);
             }
             nighttimeMode = false;
         }
@@ -114,7 +92,7 @@ public class ScoreSystem extends BaseSystem {
                 OperationFactory.sequence(
                         tintBetween(STONE_FONT_TINT, Tint.WHITE, 2f),
                         OperationFactory.delay(Duration.seconds(1)),
-                        tintBetween(Tint.WHITE,STONE_FONT_TINT, 2f)
+                        tintBetween(Tint.WHITE, STONE_FONT_TINT, 2f)
                 ));
     }
 

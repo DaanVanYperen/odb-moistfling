@@ -14,6 +14,8 @@ import static net.mostlyoriginal.api.operation.JamOperationFactory.tintBetween;
 import static net.mostlyoriginal.api.utils.Duration.seconds;
 
 /**
+ * Handles night cycle effects. Hide things that are invisible at night.
+ *
  * @author Daan van Yperen
  */
 @All(AffectedByNight.class)
@@ -38,8 +40,7 @@ public class NightSystem extends FluidIteratingSystem {
     public void toggle() {
         if (cooldown.ready()) {
             E player = E.withTag("player");
-            nighttime = player.playerNighttime();
-            nighttime = !nighttime;
+            nighttime = !player.playerNighttime();
             flipped = true;
             player.playerNighttime(nighttime);
             Player playerComp = player.getPlayer();

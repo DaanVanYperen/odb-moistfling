@@ -32,7 +32,7 @@ public class PickupManager extends BaseSystem {
         final int gridX = actor.getGridPos().x + offsetX;
         final int gridY = actor.getGridPos().y + offsetY;
         for (E item : pickupables) {
-            if (!item.hasLifted() && canPickup(item) && item.getGridPos().overlaps(gridX, gridY)) {
+            if (!item.hasInside() && canPickup(item) && item.getGridPos().overlaps(gridX, gridY)) {
                 overlaps = item;
             }
         }
@@ -40,8 +40,8 @@ public class PickupManager extends BaseSystem {
     }
 
     public boolean isCarrying(E e, String type) {
-        if (type != null && e.hasLifting() && e.liftingId() != -1) {
-            if (type.equals(E.E(e.liftingId()).itemType())) return true;
+        if (type != null && e.hasHolding() && e.holdingId() != -1) {
+            if (type.equals(E.E(e.holdingId()).itemType())) return true;
         }
         return false;
     }

@@ -18,6 +18,7 @@ public class GridPos extends Component {
     public void set(GridPos source) {
         this.x = source.x;
         this.y = source.y;
+        this.deriveFromPos = source.deriveFromPos;
     }
 
     public boolean overlaps(GridPos gridPos) {

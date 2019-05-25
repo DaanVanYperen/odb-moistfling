@@ -11,7 +11,7 @@ import net.mostlyoriginal.game.component.Machine;
 import net.mostlyoriginal.game.component.RecipeData;
 import net.mostlyoriginal.game.component.RecipeIngredientHint;
 import net.mostlyoriginal.game.system.common.FluidSystem;
-import net.mostlyoriginal.game.system.repository.ItemManager;
+import net.mostlyoriginal.game.system.repository.ItemTypeManager;
 import net.mostlyoriginal.game.system.repository.RecipeManager;
 
 /**
@@ -25,8 +25,9 @@ public class RecipeIngredientHintSystem extends FluidSystem {
     private static final int ICON_OFFSET_Y = 4;
     private static final int SPACING_BETWEEN_ITEMS = -19;
     private static final int MAX_LINES_AT_ONCE = 4;
+
     private RecipeManager recipeManager;
-    private ItemManager itemManager;
+    private ItemTypeManager itemManager;
 
     private int firstLine = 0;
     private float scrollCooldown = 3f;

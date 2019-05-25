@@ -4,15 +4,16 @@ import com.artemis.BaseSystem;
 import com.artemis.Entity;
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapProperties;
-import com.badlogic.gdx.maps.tiled.*;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.utils.Array;
 import net.mostlyoriginal.api.component.basic.Pos;
 import net.mostlyoriginal.api.component.graphics.Render;
 import net.mostlyoriginal.api.plugin.extendedcomponentmapper.M;
 import net.mostlyoriginal.api.utils.MapMask;
-import net.mostlyoriginal.game.component.map.TiledMapSingleton;
 import net.mostlyoriginal.game.component.map.MapEntityMarker;
 import net.mostlyoriginal.game.component.map.TiledMapLayer;
+import net.mostlyoriginal.game.component.map.TiledMapSingleton;
 
 /**
  * Loads tiled map and craetes MapEntityMarker for all tiles with 'entity' property.
@@ -86,6 +87,8 @@ public class TiledMapManager extends BaseSystem {
         cPos.create(layerEntity);
         cMapLayer.create(layerEntity).layer = layer;
         cRender.create(layerEntity).layer = (int)layer.getProperties().get(LAYER_PROPERTY_KEY);
+
+        //layerEntity.deleteFromWorld();
     }
 
     private void createMapMarkers(TiledMapSingleton m) {
@@ -96,7 +99,7 @@ public class TiledMapManager extends BaseSystem {
                     if (cell != null) {
                         final MapProperties properties = cell.getTile().getProperties();
                         if (properties.containsKey(ENTITY_PROPERTY_KEY)) {
-                            MapEntityMarker mapEntityMarker = cMapEntityMarker.create(world.createEntity());
+                            MapEntityMarker mapEntityMarker = cMapEntityMarker.create(world.create());
                             mapEntityMarker.mapX = tx;
                             mapEntityMarker.mapY = ty;
                             mapEntityMarker.properties = properties;

@@ -1,140 +1,54 @@
-package net.mostlyoriginal.game.system.render;
+package net.mostlyoriginal.game.system;
 
-import com.artemis.BaseSystem;
 import com.artemis.E;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import net.mostlyoriginal.api.component.graphics.Tint;
 import net.mostlyoriginal.api.operation.JamOperationFactory;
-import net.mostlyoriginal.api.system.camera.CameraSystem;
+import net.mostlyoriginal.game.component.future.ParticleEffect;
+import net.mostlyoriginal.game.system.render.ParticleEffectSystem;
 import net.mostlyoriginal.game.system.view.GameScreenAssetSystem;
 
 import static com.badlogic.gdx.math.MathUtils.random;
 import static net.mostlyoriginal.api.operation.OperationFactory.*;
 
 /**
+ * Handles assembling entities based on spawn requests.
+ *
+ * @todo this is a mess.
  * @author Daan van Yperen
  */
-public class ParticleSystem extends BaseSystem {
+public class MyParticleEffectStrategy implements ParticleEffectSystem.ParticleEffectStrategy {
 
-    public static final Color COLOR_WHITE_TRANSPARENT = new Color(1f, 1f, 1f, 0.5f);
-    public static final Color COLOR_BLACK_TRANSPARENT =new Color(0f, 0f, 0f, 0.5f);
+    public static final String EFFECT_POOF = "poof";
+    public static final String EFFECT_BLACK_SPUTTER = "sputter";
+    private Builder bakery = new Builder();
     private Color BLOOD_COLOR = Color.valueOf("4B1924");
     private Color COLOR_WHITE = Color.valueOf("FFFFFF");
-    private Color COLOR_DUST = Color.valueOf("D4CFB899");
     private Color COLOR_ACID = Color.valueOf("5F411CDD");
     private Color COLOR_LASER = Color.valueOf("FEE300");
 
-    private Builder bakery = new Builder();
-    private GameScreenAssetSystem assetSystem;
-    private CameraSystem cameraSystem;
+    @Override
+    public void process(int entityId) {
+        final E source = E.E(entityId);
 
-    private void triggerSprinkler(E e) {
-        for (int i = 0; i < MathUtils.random(1, 2); i++) {
-            sand(e.posX() + MathUtils.random(0, e.boundsMaxx()), e.posY(), -90 + MathUtils.random(-2, 2), MathUtils.random(10, 40));
+        ParticleEffect effect = source.getParticleEffect();
+        switch (effect.type) {
+            case EFFECT_POOF:
+                spawnPoof(source.posX(), source.posY(), 40, 40, ParticleEffectSystem.COLOR_WHITE_TRANSPARENT);
+                source.deleteFromWorld();
+                break;
+            case EFFECT_BLACK_SPUTTER:
+                spawnPoof(source.posX(), source.posY(), 2, 3, ParticleEffectSystem.COLOR_BLACK_TRANSPARENT);
+                source.deleteFromWorld();
+                break;
+            default:
+                throw new RuntimeException("Unknown particle effect " + entityId);
         }
     }
 
-
-    public void dust(float x, float y, float angle) {
-        bakery
-                .color(COLOR_DUST)
-                .at(x, y)
-                .angle(angle, angle)
-                .speed(10, 15)
-                .fadeAfter(0.1f)
-                .rotateRandomly()
-                .size(1, 3)
-                .create(1, 3);
-    }
-
-    public void sand(float x, float y, float angle, int force) {
-        bakery
-                .color(COLOR_LASER)
-                .at(x, y)
-                .angle(angle, angle)
-                .speed(force, force + 5)
-                .fadeAfter(1f + MathUtils.random(0f, 2f))
-                .rotateRandomly()
-                .size(1f, 2f)
-                .solid()
-                .create(1, 1);
-    }
-
-    public void confettiBomb(float x, float y) {
-        confetti(x,y, "confetti_white", 15, 20);
-        confetti(x,y, "confetti_red", 15, 20);
-        confetti(x,y, "confetti_blue", 15, 20);
-        balloons(x,y, "balloon_white", 2,5);
-        balloons(x,y, "balloon_red", 2,5);
-        balloons(x,y, "balloon_blue", 2,5);
-//
-//
-//        if ( MathUtils.random(1,100) < 30 ) {
-//            bakery
-//                    .at((int) x, (int) y, (int) x , (int) y )
-//                    .angle(0, 360)
-//                    .speed(5, 10)
-//                    .anim("hamburger")
-//                    .fadeAfter(8f)
-//                    .rotateRandomly()
-//                    .slowlySplatDown()
-//                    .friction(0)
-//                    .size(2, 2)
-//                    .angularMomentum(5)
-//                    .create(1, 3);
-//        }
-        if ( MathUtils.random(1,100) < 50 ) {
-            bakery
-                    .at((int) x, (int) y, (int) x , (int) y )
-                    .angle(45, 75)
-                    .speed(100)
-                    .spriteAngle(0)
-                    .anim("eagle")
-                    .fadeAfter(8f)
-                    .friction(0f)
-                    .size(1, 1)
-                    .angularMomentum(0)
-                    .create(1,1);
-        }
-    }
-
-    public void confetti(float x, float y, String art, int minCount, int maxCount) {
-        bakery
-                .at((int) x - 5, (int) y - 5, (int) x + 5, (int) y + 5)
-                .angle(0, 360)
-                .speed(5, 100)
-                .anim(art)
-                .fadeAfter(8f)
-                .rotateRandomly()
-                .slowlySplatDown()
-                .friction(1f)
-                .size(1, 2)
-                .angularMomentum(40)
-                .create(minCount, maxCount);
-    }
-
-
-    public void balloons(float x, float y, String art, int minCount, int maxCount) {
-        bakery
-                .at((int) x - 5, (int) y - 5, (int) x + 5, (int) y + 5)
-                .angle(0, 360)
-                .speed(5, 20)
-                .anim(art)
-                .fadeAfter(8f)
-                .rotateRandomly()
-                .slowlyFloatUp()
-                .friction(0f)
-                .size(1, 1)
-                .angularMomentum(0)
-                .create(minCount, maxCount);
-    }
-
-
-    public void poof(float x, float y, int minCount, int maxCount, Color color) {
+    public void spawnPoof(float x, float y, int minCount, int maxCount, Color color) {
         bakery
                 .at((int) x - 5, (int) y - 5, (int) x + 5, (int) y + 5)
                 .angle(0, 360)
@@ -156,10 +70,8 @@ public class ParticleSystem extends BaseSystem {
 
         v2.set(speed, 0).setAngle(angle);
 
-        TextureRegion frame = ((Animation<TextureRegion>) assetSystem.get(anim)).getKeyFrame(0);
-
         return E.E()
-                .pos(x - (scale * frame.getRegionWidth() * 0.5f), y - (scale * frame.getRegionHeight() * 0.5f))
+                .pos(x - (scale * 0.5f), y - (scale * 0.5f))
                 .anim(anim != null ? anim : "particle")
                 .scale(scale)
                 .angleRotate(angle - spriteAngle)
@@ -172,10 +84,7 @@ public class ParticleSystem extends BaseSystem {
                 .physicsFriction(friction);
     }
 
-    @Override
-    protected void processSystem() {
 
-    }
 
     private class Builder {
         private Color color;
@@ -350,6 +259,7 @@ public class ParticleSystem extends BaseSystem {
             this.angularMomentum = angularMomentum;
             return this;
         }
+
         public Builder spriteAngle(float spriteAngle) {
             this.spriteAngle = spriteAngle;
             return this;
@@ -371,5 +281,6 @@ public class ParticleSystem extends BaseSystem {
             return this;
         }
     }
+
 
 }

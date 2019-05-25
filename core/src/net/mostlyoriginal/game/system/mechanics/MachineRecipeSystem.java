@@ -6,13 +6,10 @@ import com.badlogic.gdx.math.MathUtils;
 import net.mostlyoriginal.api.util.Cooldown;
 import net.mostlyoriginal.game.GameRules;
 import net.mostlyoriginal.game.component.*;
+import net.mostlyoriginal.game.system.MyParticleEffectStrategy;
 import net.mostlyoriginal.game.system.common.FluidSystem;
-import net.mostlyoriginal.game.system.control.PickupSystem;
-import net.mostlyoriginal.game.system.map.MapEntitySpawnerSystem;
-import net.mostlyoriginal.game.system.render.ParticleSystem;
-import net.mostlyoriginal.game.system.repository.ItemManager;
+import net.mostlyoriginal.game.system.future.FutureSpawnUtility;
 import net.mostlyoriginal.game.system.repository.RecipeManager;
-import net.mostlyoriginal.game.system.view.GameScreenAssetSystem;
 
 /**
  * @author Daan van Yperen
@@ -21,12 +18,7 @@ import net.mostlyoriginal.game.system.view.GameScreenAssetSystem;
 public class MachineRecipeSystem extends FluidSystem {
 
     private RecipeManager recipeManager;
-    private ItemManager itemManager;
-    private MapEntitySpawnerSystem mapEntitySpawnerSystem;
-    private PlayerAnimationSystem playerAnimationSystem;
-    private PickupSystem pickupSystem;
-    private GameScreenAssetSystem gameScreenAssetSystem;
-    private ParticleSystem particleSystem;
+
     private Cooldown systemCooldown = Cooldown.withInterval(UPDATE_EVERY_SECONDS);
     private static final float UPDATE_EVERY_SECONDS = 0.1f;
 
@@ -41,7 +33,7 @@ public class MachineRecipeSystem extends FluidSystem {
         Machine machine = e.getMachine();
         if (!machine.contents.isEmpty()) {
             // we can just bruteforce this as there won't be many machines initially.
-            RecipeData recipe = recipeManager.firstMatching(machine.contents);
+            final RecipeData recipe = recipeManager.firstMatching(machine.contents);
             if (recipe != null) {
                 machine.warmupAge += UPDATE_EVERY_SECONDS;
                 if (machine.warmupAge > 0.5f) {
@@ -58,48 +50,50 @@ public class MachineRecipeSystem extends FluidSystem {
         if (!attemptAging(recipe.ageCost)) {
             //System.out.println("Cannot afford payment for " + recipe.id + ".");
             E player = E.withTag("player");
-            particleSystem.poof(player.gridPosX() * GameRules.CELL_SIZE + 16,
-                    player.gridPosY() * GameRules.CELL_SIZE + 20, 2, 3, ParticleSystem.COLOR_BLACK_TRANSPARENT);
+            E.E().particleEffect(MyParticleEffectStrategy.EFFECT_BLACK_SPUTTER).pos(player.gridPosX() * GameRules.CELL_SIZE + 16,
+                    player.gridPosY() * GameRules.CELL_SIZE + 20);
             return;
         }
 
         consumeIngredients(machine);
         spawnProduce(machineGridPos, recipe);
         System.out.println("Recipe " + recipe.id + " triggered.");
-        gameScreenAssetSystem.playSfx("sfx_magic_2", "sfx_magic_1");
+        E.E().playSound(MathUtils.randomBoolean() ? "sfx_magic_2" : "sfx_magic_1");
     }
 
     private void spawnProduce(GridPos machineGridPos, RecipeData recipe) {
-        boolean first = true;
         for (String producesItem : recipe.produces) {
             if (producesItem.startsWith("item_player_")) continue;
-            E item = mapEntitySpawnerSystem.spawnItem(machineGridPos.x, machineGridPos.y, producesItem);
-            if (item != null && first) {
-                first = false;
-                giveItemToPlayerIfHandsEmpty(item);
 
-            }
+            E item = FutureSpawnUtility
+                    .item(producesItem, 1, machineGridPos.x, machineGridPos.y);
+            giveItemToPlayerIfHandsEmpty(item);
+            // @todo replace with 'future inventory call'. giveItemToPlayerIfHandsEmpty(item);
         }
     }
 
+    // @todo replace with 'future inventory call'. giveItemToPlayerIfHandsEmpty(item);
+    @Deprecated
     private void giveItemToPlayerIfHandsEmpty(E item) {
         E player = E.withTag("player");
-        if (!player.hasLifting()) {
-            pickupSystem.attemptPickup(player, item);
-            particleSystem.poof(player.gridPosX() * GameRules.CELL_SIZE + 16,
-                    player.gridPosY() * GameRules.CELL_SIZE + 48, 40, 40, ParticleSystem.COLOR_WHITE_TRANSPARENT);
+        if (!player.hasHolding()) {
+            player.actionPickupTarget(item.id());
+            //
+            E.E().particleEffect(MyParticleEffectStrategy.EFFECT_POOF).pos(player.gridPosX() * GameRules.CELL_SIZE + 16,
+                    player.gridPosY() * GameRules.CELL_SIZE + 48);
         }
     }
 
     private void consumeIngredients(Machine machine) {
         for (int i = 0, s = machine.contents.size(); i < s; i++) {
             final E ingredient = E.E(machine.contents.get(i));
-            final ItemData itemData = itemManager.get(ingredient.getItem().type);
+            final ItemData itemData = ingredient.getItemMetadata().data;
             if (itemData.consumed) {
-                particleSystem.poof(ingredient.posX() + 16, ingredient.posY() + 16, 40, 40, ParticleSystem.COLOR_WHITE_TRANSPARENT);
+                E.E().particleEffect(MyParticleEffectStrategy.EFFECT_POOF).pos(ingredient.posX() + 16, ingredient.posY() + 16);
                 ingredient.deleteFromWorld();
             }
         }
+        machine.contents.clear();
     }
 
     public boolean attemptAging(int ageCost) {

@@ -7,5 +7,5 @@ import com.artemis.Component;
  */
 public class Item extends Component {
     public String type;
-    public int count = 1;
+    public int count = 1; // @todo move to stack(count)
 }

@@ -8,15 +8,14 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import net.mostlyoriginal.api.manager.AbstractAssetSystem;
 import net.mostlyoriginal.api.system.camera.CameraSystem;
 import net.mostlyoriginal.game.GameRules;
 import net.mostlyoriginal.game.component.logic.Transition;
 import net.mostlyoriginal.game.screen.TransitionableWorldScreen;
 
-import static com.artemis.E.*;
+import static com.artemis.E.E;
 import static net.mostlyoriginal.api.operation.OperationFactory.*;
-import static net.mostlyoriginal.api.utils.Duration.*;
+import static net.mostlyoriginal.api.utils.Duration.seconds;
 
 /**
  * Transition between screens.
@@ -32,7 +31,6 @@ public class TransitionSystem extends EntityProcessingSystem {
     private float percentCovered = 100;
     private boolean closeCurtains = false;
     private SpriteBatch batch;
-    private AbstractAssetSystem abstractAssetSystem;
     private TextureRegion transition_red;
     private TextureRegion transition_white;
     private CameraSystem cameraSystem;

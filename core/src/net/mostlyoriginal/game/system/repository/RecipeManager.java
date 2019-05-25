@@ -16,7 +16,7 @@ import static com.artemis.E.E;
 public class RecipeManager extends BaseSystem {
 
     public RecipeLibrary recipeLibrary;
-    private ItemManager itemManager;
+    private ItemTypeManager itemManager;
 
     @Override
     protected void initialize() {
