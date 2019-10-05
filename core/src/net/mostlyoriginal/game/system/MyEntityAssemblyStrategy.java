@@ -68,8 +68,10 @@ public class MyEntityAssemblyStrategy implements FutureEntitySystem.EntityAssemb
     private E decorateInstance(E source) {
         final FutureEntity futureEntity = source.getFutureEntity();
         switch (futureEntity.type) {
-            case ITEM:
-                return decorateItem(source, futureEntity.subType, futureEntity.count);
+            case ITEM: {
+                final Properties p = source.getProperties();
+                return decorateItem(source, futureEntity.subType, futureEntity.count, p.getBoolean("submerged"));
+            }
             case PLAYER:
                 return decoratePlayer(source);
             case WINDOW:
@@ -78,9 +80,10 @@ public class MyEntityAssemblyStrategy implements FutureEntitySystem.EntityAssemb
                 return decorateDoor(source);
             case SHOPPER_SPAWNER:
                 return decorateShopperSpawner(source);
-            case SLOT:
+            case SLOT: {
                 final Properties p = source.getProperties();
                 return decorateSlot(source, p.getEnum("mode", Inventory.Mode.class), p.getInt("x"), p.getInt("y"), p.getString("transform"), p.getString("accepts").split(","));
+            }
             case ALTAR:
                 return decorateAltar(source);
             case SHOPPER:
@@ -113,7 +116,7 @@ public class MyEntityAssemblyStrategy implements FutureEntitySystem.EntityAssemb
             if ("random".equals(rewardItem)) {
                 rewardItem = itemManager.randomReward();
             }
-            E item = decorateItem(E.E(), rewardItem, p.getInt(FutureSpawnUtility.KEY_REWARD_ITEM_COUNT));
+            E item = decorateItem(E.E(), rewardItem, p.getInt(FutureSpawnUtility.KEY_REWARD_ITEM_COUNT), p.getBoolean("submerged"));
             e.actionPickupTarget(item.id());
         }
         return e;
@@ -171,6 +174,7 @@ public class MyEntityAssemblyStrategy implements FutureEntitySystem.EntityAssemb
 
     private E decoratePlayer(E e) {
         return e
+                .pos(240,160)
                 .anim("player_kid")
                 .itemType("item_player")
                 .gridPosDeriveFromPos(true)
@@ -185,7 +189,7 @@ public class MyEntityAssemblyStrategy implements FutureEntitySystem.EntityAssemb
                 .renderLayer(GameRules.LAYER_PLAYER);
     }
 
-    private E decorateItem(E e, String type, int count) {
+    private E decorateItem(E e, String type, int count, boolean submerged) {
         if (type == null || "".equals(type)) return null;
         E item = e
                 .canPickup(true)
@@ -194,6 +198,9 @@ public class MyEntityAssemblyStrategy implements FutureEntitySystem.EntityAssemb
                 .bounds(0, 0, 16, 16)
                 .castsShadow()
                 .renderLayer(GameRules.LAYER_ITEM);
+        if (submerged) {
+            item.submerged();
+        }
         return item;
     }
 }

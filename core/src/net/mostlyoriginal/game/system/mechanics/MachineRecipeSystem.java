@@ -66,7 +66,7 @@ public class MachineRecipeSystem extends FluidSystem {
             if (producesItem.startsWith("item_player_")) continue;
 
             E item = FutureSpawnUtility
-                    .item(producesItem, 1, machineGridPos.x, machineGridPos.y);
+                    .item(producesItem, 1, machineGridPos.x, machineGridPos.y,false);
             giveItemToPlayerIfHandsEmpty(item);
             // @todo replace with 'future inventory call'. giveItemToPlayerIfHandsEmpty(item);
         }

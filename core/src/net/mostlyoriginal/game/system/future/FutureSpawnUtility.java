@@ -18,10 +18,12 @@ public class FutureSpawnUtility {
     public static final String KEY_REWARD_ITEM = "rewardItem";
     public static final String KEY_REWARD_ITEM_COUNT = "rewardItemCount";
 
-    public static E item(String subType, int stackSize, int gridX, int gridY) {
+    public static E item(String subType, int stackSize, int gridX, int gridY, boolean submerged) {
         Preconditions.checkNotNull(subType);
-        return of(ITEM, gridX, gridY).futureEntitySubType(subType)
-                .futureEntityCount(stackSize);
+        E e = of(ITEM, gridX, gridY).futureEntitySubType(subType)
+                .futureEntityCount(stackSize)
+                .properties("submerged", submerged);
+        return e;
     }
 
     public static E shopper(int gridX, int gridY, String anim, String desiredItem, String rewardItem, int count) {

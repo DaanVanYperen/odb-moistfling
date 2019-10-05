@@ -49,7 +49,7 @@ public class PassiveSpawnSystem extends FluidIteratingSystem {
     private void spawn(E e, String item) {
 
         if ( pickupManager.getOverlapping(e) == null ) {
-            FutureSpawnUtility.item(item, 1, e.gridPosX(), e.gridPosY());
+            FutureSpawnUtility.item(item, 1, e.gridPosX(), e.gridPosY(), false);
             E.E().playSound("sfx_putdown");
 
             E.E().particleEffect("poof").pos(e.gridPosX() * GameRules.CELL_SIZE + 16, e.gridPosY() * GameRules.CELL_SIZE + 16);

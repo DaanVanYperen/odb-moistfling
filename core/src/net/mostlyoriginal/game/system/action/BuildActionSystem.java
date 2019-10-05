@@ -5,7 +5,6 @@ import com.artemis.FluidIteratingSystem;
 import com.artemis.annotations.All;
 import net.mostlyoriginal.game.GameRules;
 import net.mostlyoriginal.game.component.GridPos;
-import net.mostlyoriginal.game.component.ItemData;
 import net.mostlyoriginal.game.component.action.ActionBuild;
 import net.mostlyoriginal.game.system.MyParticleEffectStrategy;
 import net.mostlyoriginal.game.system.future.FutureSpawnUtility;
@@ -46,8 +45,8 @@ public class BuildActionSystem extends FluidIteratingSystem {
         int slotOffsetY = standingOnSlot.inventoryY();
 
         // spawn machine
-        FutureSpawnUtility.item(standingOnSlot.inventoryTransform(), 1, (originGridX - slotOffsetX),
-                (originGridY - slotOffsetY)).locked();
+        FutureSpawnUtility.item(getIntendedMachine(item,standingOnSlot), 1, (originGridX - slotOffsetX),
+                (originGridY - slotOffsetY), false).locked();
 
         // add spawners on each cell.
         int gx = (originGridX - slotOffsetX);
@@ -65,6 +64,18 @@ public class BuildActionSystem extends FluidIteratingSystem {
 
         occupySlots(gridPos, standingOnSlot, 1,1);
         item.deleteFromWorld();
+    }
+
+    private String getIntendedMachine(E item, E standingOnSlot) {
+        if ( "extension_point".equals(standingOnSlot.getInventory().transform)) {
+            switch (item.getItemMetadata().data.id) {
+                case "item_driftwood":
+                    return "item_pallet";
+                case "item_net":
+                    return "item_net_placed";
+            }
+        }
+        throw new RuntimeException();
     }
 
     private void occupySlots(GridPos gridPos, E standingOnSlot, int h, int w) {

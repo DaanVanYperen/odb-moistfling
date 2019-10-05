@@ -81,7 +81,7 @@ public class RaftExtensionPointSystem extends FluidIteratingSystem {
                 int oy = e.gridPosY() + yOffset[i];
                 if (!mask.atGrid(ox,oy,true)) {
                     mask.set(ox,oy,true);
-                    FutureSpawnUtility.slot(ox, oy, Inventory.Mode.CONSTRUCT, "item_driftwood", 0, 0, "item_pallet");
+                    FutureSpawnUtility.slot(ox, oy, Inventory.Mode.CONSTRUCT, "item_driftwood,item_net", 0, 0, "extension_point");
                 }
             }
         }

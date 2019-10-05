@@ -39,7 +39,7 @@ public class DebugOptionControlSystem extends FluidIteratingSystem {
         if (Gdx.input.isKeyJustPressed(Input.Keys.F9)) {
             int index = 0;
             for (ItemData data : itemManager.itemLibrary.items) {
-                FutureSpawnUtility.item(data.id, 99, index++ % 20, index / 20);
+                FutureSpawnUtility.item(data.id, 99, index++ % 20, index / 20,false);
             }
 
         }

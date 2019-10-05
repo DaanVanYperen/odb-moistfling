@@ -38,7 +38,7 @@ public class PickupActionSystem extends FluidIteratingSystem {
                 // take from stack.
                 item.getItem().count--;
 
-                final E futureItem = FutureSpawnUtility.item(item.itemType(), 1, item.gridPosX(), item.gridPosY());
+                final E futureItem = FutureSpawnUtility.item(item.itemType(), 1, item.gridPosX(), item.gridPosY(), false);
 
                 // pickup the split on next cycle.
                 actor.removeActionPickup();

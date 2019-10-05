@@ -133,6 +133,7 @@ public class GameScreen extends TransitionableWorldScreen {
                         //new NightSystem(),
 
                         //new ScoreSystem(),
+                        new SubmergingSystem(),
 
                         renderBatchingSystem = new RenderBatchingSystem(),
                         new MyAnimRenderSystem(renderBatchingSystem),

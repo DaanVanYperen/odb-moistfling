@@ -12,6 +12,10 @@ import com.badlogic.gdx.utils.ObjectMap;
 public class Properties extends Component {
     public ObjectMap<String, Object> properties = new ObjectMap<>();
 
+    public void set(String key, boolean value) {
+        properties.put(key, value);
+    }
+
     public void set(String key, int value) {
         properties.put(key, value);
     }
@@ -37,5 +41,9 @@ public class Properties extends Component {
 
     public String getString(String key) {
         return (String) properties.get(key);
+    }
+
+    public Boolean getBoolean(String key) {
+        return (Boolean) properties.get(key);
     }
 }

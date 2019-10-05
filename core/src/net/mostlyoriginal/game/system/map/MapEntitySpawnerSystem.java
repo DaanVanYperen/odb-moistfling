@@ -31,7 +31,7 @@ public class MapEntitySpawnerSystem extends FluidIteratingSystem {
         if ("item".equals(entity)) {
             int stackSize = properties.containsKey("count") ? (int) properties.get("count") : 1;
             if (type != null && !"".equals(type)) {
-                FutureSpawnUtility.item(type, stackSize, gridX, gridY);
+                FutureSpawnUtility.item(type, stackSize, gridX, gridY, properties.containsKey("submerged") ? (boolean)properties.get("submerged"): false);
             }
             return true;
         } else if ("slot".equals(entity)) {

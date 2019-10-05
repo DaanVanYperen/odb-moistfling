@@ -22,6 +22,45 @@
       "desireChance": 0
     },
     {
+      "id": "item_barrel",
+      "sprite": "item_barrel"
+    },
+    {
+      "id": "item_planter",
+      "sprite": "item_planter"
+    },
+    {
+      "id": "item_net",
+      "sprite": "item_net",
+    },
+    {
+      "id": "item_net_placed",
+      "sprite": "item_net",
+      "extensionPoint": false,
+      "dryLand": true
+    },
+    {
+      "id": "item_fish",
+      "sprite": "item_fish"
+    },
+    {
+      "id": "item_coconut",
+      "sprite": "item_coconut"
+    },
+    {
+      "id": "item_citrus",
+      "sprite": "item_citrus"
+    },
+    {
+      "id": "item_bottle",
+      "sprite": "item_bottle"
+    },
+    {
+      "id": "item_water_collector",
+      "sprite": "item_water_collector",
+      "defaultLocked": true
+    },
+    {
       "id": "item_player",
       "sprite": "item_player",
       "consumed": false,
