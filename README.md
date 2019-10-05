@@ -1,5 +1,7 @@
-Necromarket
-===========
+BOB
+====
+
+Work in progress.
 
 #### Summary
 Jam game made in 72 hours, made with [LibGDX](https://github.com/libgdx/libgdx) and [Artemis-ODB](https://github.com/junkdog/artemis-odb). Tested for desktop and html5 via gwt.
