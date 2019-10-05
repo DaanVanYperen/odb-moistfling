@@ -19,7 +19,7 @@ import net.mostlyoriginal.game.component.dialog.InDialog;
 @Exclude(InDialog.class)
 public class PlayerControlSystem extends FluidIteratingSystem {
 
-    private static final float PLAYER_MOVEMENT_SPEED = 90f;
+    private static final float PLAYER_MOVEMENT_SPEED = 60f;
 
     @Override
     protected void process(E e) {
@@ -43,6 +43,14 @@ public class PlayerControlSystem extends FluidIteratingSystem {
 
         e.playerDx(dx);
         e.playerDy(dy);
+
+        float centerX = e.posX()+e.boundsCx();
+        float centerY = e.posY();
+
+        if ( centerX % 8 < 2f && dx == 0 && dy != 0 ) dx = 1;
+        if ( centerX % 8 > 4f && dx == 0 && dy != 0) dx = -1;
+        if ( centerY % 8 < 2f && dy == 0 && dx != 0) dy = 1;
+        if ( centerY % 8 > 4f && dy == 0 && dx != 0) dy = -1;
 
         Vector2 movementVector = vector2.set(dx, dy).nor();
 
