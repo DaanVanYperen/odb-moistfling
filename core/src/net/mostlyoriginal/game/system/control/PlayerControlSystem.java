@@ -19,7 +19,7 @@ import net.mostlyoriginal.game.component.dialog.InDialog;
 @Exclude(InDialog.class)
 public class PlayerControlSystem extends FluidIteratingSystem {
 
-    private static final float PLAYER_MOVEMENT_SPEED = 150f;
+    private static final float PLAYER_MOVEMENT_SPEED = 90f;
 
     @Override
     protected void process(E e) {
