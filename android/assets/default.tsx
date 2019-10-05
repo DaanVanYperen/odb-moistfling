@@ -3,18 +3,27 @@
  <image source="tileset.png" width="1024" height="1024"/>
  <tile id="1">
   <properties>
-   <property name="entity" value="driftwood"/>
+   <property name="count" type="int" value="1"/>
+   <property name="entity" value="item"/>
+   <property name="invisible" type="bool" value="true"/>
+   <property name="type" value="item_driftwood"/>
   </properties>
  </tile>
  <tile id="2">
   <properties>
    <property name="entity" value="pallet"/>
+   <property name="extensionpoint" type="bool" value="true"/>
    <property name="walkable" type="bool" value="true"/>
   </properties>
  </tile>
  <tile id="4">
   <properties>
+   <property name="accepts" value="any"/>
+   <property name="entity" value="slot"/>
+   <property name="mode" value="store"/>
    <property name="solid" type="bool" value="true"/>
+   <property name="x" type="int" value="0"/>
+   <property name="y" type="int" value="0"/>
   </properties>
  </tile>
  <tile id="5">

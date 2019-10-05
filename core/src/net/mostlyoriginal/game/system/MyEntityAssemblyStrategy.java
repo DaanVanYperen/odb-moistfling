@@ -80,7 +80,7 @@ public class MyEntityAssemblyStrategy implements FutureEntitySystem.EntityAssemb
                 return decorateShopperSpawner(source);
             case SLOT:
                 final Properties p = source.getProperties();
-                return decorateSlot(source, p.getEnum("mode", Inventory.Mode.class), p.getInt("x"), p.getInt("y"), p.getString("accepts").split(","));
+                return decorateSlot(source, p.getEnum("mode", Inventory.Mode.class), p.getInt("x"), p.getInt("y"), p.getString("transform"), p.getString("accepts").split(","));
             case ALTAR:
                 return decorateAltar(source);
             case SHOPPER:
@@ -129,7 +129,7 @@ public class MyEntityAssemblyStrategy implements FutureEntitySystem.EntityAssemb
         return e;
     }
 
-    private E decorateSlot(E e, Inventory.Mode mode, int x, int y, String... acceptsItems) {
+    private E decorateSlot(E e, Inventory.Mode mode, int x, int y, String transform, String... acceptsItems) {
         E slot = e
                 .tint(1f, 1f, 1f, 0.7f)
                 .bounds(0, 0, 16, 16)
@@ -137,6 +137,7 @@ public class MyEntityAssemblyStrategy implements FutureEntitySystem.EntityAssemb
                 .inventoryMode(mode)
                 .inventoryX(x)
                 .inventoryY(y)
+                .inventoryTransform(transform)
                 .renderLayer(GameRules.LAYER_SLOTS);
         if ( mode == Inventory.Mode.HOPPER) {
             slot.hopper()

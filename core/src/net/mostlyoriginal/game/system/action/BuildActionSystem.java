@@ -8,6 +8,7 @@ import net.mostlyoriginal.game.component.GridPos;
 import net.mostlyoriginal.game.component.ItemData;
 import net.mostlyoriginal.game.component.action.ActionBuild;
 import net.mostlyoriginal.game.system.MyParticleEffectStrategy;
+import net.mostlyoriginal.game.system.future.FutureSpawnUtility;
 import net.mostlyoriginal.game.system.render.SlotManager;
 
 
@@ -36,8 +37,7 @@ public class BuildActionSystem extends FluidIteratingSystem {
 
 
         E standingOnSlot = slotManager.getSlotAt(gridPos);
-
-        ItemData itemData = item.getItemMetadata().data;
+        if ( standingOnSlot == null ) return;
 
         int originGridX = gridPos.x;
         int originGridY = gridPos.y;
@@ -45,40 +45,35 @@ public class BuildActionSystem extends FluidIteratingSystem {
         int slotOffsetY = standingOnSlot.inventoryY();
 
         // spawn machine
-        E.E().gridPos(
-                (originGridX - slotOffsetX),
-                (originGridY - slotOffsetY))
-                .anim(itemData.machine).renderLayer(GameRules.LAYER_MACHINES);
+        FutureSpawnUtility.item(standingOnSlot.inventoryTransform(), 1, (originGridX - slotOffsetX),
+                (originGridY - slotOffsetY)).locked();
 
         // add spawners on each cell.
-        for (int y = 0; y < 2; y++) {
-            for (int x = 0; x < 2; x++) {
-                int gx = (originGridX - slotOffsetX) + x;
-                int gy = (originGridY - slotOffsetY) + y;
-                E.E().gridPos(
-                        gx,
-                        gy)
-                        .passiveSpawnerItems(itemData.machineProducts);
+        int gx = (originGridX - slotOffsetX);
+        int gy = (originGridY - slotOffsetY);
+//        E.E().gridPos(
+//                gx,
+//                gy)
+//                .passiveSpawnerItems(itemData.machineProducts);
+//
 
-                E.E().particleEffect(MyParticleEffectStrategy.EFFECT_POOF).pos(
-                        gx * GameRules.CELL_SIZE + 16,
-                        gy * GameRules.CELL_SIZE + 16);
+        E.E().particleEffect(MyParticleEffectStrategy.EFFECT_POOF).pos(
+                gx * GameRules.CELL_SIZE + 16,
+                gy * GameRules.CELL_SIZE + 16);
 
-            }
-        }
 
-        occupySlots(gridPos, standingOnSlot);
+        occupySlots(gridPos, standingOnSlot, 1,1);
         item.deleteFromWorld();
     }
 
-    private void occupySlots(GridPos gridPos, E standingOnSlot) {
+    private void occupySlots(GridPos gridPos, E standingOnSlot, int h, int w) {
         int originGridX = gridPos.x;
         int originGridY = gridPos.y;
         int slotOffsetX = standingOnSlot.inventoryX();
         int slotOffsetY = standingOnSlot.inventoryY();
         GridPos tmpSlotPos = new GridPos();
-        for (int y = 0; y < 2; y++) {
-            for (int x = 0; x < 2; x++) {
+        for (int y = 0; y < h; y++) {
+            for (int x = 0; x < w; x++) {
                 tmpSlotPos.x = (originGridX - slotOffsetX) + x;
                 tmpSlotPos.y = (originGridY - slotOffsetY) + y;
                 E slot = slotManager.getSlotAt(tmpSlotPos);

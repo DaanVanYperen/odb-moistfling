@@ -15,7 +15,6 @@ import net.mostlyoriginal.game.component.action.ActionInteract;
 import net.mostlyoriginal.game.component.inventory.Inside;
 import net.mostlyoriginal.game.component.inventory.Inventory;
 import net.mostlyoriginal.game.system.control.PickupManager;
-import net.mostlyoriginal.game.system.mechanics.NightSystem;
 import net.mostlyoriginal.game.system.render.SlotManager;
 
 
@@ -78,7 +77,7 @@ public class InteractActionSystem extends FluidIteratingSystem {
 
     private void considerDrop(E actor, E inventoryE) {
         if (inventoryE != null && inventoryE.getInventory().acceptsType(E.E(actor.holdingId()).itemType())) {
-            if (inventoryE.inventoryMode() == Inventory.Mode.EXPAND) {
+            if (inventoryE.inventoryMode() == Inventory.Mode.CONSTRUCT) {
                 // attempt to construct item at inventory.
                 actor.actionBuildTarget(actor.holdingId());
                 actor.actionBuildInventory(inventoryE.id());
@@ -121,7 +120,7 @@ public class InteractActionSystem extends FluidIteratingSystem {
         E closest = null;
         for (E item : items) {
             float distance = item.getPos().xy.dst2(x, y, 0);
-            if (distance < maxDistance && (closest == null || distance < closestDistance)) {
+            if (distance < maxDistance && !item.isLocked() && (closest == null || distance < closestDistance)) {
                 closestDistance = distance;
                 closest = item;
             }

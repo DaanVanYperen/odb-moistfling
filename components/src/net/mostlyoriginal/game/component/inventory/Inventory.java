@@ -11,7 +11,7 @@ import com.artemis.utils.IntBag;
 public class Inventory extends Component {
     public enum Mode {
         STORE,
-        EXPAND,
+        CONSTRUCT,
         HOPPER
     }
 
@@ -24,6 +24,7 @@ public class Inventory extends Component {
     public int maxItemTypes = 1;
     public int x; // @todo deprecate?
     public int y; // @todo deprecate?
+    public String transform;
 
     public boolean isFull() {
         return contents.size() >= maxItemTypes;

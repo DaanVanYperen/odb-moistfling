@@ -35,7 +35,7 @@ public class MapEntitySpawnerSystem extends FluidIteratingSystem {
             }
             return true;
         } else if ("slot".equals(entity)) {
-            FutureSpawnUtility.slot(gridX, gridY, Inventory.Mode.valueOf(((String) properties.get("mode")).toUpperCase()), properties.get("accepts"), (int) properties.get("x"), (int) properties.get("y"));
+            FutureSpawnUtility.slot(gridX, gridY, Inventory.Mode.valueOf(((String) properties.get("mode")).toUpperCase()), properties.get("accepts"), (int) properties.get("x"), (int) properties.get("y"), "item_pallet");
             return false;
         } else if ("player".equals(entity)) {
             FutureSpawnUtility.of(EntityType.PLAYER, gridX, gridY);

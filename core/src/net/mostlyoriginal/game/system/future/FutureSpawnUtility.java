@@ -32,12 +32,16 @@ public class FutureSpawnUtility {
                 .properties(KEY_REWARD_ITEM_COUNT, count);
     }
 
-    public static E slot(int gridX, int gridY, Inventory.Mode mode, Object accepts, int x, int y) {
-        return of(EntityType.SLOT, gridX, gridY)
+    public static E slot(int gridX, int gridY, Inventory.Mode mode, Object accepts, int x, int y, String transform) {
+        E result = of(EntityType.SLOT, gridX, gridY)
                 .properties("mode", mode)
                 .properties("accepts", accepts)
                 .properties("x", x)
                 .properties("y", x);
+        if ( transform != null )
+            result.properties("transform", transform);
+        return result;
+
     }
 
 

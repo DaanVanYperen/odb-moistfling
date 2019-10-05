@@ -14,10 +14,7 @@ import net.mostlyoriginal.api.system.camera.CameraSystem;
 import net.mostlyoriginal.api.system.graphics.RenderBatchingSystem;
 import net.mostlyoriginal.game.GameRules;
 import net.mostlyoriginal.game.GdxArtemisGame;
-import net.mostlyoriginal.game.system.MyCollisionHandler;
-import net.mostlyoriginal.game.system.MyDialogFactory;
-import net.mostlyoriginal.game.system.MyEntityAssemblyStrategy;
-import net.mostlyoriginal.game.system.MyParticleEffectStrategy;
+import net.mostlyoriginal.game.system.*;
 import net.mostlyoriginal.game.system.action.*;
 import net.mostlyoriginal.game.system.control.*;
 import net.mostlyoriginal.game.system.future.FutureEntitySystem;
@@ -112,7 +109,8 @@ public class GameScreen extends TransitionableWorldScreen {
 
                         //new DesireSystem(),
                         //new ShadowSystem(), // @todo phase 2: Separate shadow, create a relationship component with parent.
-                        //new SlotHighlightingSystem(),
+                        new SlotHighlightingSystem(),
+                        new RaftExtensionPointSystem(),
 
                         // Movement
 

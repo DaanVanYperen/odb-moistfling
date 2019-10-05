@@ -42,6 +42,6 @@ public class MapSwimmingSystem extends FluidIteratingSystem {
 
     @Override
     protected void process(E e ) {
-        e.swimming(!walkingMask.atScreen(e.getPos().xy.x, e.getPos().xy.y, false));
+        e.swimming(!walkingMask.atScreen(e.getPos().xy.x+e.getBounds().cx(), e.getPos().xy.y, false));
     }
 }

@@ -35,7 +35,7 @@ public class SlotHighlightingSystem extends FluidIteratingSystem {
         boolean highlight = e.getInventory().acceptsType(liftingType);
         if (highlight ) {
             if ( !e.hasAnim() ) {
-                e.anim("hopper_highlight").tint(Tint.TRANSPARENT).script(
+                e.anim("highlight").tint(Tint.TRANSPARENT).script(
                         OperationFactory.sequence(
                                 JamOperationFactory.tintBetween(Tint.TRANSPARENT,HIGHLIGHTED, 0.5f, Interpolation.fade)
                         )
