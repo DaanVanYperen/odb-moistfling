@@ -193,6 +193,18 @@
       "repeat": true,
     },
     {
+      "id": "player_swim_idle_carry",
+      "comment": "Front-facing PC, carrying in the water.",
+      "x": 0,
+      "y": 552,
+      "width": 24,
+      "height": 24,
+      "countX": 4,
+      "countY": 1,
+      "milliseconds": 250,
+      "repeat": true,
+    },
+    {
       "id": "player_swim_down_carry",
       "comment": "Front-facing PC, carrying in the water.",
       "x": 0,
@@ -253,7 +265,7 @@
       "height": 16,
     },
     {
-      "id": "pallet",
+      "id": "item_pallet",
       "comment": "Pallet as raft foundation.",
       "x": 32,
       "y": 0,
