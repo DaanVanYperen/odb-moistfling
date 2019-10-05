@@ -136,7 +136,7 @@
       "id": "player_swim_idle",
       "comment": "Front-facing PC, idling in the water.",
       "x": 0,
-      "y": 288,
+      "y": 528,
       "width": 24,
       "height": 24,
       "countX": 1,
