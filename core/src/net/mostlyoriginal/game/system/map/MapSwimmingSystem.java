@@ -2,11 +2,16 @@ package net.mostlyoriginal.game.system.map;
 
 import com.artemis.Aspect;
 import com.artemis.E;
+import com.artemis.ESubscription;
 import com.artemis.FluidIteratingSystem;
+import com.artemis.annotations.All;
+import com.artemis.utils.IntBag;
 import net.mostlyoriginal.api.component.basic.Bounds;
 import net.mostlyoriginal.api.component.basic.Pos;
 import net.mostlyoriginal.api.component.physics.Physics;
 import net.mostlyoriginal.api.utils.MapMask;
+import net.mostlyoriginal.game.component.flags.DryLand;
+import net.mostlyoriginal.game.component.flags.Walkable;
 import net.mostlyoriginal.game.component.map.TiledMapSingleton;
 
 /**
@@ -14,25 +19,30 @@ import net.mostlyoriginal.game.component.map.TiledMapSingleton;
  *
  * @author Daan van Yperen
  */
+@All({Physics.class, Pos.class, Bounds.class})
 public class MapSwimmingSystem extends FluidIteratingSystem {
 
     public static boolean DEBUG = false;
 
     private TiledMapSingleton map;
 
-    private boolean initialized;
-    private MapMask walkingMask;
+    private int lastDryLands=-1;
+    private MapMask drylandMask;
 
-    public MapSwimmingSystem() {
-        super(Aspect.all(Physics.class, Pos.class, Bounds.class));
-    }
+    @All(Walkable.class)
+    ESubscription drylands;
 
     @Override
     protected void begin() {
-        if (!initialized) {
-            initialized = true;
-            walkingMask = map.createMask("walkable");
-            walkingMask.refresh();
+        if (lastDryLands != drylands.size()) {
+            lastDryLands = drylands.size();
+            if ( drylandMask == null ) {
+                drylandMask = map.createBlankMask();
+            }
+            drylandMask.clear();
+            for (E e : drylands) {
+                drylandMask.set(e.getGridPos().x, e.getGridPos().y,true);
+            }
         }
     }
 
@@ -42,6 +52,6 @@ public class MapSwimmingSystem extends FluidIteratingSystem {
 
     @Override
     protected void process(E e ) {
-        e.swimming(!walkingMask.atScreen(e.getPos().xy.x+e.getBounds().cx(), e.getPos().xy.y, false));
+        e.swimming(!drylandMask.atScreen(e.getPos().xy.x+e.getBounds().cx(), e.getPos().xy.y, false));
     }
 }

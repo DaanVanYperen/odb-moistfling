@@ -25,4 +25,9 @@ public class TiledMapSingleton extends Component {
     public MapMask createMask(String property) {
         return new MapMask(height, width, tileWidth, tileHeight, tiledLayers, property);
     }
+
+
+    public MapMask createBlankMask() {
+        return new MapMask(height, width, tileWidth, tileHeight);
+    }
 }

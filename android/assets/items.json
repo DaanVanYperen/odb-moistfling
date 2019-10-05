@@ -14,6 +14,9 @@
       "sprite": "item_pallet",
       "consumed": true,
       "reward": true,
+      "extensionPoint": true,
+      "dryLand": true,
+      "defaultLocked": true,
       "gold": 25,
       "rewardChance": 100,
       "desireChance": 0

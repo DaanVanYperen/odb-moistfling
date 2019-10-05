@@ -11,9 +11,10 @@
  </tile>
  <tile id="2">
   <properties>
-   <property name="entity" value="pallet"/>
-   <property name="extensionpoint" type="bool" value="true"/>
-   <property name="walkable" type="bool" value="true"/>
+   <property name="count" type="int" value="1"/>
+   <property name="entity" value="item"/>
+   <property name="invisible" type="bool" value="true"/>
+   <property name="type" value="item_pallet"/>
   </properties>
  </tile>
  <tile id="4">

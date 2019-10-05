@@ -187,12 +187,13 @@ public class MyEntityAssemblyStrategy implements FutureEntitySystem.EntityAssemb
 
     private E decorateItem(E e, String type, int count) {
         if (type == null || "".equals(type)) return null;
-        return e
+        E item = e
                 .canPickup(true)
                 .itemType(type)
                 .itemCount(count)
                 .bounds(0, 0, 16, 16)
                 .castsShadow()
                 .renderLayer(GameRules.LAYER_ITEM);
+        return item;
     }
 }

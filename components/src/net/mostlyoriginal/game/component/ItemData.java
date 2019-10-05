@@ -13,7 +13,9 @@ public class ItemData {
     public int rewardChance;
     public int desireChance;
     public boolean coveted=false;
-
+    public boolean extensionPoint=false;
+    public boolean defaultLocked=false;
+    public boolean dryLand=false;
     public String machine;
     public String[] machineProducts;
 }

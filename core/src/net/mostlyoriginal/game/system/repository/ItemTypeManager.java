@@ -29,9 +29,14 @@ public class ItemTypeManager extends AssetManager<Item, ItemMetadata> {
     @Override
     protected void setup(int entity, Item item, ItemMetadata itemMetadata) {
         // load metadata on item.
-        if (item.type == null ) throw new RuntimeException();
+        if (item.type == null) throw new RuntimeException();
         itemMetadata.data = itemLibrary.getById(item.type);
-        E.E(entity).anim(itemMetadata.data.sprite);
+        E e = E.E(entity);
+        e
+                .anim(itemMetadata.data.sprite)
+                .walkable(itemMetadata.data.dryLand)
+                .extensionPoint(itemMetadata.data.extensionPoint)
+                .locked(itemMetadata.data.defaultLocked);
     }
 
     @All({Item.class})
