@@ -43,9 +43,9 @@
       "y": 120
       "width": 24,
       "height": 24,
-      "countX": 1,
+      "countX": 4,
       "countY": 1,
-      "milliseconds": 90,
+      "milliseconds": 200,
       "repeat": true,
     },
     {
@@ -55,9 +55,9 @@
       "y": 144,
       "width": 24,
       "height": 24,
-      "countX": 1,
+      "countX": 4,
       "countY": 1,
-      "milliseconds": 90,
+      "milliseconds": 200,
       "repeat": true,
     },
     {
