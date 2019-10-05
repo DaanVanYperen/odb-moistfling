@@ -26,18 +26,19 @@ public class BuildActionSystem extends FluidIteratingSystem {
     protected void process(E actor) {
         ActionBuild action = actor.getActionBuild();
         if (action.inventory != -1 && action.target != -1 && actor.hasHolding() && !actor.isMoving()) {
-            actor.removeHolding();
-            deploy(E.E(action.target), actor.getGridPos());
+            deploy(E.E(action.target), actor.getGridPos(), actor);
         }
         actor.removeActionBuild();
 
     }
 
-    public void deploy(E item, GridPos gridPos) {
+    public void deploy(E item, GridPos gridPos, E actor) {
 
 
         E standingOnSlot = slotManager.getSlotAt(gridPos);
         if ( standingOnSlot == null ) return;
+
+        actor.removeHolding();
 
         int originGridX = gridPos.x;
         int originGridY = gridPos.y;

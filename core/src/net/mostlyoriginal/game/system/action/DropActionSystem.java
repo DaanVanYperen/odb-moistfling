@@ -23,10 +23,19 @@ public class DropActionSystem extends FluidIteratingSystem {
     @Override
     protected void process(E actor) {
         ActionDrop action = actor.getActionDrop();
-        if (action.inventory != -1 && action.target != -1 && actor.hasHolding() && !actor.isMoving()) {
-            putItemInside(actor, E.E(action.target), E.E(action.inventory));
+        if (action.target != -1 && actor.hasHolding() && !actor.isMoving()) {
+            if ( action.inventory != -1 ) {
+                putItemInside(actor, E.E(action.target), E.E(action.inventory));
+            } else {
+                dropItem(actor, E.E(action.target));
+            }
         }
         actor.removeActionDrop();
+    }
+
+    private void dropItem(E actor, E item) {
+        stopHolding(actor);
+        item.gridPos(actor.getGridPos());
     }
 
     private void putItemInside(E actor, E itemE, E inventoryE) {

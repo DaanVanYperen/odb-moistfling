@@ -81,12 +81,17 @@ public class InteractActionSystem extends FluidIteratingSystem {
                 // attempt to construct item at inventory.
                 actor.actionBuildTarget(actor.holdingId());
                 actor.actionBuildInventory(inventoryE.id());
+                return;
             } else {
                 // attempt to drop item / put into inventory.
                 actor.actionDropTarget(actor.holdingId());
                 actor.actionDropInventory(inventoryE.id());
+                return;
             }
         }
+
+        actor.actionDropTarget(actor.holdingId());
+        actor.actionDropInventory(-1);
     }
 
     private void considerTake(E actor, E inventoryE) {
