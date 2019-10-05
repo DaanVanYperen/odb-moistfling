@@ -43,15 +43,15 @@ public class MyEntityAssemblyStrategy implements FutureEntitySystem.EntityAssemb
         if (!finalized) {
             finalized = true;
 
-            if (altars.size() != 1) {
+            if (altars.size() > 1) {
                 // @todo resolve.
                 throw new RuntimeException("Only one machine supported");
             }
             // @todo resolve.
-            if (hoppers.size() == 0) throw new RuntimeException("No hoppers found");
+            //if (hoppers.size() == 0) throw new RuntimeException("No hoppers found");
 
-            final E altar = altars.get(0);
-            hookupHoppers(altar, hoppers);
+            //final E altar = altars.get(0);
+            //hookupHoppers(altar, hoppers);
         }
     }
 
@@ -132,7 +132,7 @@ public class MyEntityAssemblyStrategy implements FutureEntitySystem.EntityAssemb
     private E decorateSlot(E e, Inventory.Mode mode, int x, int y, String... acceptsItems) {
         E slot = e
                 .tint(1f, 1f, 1f, 0.7f)
-                .bounds(0, 0, 32, 32)
+                .bounds(0, 0, 16, 16)
                 .inventoryAccepts(acceptsItems)
                 .inventoryMode(mode)
                 .inventoryX(x)
@@ -190,7 +190,7 @@ public class MyEntityAssemblyStrategy implements FutureEntitySystem.EntityAssemb
                 .canPickup(true)
                 .itemType(type)
                 .itemCount(count)
-                .bounds(0, 0, 32, 32)
+                .bounds(0, 0, 16, 16)
                 .castsShadow()
                 .renderLayer(GameRules.LAYER_ITEM);
     }

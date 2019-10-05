@@ -128,7 +128,7 @@ public class LogoScreenSetupSystem extends BaseSystem {
 
     private void addPressbutton(String text, int width) {
         message = E.E()
-                .pos((Gdx.graphics.getWidth() / 2), 32)
+                .pos((Gdx.graphics.getWidth() / 2), 16)
                 .labelText(text)
                 .labelAlign(Label.Align.RIGHT)
                 .tint(COLOR_PRESS_KEY_MESSAGE)

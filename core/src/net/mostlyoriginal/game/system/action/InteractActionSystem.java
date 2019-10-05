@@ -27,7 +27,7 @@ import net.mostlyoriginal.game.system.render.SlotManager;
 @All({ActionInteract.class})
 public class InteractActionSystem extends FluidIteratingSystem {
 
-    private NightSystem nightSystem;
+    //private NightSystem nightSystem;
     private SlotManager slotManager;
     private PickupManager pickupManager;
 
@@ -37,11 +37,6 @@ public class InteractActionSystem extends FluidIteratingSystem {
 
     @Override
     protected void process(E actor) {
-        if (isAtDoor(actor)) {
-            // open/closes door.
-            nightSystem.toggle();
-            E.E().playSound("sfx_pickup");
-        } else {
             final E inventoryE = nearbyInventory(actor);
 
             if (actor.hasHolding()) {
@@ -53,7 +48,6 @@ public class InteractActionSystem extends FluidIteratingSystem {
                     considerTake(actor, inventoryE);
                 }
             }
-        }
 
         actor.removeActionInteract();
     }

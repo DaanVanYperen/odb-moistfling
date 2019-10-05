@@ -81,38 +81,38 @@ public class GameScreen extends TransitionableWorldScreen {
                         new MapEntitySpawnerSystem(), // Converts Tiled maps to FutureEntities to be spawned.
                         new FutureEntitySystem(new MyEntityAssemblyStrategy()), // Responsible for spawning entities.
                         new ParticleEffectSystem(new MyParticleEffectStrategy()),
-                        new ShopperSpawnSystem(),
+                        //new ShopperSpawnSystem(),
 
                         // UI handlers.
 
                         new DialogUISystem(new MyDialogFactory()),
 
-                        new TutorialSystem(), // @todo phase 2: internals to singleton. Move dialog definitions to MyDialogFactory.
+                        //new TutorialSystem(), // @todo phase 2: internals to singleton. Move dialog definitions to MyDialogFactory.
 
                         // Input
 
                         new PlayerControlSystem(), // @todo phase 2: separate movement from key binding to control.
-                        new ShopperAISystem(),
+                        //new ShopperAISystem(),
 
                         // Mechanics.
 
-                        new PassiveSpawnSystem(), // @todo phase 2: move collision logic to separate bit based system.
+                        //new PassiveSpawnSystem(), // @todo phase 2: move collision logic to separate bit based system.
 
                         // Actor Actions
 
                         new InteractActionSystem(), // Determines WHICH action actors will perform
 
-                        new TalkActionSystem(),
-                        new TradeActionSystem(),
+                        //new TalkActionSystem(),
+                        //new TradeActionSystem(),
                         new PickupActionSystem(),
                         new DropActionSystem(),
                         new BuildActionSystem(),
 
                         // Secondary effects lifecycle management.
 
-                        new DesireSystem(),
-                        new ShadowSystem(), // @todo phase 2: Separate shadow, create a relationship component with parent.
-                        new SlotHighlightingSystem(),
+                        //new DesireSystem(),
+                        //new ShadowSystem(), // @todo phase 2: Separate shadow, create a relationship component with parent.
+                        //new SlotHighlightingSystem(),
 
                         // Movement
 
@@ -123,17 +123,18 @@ public class GameScreen extends TransitionableWorldScreen {
                         new GridPosSystem(), // @todo phase2: Separate the Snap to grid behaviour.
                         new GridPosFloatSystem(), // @todo phase2: Move floating to separate mechanic. (Mount it on something?)
 
-                        new HopperTalleySystem(), // talley hoppered items on the machine.
-                        new PlayerOnHopperTalleySystem(), // talley hoppered players on the machine.
-                        new MachineRecipeSystem(),
-                        new RecipeIngredientHintSystem(),
+                        //new HopperTalleySystem(), // talley hoppered items on the machine.
+                        //new PlayerOnHopperTalleySystem(), // talley hoppered players on the machine.
+                        //new MachineRecipeSystem(),
+                        //new RecipeIngredientHintSystem(),
 
+                        new MapSwimmingSystem(),
                         new PlayerAnimationSystem(), // @todo phase2: is there a more generic what to do this?
-                        new PaymentAnimationSystem(), // @todo phase2: do we need a whole system for this?
+                        //new PaymentAnimationSystem(), // @todo phase2: do we need a whole system for this?
 
-                        new NightSystem(),
+                        //new NightSystem(),
 
-                        new ScoreSystem(),
+                        //new ScoreSystem(),
 
                         renderBatchingSystem = new RenderBatchingSystem(),
                         new MyAnimRenderSystem(renderBatchingSystem),

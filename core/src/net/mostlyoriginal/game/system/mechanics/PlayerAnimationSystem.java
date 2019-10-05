@@ -15,23 +15,7 @@ public class PlayerAnimationSystem extends FluidIteratingSystem {
     protected void process(E e) {
         Player player = e.getPlayer();
 
-        String anim = "";
-
-        switch (player.age) {
-            case 0:
-                anim = "player_kid";
-                break;
-            case 1:
-                anim = "player_young_adult";
-                break;
-            case 2:
-                anim = "player_adult";
-                break;
-            case 3:
-                anim = "player_elderly";
-                break;
-        }
-
+        String anim = "player_idle";
 
         if ((e.playerDx() != 0 || e.playerDy() != 0) && !e.isInDialog()) {
             anim = anim + "_walk";
@@ -44,6 +28,10 @@ public class PlayerAnimationSystem extends FluidIteratingSystem {
         if (e.hasHolding()) {
             anim = anim + "_lift";
         }
+
+        anim = "player_idle_front";
+
+        if ( e.hasSwimming()) anim = "driftwood";
         //System.out.println(anim);
 
         e.anim(anim);

@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.2" tiledversion="1.2.3" name="default" tilewidth="32" tileheight="32" tilecount="1024" columns="32">
+<tileset version="1.2" tiledversion="1.2.4" name="default" tilewidth="16" tileheight="16" tilecount="4096" columns="64">
  <image source="tileset.png" width="1024" height="1024"/>
- <tile id="2">
+ <tile id="1">
   <properties>
-   <property name="solid" type="bool" value="true"/>
+   <property name="entity" value="driftwood"/>
   </properties>
  </tile>
- <tile id="3">
+ <tile id="2">
   <properties>
-   <property name="solid" type="bool" value="true"/>
+   <property name="entity" value="pallet"/>
+   <property name="walkable" type="bool" value="true"/>
   </properties>
  </tile>
  <tile id="4">
@@ -52,58 +53,58 @@
    <property name="solid" type="bool" value="true"/>
   </properties>
  </tile>
- <tile id="34">
+ <tile id="66">
   <properties>
    <property name="solid" type="bool" value="true"/>
   </properties>
  </tile>
- <tile id="35">
+ <tile id="67">
   <properties>
    <property name="solid" type="bool" value="true"/>
   </properties>
  </tile>
- <tile id="36">
+ <tile id="68">
   <properties>
    <property name="solid" type="bool" value="true"/>
   </properties>
  </tile>
- <tile id="37">
+ <tile id="69">
   <properties>
    <property name="solid" type="bool" value="true"/>
   </properties>
  </tile>
- <tile id="38">
+ <tile id="70">
   <properties>
    <property name="entity" value="door"/>
    <property name="solid" type="bool" value="true"/>
   </properties>
  </tile>
- <tile id="39">
+ <tile id="71">
   <properties>
    <property name="solid" type="bool" value="true"/>
   </properties>
  </tile>
- <tile id="40">
+ <tile id="72">
   <properties>
    <property name="solid" type="bool" value="true"/>
   </properties>
  </tile>
- <tile id="41">
+ <tile id="73">
   <properties>
    <property name="solid" type="bool" value="true"/>
   </properties>
  </tile>
- <tile id="44">
+ <tile id="76">
   <properties>
    <property name="solid" type="bool" value="true"/>
   </properties>
  </tile>
- <tile id="45">
+ <tile id="77">
   <properties>
    <property name="solid" type="bool" value="true"/>
   </properties>
  </tile>
- <tile id="66">
+ <tile id="130">
   <properties>
    <property name="accepts" value="any"/>
    <property name="entity" value="slot"/>
@@ -112,13 +113,13 @@
    <property name="y" type="int" value="0"/>
   </properties>
  </tile>
- <tile id="68">
+ <tile id="132">
   <properties>
    <property name="entity" value="machine"/>
    <property name="type" value="ALTAR"/>
   </properties>
  </tile>
- <tile id="103">
+ <tile id="199">
   <properties>
    <property name="accepts" value="any"/>
    <property name="entity" value="slot"/>
@@ -128,19 +129,19 @@
    <property name="y" type="int" value="0"/>
   </properties>
  </tile>
- <tile id="128">
+ <tile id="256">
   <properties>
    <property name="entity" value="player"/>
    <property name="invisible" type="bool" value="true"/>
   </properties>
  </tile>
- <tile id="129">
+ <tile id="257">
   <properties>
    <property name="entity" value="shopperspawner"/>
    <property name="invisible" type="bool" value="true"/>
   </properties>
  </tile>
- <tile id="138">
+ <tile id="266">
   <properties>
    <property name="accepts" value="item_boxed_forge,item_boxed_coop,item_boxed_bush"/>
    <property name="entity" value="slot"/>
@@ -149,7 +150,7 @@
    <property name="y" type="int" value="1"/>
   </properties>
  </tile>
- <tile id="139">
+ <tile id="267">
   <properties>
    <property name="accepts" value="item_boxed_forge,item_boxed_coop,item_boxed_bush"/>
    <property name="entity" value="slot"/>
@@ -158,75 +159,75 @@
    <property name="y" type="int" value="1"/>
   </properties>
  </tile>
- <tile id="146">
+ <tile id="274">
   <properties>
    <property name="invisible" type="bool" value="true"/>
   </properties>
  </tile>
- <tile id="147">
+ <tile id="275">
   <properties>
    <property name="entity" value="item"/>
    <property name="invisible" type="bool" value="true"/>
    <property name="type" value="item_chicken"/>
   </properties>
  </tile>
- <tile id="148">
+ <tile id="276">
   <properties>
    <property name="entity" value="item"/>
    <property name="invisible" type="bool" value="true"/>
    <property name="type" value="item_drumstick"/>
   </properties>
  </tile>
- <tile id="149">
+ <tile id="277">
   <properties>
    <property name="entity" value="item"/>
    <property name="invisible" type="bool" value="true"/>
    <property name="type" value="item_imp"/>
   </properties>
  </tile>
- <tile id="150">
+ <tile id="278">
   <properties>
    <property name="entity" value="item"/>
    <property name="invisible" type="bool" value="true"/>
    <property name="type" value="item_demon_hide"/>
   </properties>
  </tile>
- <tile id="151">
+ <tile id="279">
   <properties>
    <property name="entity" value="item"/>
    <property name="invisible" type="bool" value="true"/>
    <property name="type" value="item_unicorn"/>
   </properties>
  </tile>
- <tile id="152">
+ <tile id="280">
   <properties>
    <property name="entity" value="item"/>
    <property name="invisible" type="bool" value="true"/>
    <property name="type" value="item_unicorn_horn"/>
   </properties>
  </tile>
- <tile id="153">
+ <tile id="281">
   <properties>
    <property name="entity" value="item"/>
    <property name="invisible" type="bool" value="true"/>
    <property name="type" value="item_tier1_orb"/>
   </properties>
  </tile>
- <tile id="154">
+ <tile id="282">
   <properties>
    <property name="entity" value="item"/>
    <property name="invisible" type="bool" value="true"/>
    <property name="type" value="item_tier2_orb"/>
   </properties>
  </tile>
- <tile id="155">
+ <tile id="283">
   <properties>
    <property name="entity" value="item"/>
    <property name="invisible" type="bool" value="true"/>
    <property name="type" value="item_tier3_orb"/>
   </properties>
  </tile>
- <tile id="156">
+ <tile id="284">
   <properties>
    <property name="count" type="int" value="2"/>
    <property name="entity" value="item"/>
@@ -234,7 +235,7 @@
    <property name="type" value="item_herb_branch"/>
   </properties>
  </tile>
- <tile id="157">
+ <tile id="285">
   <properties>
    <property name="count" type="int" value="1"/>
    <property name="entity" value="item"/>
@@ -242,7 +243,7 @@
    <property name="type" value="item_healing_potion"/>
   </properties>
  </tile>
- <tile id="158">
+ <tile id="286">
   <properties>
    <property name="count" type="int" value="2"/>
    <property name="entity" value="item"/>
@@ -250,14 +251,14 @@
    <property name="type" value="item_mana_potion"/>
   </properties>
  </tile>
- <tile id="159">
+ <tile id="287">
   <properties>
    <property name="entity" value="item"/>
    <property name="invisible" type="bool" value="true"/>
    <property name="type" value="item_leather_armor"/>
   </properties>
  </tile>
- <tile id="170">
+ <tile id="330">
   <properties>
    <property name="accepts" value="item_boxed_forge,item_boxed_coop,item_boxed_bush"/>
    <property name="entity" value="slot"/>
@@ -266,7 +267,7 @@
    <property name="y" type="int" value="0"/>
   </properties>
  </tile>
- <tile id="171">
+ <tile id="331">
   <properties>
    <property name="accepts" value="item_boxed_forge,item_boxed_coop,item_boxed_bush"/>
    <property name="entity" value="slot"/>
@@ -275,68 +276,68 @@
    <property name="y" type="int" value="0"/>
   </properties>
  </tile>
- <tile id="178">
+ <tile id="338">
   <properties>
    <property name="invisible" type="bool" value="true"/>
   </properties>
  </tile>
- <tile id="179">
+ <tile id="339">
   <properties>
    <property name="entity" value="item"/>
    <property name="invisible" type="bool" value="true"/>
    <property name="type" value="item_boots"/>
   </properties>
  </tile>
- <tile id="180">
+ <tile id="340">
   <properties>
    <property name="entity" value="item"/>
    <property name="invisible" type="bool" value="true"/>
    <property name="type" value="item_bow"/>
   </properties>
  </tile>
- <tile id="181">
+ <tile id="341">
   <properties>
    <property name="entity" value="item"/>
    <property name="invisible" type="bool" value="true"/>
    <property name="type" value="item_sword"/>
   </properties>
  </tile>
- <tile id="182">
+ <tile id="342">
   <properties>
    <property name="entity" value="item"/>
    <property name="invisible" type="bool" value="true"/>
    <property name="type" value="item_winged_boots"/>
   </properties>
  </tile>
- <tile id="183">
+ <tile id="343">
   <properties>
    <property name="entity" value="item"/>
    <property name="invisible" type="bool" value="true"/>
    <property name="type" value="item_magical_sword"/>
   </properties>
  </tile>
- <tile id="184">
+ <tile id="344">
   <properties>
    <property name="entity" value="item"/>
    <property name="invisible" type="bool" value="true"/>
    <property name="type" value="item_enchanted_bow"/>
   </properties>
  </tile>
- <tile id="185">
+ <tile id="345">
   <properties>
    <property name="entity" value="item"/>
    <property name="invisible" type="bool" value="true"/>
    <property name="type" value="item_enchanted_armor"/>
   </properties>
  </tile>
- <tile id="186">
+ <tile id="346">
   <properties>
    <property name="entity" value="item"/>
    <property name="invisible" type="bool" value="true"/>
    <property name="type" value="item_magical_staff"/>
   </properties>
  </tile>
- <tile id="187">
+ <tile id="347">
   <properties>
    <property name="count" type="int" value="5"/>
    <property name="entity" value="item"/>
@@ -344,40 +345,46 @@
    <property name="type" value="item_ingot"/>
   </properties>
  </tile>
- <tile id="188">
+ <tile id="348">
   <properties>
    <property name="entity" value="item"/>
    <property name="invisible" type="bool" value="true"/>
    <property name="type" value="item_wood"/>
   </properties>
  </tile>
- <tile id="189">
+ <tile id="349">
   <properties>
    <property name="entity" value="item"/>
    <property name="invisible" type="bool" value="true"/>
    <property name="type" value="item_mystical_tome"/>
   </properties>
  </tile>
- <tile id="190">
+ <tile id="350">
   <properties>
    <property name="entity" value="item"/>
    <property name="invisible" type="bool" value="true"/>
    <property name="type" value="item_boxed_forge"/>
   </properties>
  </tile>
- <tile id="191">
+ <tile id="351">
   <properties>
    <property name="entity" value="item"/>
    <property name="invisible" type="bool" value="true"/>
    <property name="type" value="item_boxed_bush"/>
   </properties>
  </tile>
- <tile id="210">
+ <tile id="384">
+  <properties>
+   <property name="entity" value="player"/>
+   <property name="invisible" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="402">
   <properties>
    <property name="invisible" type="bool" value="true"/>
   </properties>
  </tile>
- <tile id="211">
+ <tile id="403">
   <properties>
    <property name="count" type="int" value="5"/>
    <property name="entity" value="item"/>
@@ -385,7 +392,7 @@
    <property name="type" value="item_boxed_coop"/>
   </properties>
  </tile>
- <tile id="212">
+ <tile id="404">
   <properties>
    <property name="count" type="int" value="3"/>
    <property name="entity" value="item"/>
@@ -393,56 +400,56 @@
    <property name="type" value="item_chick"/>
   </properties>
  </tile>
- <tile id="213">
+ <tile id="405">
   <properties>
    <property name="entity" value="item"/>
    <property name="invisible" type="bool" value="true"/>
    <property name="type" value=""/>
   </properties>
  </tile>
- <tile id="214">
+ <tile id="406">
   <properties>
    <property name="entity" value="item"/>
    <property name="invisible" type="bool" value="true"/>
    <property name="type" value=""/>
   </properties>
  </tile>
- <tile id="215">
+ <tile id="407">
   <properties>
    <property name="entity" value="item"/>
    <property name="invisible" type="bool" value="true"/>
    <property name="type" value=""/>
   </properties>
  </tile>
- <tile id="216">
+ <tile id="408">
   <properties>
    <property name="entity" value="item"/>
    <property name="invisible" type="bool" value="true"/>
    <property name="type" value=""/>
   </properties>
  </tile>
- <tile id="217">
+ <tile id="409">
   <properties>
    <property name="entity" value="item"/>
    <property name="invisible" type="bool" value="true"/>
    <property name="type" value=""/>
   </properties>
  </tile>
- <tile id="218">
+ <tile id="410">
   <properties>
    <property name="entity" value="item"/>
    <property name="invisible" type="bool" value="true"/>
    <property name="type" value=""/>
   </properties>
  </tile>
- <tile id="219">
+ <tile id="411">
   <properties>
    <property name="entity" value="item"/>
    <property name="invisible" type="bool" value="true"/>
    <property name="type" value=""/>
   </properties>
  </tile>
- <tile id="220">
+ <tile id="412">
   <properties>
    <property name="count" type="int" value="15"/>
    <property name="entity" value="item"/>
@@ -450,58 +457,58 @@
    <property name="type" value="item_wood"/>
   </properties>
  </tile>
- <tile id="221">
+ <tile id="413">
   <properties>
    <property name="entity" value="item"/>
    <property name="invisible" type="bool" value="true"/>
    <property name="type" value="item_mystical_tome"/>
   </properties>
  </tile>
- <tile id="222">
+ <tile id="414">
   <properties>
    <property name="entity" value="item"/>
    <property name="invisible" type="bool" value="true"/>
    <property name="type" value=""/>
   </properties>
  </tile>
- <tile id="223">
+ <tile id="415">
   <properties>
    <property name="entity" value="item"/>
    <property name="invisible" type="bool" value="true"/>
    <property name="type" value=""/>
   </properties>
  </tile>
- <tile id="341">
+ <tile id="661">
   <properties>
    <property name="invisible" type="bool" value="true"/>
   </properties>
  </tile>
- <tile id="342">
+ <tile id="662">
   <properties>
    <property name="invisible" type="bool" value="true"/>
   </properties>
  </tile>
- <tile id="343">
+ <tile id="663">
   <properties>
    <property name="invisible" type="bool" value="true"/>
   </properties>
  </tile>
- <tile id="344">
+ <tile id="664">
   <properties>
    <property name="invisible" type="bool" value="true"/>
   </properties>
  </tile>
- <tile id="345">
+ <tile id="665">
   <properties>
    <property name="invisible" type="bool" value="true"/>
   </properties>
  </tile>
- <tile id="346">
+ <tile id="666">
   <properties>
    <property name="invisible" type="bool" value="true"/>
   </properties>
  </tile>
- <tile id="347">
+ <tile id="667">
   <properties>
    <property name="invisible" type="bool" value="true"/>
   </properties>

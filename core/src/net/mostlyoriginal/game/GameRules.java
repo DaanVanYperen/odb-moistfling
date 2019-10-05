@@ -11,7 +11,7 @@ public abstract class GameRules {
     public static final int SCREEN_WIDTH = 1280;
     public static final int SCREEN_HEIGHT = 720;
     public static final int CAMERA_ZOOM = 2;
-    public static final int CELL_SIZE = 32;
+    public static final int CELL_SIZE = 16;
 
     public static final int LAYER_DIALOG_TEXT = 2010;
     public static final int LAYER_DIALOG_BOX= 2000;

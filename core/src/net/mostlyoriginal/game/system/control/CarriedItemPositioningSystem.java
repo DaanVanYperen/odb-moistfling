@@ -14,7 +14,7 @@ import net.mostlyoriginal.game.component.Lifter;
 @All({Lifter.class, Pos.class})
 public class CarriedItemPositioningSystem extends FluidIteratingSystem {
 
-    private static final int CARRIED_OBJECT_PLAYER_LIFTING_HEIGHT = 32;
+    private static final int CARRIED_OBJECT_PLAYER_LIFTING_HEIGHT = 16;
     private static final int CARRIED_OBJECT_SHOPPER_LIFTING_HEIGHT = 4;
 
     @Override
