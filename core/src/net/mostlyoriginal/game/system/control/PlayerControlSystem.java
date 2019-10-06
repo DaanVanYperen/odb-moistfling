@@ -7,6 +7,7 @@ import com.artemis.annotations.Exclude;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.math.Vector2;
+import net.mostlyoriginal.game.GameRules;
 import net.mostlyoriginal.game.component.Player;
 import net.mostlyoriginal.game.component.dialog.InDialog;
 
@@ -19,9 +20,9 @@ import net.mostlyoriginal.game.component.dialog.InDialog;
 @Exclude(InDialog.class)
 public class PlayerControlSystem extends FluidIteratingSystem {
 
-    private static final float PLAYER_WALKING_SPEED = 60f;
-    private static final float PLAYER_SWIMMING_SPEED = 40f;
-    private static final float PLAYER_SUBMERGED_SPEED = 80f;
+    private static final float PLAYER_WALKING_SPEED = GameRules.DEBUG_ENABLED ? 150f: 60f;
+    private static final float PLAYER_SWIMMING_SPEED = GameRules.DEBUG_ENABLED ? 150f: 40f;
+    private static final float PLAYER_SUBMERGED_SPEED = GameRules.DEBUG_ENABLED ? 150f: 80f;
 
     @Override
     protected void process(E e) {

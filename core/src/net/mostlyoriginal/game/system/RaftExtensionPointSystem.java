@@ -90,6 +90,14 @@ public class RaftExtensionPointSystem extends FluidIteratingSystem {
 
     @Override
     protected void end() {
+
+        // make sure the player can start the raft.
+        int ox = 20;
+        int oy = 13;
+        if (!mask.atGrid(ox, oy, true)) {
+            mask.set(ox, oy, true);
+            FutureSpawnUtility.slot(ox, oy, Inventory.Mode.CONSTRUCT, "item_driftwood", 0, 0, "extension_point");
+        }
         dirty = false;
     }
 

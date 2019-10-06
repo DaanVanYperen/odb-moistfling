@@ -8,4 +8,6 @@ import com.badlogic.gdx.math.MathUtils;
  */
 public class PassiveSpawner extends Component {
     public String[] items;
+    public String animSpawned;
+    public String animNormal;
 }

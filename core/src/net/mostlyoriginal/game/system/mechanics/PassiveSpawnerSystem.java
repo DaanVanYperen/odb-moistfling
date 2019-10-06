@@ -18,7 +18,7 @@ import net.mostlyoriginal.game.system.future.FutureSpawnUtility;
 @All(PassiveSpawner.class)
 public class PassiveSpawnerSystem extends FluidIteratingSystem {
 
-    private static final float UPDATE_EVERY_SECONDS = 10f;
+    private static final float UPDATE_EVERY_SECONDS = 1f;
 
     private Cooldown cooldown = Cooldown.withInterval(UPDATE_EVERY_SECONDS);
     private PickupManager pickupManager;
@@ -31,15 +31,17 @@ public class PassiveSpawnerSystem extends FluidIteratingSystem {
     @Override
     protected void process(E e) {
         PassiveSpawner spawner = e.getPassiveSpawner();
-        if (spawner.items.length > 0 && MathUtils.random(1, 100) < 20) {
+
+        e.animId(pickupManager.getOverlapping(e)!=null?spawner.animSpawned:spawner.animNormal);
+        if (spawner.items.length > 0 && MathUtils.random(1, 100) < 2) {
             spawn(e, spawner.items[MathUtils.random(0,spawner.items.length-1)]);
-            return;
         }
     }
 
     private void spawn(E e, String item) {
 
         if ( pickupManager.getOverlapping(e) == null ) {
+            e.animId(e.getPassiveSpawner().animSpawned);
             FutureSpawnUtility.item(item, 1, e.gridPosX(), e.gridPosY(), false);
             E.E().playSound("sfx_putdown");
 

@@ -203,7 +203,19 @@ public class MyEntityAssemblyStrategy implements FutureEntitySystem.EntityAssemb
         if(!e.hasLocked())
             e.canPickup(true);
         if ("item_net_placed".equals(type)) {
+            e.passiveSpawnerAnimSpawned("item_net");
+            e.passiveSpawnerAnimNormal("item_net");
             e.passiveSpawnerItems(new String[]{"item_fish","item_fish","item_fish","item_fish","item_fish","item_fish","item_driftwood","item_coconut","item_citrus"});
+        }
+        if ("item_citrus_plant_sapling".equals(type)) {
+            e.passiveSpawnerAnimSpawned("item_citrus_plant_grown");
+            e.passiveSpawnerAnimNormal("item_citrus_plant_sapling");
+            e.passiveSpawnerItems(new String[]{"item_citrus"});
+        }
+        if ("item_palm_sapling".equals(type)) {
+            e.passiveSpawnerAnimSpawned("item_palm_grown");
+            e.passiveSpawnerAnimNormal("item_palm_sapling");
+            e.passiveSpawnerItems(new String[]{"item_coconut"});
         }
         return item;
     }
