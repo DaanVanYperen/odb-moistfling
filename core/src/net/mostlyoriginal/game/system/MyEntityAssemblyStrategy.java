@@ -178,7 +178,7 @@ public class MyEntityAssemblyStrategy implements FutureEntitySystem.EntityAssemb
                 .anim("player_kid")
                 .itemType("item_player")
                 .gridPosDeriveFromPos(true)
-                .bounds(4, 0, 16 - 4, 16 - 4)
+                .bounds(4, 0, 16 - 4, 16)
                 .player()
                 .collider(CollisionLayers.PLAYER, CollisionLayers.HOPPER | CollisionLayers.DOOR) // player will collide with items and slots.
                 .castsShadow()

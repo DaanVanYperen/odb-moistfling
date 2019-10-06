@@ -5,6 +5,7 @@ import com.artemis.ESubscription;
 import com.artemis.FluidIteratingSystem;
 import com.artemis.annotations.All;
 import com.artemis.annotations.Exclude;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector3;
 import net.mostlyoriginal.api.component.basic.Pos;
 import net.mostlyoriginal.game.component.GridPos;
@@ -79,6 +80,7 @@ public class InteractActionSystem extends FluidIteratingSystem {
         if (inventoryE != null && inventoryE.getInventory().acceptsType(E.E(actor.holdingId()).itemType())) {
             if (inventoryE.inventoryMode() == Inventory.Mode.CONSTRUCT) {
                 // attempt to construct item at inventory.
+                System.out.println("Overlapping");
                 actor.actionBuildTarget(actor.holdingId());
                 actor.actionBuildInventory(inventoryE.id());
                 return;
@@ -108,7 +110,7 @@ public class InteractActionSystem extends FluidIteratingSystem {
         // pickup from floor.
         if (itemHere == null) {
             Vector3 actorPos = actor.getPos().xy;
-            itemHere = closestItem(actorPos.x, actorPos.y, 48 * 48);
+            itemHere = closestItem(actorPos.x, actorPos.y, 24 * 24);
         }
 
         if (itemHere != null) {
@@ -141,10 +143,10 @@ public class InteractActionSystem extends FluidIteratingSystem {
         if (inventorytAt == null) inventorytAt = slotManager.getSlotAt(actor.getGridPos(), 0, 1);
         if (inventorytAt == null) inventorytAt = slotManager.getSlotAt(actor.getGridPos(), -1, 0);
         if (inventorytAt == null) inventorytAt = slotManager.getSlotAt(actor.getGridPos(), 0, -1);
+        if (inventorytAt == null) inventorytAt = slotManager.getSlotAt(actor.getGridPos(), 1, 1);
+        if (inventorytAt == null) inventorytAt = slotManager.getSlotAt(actor.getGridPos(), -1, 1);
+        if (inventorytAt == null) inventorytAt = slotManager.getSlotAt(actor.getGridPos(), -1, -1);
+        if (inventorytAt == null) inventorytAt = slotManager.getSlotAt(actor.getGridPos(), 1, -1);
         return inventorytAt;
-    }
-
-    private boolean isAtDoor(E e) {
-        return e.getGridPos().x >= 15 && e.getGridPos().x <= 18 && e.getGridPos().y >= 8;
     }
 }

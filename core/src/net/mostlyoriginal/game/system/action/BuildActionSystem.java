@@ -45,10 +45,15 @@ public class BuildActionSystem extends FluidIteratingSystem {
         int slotOffsetY = standingOnSlot.inventoryY();
 
         // spawn machine
-        FutureSpawnUtility.item(getIntendedMachine(item,standingOnSlot), 1, (originGridX - slotOffsetX),
+        E locked = FutureSpawnUtility.item(getIntendedMachine(item, standingOnSlot), 1, (originGridX - slotOffsetX),
                 (originGridY - slotOffsetY), false).locked();
+        if ( "extension_point_top".equals(standingOnSlot.getInventory().transform))
+            locked.lockedOnTop();
+        if ( "extension_point_inside".equals(standingOnSlot.getInventory().transform))
+            locked.lockedInside();
 
-        // add spawners on each cell.
+
+                // add spawners on each cell.
         int gx = (originGridX - slotOffsetX);
         int gy = (originGridY - slotOffsetY);
 //        E.E().gridPos(
@@ -73,6 +78,20 @@ public class BuildActionSystem extends FluidIteratingSystem {
                     return "item_pallet";
                 case "item_net":
                     return "item_net_placed";
+            }
+        }
+        if ( "extension_point_top".equals(standingOnSlot.getInventory().transform)) {
+            switch (item.getItemMetadata().data.id) {
+                case "item_barrel":
+                    return "item_planter";
+            }
+        }
+        if ( "extension_point_inside".equals(standingOnSlot.getInventory().transform)) {
+            switch (item.getItemMetadata().data.id) {
+                case "item_citrus":
+                    return "item_citrus_plant_sapling";
+                case "item_coconut":
+                    return "item_palm_sapling";
             }
         }
         throw new RuntimeException();

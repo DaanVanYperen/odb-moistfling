@@ -15,6 +15,8 @@
       "consumed": true,
       "reward": true,
       "extensionPoint": true,
+      "extensionAcceptsAround": "item_driftwood,item_net",
+      "extensionAcceptsOnTop": "item_barrel",
       "dryLand": true,
       "defaultLocked": true,
       "gold": 25,
@@ -27,7 +29,10 @@
     },
     {
       "id": "item_planter",
-      "sprite": "item_planter"
+      "sprite": "item_planter",
+      "extensionAcceptsInside": "item_coconut,item_citrus",
+      "extensionPoint": true,
+      "defaultLocked": true
     },
     {
       "id": "item_net",
@@ -36,16 +41,27 @@
     {
       "id": "item_net_placed",
       "sprite": "item_net",
-      "extensionPoint": false,
-      "dryLand": true
+      "extensionPoint": true,
+      "dryLand": true,
+      "defaultLocked": true
     },
     {
       "id": "item_fish",
       "sprite": "item_fish"
     },
     {
+      "id": "item_palm_sapling",
+      "sprite": "item_palm_sapling",
+      "defaultLocked": true
+    },
+    {
       "id": "item_coconut",
       "sprite": "item_coconut"
+    },
+    {
+      "id": "item_citrus_plant_sapling",
+      "sprite": "item_citrus_plant_sapling",
+      "defaultLocked": true
     },
     {
       "id": "item_citrus",

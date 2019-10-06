@@ -14,6 +14,9 @@ public class ItemData {
     public int desireChance;
     public boolean coveted=false;
     public boolean extensionPoint=false;
+    public String extensionAcceptsAround;
+    public String extensionAcceptsOnTop;
+    public String extensionAcceptsInside;
     public boolean defaultLocked=false;
     public boolean dryLand=false;
     public String machine;

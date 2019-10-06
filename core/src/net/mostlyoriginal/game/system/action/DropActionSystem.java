@@ -36,6 +36,8 @@ public class DropActionSystem extends FluidIteratingSystem {
     private void dropItem(E actor, E item) {
         stopHolding(actor);
         item.gridPos(actor.getGridPos());
+                item.posY(actor.getPos().xy.y);
+        ;
     }
 
     private void putItemInside(E actor, E itemE, E inventoryE) {

@@ -36,7 +36,9 @@ public class GridPosSystem extends FluidIteratingSystem {
         } else {
             if ( gridPos.deriveFromPos ) {
                 gridPos.x = (int)((pos.x + e.boundsCx()) / GameRules.CELL_SIZE);
-                gridPos.y = (int)((pos.y + e.boundsMiny()+4) / GameRules.CELL_SIZE);
+                gridPos.y = (int)((pos.y + e.boundsMiny()+2) / GameRules.CELL_SIZE);
+
+                //SE.E().anim("highlight").renderLayer(10000).pos(gridPos.x*16, gridPos.y*16);
             } else {
                 float dx = MathUtils.clamp(goalX - pos.x, -1, 1);
                 float dy = MathUtils.clamp(goalY - pos.y, -1, 1);

@@ -6,7 +6,6 @@
    <property name="count" type="int" value="1"/>
    <property name="entity" value="item"/>
    <property name="invisible" type="bool" value="true"/>
-   <property name="submerged" type="bool" value="true"/>
    <property name="type" value="item_driftwood"/>
   </properties>
  </tile>
@@ -64,6 +63,14 @@
    <property name="solid" type="bool" value="true"/>
   </properties>
  </tile>
+ <tile id="65">
+  <properties>
+   <property name="count" type="int" value="1"/>
+   <property name="entity" value="item"/>
+   <property name="invisible" type="bool" value="true"/>
+   <property name="type" value="item_barrel"/>
+  </properties>
+ </tile>
  <tile id="66">
   <properties>
    <property name="solid" type="bool" value="true"/>
@@ -85,7 +92,10 @@
  </tile>
  <tile id="69">
   <properties>
-   <property name="solid" type="bool" value="true"/>
+   <property name="count" type="int" value="1"/>
+   <property name="entity" value="item"/>
+   <property name="invisible" type="bool" value="true"/>
+   <property name="type" value="item_coconut"/>
   </properties>
  </tile>
  <tile id="70">
@@ -132,6 +142,14 @@
   <properties>
    <property name="entity" value="machine"/>
    <property name="type" value="ALTAR"/>
+  </properties>
+ </tile>
+ <tile id="133">
+  <properties>
+   <property name="count" type="int" value="1"/>
+   <property name="entity" value="item"/>
+   <property name="invisible" type="bool" value="true"/>
+   <property name="type" value="item_citrus"/>
   </properties>
  </tile>
  <tile id="199">
