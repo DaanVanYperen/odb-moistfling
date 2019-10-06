@@ -8,6 +8,8 @@ import com.artemis.Component;
 public class GridPos extends Component {
     public int x;
     public int y;
+    public int xPixelOffset;
+    public int yPixelOffset;
     public boolean deriveFromPos=false;
 
     public void set(int x, int y) {

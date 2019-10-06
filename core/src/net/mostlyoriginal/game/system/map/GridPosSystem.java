@@ -23,8 +23,8 @@ public class GridPosSystem extends FluidIteratingSystem {
 
         final GridPos gridPos = e.getGridPos();
 
-        float goalX = gridPos.x * GameRules.CELL_SIZE;
-        float goalY = gridPos.y * GameRules.CELL_SIZE;
+        float goalX = gridPos.x * GameRules.CELL_SIZE + gridPos.xPixelOffset;
+        float goalY = gridPos.y * GameRules.CELL_SIZE + gridPos.yPixelOffset;
 
         boolean hasPos = e.hasPos();
         final Vector3 pos = e.pos().getPos().xy;
