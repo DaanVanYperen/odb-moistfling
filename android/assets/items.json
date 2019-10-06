@@ -30,7 +30,7 @@
     {
       "id": "item_planter",
       "sprite": "item_planter",
-      "extensionAcceptsInside": "item_coconut,item_citrus",
+      "extensionAcceptsInside": "item_coconut_seed,item_citrus_seed",
       "extensionPoint": true,
       "defaultLocked": true
     },
@@ -47,7 +47,8 @@
     },
     {
       "id": "item_fish",
-      "sprite": "item_fish"
+      "sprite": "item_fish",
+      "edible": true
     },
     {
       "id": "item_palm_sapling",
@@ -56,7 +57,13 @@
     },
     {
       "id": "item_coconut",
-      "sprite": "item_coconut"
+      "sprite": "item_coconut",
+      "edible": true
+    },
+    {
+      "id": "item_coconut_seed",
+      "sprite": "item_coconut_seed",
+      "edible": true
     },
     {
       "id": "item_citrus_plant_sapling",
@@ -65,7 +72,12 @@
     },
     {
       "id": "item_citrus",
-      "sprite": "item_citrus"
+      "sprite": "item_citrus",
+      "edible": true
+    },
+    {
+      "id": "item_citrus_seed",
+      "sprite": "item_citrus_seed"
     },
     {
       "id": "item_bottle",

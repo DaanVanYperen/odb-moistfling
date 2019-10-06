@@ -104,6 +104,7 @@ public class GameScreen extends TransitionableWorldScreen {
                         new PickupActionSystem(),
                         new DropActionSystem(),
                         new BuildActionSystem(),
+                        new UseActionSystem(),
 
                         // Secondary effects lifecycle management.
 
@@ -134,6 +135,7 @@ public class GameScreen extends TransitionableWorldScreen {
 
                         //new ScoreSystem(),
                         new SubmergingSystem(),
+                        new StaminaSystem(),
 
                         new ShadedWaterRenderSystem(),
                         renderBatchingSystem = new RenderBatchingSystem(),

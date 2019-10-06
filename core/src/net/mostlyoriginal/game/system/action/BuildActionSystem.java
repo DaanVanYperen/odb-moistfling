@@ -112,9 +112,9 @@ public class BuildActionSystem extends FluidIteratingSystem {
         }
         if ( "extension_point_inside".equals(standingOnSlot.getInventory().transform)) {
             switch (item.getItemMetadata().data.id) {
-                case "item_citrus":
+                case "item_citrus_seed":
                     return "item_citrus_plant_sapling";
-                case "item_coconut":
+                case "item_coconut_seed":
                     return "item_palm_sapling";
             }
         }

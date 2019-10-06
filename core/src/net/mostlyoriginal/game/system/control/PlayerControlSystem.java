@@ -6,10 +6,13 @@ import com.artemis.annotations.All;
 import com.artemis.annotations.Exclude;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.Vector2;
 import net.mostlyoriginal.game.GameRules;
 import net.mostlyoriginal.game.component.Player;
+import net.mostlyoriginal.game.component.StaminaIndicator;
 import net.mostlyoriginal.game.component.dialog.InDialog;
+import net.mostlyoriginal.game.system.StaminaSystem;
 
 /**
  * Basic keyboard control system for player.s
@@ -23,6 +26,8 @@ public class PlayerControlSystem extends FluidIteratingSystem {
     private static final float PLAYER_WALKING_SPEED = GameRules.DEBUG_ENABLED ? 150f: 60f;
     private static final float PLAYER_SWIMMING_SPEED = GameRules.DEBUG_ENABLED ? 150f: 40f;
     private static final float PLAYER_SUBMERGED_SPEED = GameRules.DEBUG_ENABLED ? 150f: 80f;
+
+    StaminaSystem staminaSystem;
 
     @Override
     protected void process(E e) {
@@ -72,9 +77,16 @@ public class PlayerControlSystem extends FluidIteratingSystem {
 
         Vector2 movementVector = vector2.set(dx, dy).nor();
 
+        if ( dx != 0 || dy != 0 ) {
+            staminaSystem.drainStamina();
+        }
+
         e.physics();
 
         float speed = e.hasSwimming() ? (e.hasSubmerged() ? PLAYER_SUBMERGED_SPEED : PLAYER_SWIMMING_SPEED) : PLAYER_WALKING_SPEED;
+
+        // affect movement speed by stamina.
+        speed *= Interpolation.linear.apply(1f,2.5f, staminaSystem.getStamina());
 
         if (movementVector.x != 0) {
             e.getPhysics().vx = movementVector.x * speed * 1.1f;

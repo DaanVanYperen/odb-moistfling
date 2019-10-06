@@ -22,7 +22,7 @@ public abstract class GameRules {
     public static final int LAYER_ITEM_CARRIED = LAYER_PLAYER+100;
     public static final int LAYER_SHADOWS = 550;
     public static final int LAYER_MACHINES = 500;
-    public static final int LAYER_DESIRE_INDICATOR = 1010;
+    public static final int LAYER_DESIRE_INDICATOR = LAYER_PLAYER+200;
     public static final int LAYER_SCORE_TEXT = 60;
     public static final int LAYER_WINDOWS = 50;
     public static final int LAYER_DOORS = 50;

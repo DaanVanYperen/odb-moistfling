@@ -40,6 +40,10 @@ public class InteractActionSystem extends FluidIteratingSystem {
             final E inventoryE = nearbyInventory(actor);
 
             if (actor.hasHolding()) {
+
+                if ( E.E(actor.holdingId()).itemMetadataData().edible ) {
+                    conderUse(actor);
+                } else
                 if (!considerTrade(actor)) {
                     considerDrop(actor, inventoryE);
                 }
@@ -50,6 +54,10 @@ public class InteractActionSystem extends FluidIteratingSystem {
             }
 
         actor.removeActionInteract();
+    }
+
+    private void conderUse(E actor) {
+        actor.actionUseTarget(actor.holdingId());
     }
 
     private boolean considerTrade(E actor) {

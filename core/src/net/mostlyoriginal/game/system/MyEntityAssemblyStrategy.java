@@ -173,8 +173,8 @@ public class MyEntityAssemblyStrategy implements FutureEntitySystem.EntityAssemb
     }
 
     private E decoratePlayer(E e) {
-        return e
-                .pos(240,160)
+        E decoratePlayer = e
+                .pos(240, 160)
                 .anim("player_kid")
                 .itemType("item_player")
                 .gridPosDeriveFromPos(true)
@@ -187,6 +187,10 @@ public class MyEntityAssemblyStrategy implements FutureEntitySystem.EntityAssemb
                 .lifter()
                 .castsShadowYOffset(-4)
                 .renderLayer(GameRules.LAYER_PLAYER);
+
+        E.E().pos(240, 160).anim("indicator_power1").renderLayer(GameRules.LAYER_DESIRE_INDICATOR).staminaIndicator();
+
+        return decoratePlayer;
     }
 
     private E decorateItem(E e, String type, int count, boolean submerged) {
@@ -210,7 +214,7 @@ public class MyEntityAssemblyStrategy implements FutureEntitySystem.EntityAssemb
         if ("item_net_placed".equals(type)) {
             e.passiveSpawnerAnimSpawned("item_net");
             e.passiveSpawnerAnimNormal("item_net");
-            e.passiveSpawnerItems(new String[]{"item_fish","item_fish","item_fish","item_fish","item_fish","item_fish","item_driftwood","item_coconut","item_citrus"});
+            e.passiveSpawnerItems(new String[]{"item_fish","item_fish","item_fish","item_fish","item_fish","item_fish","item_driftwood","item_coconut_seed", "item_coconut","item_citrus_seed", "item_citrus"});
         }
         if ("item_citrus_plant_sapling".equals(type)) {
             e.passiveSpawnerAnimSpawned("item_citrus_plant_grown");
