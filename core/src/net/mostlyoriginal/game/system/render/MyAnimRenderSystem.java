@@ -6,6 +6,7 @@ package net.mostlyoriginal.game.system.render;
 import com.artemis.Aspect;
 import com.artemis.annotations.Wire;
 import com.badlogic.gdx.graphics.g2d.*;
+import com.badlogic.gdx.math.MathUtils;
 import net.mostlyoriginal.api.component.basic.Angle;
 import net.mostlyoriginal.api.component.basic.Origin;
 import net.mostlyoriginal.api.component.basic.Pos;
@@ -48,6 +49,8 @@ public class MyAnimRenderSystem extends DeferredEntityProcessingSystem {
     protected SpriteBatch batch;
     private Origin DEFAULT_ORIGIN = new Origin(0.5f, 0.5f);
 
+    float waveDelta = 0;
+
     public MyAnimRenderSystem(EntityProcessPrincipal principal) {
         super(Aspect.all(Pos.class, Anim.class, Render.class).exclude(Invisible.class), principal);
     }
@@ -60,7 +63,13 @@ public class MyAnimRenderSystem extends DeferredEntityProcessingSystem {
     }
 
     @Override
+    protected void processSystem() {
+        super.processSystem();
+    }
+
+    @Override
     protected void begin() {
+        waveDelta += world.delta * 50f;
         batch.setProjectionMatrix(cameraSystem.camera.combined);
         batch.begin();
     }
@@ -128,11 +137,13 @@ public class MyAnimRenderSystem extends DeferredEntityProcessingSystem {
 
         float ox = frame.getRegionWidth() * scale * origin.xy.x;
         float oy = frame.getRegionHeight() * scale * origin.xy.y;
+        float y = roundToPixels(position.xy.y) + MathUtils.cosDeg(waveDelta+position.xy.y)*10;
+
         if (animation.flippedX && angle.rotation == 0) {
             // mirror
             batch.draw(frame.getTexture(),
                     roundToPixels(position.xy.x),
-                    roundToPixels(position.xy.y),
+                    y,
                     ox,
                     oy,
                     frame.getRegionWidth() * scale,
@@ -150,7 +161,7 @@ public class MyAnimRenderSystem extends DeferredEntityProcessingSystem {
         } else if (angle.rotation != 0) {
             batch.draw(frame,
                     roundToPixels(position.xy.x),
-                    roundToPixels(position.xy.y),
+                    y,
                     ox,
                     oy,
                     frame.getRegionWidth() * scale,
@@ -159,7 +170,7 @@ public class MyAnimRenderSystem extends DeferredEntityProcessingSystem {
         } else {
             batch.draw(frame,
                     roundToPixels(position.xy.x),
-                    roundToPixels(position.xy.y),
+                    y,
                     frame.getRegionWidth() * scale,
                     frame.getRegionHeight() * scale);
         }
