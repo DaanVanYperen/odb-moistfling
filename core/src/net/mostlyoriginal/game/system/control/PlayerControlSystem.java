@@ -64,6 +64,7 @@ public class PlayerControlSystem extends FluidIteratingSystem {
         float centerX = e.posX()+e.boundsCx();
         float centerY = e.posY();
 
+        // half-grid aligning
         if ( centerX % 8 < 2f && dx == 0 && dy != 0 ) dx = 1;
         if ( centerX % 8 > 4f && dx == 0 && dy != 0) dx = -1;
         if ( centerY % 8 < 2f && dy == 0 && dx != 0) dy = 1;

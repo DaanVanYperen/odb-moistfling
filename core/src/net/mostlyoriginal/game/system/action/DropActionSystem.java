@@ -8,6 +8,7 @@ import net.mostlyoriginal.api.component.graphics.Tint;
 import net.mostlyoriginal.game.GameRules;
 import net.mostlyoriginal.game.component.action.ActionDrop;
 import net.mostlyoriginal.game.component.inventory.Inventory;
+import net.mostlyoriginal.game.system.map.MapSwimmingSystem;
 
 
 /**
@@ -19,6 +20,7 @@ import net.mostlyoriginal.game.component.inventory.Inventory;
 public class DropActionSystem extends FluidIteratingSystem {
 
     private RendererSingleton rendererSingleton;
+    private MapSwimmingSystem mapSwimmingSystem;
 
     @Override
     protected void process(E actor) {
@@ -35,10 +37,12 @@ public class DropActionSystem extends FluidIteratingSystem {
 
     private void dropItem(E actor, E item) {
         stopHolding(actor);
-        item.submerged();
         item.gridPos(actor.getGridPos());
                 item.posY(actor.getPos().xy.y);
         ;
+        if (mapSwimmingSystem.isOnWater(item)) {
+            item.submerged();
+        }
     }
 
     private void putItemInside(E actor, E itemE, E inventoryE) {

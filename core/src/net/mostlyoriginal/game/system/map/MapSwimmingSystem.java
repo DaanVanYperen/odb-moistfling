@@ -54,4 +54,8 @@ public class MapSwimmingSystem extends FluidIteratingSystem {
     protected void process(E e ) {
         e.swimming(!drylandMask.atScreen(e.getPos().xy.x+e.getBounds().cx(), e.getPos().xy.y, false));
     }
+
+    public boolean isOnWater(E item) {
+        return !drylandMask.atGrid(item.getGridPos().x, item.getGridPos().y, false);
+    }
 }

@@ -205,6 +205,8 @@ public class MyEntityAssemblyStrategy implements FutureEntitySystem.EntityAssemb
         if ("item_pallet".equals(type)) {
             e.gridPosYPixelOffset(-8);
         }
+
+        e.pos(e.gridPosX()*16,e.gridPosY()*16);
         if ("item_net_placed".equals(type)) {
             e.passiveSpawnerAnimSpawned("item_net");
             e.passiveSpawnerAnimNormal("item_net");

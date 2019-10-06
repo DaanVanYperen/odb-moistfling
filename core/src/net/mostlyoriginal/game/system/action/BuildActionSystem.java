@@ -84,6 +84,30 @@ public class BuildActionSystem extends FluidIteratingSystem {
             switch (item.getItemMetadata().data.id) {
                 case "item_barrel":
                     return "item_planter";
+                case "item_tiki1":
+                    return "item_tiki1_placed";
+                case "item_tiki2":
+                    return "item_tiki2_placed";
+                case "item_tiki3":
+                    return "item_tiki3_placed";
+                case "item_lampion":
+                    return "item_lampion_placed";
+                case "item_dog":
+                    return "item_dog_placed";
+                case "item_skull":
+                    return "item_skull_placed";
+                case "item_ducky":
+                    return "item_ducky_placed";
+                case "item_flamingo":
+                    return "item_flamingo_placed";
+                case "item_chest":
+                    return "item_chest_placed";
+                case "item_starfish":
+                    return "item_starfish_placed";
+                case "item_seashell":
+                    return "item_seashell_placed";
+                case "item_wife":
+                    return "item_wife_placed";
             }
         }
         if ( "extension_point_inside".equals(standingOnSlot.getInventory().transform)) {
