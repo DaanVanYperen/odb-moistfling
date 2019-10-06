@@ -135,6 +135,7 @@ public class GameScreen extends TransitionableWorldScreen {
                         //new ScoreSystem(),
                         new SubmergingSystem(),
 
+                        new ShadedWaterRenderSystem(),
                         renderBatchingSystem = new RenderBatchingSystem(),
                         new MyAnimRenderSystem(renderBatchingSystem),
                         new MyLabelRenderSystem(renderBatchingSystem),
@@ -154,7 +155,6 @@ public class GameScreen extends TransitionableWorldScreen {
 
                         //new InventoryDebugSystem(), // @todo allow optional systems (nullable in gamescreen)
                         new TransitionSystem(GdxArtemisGame.getInstance(), this)
-
                 );
 
         if (GameRules.DEBUG_ENABLED) {
