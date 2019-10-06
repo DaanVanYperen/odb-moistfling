@@ -105,6 +105,7 @@ public class GameScreen extends TransitionableWorldScreen {
                         new DropActionSystem(),
                         new BuildActionSystem(),
                         new UseActionSystem(),
+                        new LootSpawnSystem(),
 
                         // Secondary effects lifecycle management.
 
