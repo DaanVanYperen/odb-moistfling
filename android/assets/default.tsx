@@ -63,6 +63,132 @@
    <property name="solid" type="bool" value="true"/>
   </properties>
  </tile>
+ <tile id="17">
+  <properties>
+   <property name="count" type="int" value="1"/>
+   <property name="entity" value="item"/>
+   <property name="invisible" type="bool" value="true"/>
+   <property name="submerged" type="bool" value="true"/>
+   <property name="type" value="item_snorkel"/>
+  </properties>
+ </tile>
+ <tile id="18">
+  <properties>
+   <property name="count" type="int" value="1"/>
+   <property name="entity" value="item"/>
+   <property name="invisible" type="bool" value="true"/>
+   <property name="submerged" type="bool" value="true"/>
+   <property name="type" value="item_flippers"/>
+  </properties>
+ </tile>
+ <tile id="19">
+  <properties>
+   <property name="count" type="int" value="1"/>
+   <property name="entity" value="item"/>
+   <property name="invisible" type="bool" value="true"/>
+   <property name="submerged" type="bool" value="true"/>
+   <property name="type" value="item_tiki1"/>
+  </properties>
+ </tile>
+ <tile id="20">
+  <properties>
+   <property name="count" type="int" value="1"/>
+   <property name="entity" value="item"/>
+   <property name="invisible" type="bool" value="true"/>
+   <property name="submerged" type="bool" value="true"/>
+   <property name="type" value="item_lampion"/>
+  </properties>
+ </tile>
+ <tile id="21">
+  <properties>
+   <property name="count" type="int" value="1"/>
+   <property name="entity" value="item"/>
+   <property name="invisible" type="bool" value="true"/>
+   <property name="submerged" type="bool" value="true"/>
+   <property name="type" value="item_dog"/>
+  </properties>
+ </tile>
+ <tile id="22">
+  <properties>
+   <property name="count" type="int" value="1"/>
+   <property name="entity" value="item"/>
+   <property name="invisible" type="bool" value="true"/>
+   <property name="submerged" type="bool" value="true"/>
+   <property name="type" value="item_skull"/>
+  </properties>
+ </tile>
+ <tile id="23">
+  <properties>
+   <property name="count" type="int" value="1"/>
+   <property name="entity" value="item"/>
+   <property name="invisible" type="bool" value="true"/>
+   <property name="submerged" type="bool" value="true"/>
+   <property name="type" value="item_ducky"/>
+  </properties>
+ </tile>
+ <tile id="24">
+  <properties>
+   <property name="count" type="int" value="1"/>
+   <property name="entity" value="item"/>
+   <property name="invisible" type="bool" value="true"/>
+   <property name="submerged" type="bool" value="true"/>
+   <property name="type" value="item_flamingo"/>
+  </properties>
+ </tile>
+ <tile id="25">
+  <properties>
+   <property name="count" type="int" value="1"/>
+   <property name="entity" value="item"/>
+   <property name="invisible" type="bool" value="true"/>
+   <property name="submerged" type="bool" value="true"/>
+   <property name="type" value="item_tiki2"/>
+  </properties>
+ </tile>
+ <tile id="26">
+  <properties>
+   <property name="count" type="int" value="1"/>
+   <property name="entity" value="item"/>
+   <property name="invisible" type="bool" value="true"/>
+   <property name="submerged" type="bool" value="true"/>
+   <property name="type" value="item_tiki3"/>
+  </properties>
+ </tile>
+ <tile id="27">
+  <properties>
+   <property name="count" type="int" value="1"/>
+   <property name="entity" value="item"/>
+   <property name="invisible" type="bool" value="true"/>
+   <property name="submerged" type="bool" value="true"/>
+   <property name="type" value="item_chest"/>
+  </properties>
+ </tile>
+ <tile id="28">
+  <properties>
+   <property name="count" type="int" value="1"/>
+   <property name="entity" value="item"/>
+   <property name="invisible" type="bool" value="true"/>
+   <property name="submerged" type="bool" value="true"/>
+   <property name="type" value="item_starfish"/>
+  </properties>
+ </tile>
+ <tile id="29">
+  <properties>
+   <property name="count" type="int" value="1"/>
+   <property name="entity" value="item"/>
+   <property name="invisible" type="bool" value="true"/>
+   <property name="submerged" type="bool" value="true"/>
+   <property name="type" value="item_seashell"/>
+  </properties>
+ </tile>
+ <tile id="30">
+  <properties>
+   <property name="count" type="int" value="1"/>
+   <property name="entity" value="item"/>
+   <property name="invisible" type="bool" value="true"/>
+   <property name="submerged" type="bool" value="true"/>
+   <property name="type" value="item_wife"/>
+  </properties>
+ </tile>
  <tile id="65">
   <properties>
    <property name="count" type="int" value="1"/>

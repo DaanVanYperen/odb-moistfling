@@ -9,6 +9,7 @@ import net.mostlyoriginal.game.component.Player;
 import net.mostlyoriginal.game.component.dialog.InDialog;
 import net.mostlyoriginal.game.component.flags.Submerged;
 import net.mostlyoriginal.game.events.EventItemPickup;
+import net.mostlyoriginal.game.system.view.GameScreenAssetSystem;
 
 /**
  * @author Daan van Yperen
@@ -16,10 +17,17 @@ import net.mostlyoriginal.game.events.EventItemPickup;
 @All(Submerged.class)
 public class SubmergingSystem extends FluidIteratingSystem {
 
+    GameScreenAssetSystem assetSystem;
+
     @Override
     protected void inserted(int entityId) {
         super.inserted(entityId);
         E e = E.E(entityId);
+
+        String submergedAnim = e.animId() + "_water";
+        if ( assetSystem.get(submergedAnim) != null ) {
+            e.submergedSubmergedAnim(submergedAnim);
+        }
         e.submergedOriginalAnim(e.animId());
     }
 
