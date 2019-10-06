@@ -62,8 +62,7 @@
     },
     {
       "id": "item_coconut_seed",
-      "sprite": "item_coconut_seed",
-      "edible": true
+      "sprite": "item_coconut_seed"
     },
     {
       "id": "item_citrus_plant_sapling",

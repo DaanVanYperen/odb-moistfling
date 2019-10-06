@@ -79,6 +79,8 @@ public class PlayerControlSystem extends FluidIteratingSystem {
 
         if ( dx != 0 || dy != 0 ) {
             staminaSystem.drainStamina();
+        } else {
+            staminaSystem.slowRegenStamina(e.isSwimming()?0.2f:0.4f);
         }
 
         e.physics();
@@ -87,6 +89,7 @@ public class PlayerControlSystem extends FluidIteratingSystem {
 
         // affect movement speed by stamina.
         speed *= Interpolation.linear.apply(1f,2.5f, staminaSystem.getStamina());
+        if ( staminaSystem.getStamina() <= 0.05f ) speed *= 0.5f;
 
         if (movementVector.x != 0) {
             e.getPhysics().vx = movementVector.x * speed * 1.1f;

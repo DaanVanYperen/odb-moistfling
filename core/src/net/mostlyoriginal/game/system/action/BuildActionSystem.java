@@ -78,6 +78,8 @@ public class BuildActionSystem extends FluidIteratingSystem {
                     return "item_pallet";
                 case "item_net":
                     return "item_net_placed";
+                case "item_ducky":
+                    return "item_ducky_placed";
             }
         }
         if ( "extension_point_top".equals(standingOnSlot.getInventory().transform)) {

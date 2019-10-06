@@ -34,7 +34,7 @@ public class UseActionSystem extends FluidIteratingSystem {
 
     public void use(E item, GridPos gridPos, E actor) {
 
-        staminaSystem.staminaIncrease(0.25f);
+        staminaSystem.staminaIncrease(0.5f);
         actor.removeHolding();
         item.deleteFromWorld();
     }

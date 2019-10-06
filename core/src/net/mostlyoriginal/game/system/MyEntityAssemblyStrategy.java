@@ -214,7 +214,7 @@ public class MyEntityAssemblyStrategy implements FutureEntitySystem.EntityAssemb
         if ("item_net_placed".equals(type)) {
             e.passiveSpawnerAnimSpawned("item_net");
             e.passiveSpawnerAnimNormal("item_net");
-            e.passiveSpawnerItems(new String[]{"item_fish","item_fish","item_fish","item_fish","item_fish","item_fish","item_driftwood","item_coconut_seed", "item_coconut","item_citrus_seed", "item_citrus"});
+            e.passiveSpawnerItems(new String[]{"item_fish","item_driftwood","item_driftwood","item_fish","item_driftwood","item_fish","item_driftwood","item_coconut_seed", "item_coconut","item_citrus_seed", "item_citrus"});
         }
         if ("item_citrus_plant_sapling".equals(type)) {
             e.passiveSpawnerAnimSpawned("item_citrus_plant_grown");
