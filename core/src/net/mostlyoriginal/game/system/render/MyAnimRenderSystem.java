@@ -137,12 +137,13 @@ public class MyAnimRenderSystem extends DeferredEntityProcessingSystem {
 
         float ox = frame.getRegionWidth() * scale * origin.xy.x;
         float oy = frame.getRegionHeight() * scale * origin.xy.y;
-        float y = roundToPixels(position.xy.y) + MathUtils.cosDeg(waveDelta+position.xy.y)*10;
+        float y = roundToPixels(position.xy.y+ MathUtils.cosDeg(waveDelta+position.xy.y)*10+ MathUtils.sinDeg(waveDelta+position.xy.x*20f)*3) ;
+        float x = roundToPixels(position.xy.x);
 
         if (animation.flippedX && angle.rotation == 0) {
             // mirror
             batch.draw(frame.getTexture(),
-                    roundToPixels(position.xy.x),
+                    x,
                     y,
                     ox,
                     oy,
@@ -160,7 +161,7 @@ public class MyAnimRenderSystem extends DeferredEntityProcessingSystem {
 
         } else if (angle.rotation != 0) {
             batch.draw(frame,
-                    roundToPixels(position.xy.x),
+                    x,
                     y,
                     ox,
                     oy,
@@ -169,7 +170,7 @@ public class MyAnimRenderSystem extends DeferredEntityProcessingSystem {
                     angle.rotation);
         } else {
             batch.draw(frame,
-                    roundToPixels(position.xy.x),
+                    x,
                     y,
                     frame.getRegionWidth() * scale,
                     frame.getRegionHeight() * scale);

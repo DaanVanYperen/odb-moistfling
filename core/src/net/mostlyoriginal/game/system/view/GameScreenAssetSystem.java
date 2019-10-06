@@ -67,7 +67,7 @@ public class GameScreenAssetSystem extends AbstractAssetSystem {
         loadSprites();
 
         if ( GameRules.MUSIC_ENABLED ) {
-            playMusic("sfx/music_shop.mp3");
+            playMusic("sfx/LD45_beachtune.mp3");
         }
     }
 

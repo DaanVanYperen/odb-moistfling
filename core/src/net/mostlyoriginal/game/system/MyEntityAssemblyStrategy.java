@@ -196,7 +196,7 @@ public class MyEntityAssemblyStrategy implements FutureEntitySystem.EntityAssemb
                 .itemCount(count)
                 .bounds(0, 0, 16, 16)
                 .castsShadow()
-                .renderLayer(GameRules.LAYER_ITEM);
+                .renderLayer(GameRules.LAYER_ITEM + (GameRules.SCREEN_HEIGHT-(int)e.posY()));
         if (submerged) {
             item.submerged();
         }

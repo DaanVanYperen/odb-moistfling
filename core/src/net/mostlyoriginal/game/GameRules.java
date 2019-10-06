@@ -15,13 +15,13 @@ public abstract class GameRules {
 
     public static final int LAYER_DIALOG_TEXT = 2010;
     public static final int LAYER_DIALOG_BOX= 2000;
-    public static final int LAYER_PLAYER = 1000;
     public static final int LAYER_SHOPPER = 900;
-    public static final int LAYER_SLOTS = 800;
     public static final int LAYER_ITEM = 750;
+    public static final int LAYER_SLOTS = LAYER_ITEM + GameRules.SCREEN_HEIGHT;
+    public static final int LAYER_PLAYER = LAYER_SLOTS+100;
+    public static final int LAYER_ITEM_CARRIED = LAYER_PLAYER+100;
     public static final int LAYER_SHADOWS = 550;
     public static final int LAYER_MACHINES = 500;
-    public static final int LAYER_ITEM_CARRIED = 1050;
     public static final int LAYER_DESIRE_INDICATOR = 1010;
     public static final int LAYER_SCORE_TEXT = 60;
     public static final int LAYER_WINDOWS = 50;
@@ -31,7 +31,7 @@ public abstract class GameRules {
     public static final int LAYER_INGREDIENT_HINTS = 600;
 
     public static final boolean DEBUG_ENABLED = true;
-    public static final boolean MUSIC_ENABLED = false;
+    public static final boolean MUSIC_ENABLED = true;
     public static final boolean LOGO_ENABLED = false;
     public static final int VISITORS_EACH_DAY = 20;
 
