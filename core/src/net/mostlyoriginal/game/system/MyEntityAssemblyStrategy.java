@@ -192,7 +192,6 @@ public class MyEntityAssemblyStrategy implements FutureEntitySystem.EntityAssemb
     private E decorateItem(E e, String type, int count, boolean submerged) {
         if (type == null || "".equals(type)) return null;
         E item = e
-                .canPickup(true)
                 .itemType(type)
                 .itemCount(count)
                 .bounds(0, 0, 16, 16)
@@ -200,6 +199,11 @@ public class MyEntityAssemblyStrategy implements FutureEntitySystem.EntityAssemb
                 .renderLayer(GameRules.LAYER_ITEM);
         if (submerged) {
             item.submerged();
+        }
+        if(!e.hasLocked())
+            e.canPickup(true);
+        if ("item_net_placed".equals(type)) {
+            e.passiveSpawnerItems(new String[]{"item_fish","item_fish","item_fish","item_fish","item_fish","item_fish","item_driftwood","item_coconut","item_citrus"});
         }
         return item;
     }

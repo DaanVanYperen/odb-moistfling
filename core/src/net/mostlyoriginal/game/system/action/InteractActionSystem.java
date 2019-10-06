@@ -80,7 +80,6 @@ public class InteractActionSystem extends FluidIteratingSystem {
         if (inventoryE != null && inventoryE.getInventory().acceptsType(E.E(actor.holdingId()).itemType())) {
             if (inventoryE.inventoryMode() == Inventory.Mode.CONSTRUCT) {
                 // attempt to construct item at inventory.
-                System.out.println("Overlapping");
                 actor.actionBuildTarget(actor.holdingId());
                 actor.actionBuildInventory(inventoryE.id());
                 return;

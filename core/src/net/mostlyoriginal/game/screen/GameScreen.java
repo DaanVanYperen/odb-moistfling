@@ -93,7 +93,7 @@ public class GameScreen extends TransitionableWorldScreen {
 
                         // Mechanics.
 
-                        //new PassiveSpawnSystem(), // @todo phase 2: move collision logic to separate bit based system.
+                        new PassiveSpawnerSystem(), // @todo phase 2: move collision logic to separate bit based system.
 
                         // Actor Actions
 

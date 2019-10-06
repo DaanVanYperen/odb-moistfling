@@ -16,7 +16,7 @@ import net.mostlyoriginal.game.system.future.FutureSpawnUtility;
  * @author Daan van Yperen
  */
 @All(PassiveSpawner.class)
-public class PassiveSpawnSystem extends FluidIteratingSystem {
+public class PassiveSpawnerSystem extends FluidIteratingSystem {
 
     private static final float UPDATE_EVERY_SECONDS = 10f;
 
@@ -32,17 +32,8 @@ public class PassiveSpawnSystem extends FluidIteratingSystem {
     protected void process(E e) {
         PassiveSpawner spawner = e.getPassiveSpawner();
         if (spawner.items.length > 0 && MathUtils.random(1, 100) < 20) {
-            spawn(e, spawner.items[0]);
+            spawn(e, spawner.items[MathUtils.random(0,spawner.items.length-1)]);
             return;
-        }
-        // second item more rare.
-        if (spawner.items.length > 1 && MathUtils.random(1, 100) < 10) {
-            spawn(e, spawner.items[1]);
-            return;
-        }
-        // third item rarest.
-        if (spawner.items.length > 2 && MathUtils.random(1, 100) < 5) {
-            spawn(e, spawner.items[2]);
         }
     }
 
