@@ -655,7 +655,6 @@
       "milliseconds": 200,
       "repeat": true, 
     },
-    },
     {
       "id": "item_skull_water",
       "comment": "_water",
