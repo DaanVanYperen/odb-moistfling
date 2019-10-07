@@ -555,7 +555,7 @@
       "id": "item_wife",
       "comment": "",
       "x": 24,
-      "y": 60 0,
+      "y": 600,
       "width": 24,
       "height": 24,
       "countX": 4,
@@ -567,7 +567,7 @@
       "id": "item_wife_water",
       "comment": "_ water",
       "x": 480,
-      "y": 48,
+      "y": 64,
       "width": 16,
       "height": 16,
       "countX": 4,
@@ -746,6 +746,10 @@
       "y": 64,
       "width": 16,
       "height": 16,
+      "countX": 1,
+      "countY": 2,
+      "milliseconds": 90,
+      "repeat": true, 
     },
 
     {
