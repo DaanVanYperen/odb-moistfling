@@ -267,7 +267,7 @@
     {
       "id": "player_dead",
       "comment": "Dead PC.",
-      "x": 0,
+      "x": 24,
       "y": 624
       "width": 24,
       "height": 24,
@@ -290,7 +290,7 @@
       "width": 16,
       "height": 16,
     },	
-    {
+    { 
       "id": "item_driftwood",
       "comment": "A piece of driftwood.",
       "x": 16,
