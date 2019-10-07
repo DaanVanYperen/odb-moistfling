@@ -19,11 +19,9 @@ public class LootSpawnSystem extends BaseSystem {
         return cooldown.ready(world.delta);
     }
 
-
-
     @Override
     protected void processSystem() {
-        spawnRandomItem(22);
+        //spawnRandomItem(22);
     }
 
     private void spawnRandomItem(int y) {

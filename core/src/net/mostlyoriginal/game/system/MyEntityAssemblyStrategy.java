@@ -174,6 +174,7 @@ public class MyEntityAssemblyStrategy implements FutureEntitySystem.EntityAssemb
 
     private E decoratePlayer(E e) {
         E decoratePlayer = e
+                .blinking()
                 .pos(240, 160)
                 .anim("player_kid")
                 .itemType("item_player")

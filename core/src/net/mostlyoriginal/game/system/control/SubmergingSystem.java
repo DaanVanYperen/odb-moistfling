@@ -46,10 +46,10 @@ public class SubmergingSystem extends FluidIteratingSystem {
             e.anim(e.submergedSubmergedAnim());
         }
         if ( e.hasSubmerged() && !e.hasLocked()) {
-            e.gridPosDeriveFromPos(true);
-            e.posY(e.getPos().xy.y - world.delta*20f );
-            if ( e.getPos().xy.y < -64 )
-                e.deleteFromWorld();
+//            e.gridPosDeriveFromPos(true);
+//            e.posY(e.getPos().xy.y - world.delta*20f );
+//            if ( e.getPos().xy.y < -64 )
+//                e.deleteFromWorld();
         }
     }
 }
