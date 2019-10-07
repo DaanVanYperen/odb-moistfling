@@ -33,7 +33,7 @@ public class PassiveSpawnerSystem extends FluidIteratingSystem {
         PassiveSpawner spawner = e.getPassiveSpawner();
 
         e.animId(pickupManager.getOverlapping(e)!=null?spawner.animSpawned:spawner.animNormal);
-        if (spawner.items.length > 0 && MathUtils.random(1, 100) < 2) {
+        if (spawner.items.length > 0 && MathUtils.random(1, 100) < 6) {
             spawn(e, spawner.items[MathUtils.random(0,spawner.items.length-1)]);
         }
     }

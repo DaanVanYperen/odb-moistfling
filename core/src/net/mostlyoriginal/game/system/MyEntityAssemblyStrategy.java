@@ -1,10 +1,12 @@
 package net.mostlyoriginal.game.system;
 
 import com.artemis.E;
+import com.badlogic.gdx.math.MathUtils;
 import net.mostlyoriginal.api.component.graphics.Tint;
 import net.mostlyoriginal.game.CollisionLayers;
 import net.mostlyoriginal.game.GameRules;
 import net.mostlyoriginal.game.component.AffectedByNight;
+import net.mostlyoriginal.game.component.ItemData;
 import net.mostlyoriginal.game.component.Machine;
 import net.mostlyoriginal.game.component.future.FutureEntity;
 import net.mostlyoriginal.game.component.future.Properties;
@@ -142,9 +144,9 @@ public class MyEntityAssemblyStrategy implements FutureEntitySystem.EntityAssemb
                 .inventoryY(y)
                 .inventoryTransform(transform)
                 .renderLayer(GameRules.LAYER_SLOTS);
-        if ( mode == Inventory.Mode.HOPPER) {
+        if (mode == Inventory.Mode.HOPPER) {
             slot.hopper()
-                .collider(CollisionLayers.HOPPER);
+                    .collider(CollisionLayers.HOPPER);
             hoppers.add(slot);
         }
         return slot;
@@ -201,21 +203,27 @@ public class MyEntityAssemblyStrategy implements FutureEntitySystem.EntityAssemb
                 .itemCount(count)
                 .bounds(0, 0, 16, 16)
                 .castsShadow()
-                .renderLayer(GameRules.LAYER_ITEM + (GameRules.SCREEN_HEIGHT-(int)e.posY()));
+                .renderLayer(GameRules.LAYER_ITEM + (GameRules.SCREEN_HEIGHT - (int) e.posY()));
         if (submerged) {
             item.submerged();
         }
-        if(!e.hasLocked())
+        if (!e.hasLocked())
             e.canPickup(true);
         if ("item_pallet".equals(type)) {
             e.gridPosYPixelOffset(-8);
         }
 
-        e.pos(e.gridPosX()*16,e.gridPosY()*16);
+        ItemData itemData = itemManager.get(type);
+        if (itemData != null && itemData.revealEvery > 0) {
+            e.submergedRevealEvery(itemData.revealEvery);
+            e.submergedAge(MathUtils.random(itemData.revealEvery * 0.8f));
+        }
+
+        e.pos(e.gridPosX() * 16, e.gridPosY() * 16);
         if ("item_net_placed".equals(type)) {
             e.passiveSpawnerAnimSpawned("item_net");
             e.passiveSpawnerAnimNormal("item_net");
-            e.passiveSpawnerItems(new String[]{"item_fish","item_driftwood","item_driftwood","item_fish","item_driftwood","item_fish","item_driftwood","item_coconut_seed", "item_coconut","item_citrus_seed", "item_citrus"});
+            e.passiveSpawnerItems(new String[]{"item_fish", "item_driftwood", "item_driftwood", "item_fish", "item_driftwood", "item_fish", "item_driftwood", "item_coconut_seed", "item_coconut", "item_citrus_seed", "item_citrus"});
         }
         if ("item_citrus_plant_sapling".equals(type)) {
             e.passiveSpawnerAnimSpawned("item_citrus_plant_grown");

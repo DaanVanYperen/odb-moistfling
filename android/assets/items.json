@@ -37,6 +37,7 @@
     {
       "id": "item_net",
       "sprite": "item_net",
+      "revealEvery": 10
     },
     {
       "id": "item_net_placed",
@@ -48,7 +49,8 @@
     {
       "id": "item_fish",
       "sprite": "item_fish",
-      "edible": true
+      "edible": true,
+      "revealEvery": 10
     },
     {
       "id": "item_palm_sapling",
@@ -108,6 +110,7 @@
     {
       "id": "item_tiki1",
       "sprite": "item_tiki1",
+      "revealEvery": 60
     },
     {
       "id": "item_tiki1_placed",
@@ -117,6 +120,7 @@
     {
       "id": "item_tiki2",
       "sprite": "item_tiki2",
+      "revealEvery": 60
     },
     {
       "id": "item_tiki2_placed",
@@ -126,6 +130,7 @@
     {
       "id": "item_tiki3",
       "sprite": "item_tiki3",
+      "revealEvery": 60
     },
     {
       "id": "item_tiki3_placed",
@@ -155,11 +160,12 @@
     {
       "id": "item_skull",
       "sprite": "item_skull",
+      "revealEvery": 120
     },
     {
       "id": "item_skull_placed",
       "sprite": "item_skull",
-      "defaultLocked": true
+      "defaultLocked": true,
     },
 
 
@@ -186,6 +192,7 @@
     {
       "id": "item_chest",
       "sprite": "item_chest",
+      "revealEvery": 120
     },
     {
       "id": "item_chest_placed",
@@ -197,6 +204,7 @@
     {
       "id": "item_starfish",
       "sprite": "item_starfish",
+      "revealEvery": 30
     },
     {
       "id": "item_starfish_placed",
@@ -208,6 +216,7 @@
     {
       "id": "item_seashell",
       "sprite": "item_seashell",
+      "revealEvery": 30
     },
     {
       "id": "item_seashell_placed",
@@ -218,6 +227,7 @@
     {
       "id": "item_wife",
       "sprite": "item_wife",
+      "revealEvery": 300
     },
     {
       "id": "item_wife_placed",

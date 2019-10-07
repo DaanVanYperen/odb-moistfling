@@ -20,6 +20,7 @@ public class ItemData {
     public boolean edible=false;
     public boolean defaultLocked=false;
     public boolean dryLand=false;
+    public float revealEvery=0;
     public String machine;
     public String[] machineProducts;
 }
