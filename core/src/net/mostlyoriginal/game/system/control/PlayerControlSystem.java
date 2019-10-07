@@ -11,6 +11,7 @@ import com.badlogic.gdx.math.Vector2;
 import net.mostlyoriginal.game.GameRules;
 import net.mostlyoriginal.game.component.Player;
 import net.mostlyoriginal.game.component.dialog.InDialog;
+import net.mostlyoriginal.game.system.MyParticleEffectStrategy;
 import net.mostlyoriginal.game.system.StaminaSystem;
 
 /**
@@ -59,6 +60,7 @@ public class PlayerControlSystem extends FluidIteratingSystem {
             if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE) || Gdx.input.isKeyJustPressed(Input.Keys.SHIFT_RIGHT) || Gdx.input.isKeyJustPressed(Input.Keys.SHIFT_LEFT)) {
                 if ( e.isSwimming() && !e.hasHolding() ) {
                     e.diving();
+                    E.E().particleEffect(MyParticleEffectStrategy.EFFECT_SPLASH).pos(e.posX() + e.boundsCx(), e.posY() + e.boundsCy());
                    //E.E().playSound("water2");
                 }
                 e.actionInteract();

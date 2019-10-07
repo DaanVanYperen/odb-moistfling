@@ -23,11 +23,15 @@ public class MyParticleEffectStrategy implements ParticleEffectSystem.ParticleEf
 
     public static final String EFFECT_POOF = "poof";
     public static final String EFFECT_BLACK_SPUTTER = "sputter";
+    public static final String EFFECT_DROPLET = "droplet";
+    public static final String EFFECT_SPLASH = "splash";
+
     private Builder bakery = new Builder();
     private Color BLOOD_COLOR = Color.valueOf("4B1924");
     private Color COLOR_WHITE = Color.valueOf("FFFFFF");
     private Color COLOR_ACID = Color.valueOf("5F411CDD");
     private Color COLOR_LASER = Color.valueOf("FEE300");
+    private Color WATER_DROPLET = Color.valueOf("20D6C7");
 
     @Override
     public void process(int entityId) {
@@ -36,7 +40,15 @@ public class MyParticleEffectStrategy implements ParticleEffectSystem.ParticleEf
         ParticleEffect effect = source.getParticleEffect();
         switch (effect.type) {
             case EFFECT_POOF:
-                spawnPoof(source.posX(), source.posY(), 40, 40, ParticleEffectSystem.COLOR_WHITE_TRANSPARENT);
+                spawnPoof(source.posX(), source.posY(), 40, 40, WATER_DROPLET);
+                source.deleteFromWorld();
+                break;
+                case EFFECT_SPLASH:
+                spawnSplash(source.posX(), source.posY(), 40, 40, WATER_DROPLET);
+                source.deleteFromWorld();
+                break;
+            case EFFECT_DROPLET:
+                spawnDroplet(source.posX(), source.posY(), 1, 1, WATER_DROPLET);
                 source.deleteFromWorld();
                 break;
             case EFFECT_BLACK_SPUTTER:
@@ -48,9 +60,28 @@ public class MyParticleEffectStrategy implements ParticleEffectSystem.ParticleEf
         }
     }
 
+
+    public void spawnDroplet(float x, float y, int minCount, int maxCount, Color color) {
+        bakery
+                .at((int) x, (int) y, (int) x, (int) y)
+                .anim("dot")
+                .angle(-90,-90)
+                .speed(5, 100)
+                .color(color)
+                .fadeAfter(0.05f)
+                .rotateRandomly()
+                .slowlySplatDown()
+                .friction(1f)
+                .size(1f, 1f)
+                .angularMomentum(40)
+                .create(minCount, maxCount);
+    }
+
+
     public void spawnPoof(float x, float y, int minCount, int maxCount, Color color) {
         bakery
                 .at((int) x - 5, (int) y - 5, (int) x + 5, (int) y + 5)
+                .anim("dot")
                 .angle(0, 360)
                 .speed(5, 100)
                 .color(color)
@@ -58,6 +89,23 @@ public class MyParticleEffectStrategy implements ParticleEffectSystem.ParticleEf
                 .rotateRandomly()
                 .slowlySplatDown()
                 .friction(1f)
+                .size(0.5f, 2f)
+                .angularMomentum(40)
+                .create(minCount, maxCount);
+    }
+
+
+    public void spawnSplash(float x, float y, int minCount, int maxCount, Color color) {
+        bakery
+                .at((int) x - 5, (int) y - 5, (int) x + 5, (int) y + 5)
+                .anim("dot")
+                .angle(45, 180-45)
+                .speed(20, 40)
+                .color(color)
+                .fadeAfter(0.5f)
+                .rotateRandomly()
+                .slowlySplatDown()
+                .friction(0f)
                 .size(0.5f, 2f)
                 .angularMomentum(40)
                 .create(minCount, maxCount);

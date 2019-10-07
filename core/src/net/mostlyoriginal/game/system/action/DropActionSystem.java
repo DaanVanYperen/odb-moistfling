@@ -8,6 +8,7 @@ import net.mostlyoriginal.api.component.graphics.Tint;
 import net.mostlyoriginal.game.GameRules;
 import net.mostlyoriginal.game.component.action.ActionDrop;
 import net.mostlyoriginal.game.component.inventory.Inventory;
+import net.mostlyoriginal.game.system.MyParticleEffectStrategy;
 import net.mostlyoriginal.game.system.map.MapSwimmingSystem;
 
 
@@ -43,6 +44,7 @@ public class DropActionSystem extends FluidIteratingSystem {
         if (mapSwimmingSystem.isOnWater(item)) {
             item.submerged();
             E.E().playSound("water2");
+            E.E().particleEffect(MyParticleEffectStrategy.EFFECT_POOF).pos(item.posX() + item.boundsCx(), item.posY() + item.boundsCy());
         }
     }
 

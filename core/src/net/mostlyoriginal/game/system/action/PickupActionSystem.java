@@ -69,6 +69,7 @@ public class PickupActionSystem extends FluidIteratingSystem {
 
             // @todo decouple
             if (actor.hasPlayer()) {
+                    item.dripping();
                 switch (item.getItem().type) {
                     case "item_dog": E.E().playSound("LD45_dogwhine"); break;
                     case "item_wife": E.E().playSound("LD45_mermaid"); break;

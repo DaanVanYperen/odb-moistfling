@@ -32,9 +32,9 @@ public class StaminaSystem extends FluidIteratingSystem {
         Pos pos = player.getPos();
         e.pos(pos.xy.x + player.getBounds().cx() - 4, pos.xy.y + player.getBounds().maxy + 10 + (player.hasHolding() ? 10:0));
         if ( stamina >= 0.95f) e.anim("indicator_power6");
-        else if ( stamina >= 0.75f) e.anim("indicator_power5");
-        else if ( stamina >= 0.50f) e.anim("indicator_power4");
-        else if ( stamina >= 0.25f) e.anim("indicator_power3");
+        else if ( stamina >= 0.80f) e.anim("indicator_power5");
+        else if ( stamina >= 0.60f) e.anim("indicator_power4");
+        else if ( stamina >= 0.40f) e.anim("indicator_power3");
         else if ( stamina >= 0.10f) e.anim("indicator_power2");
         else e.anim("indicator_power1");
 
@@ -55,7 +55,7 @@ public class StaminaSystem extends FluidIteratingSystem {
             recentlyChanged=0;
         }
 
-        if ( (Math.abs(oldStamina - stamina) > 0.15f) || (oldStamina != stamina && stamina < 0.40f) ) {
+        if ( (Math.abs(oldStamina - stamina) > 0.15f) || (oldStamina != stamina && stamina < 0.60f) ) {
             oldStamina = stamina;
             recentlyChanged=0;
         }
