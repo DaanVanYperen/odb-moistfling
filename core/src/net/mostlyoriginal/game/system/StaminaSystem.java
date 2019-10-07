@@ -56,8 +56,8 @@ public class StaminaSystem extends FluidIteratingSystem {
         stamina = MathUtils.clamp(stamina+v, 0f,1f);
     }
 
-    public void drainStamina() {
-        stamina = MathUtils.clamp(stamina- world.delta*0.1f, 0f,1f);
+    public void drainStamina(float drainSpeed) {
+        stamina = MathUtils.clamp(stamina- world.delta* drainSpeed, 0f,1f);
     }
 
     public void slowRegenStamina(float maxRegen, float regenSpeed) {

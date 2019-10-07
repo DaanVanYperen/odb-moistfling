@@ -131,7 +131,7 @@ public class GameScreen extends TransitionableWorldScreen {
 
                         //new NightSystem(),
 
-                        //new ScoreSystem(),
+                        new ScoreSystem(),
                         new SubmergedSystem(),
                         new StaminaSystem(),
 

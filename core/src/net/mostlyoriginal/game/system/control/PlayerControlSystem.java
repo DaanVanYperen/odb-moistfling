@@ -64,6 +64,7 @@ public class PlayerControlSystem extends FluidIteratingSystem {
 
         if (e.hasBlinking() ) {
             dx=dy=0;
+
         }
 
         e.playerDx(dx);
@@ -81,9 +82,12 @@ public class PlayerControlSystem extends FluidIteratingSystem {
         Vector2 movementVector = vector2.set(dx, dy).nor();
 
         if ( dx != 0 || dy != 0 ) {
-            staminaSystem.drainStamina();
+            staminaSystem.drainStamina(0.1f);
         } else {
-            staminaSystem.slowRegenStamina(e.isSwimming()?0.2f:0.4f,e.isSwimming()?0.1f:0.2f);
+            if ( e.isSwimming() ) {
+                staminaSystem.drainStamina(0.02f);
+            } else
+                staminaSystem.slowRegenStamina(e.isSwimming()?0.2f:0.4f,e.isSwimming()?0.1f:0.2f);
         }
 
         e.physics();

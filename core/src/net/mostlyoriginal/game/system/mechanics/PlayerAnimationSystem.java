@@ -29,9 +29,14 @@ public class PlayerAnimationSystem extends FluidIteratingSystem {
             anim = anim + "_carry";
         }
 
-        if ( e.hasBlinking() && e.getBlinking().duration % 0.3f < 0.15f ) {
-            anim = null;
+        if ( e.hasBlinking()  ) {
+            if ( e.getBlinking().duration % 0.3f < 0.15f) {
+                anim = null;
+            } else if ( e.getBlinking().duration > 1.5f) {
+                anim = "player_dead";
+            }
         }
+
 
         //System.out.println(anim);
 
