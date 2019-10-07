@@ -228,6 +228,10 @@
       "defaultLocked": true,
       "score": 50
     },
+    {
+      "id": "item_radio",
+      "sprite": "item_radio"
+    },
 
 
     {

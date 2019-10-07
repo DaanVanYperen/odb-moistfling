@@ -177,7 +177,7 @@ public class MyEntityAssemblyStrategy implements FutureEntitySystem.EntityAssemb
     private E decoratePlayer(E e) {
         E decoratePlayer = e
                 .blinking()
-                .pos(240, 160)
+                .pos(20*16-4, 13*16+4)
                 .anim("player_kid")
                 .itemType("item_player")
                 .gridPosDeriveFromPos(true)
@@ -192,6 +192,9 @@ public class MyEntityAssemblyStrategy implements FutureEntitySystem.EntityAssemb
                 .renderLayer(GameRules.LAYER_PLAYER);
 
         E.E().pos(240, 160).anim("indicator_power1").renderLayer(GameRules.LAYER_DESIRE_INDICATOR).staminaIndicator();
+
+        FutureSpawnUtility.item("item_pallet",1,20,13,false).locked();
+        FutureSpawnUtility.item("item_radio",1,20,13,false).tag("radio");
 
         return decoratePlayer;
     }

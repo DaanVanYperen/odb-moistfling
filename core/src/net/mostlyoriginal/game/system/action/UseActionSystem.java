@@ -53,7 +53,7 @@ public class UseActionSystem extends FluidIteratingSystem {
 
     private void wear(E item, E actor) {
         actor.removeHolding();
-        E.E().pos().attachedParent(actor.id()).anim(item.animId()).renderLayer(GameRules.LAYER_PLAYER-1);
+//        E.E().pos().attachedParent(actor.id()).anim(item.animId()).renderLayer(GameRules.LAYER_PLAYER-1);
         item.deleteFromWorld();
     }
 

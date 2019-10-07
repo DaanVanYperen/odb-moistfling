@@ -52,6 +52,7 @@ public class ScoreSystem extends BaseSystem {
         int dogs = 0;
         int wifes = 0;
         int score=0;
+        int starfishies=0            ;
 
         for (E item : items) {
             if ( item.isLocked() ) {
@@ -60,6 +61,7 @@ public class ScoreSystem extends BaseSystem {
                     case "item_dog_placed": dogs++; break;
                     case "item_wife_placed": wifes++; break;
                     case "item_flamingo_placed": flamingos++; break;
+                    case "item_starfish": starfishies++; break;
                 }
                 score += item.getItemMetadata().data.score;
             }
@@ -72,10 +74,13 @@ public class ScoreSystem extends BaseSystem {
             suffix = " of the Dog";
         }
         if ( wifes > 0 ) {
-            suffix = " ruled by Wife";
+            suffix = " ruled by the Queen";
         }
         if ( flamingos > 0 ) {
             prefix = "Fabulous ";
+        }
+        if ( starfishies > 4 ) {
+            prefix = "Five star "+prefix;
         }
         String label = prefix+sizeAdjective+" raft"+suffix+" ("+score+" points)";
 

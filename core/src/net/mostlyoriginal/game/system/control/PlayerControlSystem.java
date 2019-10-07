@@ -31,6 +31,14 @@ public class PlayerControlSystem extends FluidIteratingSystem {
     private boolean flipperBonus;
     private boolean snorkelBonus;
 
+    public boolean isFlipperBonus() {
+        return flipperBonus;
+    }
+
+    public boolean isSnorkelBonus() {
+        return snorkelBonus;
+    }
+
     @Override
     protected void process(E e) {
         if (!e.hasMoving()) {

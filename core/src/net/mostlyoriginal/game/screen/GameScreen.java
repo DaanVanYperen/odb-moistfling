@@ -144,6 +144,7 @@ public class GameScreen extends TransitionableWorldScreen {
                         new MyLabelRenderSystem(renderBatchingSystem),
                         new MapLayerRenderSystem(renderBatchingSystem, batch),
                         new DrippingSystem(),
+                        new RadioSystem(),
 
                         new SoundPlaySystem(
                                 "sfx_interact_6",

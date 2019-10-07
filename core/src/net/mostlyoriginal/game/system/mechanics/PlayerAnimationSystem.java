@@ -4,12 +4,15 @@ import com.artemis.E;
 import com.artemis.FluidIteratingSystem;
 import com.artemis.annotations.All;
 import net.mostlyoriginal.game.component.Player;
+import net.mostlyoriginal.game.system.control.PlayerControlSystem;
 
 /**
  * @author Daan van Yperen
  */
 @All(Player.class)
 public class PlayerAnimationSystem extends FluidIteratingSystem {
+
+    PlayerControlSystem playerControlSystem;
 
     @Override
     protected void process(E e) {
@@ -29,6 +32,9 @@ public class PlayerAnimationSystem extends FluidIteratingSystem {
             anim = anim + "_carry";
         }
 
+        if ( playerControlSystem.isSnorkelBonus() ) anim = anim +"_snorkel";
+        if ( playerControlSystem.isFlipperBonus() ) anim = anim +"_flippers";
+
         if ( e.hasDiving() ) {
             anim = "player_dive";
         }
@@ -38,6 +44,8 @@ public class PlayerAnimationSystem extends FluidIteratingSystem {
                 anim = null;
             } else if ( e.getBlinking().duration > 1.5f) {
                 anim = "player_dead";
+                if ( playerControlSystem.isSnorkelBonus() ) anim = anim +"_snorkel";
+                if ( playerControlSystem.isFlipperBonus() ) anim = anim +"_flippers";
             }
         }
 
