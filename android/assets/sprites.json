@@ -1394,7 +1394,7 @@
     },			
 
     {
-      "id": "player_idle_snorkel",
+      "id": "player_idle_snorkel_flippers",
       "comment": "Front-facing PC, idling",
       "x": 384,
       "y": 480,
@@ -1406,7 +1406,7 @@
       "repeat": true,
     },
     {
-      "id": "player_walk_down_snorkel",
+      "id": "player_walk_down_snorkel_flippers",
       "comment": "Front-facing PC, walking.",
       "x": 384,
       "y": 96,
@@ -1418,7 +1418,7 @@
       "repeat": true,
     },
     {
-      "id": "player_walk_right_snorkel",
+      "id": "player_walk_right_snorkel_flippers",
       "comment": "Right-facing PC, walking.",
       "x": 384,
       "y": 120
@@ -1430,7 +1430,7 @@
       "repeat": true,
     },
     {
-      "id": "player_walk_left_snorkel",
+      "id": "player_walk_left_snorkel_flippers",
       "comment": "Left-facing PC, walking.",
       "x": 384,
       "y": 144,
@@ -1442,7 +1442,7 @@
       "repeat": true,
     },
     {
-      "id": "player_walk_up_snorkel",
+      "id": "player_walk_up_snorkel_flippers",
       "comment": "Back-facing PC, walking",
       "x": 384,
       "y": 168,
@@ -1454,7 +1454,7 @@
       "repeat": true,
     },
     {
-      "id": "player_idle_carry_snorkel",
+      "id": "player_idle_carry_snorkel_flippers",
       "comment": "Front-facing PC, idling while carrying.",
       "x": 384,
       "y": 504,
@@ -1466,7 +1466,7 @@
       "repeat": true,
     },
     {
-      "id": "player_walk_down_carry_snorkel",
+      "id": "player_walk_down_carry_snorkel_flippers",
       "comment": "Front-facing PC, walking and carrying.",
       "x": 384,
       "y": 192,
@@ -1478,7 +1478,7 @@
       "repeat": true,
     },
     {
-      "id": "player_walk_right_carry_snorkel",
+      "id": "player_walk_right_carry_snorkel_flippers",
       "comment": "Right-facing PC, walking and carrying.",
       "x": 384,
       "y": 216,
