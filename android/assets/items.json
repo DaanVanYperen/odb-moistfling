@@ -21,7 +21,8 @@
       "defaultLocked": true,
       "gold": 25,
       "rewardChance": 100,
-      "desireChance": 0
+      "desireChance": 0,
+      "score": 100
     },
     {
       "id": "item_barrel",
@@ -32,28 +33,33 @@
       "sprite": "item_planter",
       "extensionAcceptsInside": "item_coconut_seed,item_citrus_seed",
       "extensionPoint": true,
-      "defaultLocked": true
+      "defaultLocked": true,
+      "score": 500
     },
     {
       "id": "item_net",
       "sprite": "item_net",
+      "revealEvery": 10
     },
     {
       "id": "item_net_placed",
       "sprite": "item_net",
       "extensionPoint": true,
       "dryLand": true,
-      "defaultLocked": true
+      "defaultLocked": true,
+      "score": 200
     },
     {
       "id": "item_fish",
       "sprite": "item_fish",
-      "edible": true
+      "edible": true,
+      "revealEvery": 10
     },
     {
       "id": "item_palm_sapling",
       "sprite": "item_palm_sapling",
-      "defaultLocked": true
+      "defaultLocked": true,
+      "score": 300
     },
     {
       "id": "item_coconut",
@@ -67,7 +73,8 @@
     {
       "id": "item_citrus_plant_sapling",
       "sprite": "item_citrus_plant_sapling",
-      "defaultLocked": true
+      "defaultLocked": true,
+      "score": 300
     },
     {
       "id": "item_citrus",
@@ -108,29 +115,35 @@
     {
       "id": "item_tiki1",
       "sprite": "item_tiki1",
+      "revealEvery": 60
     },
     {
       "id": "item_tiki1_placed",
       "sprite": "item_tiki1",
-      "defaultLocked": true
+      "defaultLocked": true,
+      "score": 5000
     },
     {
       "id": "item_tiki2",
       "sprite": "item_tiki2",
+      "revealEvery": 60
     },
     {
       "id": "item_tiki2_placed",
       "sprite": "item_tiki2",
-      "defaultLocked": true
+      "defaultLocked": true,
+      "score": 5000
     },
     {
       "id": "item_tiki3",
       "sprite": "item_tiki3",
+      "revealEvery": 60
     },
     {
       "id": "item_tiki3_placed",
       "sprite": "item_tiki3",
-      "defaultLocked": true
+      "defaultLocked": true,
+      "score": 5000
     },
 
     {
@@ -140,7 +153,8 @@
     {
       "id": "item_lampion_placed",
       "sprite": "item_lampion",
-      "defaultLocked": true
+      "defaultLocked": true,
+      "score": 1000
     },
 
     {
@@ -150,27 +164,31 @@
     {
       "id": "item_dog_placed",
       "sprite": "item_dog",
-      "defaultLocked": true
+      "defaultLocked": true,
+      "score": 800
     },
     {
       "id": "item_skull",
       "sprite": "item_skull",
+      "revealEvery": 120
     },
     {
       "id": "item_skull_placed",
       "sprite": "item_skull",
-      "defaultLocked": true
+      "defaultLocked": true,
+      "score": 1000
     },
 
 
     {
       "id": "item_ducky",
-      "sprite": "item_ducky",
+      "sprite": "item_ducky"
     },
     {
       "id": "item_ducky_placed",
       "sprite": "item_ducky",
-      "defaultLocked": true
+      "defaultLocked": true,
+      "score": 250
     },
 
     {
@@ -180,51 +198,58 @@
     {
       "id": "item_flamingo_placed",
       "sprite": "item_flamingo",
-      "defaultLocked": true
+      "defaultLocked": true,
+      "score": 1000
     },
 
     {
       "id": "item_chest",
       "sprite": "item_chest",
+      "revealEvery": 120
     },
     {
       "id": "item_chest_placed",
       "sprite": "item_chest",
-      "defaultLocked": true
+      "defaultLocked": true,
+      "score": 10000
     },
 
 
     {
       "id": "item_starfish",
       "sprite": "item_starfish",
+      "revealEvery": 30
     },
     {
       "id": "item_starfish_placed",
       "sprite": "item_starfish",
-      "defaultLocked": true
+      "defaultLocked": true,
+      "score": 50
     },
 
 
     {
       "id": "item_seashell",
       "sprite": "item_seashell",
+      "revealEvery": 30
     },
     {
       "id": "item_seashell_placed",
       "sprite": "item_seashell",
-      "defaultLocked": true
+      "defaultLocked": true,
+      "score": 50
     },
 
     {
       "id": "item_wife",
       "sprite": "item_wife",
+      "revealEvery": 300
     },
     {
       "id": "item_wife_placed",
       "sprite": "item_wife",
-      "defaultLocked": true
+      "defaultLocked": true,
+      "score": 50000
     }
-
-
   ]
 }

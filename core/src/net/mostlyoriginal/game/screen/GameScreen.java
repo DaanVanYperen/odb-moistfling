@@ -27,9 +27,7 @@ import net.mostlyoriginal.game.system.repository.ItemTypeManager;
 import net.mostlyoriginal.game.system.repository.RecipeManager;
 import net.mostlyoriginal.game.system.view.GameScreenAssetSystem;
 import net.mostlyoriginal.game.system.view.MyClearScreenSystem;
-import net.mostlyoriginal.plugin.DebugPlugin;
 import net.mostlyoriginal.plugin.OperationsPlugin;
-import net.mostlyoriginal.plugin.ProfilerPlugin;
 
 /**
  * Example main game screen.
@@ -52,10 +50,8 @@ public class GameScreen extends TransitionableWorldScreen {
                 .dependsOn(
                         FluidEntityPlugin.class,
                         EntityLinkManager.class,
-                        ProfilerPlugin.class,
                         OperationsPlugin.class,
                         SingletonPlugin.class)
-                .with(DebugPlugin.thatLogsErrorsIn("net.mostlyoriginal").enable(false))
                 .with(  new EventSystem())
                 .with(
                         new FontManager(),
@@ -105,6 +101,7 @@ public class GameScreen extends TransitionableWorldScreen {
                         new DropActionSystem(),
                         new BuildActionSystem(),
                         new UseActionSystem(),
+                        new LootSpawnSystem(),
 
                         // Secondary effects lifecycle management.
 
@@ -129,12 +126,13 @@ public class GameScreen extends TransitionableWorldScreen {
 
                         new MapSwimmingSystem(),
                         new PlayerAnimationSystem(), // @todo phase2: is there a more generic what to do this?
+                        new BlinkingSystem(),
                         //new PaymentAnimationSystem(), // @todo phase2: do we need a whole system for this?
 
                         //new NightSystem(),
 
-                        //new ScoreSystem(),
-                        new SubmergingSystem(),
+                        new ScoreSystem(),
+                        new SubmergedSystem(),
                         new StaminaSystem(),
 
                         new ShadedWaterRenderSystem(),

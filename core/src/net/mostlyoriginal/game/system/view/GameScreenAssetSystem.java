@@ -1,11 +1,13 @@
 package net.mostlyoriginal.game.system.view;
 
+import com.artemis.E;
 import com.artemis.annotations.Wire;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.utils.Json;
+import net.mostlyoriginal.api.component.ui.Label;
 import net.mostlyoriginal.api.manager.AbstractAssetSystem;
 import net.mostlyoriginal.game.GameRules;
 import net.mostlyoriginal.game.component.SpriteData;

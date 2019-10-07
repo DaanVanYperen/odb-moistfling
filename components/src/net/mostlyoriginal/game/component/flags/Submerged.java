@@ -8,6 +8,8 @@ import com.artemis.annotations.DelayedComponentRemoval;
  */
 @DelayedComponentRemoval
 public class Submerged extends Component {
+    public float revealEvery=0f;
+    public float age=0;
     public String originalAnim;
     public String submergedAnim = "silhouette";
 }

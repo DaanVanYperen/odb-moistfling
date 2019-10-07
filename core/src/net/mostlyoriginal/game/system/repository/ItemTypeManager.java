@@ -31,6 +31,8 @@ public class ItemTypeManager extends AssetManager<Item, ItemMetadata> {
         // load metadata on item.
         if (item.type == null) throw new RuntimeException();
         itemMetadata.data = itemLibrary.getById(item.type);
+        if (itemMetadata.data==null )
+            throw new RuntimeException("Unknown type " + item.type);
         E e = E.E(entity);
         e
                 .anim(itemMetadata.data.sprite)

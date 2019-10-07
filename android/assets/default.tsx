@@ -6,6 +6,7 @@
    <property name="count" type="int" value="1"/>
    <property name="entity" value="item"/>
    <property name="invisible" type="bool" value="true"/>
+   <property name="submerged" type="bool" value="true"/>
    <property name="type" value="item_driftwood"/>
   </properties>
  </tile>
@@ -212,6 +213,7 @@
    <property name="count" type="int" value="1"/>
    <property name="entity" value="item"/>
    <property name="invisible" type="bool" value="true"/>
+   <property name="submerged" type="bool" value="true"/>
    <property name="type" value="item_barrel"/>
   </properties>
  </tile>
@@ -234,6 +236,7 @@
    <property name="count" type="int" value="1"/>
    <property name="entity" value="item"/>
    <property name="invisible" type="bool" value="true"/>
+   <property name="submerged" type="bool" value="true"/>
    <property name="type" value="item_fish"/>
   </properties>
  </tile>
@@ -242,6 +245,7 @@
    <property name="count" type="int" value="1"/>
    <property name="entity" value="item"/>
    <property name="invisible" type="bool" value="true"/>
+   <property name="submerged" type="bool" value="true"/>
    <property name="type" value="item_coconut"/>
   </properties>
  </tile>
@@ -296,6 +300,7 @@
    <property name="count" type="int" value="1"/>
    <property name="entity" value="item"/>
    <property name="invisible" type="bool" value="true"/>
+   <property name="submerged" type="bool" value="true"/>
    <property name="type" value="item_citrus"/>
   </properties>
  </tile>
