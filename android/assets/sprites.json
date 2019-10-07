@@ -893,7 +893,15 @@
       "y": 64,
       "width": 16,
       "height": 16
-    }
+    },
+	{
+      "id": "logo",
+      "comment": "logo",
+      "x": 624,
+      "y": 96,
+      "width": 127,
+      "height": 116,
+    },
 	
     {
       "id": "player_idle_snorkel",
