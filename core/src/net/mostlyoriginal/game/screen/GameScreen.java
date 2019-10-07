@@ -1,5 +1,6 @@
 package net.mostlyoriginal.game.screen;
 
+import com.artemis.E;
 import com.artemis.FluidEntityPlugin;
 import com.artemis.World;
 import com.artemis.WorldConfigurationBuilder;
@@ -152,7 +153,14 @@ public class GameScreen extends TransitionableWorldScreen {
                                 "sfx_pickup",
                                 "sfx_putdown",
                                 "sfx_walk",
-                                "sfx_hag"
+                                "sfx_hag",
+                                "burp",
+                                "drowned",
+                                "water1",
+                                "water2",
+        "LD45_dogwhine",
+        "LD45_mermaid"
+
                         ),
 
                         //new InventoryDebugSystem(), // @todo allow optional systems (nullable in gamescreen)

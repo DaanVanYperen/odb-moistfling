@@ -19,6 +19,8 @@ public class StaminaSystem extends FluidIteratingSystem {
 
 
     private float stamina = 0.5f;
+    private float oldStamina = 0;
+    private float recentlyChanged=0;
 
     public float getStamina() {
         return stamina;
@@ -42,6 +44,7 @@ public class StaminaSystem extends FluidIteratingSystem {
 
         if ( stamina < 0.10f ) {
             stamina=0.5f;
+            E.E().playSound("drowned");
             player.blinking(3f).script(OperationFactory
                             .sequence(
                                     OperationFactory.delay(seconds(1.5f)),
@@ -49,7 +52,15 @@ public class StaminaSystem extends FluidIteratingSystem {
             if (player.hasHolding() ) {
                 player.actionDropTarget(player.holdingId());
             }
+            recentlyChanged=0;
         }
+
+        if ( (Math.abs(oldStamina - stamina) > 0.15f) || (oldStamina != stamina && stamina < 0.40f) ) {
+            oldStamina = stamina;
+            recentlyChanged=0;
+        }
+        recentlyChanged+=world.delta*2f;
+        e.tint(1f,1f,1f,recentlyChanged < 1f ? 1f : 1f-Math.min(recentlyChanged-1f,1f));
     }
 
     public void staminaIncrease(float v) {
@@ -64,5 +75,9 @@ public class StaminaSystem extends FluidIteratingSystem {
         if ( stamina <= maxRegen ) {
             stamina = MathUtils.clamp(stamina + world.delta * regenSpeed, 0f, maxRegen);
         }
+    }
+
+    public boolean isLowStamina() {
+        return stamina < 25f;
     }
 }

@@ -36,12 +36,13 @@ public class DropActionSystem extends FluidIteratingSystem {
     }
 
     private void dropItem(E actor, E item) {
-        stopHolding(actor);
+        stopHolding(actor, item);
         item.gridPos(actor.getGridPos());
                 item.posY(actor.getPos().xy.y);
         ;
         if (mapSwimmingSystem.isOnWater(item)) {
             item.submerged();
+            E.E().playSound("water2");
         }
     }
 
@@ -52,7 +53,7 @@ public class DropActionSystem extends FluidIteratingSystem {
             System.out.println("Merge " + itemE + " with stack " + mergeStack);
             mergeStack.getItem().count++;
             itemE.deleteFromWorld();
-            stopHolding(actor);
+            stopHolding(actor, itemE);
         } else {
             if (!inventory.isFull()) {
                 System.out.println("Put  " + itemE + " into " + inventoryE);
@@ -62,7 +63,7 @@ public class DropActionSystem extends FluidIteratingSystem {
 
                 inventory.contents.add(itemE.id());
                 itemE.insideId(inventoryE.id());
-                stopHolding(actor);
+                stopHolding(actor,itemE);
 
                 if ( inventory.mode == Inventory.Mode.HOPPER ) {
                     itemE.floating();
@@ -80,10 +81,14 @@ public class DropActionSystem extends FluidIteratingSystem {
         }
     }
 
-    private void stopHolding(E actor) {
+    private void stopHolding(E actor, E item) {
         actor.removeHolding();
         if (actor.hasPlayer())
-            E.E().playSound("sfx_putdown");
+            switch (item.getItem().type) {
+                case "item_dog": E.E().playSound("LD45_dogwhine"); break;
+                case "item_wife": E.E().playSound("LD45_mermaid"); break;
+                default: E.E().playSound("sfx_pickup");
+            }
     }
 
 }

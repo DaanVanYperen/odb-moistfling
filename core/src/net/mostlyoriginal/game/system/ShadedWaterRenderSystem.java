@@ -7,7 +7,9 @@ import com.badlogic.gdx.graphics.GLTexture;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g3d.shaders.BaseShader;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
+import net.mostlyoriginal.api.system.camera.CameraSystem;
 import net.mostlyoriginal.game.GameRules;
 
 import java.util.Vector;
@@ -26,6 +28,7 @@ public class ShadedWaterRenderSystem extends BaseSystem {
     final SpriteBatch batch = new SpriteBatch(500);
     private GLTexture noiseTexture;
     private Sprite sprite;
+    private CameraSystem cameraSystem;
 
     @Override
     protected void initialize() {
@@ -41,7 +44,7 @@ public class ShadedWaterRenderSystem extends BaseSystem {
         sprite = new Sprite(img);
         sprite.setSize(GameRules.SCREEN_WIDTH, GameRules.SCREEN_HEIGHT);
 
-        img.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+        //img.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
         noiseTexture.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
     }
 
@@ -59,10 +62,11 @@ public class ShadedWaterRenderSystem extends BaseSystem {
         noiseTexture.bind();
         waterProgram.setUniformf("u_noise_scale", 0.1f);
         waterProgram.setUniform2fv("u_noise_scroll_velocity", velocity, 0, 2);
-        waterProgram.setUniformf("u_distortion", 0.04f);
+        waterProgram.setUniformf("u_distortion", 0.06f);
         waterProgram.setUniformf("u_time", time);
         batch.setShader(waterProgram);
-        batch.draw(sprite, sprite.getX(), sprite.getY(), sprite.getWidth(), sprite.getHeight());
+        //batch.setProjectionMatrix(cameraSystem.camera.combined);
+        batch.draw(sprite, sprite.getX(), sprite.getY(), GameRules.SCREEN_WIDTH, GameRules.SCREEN_HEIGHT);
         batch.end();
     }
 }

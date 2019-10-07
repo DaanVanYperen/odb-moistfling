@@ -51,6 +51,7 @@ public class PlayerControlSystem extends FluidIteratingSystem {
             e.getDiving().diving -= world.delta;
             if ( e.getDiving().diving <0 ) {
                 e.removeDiving();
+                //E.E().playSound("water1");
             }
         }
 
@@ -58,6 +59,7 @@ public class PlayerControlSystem extends FluidIteratingSystem {
             if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE) || Gdx.input.isKeyJustPressed(Input.Keys.SHIFT_RIGHT) || Gdx.input.isKeyJustPressed(Input.Keys.SHIFT_LEFT)) {
                 if ( e.isSwimming() && !e.hasHolding() ) {
                     e.diving();
+                   //E.E().playSound("water2");
                 }
                 e.actionInteract();
             }
@@ -111,8 +113,9 @@ public class PlayerControlSystem extends FluidIteratingSystem {
         float speed = e.hasSwimming() ? (e.hasSubmerged() ? PLAYER_SUBMERGED_SPEED : PLAYER_SWIMMING_SPEED) : PLAYER_WALKING_SPEED;
 
         // affect movement speed by stamina.
-        speed *= Interpolation.linear.apply(1f,2.5f, staminaSystem.getStamina());
+        speed *= Interpolation.linear.apply(1.2f,2f, staminaSystem.getStamina());
         if ( staminaSystem.getStamina() <= 0.05f ) speed *= 0.5f;
+        if ( flipperBonus ) speed *= 1.25f;
 
         if (movementVector.x != 0) {
             e.getPhysics().vx = movementVector.x * speed * 1.1f;

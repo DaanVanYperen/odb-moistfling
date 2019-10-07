@@ -52,7 +52,12 @@ public class MapSwimmingSystem extends FluidIteratingSystem {
 
     @Override
     protected void process(E e ) {
-        e.swimming(!drylandMask.atScreen(e.getPos().xy.x+e.getBounds().cx(), e.getPos().xy.y, false));
+        boolean shouldBeSwimming = !drylandMask.atScreen(e.getPos().xy.x + e.getBounds().cx(), e.getPos().xy.y, false);
+        if ( !e.hasSwimming() && shouldBeSwimming )
+            E.E().playSound("water1");
+        if ( e.hasSwimming() && !shouldBeSwimming )
+            E.E().playSound("water2");
+        e.swimming(shouldBeSwimming);
     }
 
     public boolean isOnWater(E item) {

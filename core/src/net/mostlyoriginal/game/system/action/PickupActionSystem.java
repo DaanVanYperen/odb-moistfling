@@ -68,8 +68,13 @@ public class PickupActionSystem extends FluidIteratingSystem {
             actor.getLifter().itemsLifted++;
 
             // @todo decouple
-            if (actor.hasPlayer())
-                E.E().playSound("sfx_pickup");
+            if (actor.hasPlayer()) {
+                switch (item.getItem().type) {
+                    case "item_dog": E.E().playSound("LD45_dogwhine"); break;
+                    case "item_wife": E.E().playSound("LD45_mermaid"); break;
+                    default: E.E().playSound("sfx_pickup");
+                }
+            }
 
         } else
             actor.removeActionPickup();

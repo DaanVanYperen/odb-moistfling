@@ -117,7 +117,7 @@
     {
       "id": "item_tiki1",
       "sprite": "item_tiki1",
-      "revealEvery": 60
+      "revealEvery": 40
     },
     {
       "id": "item_tiki1_placed",
@@ -128,7 +128,7 @@
     {
       "id": "item_tiki2",
       "sprite": "item_tiki2",
-      "revealEvery": 60
+      "revealEvery": 40
     },
     {
       "id": "item_tiki2_placed",
@@ -139,7 +139,7 @@
     {
       "id": "item_tiki3",
       "sprite": "item_tiki3",
-      "revealEvery": 60
+      "revealEvery": 40
     },
     {
       "id": "item_tiki3_placed",
@@ -245,7 +245,7 @@
     {
       "id": "item_wife",
       "sprite": "item_wife",
-      "revealEvery": 300
+      "revealEvery": 40
     },
     {
       "id": "item_wife_placed",

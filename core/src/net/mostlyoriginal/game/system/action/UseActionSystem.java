@@ -58,6 +58,7 @@ public class UseActionSystem extends FluidIteratingSystem {
     }
 
     private void eat(E item, E actor) {
+        E.E().playSound("burp");
         staminaSystem.staminaIncrease(1f);
         actor.removeHolding();
         item.deleteFromWorld();
