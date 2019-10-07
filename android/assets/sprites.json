@@ -824,6 +824,14 @@
       "height": 16,
     },
 
+    {
+      "id": "dot",
+      "comment": "White dot particle.",
+      "x": 0,
+      "y": 16,
+      "width": 1,
+      "height": 1,
+    },
 
     {
       "id": "indicator_power1",
