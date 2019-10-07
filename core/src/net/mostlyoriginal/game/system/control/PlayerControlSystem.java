@@ -27,6 +27,8 @@ public class PlayerControlSystem extends FluidIteratingSystem {
     private static final float PLAYER_SUBMERGED_SPEED = GameRules.DEBUG_ENABLED ? 150f: 80f;
 
     StaminaSystem staminaSystem;
+    private boolean flipperBonus;
+    private boolean snorkelBonus;
 
     @Override
     protected void process(E e) {
@@ -45,8 +47,18 @@ public class PlayerControlSystem extends FluidIteratingSystem {
         int dy = Gdx.input.isKeyPressed(Input.Keys.W) || Gdx.input.isKeyPressed(Input.Keys.UP) ? 1 :
                 Gdx.input.isKeyPressed(Input.Keys.S) || Gdx.input.isKeyPressed(Input.Keys.DOWN) ? -1 : 0;
 
+        if ( e.hasDiving() ) {
+            e.getDiving().diving -= world.delta;
+            if ( e.getDiving().diving <0 ) {
+                e.removeDiving();
+            }
+        }
+
 //        if ( dx==0&&dy==0) {
             if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE) || Gdx.input.isKeyJustPressed(Input.Keys.SHIFT_RIGHT) || Gdx.input.isKeyJustPressed(Input.Keys.SHIFT_LEFT)) {
+                if ( e.isSwimming() && !e.hasHolding() ) {
+                    e.diving();
+                }
                 e.actionInteract();
             }
 //        } else {
@@ -82,10 +94,14 @@ public class PlayerControlSystem extends FluidIteratingSystem {
         Vector2 movementVector = vector2.set(dx, dy).nor();
 
         if ( dx != 0 || dy != 0 ) {
-            staminaSystem.drainStamina(0.1f);
+            staminaSystem.drainStamina(flipperBonus ? 0.05f : 0.1f);
         } else {
-            if ( e.isSwimming() ) {
-                staminaSystem.drainStamina(0.02f);
+            if ( e.hasDiving() ) {
+                if ( !snorkelBonus ) {
+                    staminaSystem.drainStamina(0.22f);
+                }
+            } else if ( e.isSwimming() ) {
+                    staminaSystem.drainStamina(flipperBonus ? 0.01f : 0.02f);
             } else
                 staminaSystem.slowRegenStamina(e.isSwimming()?0.2f:0.4f,e.isSwimming()?0.1f:0.2f);
         }
@@ -107,4 +123,11 @@ public class PlayerControlSystem extends FluidIteratingSystem {
         e.getPhysics().friction = 50;
     }
 
+    public void enableFlipperBonus() {
+        flipperBonus=true;
+    }
+
+    public void enableSnorkelBonus() {
+        snorkelBonus = true;
+    }
 }

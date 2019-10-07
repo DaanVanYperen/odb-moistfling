@@ -35,6 +35,10 @@ public class CarriedItemPositioningSystem extends FluidIteratingSystem {
                 lifting.posX(actor.getPos().xy.x + actor.getBounds().cx() - lifting.getBounds().cx()/2);
                 lifting.posY(actor.getPos().xy.y + CARRIED_OBJECT_PLAYER_LIFTING_HEIGHT);
             }
+
+            if ( actor.hasDiving() ) {
+                lifting.tint(1f,1f,1f,0f);
+            } else lifting.tint(1f,1f,1f,1f);
         }
     }
 }

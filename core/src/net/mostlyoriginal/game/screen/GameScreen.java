@@ -12,6 +12,7 @@ import net.mostlyoriginal.api.event.common.EventSystem;
 import net.mostlyoriginal.api.manager.FontManager;
 import net.mostlyoriginal.api.system.camera.CameraSystem;
 import net.mostlyoriginal.api.system.graphics.RenderBatchingSystem;
+import net.mostlyoriginal.api.system.physics.AttachmentSystem;
 import net.mostlyoriginal.game.GameRules;
 import net.mostlyoriginal.game.GdxArtemisGame;
 import net.mostlyoriginal.game.system.*;
@@ -118,6 +119,7 @@ public class GameScreen extends TransitionableWorldScreen {
                         new BruteforceCollisionSystem(new MyCollisionHandler()),
                         new GridPosSystem(), // @todo phase2: Separate the Snap to grid behaviour.
                         new GridPosFloatSystem(), // @todo phase2: Move floating to separate mechanic. (Mount it on something?)
+                        new AttachmentSystem(),
 
                         //new HopperTalleySystem(), // talley hoppered items on the machine.
                         //new PlayerOnHopperTalleySystem(), // talley hoppered players on the machine.

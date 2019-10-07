@@ -107,10 +107,12 @@
     {
       "id": "item_snorkel",
       "sprite": "item_snorkel",
+      "edible": true
     },
     {
       "id": "item_flippers",
       "sprite": "item_flippers",
+      "edible": true
     },
     {
       "id": "item_tiki1",
