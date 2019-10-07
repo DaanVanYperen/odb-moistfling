@@ -264,9 +264,32 @@
       "milliseconds": 150,
       "repeat": true,
     },		
+    {
+      "id": "player_dead",
+      "comment": "Dead PC.",
+      "x": 0,
+      "y": 624
+      "width": 24,
+      "height": 24,
+    },			
 	
-	
-	
+
+    {
+      "id": "item_radio",
+      "comment": "A radio.",
+      "x": 16,
+      "y": 64,
+      "width": 16,
+      "height": 16,
+    },
+    {
+      "id": "item_radio_water",
+      "comment": "A radio in water.",
+      "x": 32,
+      "y": 64,
+      "width": 16,
+      "height": 16,
+    },	
     {
       "id": "item_driftwood",
       "comment": "A piece of driftwood.",
