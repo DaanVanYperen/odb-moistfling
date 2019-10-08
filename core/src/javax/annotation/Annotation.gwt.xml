@@ -1,0 +1,6 @@
+<module>
+    <source path="">
+        <include name="**/Nonnull.java" />
+        <include name="**/meta/**"/>
+    </source>
+</module>

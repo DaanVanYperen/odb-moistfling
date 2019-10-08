@@ -61,7 +61,7 @@ public class ScoreSystem extends BaseSystem {
                     case "item_dog_placed": dogs++; break;
                     case "item_wife_placed": wifes++; break;
                     case "item_flamingo_placed": flamingos++; break;
-                    case "item_starfish": starfishies++; break;
+                    case "item_starfish_placed": starfishies++; break;
                 }
                 score += item.getItemMetadata().data.score;
             }

@@ -16,8 +16,8 @@ import net.mostlyoriginal.game.system.render.SpriteLibrary;
 @Wire
 public class LogoScreenAssetSystem extends AbstractAssetSystem {
 
-	public static final int LOGO_WIDTH = 738;
-	public static final int LOGO_HEIGHT = 182;
+	public static final int LOGO_WIDTH = 127;
+	public static final int LOGO_HEIGHT = 116;
 	private SpriteLibrary spriteLibrary;
 
 	public LogoScreenAssetSystem() {
@@ -27,46 +27,13 @@ public class LogoScreenAssetSystem extends AbstractAssetSystem {
 	@Override
 	protected void processSystem() {
 		super.processSystem();
-		if (Gdx.input.isKeyJustPressed(Input.Keys.M)) {
-			if (GameRules.music.isPlaying()) {
-				GameRules.music.pause();
-			} else {
-				GameRules.music.play();
-			}
-		}
 	}
 
 	@Override
 	protected void initialize() {
 		super.initialize();
 		loadSprites();
-		//add("logo", 359,665, LOGO_WIDTH, LOGO_HEIGHT, 1);
-//		add("transition_red", 0,312, 1, 13, 1);
-//		add("trans//		ition_white", 1,312, 1, 13, 1);
-		if ( GameRules.MUSIC_ENABLED ) {
-			playMusic("sfx/music_title.mp3");
-		}
 	}
-
-	public void playMusic(String mp3) {
-		if (GameRules.music != null) {
-			GameRules.music.stop();
-			GameRules.music.dispose();
-		}
-
-		GameRules.music = Gdx.audio.newMusic(Gdx.files.internal(
-				mp3));
-		GameRules.music.stop();
-		GameRules.music.setLooping(true);
-		if (GameRules.musicOn ) {
-			GameRules.music.play();
-		}
-		GameRules.music.setPan(0, 0.08f);
-	}
-
-
-
-
 
 	private void loadSprites() {
 		final Json json = new Json();

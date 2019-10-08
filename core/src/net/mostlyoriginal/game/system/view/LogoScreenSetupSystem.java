@@ -44,7 +44,7 @@ public class LogoScreenSetupSystem extends BaseSystem {
     private Cooldown logoCooldown = Cooldown.withInterval(seconds(0.5f)).autoReset(false);
 
     public static final Tint COLOR_LOGO_FADED = new Tint(1.0f, 1.0f, 1.0f, 0.0f);
-    public static final Tint COLOR_LOGO_FULL = new Tint(1.0f, 1.0f, 1.0f, 1.0f);
+    public static final Tint COLOR_LOGO_FULL = new Tint(1.0f, 1.0f, 1.0f, 0.5f);
 
     private boolean finished = false;
 
@@ -84,51 +84,14 @@ public class LogoScreenSetupSystem extends BaseSystem {
 
         boolean hasScore = GameRules.lastScore != NO_SCORE;
         addLogo(0.8f);
-        if (hasScore) addScore(GameRules.lastScore);
-        addPressbutton(hasScore ? "Press any key to try again" : "Tap or press any key to start",
-                hasScore ? 280 : 220);
-        //scheduleTransitionToGameScreen();
+        addPressbutton("Tap or press any key to start", 220);
         GameRules.lastScore = NO_SCORE;
         GameRules.level = 0;
     }
 
-    private void addScore(int lastScore) {
-        String title = scoreToTitle(lastScore);
-        message2 = E.E()
-                .pos((Gdx.graphics.getWidth() / 2) - 16 - title.length() * 15, Gdx.graphics.getHeight() - 64 - 16)
-                .labelText(title)
-                .tint(COLOR_PRESS_KEY_MESSAGE)
-                .fontFontName("5x5")
-                .renderLayer(10)
-                .fontScale(6f);
-        String scoreText = "You earned " + lastScore + " gold! ";
-        message3 = E.E()
-                .pos((Gdx.graphics.getWidth() / 2) - scoreText.length() * 15, 32 + 64 + 16)
-                .labelText(scoreText)
-                .tint(COLOR_PRESS_KEY_MESSAGE)
-                .fontFontName("5x5")
-                .renderLayer(10)
-                .fontScale(6f);
-    }
-
-    private String scoreToTitle(int lastScore) {
-        if (lastScore > 100) return "***I CLEAN TOILET***";
-        if (lastScore > 90) return "**Godlike**";
-        if (lastScore > 80) return "Keeper of Toilets";
-        if (lastScore > 70) return "TP Wizard";
-        if (lastScore > 60) return "Mop Guardian";
-        if (lastScore > 50) return "Piddle Knight";
-        if (lastScore > 40) return "Lavatory Supervisor";
-        if (lastScore > 20) return "Urinal Warden";
-        if (lastScore > 15) return "Toilet Lady";
-        if (lastScore > 8) return "Cleaner";
-
-        return "Slouch";
-    }
-
     private void addPressbutton(String text, int width) {
         message = E.E()
-                .pos((Gdx.graphics.getWidth() / 2), 16)
+                .pos((Gdx.graphics.getWidth() / 4), 64)
                 .labelText(text)
                 .labelAlign(Label.Align.RIGHT)
                 .tint(COLOR_PRESS_KEY_MESSAGE)
@@ -141,7 +104,7 @@ public class LogoScreenSetupSystem extends BaseSystem {
 
         // approximate percentage of screen size with logo. Use rounded numbers to keep the logo crisp.
 
-        float zoom = 1.4f;
+        float zoom = 2f;
 
         logo = Anims.createCenteredAt(
                 LogoScreenAssetSystem.LOGO_WIDTH,

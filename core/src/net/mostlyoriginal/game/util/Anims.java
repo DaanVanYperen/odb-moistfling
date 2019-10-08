@@ -30,8 +30,8 @@ public class Anims {
 
 	public static E createCenteredAt(int width, int height, String animId, float zoom) {
 		return createAnimAt(
-				(int)((Gdx.graphics.getWidth() / 2) - ((width / 2) * zoom)),
-				(int)((Gdx.graphics.getHeight() / 2) - ((height / 2) * zoom)),
+				(int)((Gdx.graphics.getWidth() / 4) - ((width / 2) * zoom)),
+				(int)((Gdx.graphics.getHeight() / 4) - ((height / 2) * zoom)),
 				animId,
 				zoom);
 	}

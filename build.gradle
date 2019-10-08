@@ -10,9 +10,9 @@ buildscript {
         google()
     }
     dependencies {
-        classpath 'org.wisepersist:gwt-gradle-plugin:1.0.6'
-        classpath 'com.android.tools.build:gradle:3.2.0'
-        classpath 'com.mobidevelop.robovm:robovm-gradle-plugin:2.3.5'
+        classpath 'org.wisepersist:gwt-gradle-plugin:1.0.9'
+        classpath 'com.android.tools.build:gradle:3.4.1'
+        classpath 'com.mobidevelop.robovm:robovm-gradle-plugin:2.3.7'
 
         // lib for artemis-odb weaving.
         // see https://github.com/junkdog/artemis-odb/wiki/Bytecode-weaving
@@ -31,7 +31,7 @@ allprojects {
     ext {
         appName = 'Bob'
         appVersion = '1.0'
-        gdxVersion = '1.9.9'
+        gdxVersion = '1.9.10'
         roboVMVersion = '2.3.5'
         artemisVersion = '2.3.0-SNAPSHOT' // update gradle plugins above as well!
         artemisContribVersion = '2.5.0-SNAPSHOT'
@@ -95,14 +95,16 @@ project(":html") {
         compile "net.onedaybeard.artemis:artemis-odb:$artemisVersion:sources"
 
         // artemis-odb  + serialization
-        compile "net.onedaybeard.artemis:artemis-odb-serializer:$artemisVersion:sources"
-        compile "net.onedaybeard.artemis:artemis-odb-serializer-json-libgdx:$artemisVersion:sources"
+//        compile "net.onedaybeard.artemis:artemis-odb-serializer:$artemisVersion:sources"
+//        compile "net.onedaybeard.artemis:artemis-odb-serializer-json-libgdx:$artemisVersion:sources"
 
         // Artemis-odb optional functionality (systems, events, components).
         compile "net.mostlyoriginal.artemis-odb:contrib-core:$artemisContribVersion:sources"
         compile "net.mostlyoriginal.artemis-odb:contrib-jam:$artemisContribVersion:sources"
         compile "net.mostlyoriginal.artemis-odb:contrib-eventbus:$artemisContribVersion:sources"
         compile "net.mostlyoriginal.artemis-odb:contrib-plugin-operations:$artemisContribVersion:sources"
+        compile "net.mostlyoriginal.artemis-odb:contrib-plugin-singleton:$artemisContribVersion:sources"
+        //gwt 'com.google.code.findbugs:jsr305:3.0.2'
         compile "net.mostlyoriginal.artemis-odb:contrib-plugin-profiler:$artemisContribVersion:sources"
     }
 }

@@ -133,8 +133,7 @@ public class MyParticleEffectStrategy implements ParticleEffectSystem.ParticleEf
     }
 
 
-
-    private class Builder {
+    public class Builder {
         private Color color;
         private boolean withGravity;
         private int minX;

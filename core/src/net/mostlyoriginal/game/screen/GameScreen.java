@@ -1,7 +1,6 @@
 package net.mostlyoriginal.game.screen;
 
-import com.artemis.E;
-import com.artemis.FluidEntityPlugin;
+import com.artemis.MyFluidEntityPlugin;
 import com.artemis.World;
 import com.artemis.WorldConfigurationBuilder;
 import com.artemis.link.EntityLinkManager;
@@ -26,7 +25,6 @@ import net.mostlyoriginal.game.system.map.*;
 import net.mostlyoriginal.game.system.mechanics.*;
 import net.mostlyoriginal.game.system.render.*;
 import net.mostlyoriginal.game.system.repository.ItemTypeManager;
-import net.mostlyoriginal.game.system.repository.RecipeManager;
 import net.mostlyoriginal.game.system.view.GameScreenAssetSystem;
 import net.mostlyoriginal.game.system.view.MyClearScreenSystem;
 import net.mostlyoriginal.plugin.OperationsPlugin;
@@ -50,7 +48,7 @@ public class GameScreen extends TransitionableWorldScreen {
 
         WorldConfigurationBuilder worldConfigurationBuilder = new WorldConfigurationBuilder()
                 .dependsOn(
-                        FluidEntityPlugin.class,
+                        MyFluidEntityPlugin.class,
                         EntityLinkManager.class,
                         OperationsPlugin.class,
                         SingletonPlugin.class)
@@ -60,7 +58,6 @@ public class GameScreen extends TransitionableWorldScreen {
                         new TagManager(),
                         new TiledMapManager("map0.tmx"),
                         new ItemTypeManager(), // @todo phase2: decouple? convert to component?
-                        new RecipeManager(), // @todo phase2: decouple? convert to component?
                         new PickupManager(), // @todo phase2: get rid of this!
                         new SlotManager()
                 )

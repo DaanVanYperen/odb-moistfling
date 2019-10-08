@@ -1,5 +1,5 @@
 gwt {
-    gwtVersion='2.8.0' // Should match the gwt version used for building the gwt backend
+    gwtVersion='2.8.2' // Should match the gwt version used for building the gwt backend
     maxHeapSize="2G" // Default 256m is not enough for gwt compiler. GWT is HUNGRY
     minHeapSize="1G"
     logLevel = 'TRACE'
@@ -9,13 +9,20 @@ gwt {
     devModules 'net.mostlyoriginal.game.GdxDefinitionSuperdev'
     project.webAppDirName = 'webapp'
 
-    compiler {
-        strict = true;
-        disableCastChecking = true;
-        disableAggressiveOptimization = false;
-        draftCompile = false;
-        optimize = 9;
-    }
+//    compiler {
+//        style = 'DETAILED'
+//        strict = true
+//        disableCastChecking = true
+//        disableAggressiveOptimization = false
+//        draftCompile = false
+//        optimize = 9
+//    }
+   compiler {
+       style = 'PRETTY'
+       strict = true
+       disableCastChecking = true
+       draftCompile = true
+   }
 }
 
 import org.wisepersist.gradle.plugins.gwt.GwtSuperDev

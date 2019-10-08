@@ -4,20 +4,10 @@
 <module rename-to="html">
     <inherits name='com.badlogic.gdx.backends.gdx_backends_gwt'/>
     <inherits name='com.artemis.backends.artemis_backends_gwt'/>
-    <inherits name='com.artemis-json-libgdx'/>
-    <inherits name='net.mostlyoriginal.ContribPluginProfiler' />
     <inherits name='net.mostlyoriginal.ContribPluginOperations'/>
     <!--<inherits name='net.mostlyoriginal.ContribEventBus'/>-->
     <inherits name='net.mostlyoriginal.ContribJam'/>
-    <inherits name='com.badlogic.gdx.backends.gdx_backends_gwt' />
-    <inherits name='com.badlogic.gdx.physics.box2d.box2d-gwt' />
-
-    <!-- Optional modules. -->
-    <!--
-    <inherits name='Box2DLights' />
-    <inherits name='com.badlogic.gdx.ai' />
-    <inherits name='com.badlogic.gdx.controllers.controllers-gwt' />
-    -->
+    <inherits name='javax.annotation.Annotation' />
 
     <!-- Just include everything. -->
     <extend-configuration-property name="artemis.reflect.include" value="net.mostlyoriginal.game.component"/>
@@ -31,13 +21,71 @@
     <extend-configuration-property name="artemis.reflect.include" value="com.badlogic.gdx.maps.tiled.TiledMap"/>
     <extend-configuration-property name="artemis.reflect.include" value="com.badlogic.gdx.maps.MapRenderer"/>
 
-    <extend-configuration-property name="artemis.reflect.include" value="com.badlogic.gdx.physics.box2d.Body"/>
+    <extend-configuration-property name="artemis.reflect.include" value="com.artemis.MyFluidEntityPlugin"/>
+    <extend-configuration-property name="artemis.reflect.include" value="com.artemis.ESubscription"/>
+    <extend-configuration-property name="artemis.reflect.include" value="com.artemis.FluidIteratingSystem"/>
+    <extend-configuration-property name="artemis.reflect.include" value="com.artemis.EBag"/>
+
 
     <extend-configuration-property name="gdx.reflect.include" value="net.mostlyoriginal.game.component"/>
     <extend-configuration-property name="gdx.reflect.include" value="net.mostlyoriginal.game.system"/>
     <extend-configuration-property name="gdx.reflect.include" value="net.mostlyoriginal.game.screen"/>
     <extend-configuration-property name="gdx.reflect.include" value="net.mostlyoriginal.api"/>
-    <extend-configuration-property name="gdx.reflect.include" value="com.badlogic.gdx.physics.box2d.Body"/>
+
+    <extend-configuration-property name="artemis.reflect.include" value="java.util.IdentityHashMap"/>
+    <extend-configuration-property name="artemis.reflect.include" value="com.artemis.utils.Bag"/>
+    <extend-configuration-property name="artemis.reflect.include" value="com.artemis.utils.IntBag"/>
+    <extend-configuration-property name="artemis.reflect.include" value="com.artemis.manager.TypedEntityFactory"/>
+    <extend-configuration-property name="artemis.reflect.include" value="com.artemis.io"/>
+    <extend-configuration-property name="artemis.reflect.include" value="com.artemis.prefab"/>
+
+    <extend-configuration-property name="artemis.reflect.include" value="com.artemis.MyESubscriptionAspectResolver"/>
+    <extend-configuration-property name="artemis.reflect.include" value="net.mostlyoriginal.api.SingletonPlugin"/>
+
+    <extend-configuration-property name="artemis.reflect.include" value="com.badlogic.gdx.math" />
+    <extend-configuration-property name="artemis.reflect.include" value="com.badlogic.gdx.graphics.g2d.GlyphLayout" />
+    <extend-configuration-property name="artemis.reflect.include" value="com.badlogic.gdx.graphics.g2d.TextureRegion" />
+    <extend-configuration-property name="artemis.reflect.include" value="com.badlogic.gdx.graphics.g2d.BitmapFont" />
+    <extend-configuration-property name="artemis.reflect.include" value="com.badlogic.gdx.graphics.g2d.NinePatch" />
+    <extend-configuration-property name="artemis.reflect.include" value="com.badlogic.gdx.graphics.g3d.materials.MaterialAttribute" />
+    <extend-configuration-property name="artemis.reflect.include" value="com.badlogic.gdx.graphics.Color" />
+    <extend-configuration-property name="artemis.reflect.include" value="com.badlogic.gdx.graphics.Texture" />
+    <extend-configuration-property name="artemis.reflect.include" value="com.badlogic.gdx.utils.Array" />
+    <extend-configuration-property name="artemis.reflect.include" value="com.badlogic.gdx.utils.Disposable" />
+    <extend-configuration-property name="artemis.reflect.include" value="com.badlogic.gdx.utils.ObjectMap" />
+    <extend-configuration-property name="artemis.reflect.include" value="com.badlogic.gdx.utils.OrderedMap" />
+    <extend-configuration-property name="artemis.reflect.include" value="com.badlogic.gdx.graphics.VertexAttribute" />
+    <extend-configuration-property name="artemis.reflect.include" value="com.badlogic.gdx.graphics.g3d.model" />
+    <extend-configuration-property name="artemis.reflect.include" value="com.badlogic.gdx.graphics.OrthographicCamera" />
+    <extend-configuration-property name="artemis.reflect.include" value="gdx.audio.Music" />
+    <extend-configuration-property name="artemis.reflect.include" value="com.badlogic.gdx.graphics.glutils.ShaderProgram" />
+    <extend-configuration-property name="artemis.reflect.include" value="com.badlogic.gdx.graphics.g2d.SpriteBatch" />
+    <extend-configuration-property name="artemis.reflect.include" value="com.badlogic.gdx.graphics.GLTexture" />
+    <extend-configuration-property name="artemis.reflect.include" value="com.badlogic.gdx.graphics.GL20" />
+    <extend-configuration-property name="artemis.reflect.include" value="com.badlogic.gdx.graphics.Texture" />
+    <extend-configuration-property name="artemis.reflect.include" value="com.badlogic.gdx.graphics.g2d.Sprite" />
+    <extend-configuration-property name="artemis.reflect.include" value="com.badlogic.gdx.graphics.g3d.shaders.BaseShader" />s
+    <extend-configuration-property name="artemis.reflect.include" value="com.badlogic.gdx.Game" />
+    <extend-configuration-property name="artemis.reflect.include" value="com.badlogic.gdx.maps" />
+    <extend-configuration-property name="artemis.reflect.include" value="java.util.LinkedList" />
+    <extend-configuration-property name="artemis.reflect.include" value="net.mostlyoriginal.game.events" />
+    <extend-configuration-property name="artemis.reflect.include" value="net.mostlyoriginal.game.util" />
+    <extend-configuration-property name="artemis.reflect.include" value="com.artemis.PooledComponent" />
+    <extend-configuration-property name="gdx.reflect.include" value="com.artemis.PooledComponent" />
+
+
+    <!--<extend-configuration-property name="artemis.reflect.exclude" value="com.badlogic.gdx.graphics.g3d" />-->
+    <!--<extend-configuration-property name="artemis.reflect.exclude" value="com.badlogic.gdx.scenes.scene2d" />-->
+    <!--<extend-configuration-property name="artemis.reflect.exclude" value="com.badlogic.gdx.math" />-->
+    <!--<extend-configuration-property name="artemis.reflect.exclude" value="com.badlogic.gdx.graphics.g2d.GlyphLayout" />-->
+    <!--<extend-configuration-property name="artemis.reflect.exclude" value="com.badlogic.gdx.graphics.g2d.TextureRegion" />-->
+    <!--<extend-configuration-property name="artemis.reflect.exclude" value="com.badlogic.gdx.graphics.g2d.BitmapFont" />-->
+    <!--<extend-configuration-property name="artemis.reflect.exclude" value="com.badlogic.gdx.graphics.g2d.NinePatch" />-->
+    <!--<extend-configuration-property name="artemis.reflect.exclude" value="com.badlogic.gdx.graphics.g3d.materials.MaterialAttribute" />-->
+    <!--<extend-configuration-property name="artemis.reflect.exclude" value="com.badlogic.gdx.graphics.Color" />-->
+    <!--<extend-configuration-property name="artemis.reflect.exclude" value="com.badlogic.gdx.graphics.Texture" />-->
+    <!--<extend-configuration-property name="artemis.reflect.exclude" value="com.badlogic.gdx.graphics.g3d.model" />-->
+
 
     <inherits name='GdxArtemisComponents'/>
     <inherits name='GdxArtemisGame'/>
