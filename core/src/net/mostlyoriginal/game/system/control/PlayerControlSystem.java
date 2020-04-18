@@ -27,7 +27,6 @@ public class PlayerControlSystem extends FluidIteratingSystem {
     private static final float PLAYER_SWIMMING_SPEED = GameRules.DEBUG_ENABLED ? 150f: 40f;
     private static final float PLAYER_SUBMERGED_SPEED = GameRules.DEBUG_ENABLED ? 150f: 80f;
 
-    StaminaSystem staminaSystem;
     private boolean flipperBonus;
     private boolean snorkelBonus;
 
@@ -105,26 +104,11 @@ public class PlayerControlSystem extends FluidIteratingSystem {
 
         Vector2 movementVector = vector2.set(dx, dy).nor();
 
-        if ( dx != 0 || dy != 0 ) {
-            staminaSystem.drainStamina(flipperBonus ? 0.05f : 0.1f);
-        } else {
-            if ( e.hasDiving() ) {
-                if ( !snorkelBonus ) {
-                    staminaSystem.drainStamina(0.22f);
-                }
-            } else if ( e.isSwimming() ) {
-                    staminaSystem.drainStamina(flipperBonus ? 0.01f : 0.02f);
-            } else
-                staminaSystem.slowRegenStamina(e.isSwimming()?0.2f:0.4f,e.isSwimming()?0.1f:0.2f);
-        }
-
         e.physics();
 
         float speed = e.hasSwimming() ? (e.hasSubmerged() ? PLAYER_SUBMERGED_SPEED : PLAYER_SWIMMING_SPEED) : PLAYER_WALKING_SPEED;
 
         // affect movement speed by stamina.
-        speed *= Interpolation.linear.apply(1.2f,2f, staminaSystem.getStamina());
-        if ( staminaSystem.getStamina() <= 0.05f ) speed *= 0.5f;
         if ( flipperBonus ) speed *= 1.25f;
 
         if (movementVector.x != 0) {

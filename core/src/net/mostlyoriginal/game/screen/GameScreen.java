@@ -71,20 +71,18 @@ public class GameScreen extends TransitionableWorldScreen {
                         // Entity spawning
 
                         new MapEntitySpawnerSystem(), // Converts Tiled maps to FutureEntities to be spawned.
+
                         new FutureEntitySystem(new MyEntityAssemblyStrategy()), // Responsible for spawning entities.
                         new ParticleEffectSystem(new MyParticleEffectStrategy()),
                         //new ShopperSpawnSystem(),
 
                         // UI handlers.
 
-                        new DialogUISystem(new MyDialogFactory()),
-
-                        //new TutorialSystem(), // @todo phase 2: internals to singleton. Move dialog definitions to MyDialogFactory.
+//                        new DialogUISystem(new MyDialogFactory()),
 
                         // Input
 
                         new PlayerControlSystem(), // @todo phase 2: separate movement from key binding to control.
-                        //new ShopperAISystem(),
 
                         // Mechanics.
 
@@ -94,8 +92,6 @@ public class GameScreen extends TransitionableWorldScreen {
 
                         new InteractActionSystem(), // Determines WHICH action actors will perform
 
-                        //new TalkActionSystem(),
-                        //new TradeActionSystem(),
                         new PickupActionSystem(),
                         new DropActionSystem(),
                         new BuildActionSystem(),
@@ -104,8 +100,6 @@ public class GameScreen extends TransitionableWorldScreen {
 
                         // Secondary effects lifecycle management.
 
-                        //new DesireSystem(),
-                        //new ShadowSystem(), // @todo phase 2: Separate shadow, create a relationship component with parent.
                         new SlotHighlightingSystem(),
                         new RaftExtensionPointSystem(),
 
@@ -131,17 +125,17 @@ public class GameScreen extends TransitionableWorldScreen {
 
                         //new NightSystem(),
 
-                        new ScoreSystem(),
-                        new SubmergedSystem(),
-                        new StaminaSystem(),
+//                        new ScoreSystem(),
+//                        new SubmergedSystem(),
+//                        new StaminaSystem(),
 
-                        new ShadedWaterRenderSystem(),
+//                        new ShadedWaterRenderSystem(),
                         renderBatchingSystem = new RenderBatchingSystem(),
                         new MyAnimRenderSystem(renderBatchingSystem),
                         new MyLabelRenderSystem(renderBatchingSystem),
                         new MapLayerRenderSystem(renderBatchingSystem, batch),
-                        new DrippingSystem(),
-                        new RadioSystem(),
+//                        new DrippingSystem(),
+//                        new RadioSystem(),
 
                         new SoundPlaySystem(
                                 "sfx_interact_6",
@@ -157,9 +151,8 @@ public class GameScreen extends TransitionableWorldScreen {
                                 "drowned",
                                 "water1",
                                 "water2",
-        "LD45_dogwhine",
-        "LD45_mermaid"
-
+                                "LD45_dogwhine",
+                                "LD45_mermaid"
                         ),
 
                         //new InventoryDebugSystem(), // @todo allow optional systems (nullable in gamescreen)

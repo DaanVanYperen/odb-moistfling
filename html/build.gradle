@@ -9,20 +9,13 @@ gwt {
     devModules 'net.mostlyoriginal.game.GdxDefinitionSuperdev'
     project.webAppDirName = 'webapp'
 
-//    compiler {
-//        style = 'DETAILED'
-//        strict = true
-//        disableCastChecking = true
-//        disableAggressiveOptimization = false
-//        draftCompile = false
-//        optimize = 9
-//    }
-   compiler {
-       style = 'PRETTY'
-       strict = true
-       disableCastChecking = true
-       draftCompile = true
-   }
+    compiler {
+        strict = true
+        disableCastChecking = true
+        disableAggressiveOptimization = false
+        draftCompile = false
+        optimize = 9
+    }
 }
 
 import org.wisepersist.gradle.plugins.gwt.GwtSuperDev
