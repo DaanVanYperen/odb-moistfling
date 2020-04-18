@@ -49,8 +49,6 @@ public class MyAnimRenderSystem extends DeferredEntityProcessingSystem {
     protected SpriteBatch batch;
     private Origin DEFAULT_ORIGIN = new Origin(0.5f, 0.5f);
 
-    float waveDelta = 0;
-
     public MyAnimRenderSystem(EntityProcessPrincipal principal) {
         super(Aspect.all(Pos.class, Anim.class, Render.class).exclude(Invisible.class), principal);
     }
@@ -69,7 +67,6 @@ public class MyAnimRenderSystem extends DeferredEntityProcessingSystem {
 
     @Override
     protected void begin() {
-        waveDelta += world.delta * 50f;
         batch.setProjectionMatrix(cameraSystem.camera.combined);
         batch.begin();
     }
@@ -137,7 +134,7 @@ public class MyAnimRenderSystem extends DeferredEntityProcessingSystem {
 
         float ox = frame.getRegionWidth() * scale * origin.xy.x;
         float oy = frame.getRegionHeight() * scale * origin.xy.y;
-        float y = roundToPixels(position.xy.y+ MathUtils.cosDeg(waveDelta+position.xy.y)*10+ MathUtils.sinDeg(waveDelta+position.xy.x*2f)*3) ;
+        float y = roundToPixels(position.xy.y+ MathUtils.cosDeg(position.xy.y)*10+ MathUtils.sinDeg(position.xy.x*2f)*3) ;
         float x = roundToPixels(position.xy.x);
 
         if (animation.flippedX && angle.rotation == 0) {

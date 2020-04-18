@@ -32,7 +32,14 @@ public class MyEntityAssemblyStrategy implements FutureEntitySystem.EntityAssemb
     private List<E> hoppers = new ArrayList<>();
     private boolean finalized = false;
 
+    public static final short CAT_PLAYER = 1;
+    public static final short CAT_METEORITE = 2;
+    public static final short CAT_GRAPPLE = 4;
+    public static final short CAT_DEBRIS = 8;
+
+
     ItemTypeManager itemManager;
+    private BoxPhysicsSystem boxPhysicsSystem;
 
     @Override
     public void createInstance(int entityId) {
@@ -196,6 +203,8 @@ public class MyEntityAssemblyStrategy implements FutureEntitySystem.EntityAssemb
         FutureSpawnUtility.item("item_pallet",1,20,13,false).locked();
         FutureSpawnUtility.item("item_radio",1,20,13,false).tag("radio");
 
+        boxPhysicsSystem.addAsBox(decoratePlayer, decoratePlayer.getBounds().cx(), decoratePlayer.getBounds().cy(), 1f, CAT_PLAYER, (short) (CAT_DEBRIS), 0);
+
         return decoratePlayer;
     }
 
@@ -207,6 +216,8 @@ public class MyEntityAssemblyStrategy implements FutureEntitySystem.EntityAssemb
                 .bounds(0, 0, 16, 16)
                 .castsShadow()
                 .renderLayer(GameRules.LAYER_ITEM + (GameRules.SCREEN_HEIGHT - (int) e.posY()));
+
+
         if (submerged) {
             item.submerged();
         }
@@ -223,6 +234,7 @@ public class MyEntityAssemblyStrategy implements FutureEntitySystem.EntityAssemb
         }
 
         e.pos(e.gridPosX() * 16, e.gridPosY() * 16);
+        boxPhysicsSystem.addAsBox(item, item.getBounds().cx(), item.getBounds().cy(), 1f, CAT_DEBRIS, (short) (0), 0);
         if ("item_net_placed".equals(type)) {
             e.passiveSpawnerAnimSpawned("item_net");
             e.passiveSpawnerAnimNormal("item_net");

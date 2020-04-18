@@ -15,6 +15,7 @@ import net.mostlyoriginal.game.system.common.FluidSystem;
 public class BoxPhysicsSystem extends FluidSystem {
 
     public static final int FLOOR_LEVEL_Y = 80;
+    private static final float GRAVITY_Y =0;// -98f;
     public static float SCALING = 8f;
     public Body groundBody;
 
@@ -22,7 +23,7 @@ public class BoxPhysicsSystem extends FluidSystem {
 
     public BoxPhysicsSystem() {
         super(Aspect.all(Pos.class, Boxed.class));
-        box2d = new World(new Vector2(0, -98f), true);
+        box2d = new World(new Vector2(0, GRAVITY_Y), true);
         box2d.setContactListener(new ContactListener() {
             @Override
             public void beginContact(Contact contact) {
@@ -187,15 +188,9 @@ public class BoxPhysicsSystem extends FluidSystem {
 
     @Override
     protected void process(E e) {
-/*
-        if ( e.hasGuard()) return;
         Body body = e.boxedBody();
-        e.pos(body.getPosition().x * SCALING - e.boundsCx(), body.getPosition().y * SCALING - e.boundsCy());
+        e.pos((int)body.getPosition().x * SCALING - e.boundsCx(), (int)body.getPosition().y * SCALING - e.boundsCy());
         e.angleRotation((float) Math.toDegrees(body.getAngle()));
-
-        if ( e.posY() < -50 ) {
-            e.deleteFromWorld();
-        }*/
     }
 
     private boolean within(float val, float deviation) {

@@ -16,7 +16,7 @@ public class BoxPhysicsDebugRenderSystem extends BaseSystem {
     private BoxPhysicsSystem boxPhysicsSystem;
     private OrthographicCamera camera;
     private CameraSystem cameraSystem;
-    private boolean enabled;
+    private boolean enabled=true;
 
     @Override
     protected void initialize() {

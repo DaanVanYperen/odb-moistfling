@@ -90,27 +90,28 @@ public class GameScreen extends TransitionableWorldScreen {
 
                         // Actor Actions
 
-                        new InteractActionSystem(), // Determines WHICH action actors will perform
+                        //new InteractActionSystem(), // Determines WHICH action actors will perform
 
-                        new PickupActionSystem(),
-                        new DropActionSystem(),
-                        new BuildActionSystem(),
-                        new UseActionSystem(),
-                        new LootSpawnSystem(),
+                        //new PickupActionSystem(),
+                        //new DropActionSystem(),
+                        //new BuildActionSystem(),
+                        //new UseActionSystem(),
+                        //new LootSpawnSystem(),
 
                         // Secondary effects lifecycle management.
 
-                        new SlotHighlightingSystem(),
-                        new RaftExtensionPointSystem(),
+                        //new SlotHighlightingSystem(),
+                        //new RaftExtensionPointSystem(),
 
                         // Movement
 
-                        new CarriedItemPositioningSystem(),
-                        new MapCollisionSystem(), // clamp physics to avoid map collision.
-                        new MyPhysicsSystem(), // @todo phase2: replace. box2d?
-                        new BruteforceCollisionSystem(new MyCollisionHandler()),
+                        //new CarriedItemPositioningSystem(),
+                        //new MapCollisionSystem(), // clamp physics to avoid map collision.
+//                        new MyPhysicsSystem(), // @todo phase2: replace. box2d?
+                        new BoxPhysicsSystem(),
+//                        new BruteforceCollisionSystem(new MyCollisionHandler()),
                         new GridPosSystem(), // @todo phase2: Separate the Snap to grid behaviour.
-                        new GridPosFloatSystem(), // @todo phase2: Move floating to separate mechanic. (Mount it on something?)
+                        //new GridPosFloatSystem(), // @todo phase2: Move floating to separate mechanic. (Mount it on something?)
                         new AttachmentSystem(),
 
                         //new HopperTalleySystem(), // talley hoppered items on the machine.
@@ -154,7 +155,7 @@ public class GameScreen extends TransitionableWorldScreen {
                                 "LD45_dogwhine",
                                 "LD45_mermaid"
                         ),
-
+                        new BoxPhysicsDebugRenderSystem(),
                         //new InventoryDebugSystem(), // @todo allow optional systems (nullable in gamescreen)
                         new TransitionSystem(GdxArtemisGame.getInstance(), this)
                 );
