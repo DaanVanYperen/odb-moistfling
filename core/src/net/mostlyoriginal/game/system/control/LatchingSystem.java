@@ -3,6 +3,7 @@ package net.mostlyoriginal.game.system.control;
 import com.artemis.E;
 import com.artemis.annotations.All;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.*;
@@ -25,6 +26,7 @@ public class LatchingSystem extends FluidSystem implements BoxDestructionListene
     private E player;
     private BoxPhysicsSystem boxPhysicsSystem;
     private Joint grappleJoint;
+    private E latchedTarget;
 
     @Override
     protected void initialize() {
@@ -47,6 +49,10 @@ public class LatchingSystem extends FluidSystem implements BoxDestructionListene
     }
 
     private void killTheLatch() {
+        if ( latchedTarget != null) {
+            latchedTarget.removeBeamed();
+            latchedTarget=null;
+        }
         if (grappleJoint != null) {
             World box2d = boxPhysicsSystem.box2d;
             box2d.destroyJoint(grappleJoint);
@@ -61,6 +67,8 @@ public class LatchingSystem extends FluidSystem implements BoxDestructionListene
         if (e.hasBoxed() && player.hasBoxed() && !player.isDead()) {
 
             killTheLatch();
+            latchedTarget = e;
+            latchedTarget.beamed();
 
             float pixelDistance = v2
                     .set(e.getPos().xy)

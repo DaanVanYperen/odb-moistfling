@@ -78,6 +78,7 @@ public class GameScreen extends TransitionableWorldScreen {
 
                         new PopSystem(),
                         new LeakSystem(),
+                        new BeamedSystem(),
 
                         new CameraFollowSystem(),
                         new PlayerAnimationSystem(),

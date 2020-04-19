@@ -46,7 +46,7 @@ public class BoxPhysicsMouseSystem extends FluidSystem {
             if (fixture.testPoint(mouse.x/BoxPhysicsSystem.PPM, mouse.y/BoxPhysicsSystem.PPM)) {
                 E e = (E)fixture.getBody().getUserData();
                 if ( e != null && e.hasTappable() ) {
-                    e.tint(1f,1f,0f,1f).tapped();
+                    e.tapped();
                 }
                 return false;
             } else
@@ -66,7 +66,6 @@ public class BoxPhysicsMouseSystem extends FluidSystem {
     @Override
     protected void process(E e) {
         if ( e.hasTapped() ) {
-            e.tint(1f,1f,1f,1f);
             e.removeTapped();
         }
     }
