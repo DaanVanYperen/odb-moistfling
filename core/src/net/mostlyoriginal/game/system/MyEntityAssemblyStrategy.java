@@ -75,7 +75,7 @@ public class MyEntityAssemblyStrategy implements FutureEntitySystem.EntityAssemb
                 .tag("player")
                 .camera()
                 .renderLayer(GameRules.LAYER_PLAYER);
-        Body body = boxPhysicsSystem.addAsCircle(decoratePlayer, decoratePlayer.getBounds().cy(), 20f, CAT_PLAYER, (short) (CAT_DEBRIS|CAT_PICKUP), 0, 20);
+        Body body = boxPhysicsSystem.addAsCircle(decoratePlayer, decoratePlayer.getBounds().cy(), 20f, CAT_PLAYER, (short) (CAT_DEBRIS|CAT_PICKUP), 0, 16);
 
         return decoratePlayer;
     }
@@ -125,7 +125,7 @@ public class MyEntityAssemblyStrategy implements FutureEntitySystem.EntityAssemb
                 .pickupType(OXYGEN)
                 .renderLayer(GameRules.LAYER_ITEM);
 
-        int size = (frame.getRegionWidth() / 2) - 4;
+        int size = (frame.getRegionWidth() / 2) + 4;
 
         boxPhysicsSystem.addAsCircle(item, item.getBounds().cy(), 1f, CAT_PICKUP, (short) (CAT_DEBRIS|CAT_PLAYER|CAT_GRAPPLE|CAT_PICKUP), MathUtils.random(0,360f), size);
 

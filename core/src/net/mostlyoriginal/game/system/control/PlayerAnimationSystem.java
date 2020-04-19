@@ -33,7 +33,7 @@ public class PlayerAnimationSystem extends FluidSystem {
         else suffix="_deflated";
 
         Body body = e.boxedBody();
-        if (Math.abs(body.getAngularVelocity()) / body.getMass() > 0.1 ) {
+        if (Math.abs(body.getAngularVelocity()) / body.getMass() > 0.05 ) {
             e.anim("player_rotate"+suffix);
         } else if ( body.getLinearVelocity().len2() / body.getMass() > 0.5 ) {
             e.anim("player_stretched_out"+suffix);

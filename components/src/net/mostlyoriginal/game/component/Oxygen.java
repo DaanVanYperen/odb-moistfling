@@ -9,5 +9,6 @@ public class Oxygen extends Component {
     public float percentage;
     public void increase() {
         percentage += 75;
+        if ( percentage > 100f) percentage=150f;
     }
 }
