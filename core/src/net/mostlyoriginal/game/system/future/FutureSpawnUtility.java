@@ -1,12 +1,8 @@
 package net.mostlyoriginal.game.system.future;
 
 import com.artemis.E;
-import net.mostlyoriginal.api.utils.Preconditions;
-import net.mostlyoriginal.game.EntityType;
 
 import static com.artemis.E.E;
-import static net.mostlyoriginal.game.EntityType.ITEM;
-import static net.mostlyoriginal.game.EntityType.SHOPPER;
 
 /**
  * @author Daan van Yperen

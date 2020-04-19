@@ -10,6 +10,13 @@
    <property name="invisible" type="bool" value="true"/>
   </properties>
  </tile>
+ <tile id="63">
+  <properties>
+   <property name="anim" value="astronaut_corpse"/>
+   <property name="entity" value="pickup"/>
+   <property name="invisible" type="bool" value="true"/>
+  </properties>
+ </tile>
  <tile id="84">
   <properties>
    <property name="anim" value="debris_small_1"/>
@@ -94,6 +101,28 @@
   </properties>
  </tile>
  <tile id="111">
+  <properties>
+   <property name="invisible" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="126">
+  <properties>
+   <property name="anim" value="escape_pod"/>
+   <property name="entity" value="exit"/>
+   <property name="invisible" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="127">
+  <properties>
+   <property name="invisible" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="147">
+  <properties>
+   <property name="invisible" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="148">
   <properties>
    <property name="invisible" type="bool" value="true"/>
   </properties>

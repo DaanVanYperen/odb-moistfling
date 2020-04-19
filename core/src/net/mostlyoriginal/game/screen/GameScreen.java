@@ -21,6 +21,7 @@ import net.mostlyoriginal.game.system.box2d.BoxPhysicsMouseSystem;
 import net.mostlyoriginal.game.system.box2d.BoxPhysicsSystem;
 import net.mostlyoriginal.game.system.control.*;
 import net.mostlyoriginal.game.system.future.FutureEntitySystem;
+import net.mostlyoriginal.game.system.logic.PopSystem;
 import net.mostlyoriginal.game.system.logic.TransitionSystem;
 import net.mostlyoriginal.game.system.map.*;
 import net.mostlyoriginal.game.system.render.*;
@@ -69,6 +70,9 @@ public class GameScreen extends TransitionableWorldScreen {
                         new BoxPhysicsSystem(),
                         new BoxPhysicsMouseSystem(),
                         new LatchingSystem(),
+
+                        new PopSystem(),
+
                         new CameraFollowSystem(),
                         new PlayerAnimationSystem(),
                         renderBatchingSystem = new RenderBatchingSystem(),

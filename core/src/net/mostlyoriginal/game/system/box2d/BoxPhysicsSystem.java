@@ -6,11 +6,14 @@ import com.artemis.Entity;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.physics.box2d.joints.RevoluteJointDef;
-import com.badlogic.gdx.physics.box2d.joints.WeldJointDef;
 import net.mostlyoriginal.api.component.basic.Pos;
 import net.mostlyoriginal.game.GameRules;
 import net.mostlyoriginal.game.component.box2d.Boxed;
 import net.mostlyoriginal.game.system.common.FluidSystem;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 import static net.mostlyoriginal.game.system.MyEntityAssemblyStrategy.*;
 
@@ -24,11 +27,22 @@ public class BoxPhysicsSystem extends FluidSystem {
     public static float PPM = 100f / (180f / 48f);
     public Body groundBody;
     boolean welded = false;
-    private Body weldTargetB = null;
-    private Body weldTargetA = null;
+    private Body pickupTargetB = null;
+    private Body pickupTargetA = null;
+
+    private List<BoxDestructionListener> destructionListeners =new ArrayList<>();
+    private List<BoxContactListener> contactListeners =new ArrayList<>();
 
     public World getBox2d() {
         return box2d;
+    }
+
+    public void register(BoxDestructionListener destructionListener) {
+        destructionListeners.add(destructionListener);
+    }
+
+    public void register(BoxContactListener contactListener) {
+        contactListeners.add(contactListener);
     }
 
     //private MouseThrowSystem mouseThrowSystem;
@@ -36,74 +50,37 @@ public class BoxPhysicsSystem extends FluidSystem {
     public BoxPhysicsSystem() {
         super(Aspect.all(Pos.class, Boxed.class));
         box2d = new World(new Vector2(0, GRAVITY_Y), true);
+
         box2d.setContactListener(new ContactListener() {
 
             @Override
             public void beginContact(Contact contact) {
-
-                considerWeld(contact.getFixtureA(), contact.getFixtureB());
-                considerWeld(contact.getFixtureB(), contact.getFixtureA());
-
-
-              /*  bulletHit(contact.getFixtureA(), contact.getFixtureB());
-                bulletHit(contact.getFixtureB(), contact.getFixtureA());
-                touchingFloor(contact.getFixtureB(), contact.getFixtureA(),true);
-                touchingFloor(contact.getFixtureA(), contact.getFixtureB(),true);
-                grabHeli(contact.getFixtureA(), contact.getFixtureB());
-                grabHeli(contact.getFixtureB(), contact.getFixtureA());*/
-            }
-
-            private void considerWeld(Fixture a, Fixture b) {
-                if (a.getFilterData().categoryBits == CAT_GRAPPLE) {
-                    weldTargetA = a.getBody();
-                    weldTargetB = b.getBody();
+                for (BoxContactListener contactListener : contactListeners) {
+                    E a = (E) contact.getFixtureA().getBody().getUserData();
+                    E b = (E) contact.getFixtureB().getBody().getUserData();
+                    if ( a == null || b == null ) continue;
+                    contactListener.beginContact(a, b);
+                    contactListener.beginContact(b, a);
                 }
             }
 
-//            private void grabHeli(Fixture fixtureA, Fixture fixtureB) {
-//                if (fixtureA.getFilterData().categoryBits == StagepieceSystem.CAT_HELI) {
-//                    short cat = fixtureB.getFilterData().categoryBits;
-//                    if ( cat == StagepieceSystem.CAT_AGENT ) {
-//                        E heli = (E) fixtureA.getBody().getUserData();
-//                        E agent = (E) fixtureB.getBody().getUserData();
-//                        agent.grabTargetId(heli.id());
-//                    }
-//                }
-//            }
-//
-//            private void touchingFloor(Fixture fixtureA, Fixture fixtureB, boolean state) {
-//                if (fixtureA.getFilterData().categoryBits == StagepieceSystem.CAT_BOUNDARY) {
-//                    short cat = fixtureB.getFilterData().categoryBits;
-//                    if (  cat == StagepieceSystem.CAT_AGENT ) {
-//                        ((E) fixtureB.getBody().getUserData()).touchingFloor(state);
-//                    }
-//                }
-//            }
-//
-//            private void bulletHit(Fixture fixtureA, Fixture fixtureB) {
-//                if (fixtureA.getFilterData().categoryBits == StagepieceSystem.CAT_BULLET) {
-//                    short cat = fixtureB.getFilterData().categoryBits;
-//                    if ( cat == StagepieceSystem.CAT_CAR || cat == StagepieceSystem.CAT_AGENT  || cat == StagepieceSystem.CAT_PRESIDENT) {
-//                        ((E) fixtureB.getBody().getUserData()).struck();
-//                        ((E) fixtureA.getBody().getUserData()).struck();
-//                    }
-//                }
-//            }
-
             @Override
             public void endContact(Contact contact) {
-//                touchingFloor(contact.getFixtureB(), contact.getFixtureA(),false);
-//                touchingFloor(contact.getFixtureA(), contact.getFixtureB(),false);
+                for (BoxContactListener contactListener : contactListeners) {
+                    E a = (E) contact.getFixtureA().getBody().getUserData();
+                    E b = (E) contact.getFixtureB().getBody().getUserData();
+                    if ( a == null || b == null ) continue;
+                    contactListener.endContact(a, b);
+                    contactListener.endContact(b, a);
+                }
             }
 
             @Override
             public void preSolve(Contact contact, Manifold oldManifold) {
-
             }
 
             @Override
             public void postSolve(Contact contact, ContactImpulse impulse) {
-
             }
         });
         //addGroundBody();
@@ -268,7 +245,7 @@ public class BoxPhysicsSystem extends FluidSystem {
         fixtureDef.density = density;
         fixtureDef.filter.categoryBits = categoryBits;
         fixtureDef.filter.maskBits = maskBits;
-        fixtureDef.friction = 0.01F;
+        fixtureDef.friction = 0.1F;
 
         body.createFixture(fixtureDef);
 
@@ -324,6 +301,12 @@ public class BoxPhysicsSystem extends FluidSystem {
             cooldown2 += 3f;
         }
         cooldown2 -= world.delta;
+
+        if (!welded && pickupTargetA != null) {
+            ((E) pickupTargetA.getUserData()).deleteFromWorld();
+            pickupTargetA =null;
+            pickupTargetB =null;
+        }
     }
 
     float cooldown2 = 0;
@@ -332,12 +315,19 @@ public class BoxPhysicsSystem extends FluidSystem {
     public void removed(Entity e) {
         Body body = E.E(e).boxedBody();
         if (body != null) {
+            for (BoxDestructionListener destructionListener : destructionListeners) {
+                destructionListener.beforeDestroy(body);
+            }
             for (JointEdge jointEdge : body.getJointList()) {
                 // bit hacky but it should suffice.
                 //mouseThrowSystem.forgetJoint(jointEdge);
             }
             while (body.getJointList().size > 0) {
-                box2d.destroyJoint(body.getJointList().first().joint);
+                Joint joint = body.getJointList().first().joint;
+                for (BoxDestructionListener destructionListener : destructionListeners) {
+                    destructionListener.beforeDestroy(joint);
+                }
+                box2d.destroyJoint(joint);
             }
             box2d.destroyBody(body);
         }
@@ -348,15 +338,6 @@ public class BoxPhysicsSystem extends FluidSystem {
         Body body = e.boxedBody();
         e.pos(body.getPosition().x * PPM - e.boundsCx(), body.getPosition().y * PPM - e.boundsCy());
         e.angleRotation((float) Math.toDegrees(body.getAngle()));
-        if (!welded && weldTargetA != null) {
-            welded = true;
-            WeldJointDef weld = new WeldJointDef();
-            weld.bodyA = weldTargetA;
-            weld.bodyB = weldTargetB;
-            weld.collideConnected = false;
-            weld.type = JointDef.JointType.WeldJoint;
-            box2d.createJoint(weld);
-        }
     }
 
     private boolean within(float val, float deviation) {
