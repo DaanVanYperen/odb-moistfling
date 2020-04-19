@@ -38,7 +38,7 @@ import net.mostlyoriginal.plugin.OperationsPlugin;
  */
 public class GameScreen extends TransitionableWorldScreen {
 
-    public static final String BACKGROUND_COLOR_HEX = "969291";
+    public static final String BACKGROUND_COLOR_HEX = "000000";
 
     Class nextScreen;
 
@@ -81,6 +81,7 @@ public class GameScreen extends TransitionableWorldScreen {
 
                         new CameraFollowSystem(),
                         new PlayerAnimationSystem(),
+                        new RenderBackgroundSystem(),
                         renderBatchingSystem = new RenderBatchingSystem(),
                         new MyAnimRenderSystem(renderBatchingSystem),
                         new MyLabelRenderSystem(renderBatchingSystem),
