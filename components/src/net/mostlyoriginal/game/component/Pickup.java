@@ -8,6 +8,7 @@ import com.artemis.Component;
 public class Pickup extends Component {
     public Type type;
     public enum Type {
-        OXYGEN;
+        OXYGEN,
+        EXIT
     }
 }

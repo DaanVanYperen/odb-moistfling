@@ -11,9 +11,12 @@ import net.mostlyoriginal.api.component.basic.Pos;
 import net.mostlyoriginal.api.component.graphics.Render;
 import net.mostlyoriginal.api.plugin.extendedcomponentmapper.M;
 import net.mostlyoriginal.api.utils.MapMask;
+import net.mostlyoriginal.game.GameRules;
 import net.mostlyoriginal.game.component.map.MapEntityMarker;
 import net.mostlyoriginal.game.component.map.TiledMapLayer;
 import net.mostlyoriginal.game.component.map.TiledMapSingleton;
+
+import static com.badlogic.gdx.Input.Keys.G;
 
 /**
  * Loads tiled map and craetes MapEntityMarker for all tiles with 'entity' property.
@@ -78,7 +81,7 @@ public class TiledMapManager extends BaseSystem {
         tiledMap.height = firstLayer.getHeight();
         tiledMap.tileWidth = (int) firstLayer.getTileWidth();
         tiledMap.tileHeight = (int) firstLayer.getTileHeight();
-
+        GameRules.nextMap = (String) tiledMap.properties.get("nextmap");
         createMapMarkers(tiledMap);
     }
 

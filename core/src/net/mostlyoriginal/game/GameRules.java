@@ -41,4 +41,5 @@ public abstract class GameRules {
     public static Music music;
     public static boolean sfxOn=true;
     public static boolean musicOn=true;
+    public static String nextMap;
 }

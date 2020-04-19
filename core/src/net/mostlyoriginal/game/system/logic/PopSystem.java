@@ -4,6 +4,8 @@ import com.artemis.BaseSystem;
 import com.artemis.E;
 import com.artemis.annotations.All;
 import com.badlogic.gdx.utils.compression.lzma.Base;
+import net.mostlyoriginal.game.component.Pickup;
+import net.mostlyoriginal.game.screen.GameScreen;
 import net.mostlyoriginal.game.system.box2d.BoxContactListener;
 import net.mostlyoriginal.game.system.box2d.BoxPhysicsSystem;
 import net.mostlyoriginal.game.system.common.FluidSystem;
@@ -15,6 +17,7 @@ public class PopSystem extends BaseSystem implements BoxContactListener {
 
     private int toBeDeleted = -1;
     private BoxPhysicsSystem boxPhysicsSystem;
+    private TransitionSystem transitionSystem;
 
     @Override
     protected void initialize() {
@@ -25,7 +28,11 @@ public class PopSystem extends BaseSystem implements BoxContactListener {
     @Override
     protected void processSystem() {
         if ( toBeDeleted != -1 ) {
-            E.E(toBeDeleted).deleteFromWorld();
+            E e = E.E(toBeDeleted);
+            if (e.hasPickup() && e.pickupType() == Pickup.Type.EXIT) {
+                transitionSystem.transition(GameScreen.class,0);
+            }
+            e.deleteFromWorld();
             toBeDeleted=-1;
         }
     }
@@ -39,6 +46,7 @@ public class PopSystem extends BaseSystem implements BoxContactListener {
             } else if ( b.hasPlayer() ) {
                 toBeDeleted = a.id(); // also delete, but oxygen!
                 E.E().playSound("burp");
+                b.oxygenIncrease();
             }
         }
     }

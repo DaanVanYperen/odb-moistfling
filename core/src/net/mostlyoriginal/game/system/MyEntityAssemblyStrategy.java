@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import net.mostlyoriginal.game.GameRules;
+import net.mostlyoriginal.game.component.Pickup;
 import net.mostlyoriginal.game.component.future.FutureEntity;
 import net.mostlyoriginal.game.system.box2d.BoxPhysicsSystem;
 import net.mostlyoriginal.game.system.future.FutureEntitySystem;
@@ -51,11 +52,13 @@ public class MyEntityAssemblyStrategy implements FutureEntitySystem.EntityAssemb
         final FutureEntity futureEntity = source.getFutureEntity();
         switch (futureEntity.type) {
             case DEBRIS:
-                return decorateItem(source, futureEntity.subType);
+                return decorateDebris(source, futureEntity.subType);
             case PLAYER:
                 return decoratePlayer(source);
             case PICKUP:
                 return decoratePickup(source, futureEntity.subType);
+            case EXIT:
+                return decorateExit(source, futureEntity.subType);
         }
         throw new RuntimeException("Unknown entity type " + source.futureEntityType());
     }
@@ -68,6 +71,7 @@ public class MyEntityAssemblyStrategy implements FutureEntitySystem.EntityAssemb
                 .anim("player_idle")
                 .bounds(4, 4, 48 - 4, 48-4)
                 .player()
+                .oxygenPercentage(100)
                 .tag("player")
                 .camera()
                 .renderLayer(GameRules.LAYER_PLAYER);
@@ -78,7 +82,7 @@ public class MyEntityAssemblyStrategy implements FutureEntitySystem.EntityAssemb
 
     GameScreenAssetSystem gameScreenAssetSystem;
 
-    private E decorateItem(E e, String type) {
+    private E decorateDebris(E e, String type) {
 
         Animation<TextureRegion> animation = gameScreenAssetSystem.get(type);
         final TextureRegion frame = animation.getKeyFrame(0, false);
@@ -126,12 +130,29 @@ public class MyEntityAssemblyStrategy implements FutureEntitySystem.EntityAssemb
         boxPhysicsSystem.addAsCircle(item, item.getBounds().cy(), 1f, CAT_PICKUP, (short) (CAT_DEBRIS|CAT_PLAYER|CAT_GRAPPLE|CAT_PICKUP), MathUtils.random(0,360f), size);
 
 
-            Body body = e.boxedBody();
-            final Vector2 vel = body.getLinearVelocity();
-            worldOrigin.x = (e.posX() + e.boundsCx()) / BoxPhysicsSystem.PPM;
-            worldOrigin.y = (e.posY() + e.boundsCy()) / BoxPhysicsSystem.PPM;
-            body.applyAngularImpulse( MathUtils.random(-0.1f,0.1f) * body.getMass(), true);
+        Body body = e.boxedBody();
+        final Vector2 vel = body.getLinearVelocity();
+        worldOrigin.x = (e.posX() + e.boundsCx()) / BoxPhysicsSystem.PPM;
+        worldOrigin.y = (e.posY() + e.boundsCy()) / BoxPhysicsSystem.PPM;
+        body.applyAngularImpulse( MathUtils.random(-0.1f,0.1f) * body.getMass(), true);
 
+
+        return item;
+    }
+
+    private E decorateExit(E e, String type) {
+
+        Animation<TextureRegion> animation = gameScreenAssetSystem.get(type);
+        final TextureRegion frame = animation.getKeyFrame(0, false);
+
+        E item = e
+                .bounds(0, 0, frame.getRegionWidth(), frame.getRegionHeight())
+                .tappable()
+                .anim(type)
+                .pickupType(Pickup.Type.EXIT)
+                .renderLayer(GameRules.LAYER_ITEM);
+
+        boxPhysicsSystem.addAsBox(item, item.getBounds().cx(), item.getBounds().cy(), 999999999f, CAT_PICKUP, (short) (CAT_PLAYER), 0);
 
         return item;
     }

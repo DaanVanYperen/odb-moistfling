@@ -86,9 +86,9 @@ public class LatchingSystem extends FluidSystem implements BoxDestructionListene
             grappleJointDef.frequencyHz = 0.15f;
             grappleJointDef.dampingRatio = 0.3f;
 
-            if (e.hasPickup()) {
+            //if (e.hasPickup()) {
                 grappleJointDef.collideConnected = true;
-            }
+            //}
 
             grappleJoint = box2d.createJoint(grappleJointDef);
         }

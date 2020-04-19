@@ -13,6 +13,7 @@ import net.mostlyoriginal.api.manager.FontManager;
 import net.mostlyoriginal.api.system.camera.CameraSystem;
 import net.mostlyoriginal.api.system.camera.EntityCameraSystem;
 import net.mostlyoriginal.api.system.graphics.RenderBatchingSystem;
+import net.mostlyoriginal.api.system.physics.PhysicsSystem;
 import net.mostlyoriginal.game.GameRules;
 import net.mostlyoriginal.game.GdxArtemisGame;
 import net.mostlyoriginal.game.system.*;
@@ -21,6 +22,7 @@ import net.mostlyoriginal.game.system.box2d.BoxPhysicsMouseSystem;
 import net.mostlyoriginal.game.system.box2d.BoxPhysicsSystem;
 import net.mostlyoriginal.game.system.control.*;
 import net.mostlyoriginal.game.system.future.FutureEntitySystem;
+import net.mostlyoriginal.game.system.logic.LeakSystem;
 import net.mostlyoriginal.game.system.logic.PopSystem;
 import net.mostlyoriginal.game.system.logic.TransitionSystem;
 import net.mostlyoriginal.game.system.map.*;
@@ -56,7 +58,7 @@ public class GameScreen extends TransitionableWorldScreen {
                 .with(
                         new FontManager(),
                         new TagManager(),
-                        new TiledMapManager("astrodrift_testmap.tmx")
+                        new TiledMapManager(GameRules.nextMap)
                 )
                 .with(
                         new CameraSystem(2),
@@ -67,11 +69,15 @@ public class GameScreen extends TransitionableWorldScreen {
                         new FutureEntitySystem(new MyEntityAssemblyStrategy()), // Responsible for spawning entities.
                         new ParticleEffectSystem(new MyParticleEffectStrategy()),
                         new PlayerControlSystem(), // @todo phase 2: separate movement from key binding to control.
+
+                        new PhysicsSystem(), // for particles.
                         new BoxPhysicsSystem(),
                         new BoxPhysicsMouseSystem(),
                         new LatchingSystem(),
 
+
                         new PopSystem(),
+                        new LeakSystem(),
 
                         new CameraFollowSystem(),
                         new PlayerAnimationSystem(),

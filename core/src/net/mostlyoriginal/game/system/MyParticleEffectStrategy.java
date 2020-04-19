@@ -25,6 +25,7 @@ public class MyParticleEffectStrategy implements ParticleEffectSystem.ParticleEf
     public static final String EFFECT_BLACK_SPUTTER = "sputter";
     public static final String EFFECT_DROPLET = "droplet";
     public static final String EFFECT_SPLASH = "splash";
+    public static final String EFFECT_LEAK = "leak";
 
     private Builder bakery = new Builder();
     private Color BLOOD_COLOR = Color.valueOf("4B1924");
@@ -39,20 +40,8 @@ public class MyParticleEffectStrategy implements ParticleEffectSystem.ParticleEf
 
         ParticleEffect effect = source.getParticleEffect();
         switch (effect.type) {
-            case EFFECT_POOF:
-                spawnPoof(source.posX(), source.posY(), 40, 40, WATER_DROPLET);
-                source.deleteFromWorld();
-                break;
-                case EFFECT_SPLASH:
-                spawnSplash(source.posX(), source.posY(), 40, 40, WATER_DROPLET);
-                source.deleteFromWorld();
-                break;
-            case EFFECT_DROPLET:
-                spawnDroplet(source.posX(), source.posY(), 1, 1, WATER_DROPLET);
-                source.deleteFromWorld();
-                break;
-            case EFFECT_BLACK_SPUTTER:
-                spawnPoof(source.posX(), source.posY(), 2, 3, ParticleEffectSystem.COLOR_BLACK_TRANSPARENT);
+            case EFFECT_LEAK:
+                spawnLeak(source.angleRotation(),source.posX(), source.posY(), 2, 3, ParticleEffectSystem.COLOR_WHITE_TRANSPARENT);
                 source.deleteFromWorld();
                 break;
             default:
@@ -78,19 +67,18 @@ public class MyParticleEffectStrategy implements ParticleEffectSystem.ParticleEf
     }
 
 
-    public void spawnPoof(float x, float y, int minCount, int maxCount, Color color) {
+    public void spawnLeak(float angleRotation, float x, float y, int minCount, int maxCount, Color color) {
         bakery
-                .at((int) x - 5, (int) y - 5, (int) x + 5, (int) y + 5)
+                .at((int) x, (int) y, (int) x, (int) y)
                 .anim("dot")
-                .angle(0, 360)
-                .speed(5, 100)
+                .angle(angleRotation+2f, angleRotation-2f)
+                .speed(50, 100)
                 .color(color)
                 .fadeAfter(0.1f)
                 .rotateRandomly()
                 .slowlySplatDown()
-                .friction(1f)
-                .size(0.5f, 2f)
-                .angularMomentum(40)
+                .friction(0.2f)
+                .size(1/3f, 1/3f)
                 .create(minCount, maxCount);
     }
 

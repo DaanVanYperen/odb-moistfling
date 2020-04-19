@@ -36,6 +36,9 @@ public class MapEntitySpawnerSystem extends FluidIteratingSystem {
         } else if ("pickup".equals(entity)) {
             FutureSpawnUtility.of(EntityType.PICKUP, gridX, gridY).futureEntitySubType(type);
             return true;
+        } else if ("exit".equals(entity)) {
+            FutureSpawnUtility.of(EntityType.EXIT, gridX, gridY).futureEntitySubType(type);
+            return true;
         }
 
         return false;
