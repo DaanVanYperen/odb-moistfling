@@ -320,5 +320,29 @@
       "width": 5,
       "height": 5,
     },
+    {
+      "id": "background_1",
+      "comment": "Background 1.",
+      "x": 768,
+      "y": 512,
+      "width": 256,
+      "height": 256,
+    },
+    {
+      "id": "background_2",
+      "comment": "Background 2.",
+      "x": 768,
+      "y": 256,
+      "width": 256,
+      "height": 256,
+    },
+    {
+      "id": "background_3",
+      "comment": "Background 3.",
+      "x": 768,
+      "y": 0,
+      "width": 256,
+      "height": 256,
+    },
   ]
 }
