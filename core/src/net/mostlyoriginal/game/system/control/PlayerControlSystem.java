@@ -21,20 +21,22 @@ import net.mostlyoriginal.game.system.box2d.BoxPhysicsSystem;
 @All(Player.class)
 public class PlayerControlSystem extends FluidIteratingSystem {
 
-    private static final float PLAYER_WALKING_SPEED = GameRules.DEBUG_ENABLED ? 150f : 60f;
-    private static final float PLAYER_SWIMMING_SPEED = GameRules.DEBUG_ENABLED ? 150f : 40f;
-    private static final float PLAYER_SUBMERGED_SPEED = GameRules.DEBUG_ENABLED ? 150f : 80f;
-
     @Override
     protected void process(E e) {
+        handleMovement(e);
     }
+
+    Vector2 vel = new Vector2();
 
     private void handleMovement(E e) {
 
-        int dx = Gdx.input.isKeyPressed(Input.Keys.A) || Gdx.input.isKeyPressed(Input.Keys.LEFT) ? -1 :
-                Gdx.input.isKeyPressed(Input.Keys.D) || Gdx.input.isKeyPressed(Input.Keys.RIGHT) ? 1 : 0;
-        int dy = Gdx.input.isKeyPressed(Input.Keys.W) || Gdx.input.isKeyPressed(Input.Keys.UP) ? 1 :
-                Gdx.input.isKeyPressed(Input.Keys.S) || Gdx.input.isKeyPressed(Input.Keys.DOWN) ? -1 : 0;
+        Body body = e.boxedBody();
+
+//        vel.set(body.getLinearVelocity());
+//        float targetAngle = vel.angleRad() - 90f;
+//        body.setTransform(body.getWorldCenter(), targetAngle);
+//
+        //body.applyLinearImpulse(vel, worldOrigin, true);
 
 //        if (movementVector.x != 0 || movementVector.y != 0) {
 //            Body body = e.boxedBody();

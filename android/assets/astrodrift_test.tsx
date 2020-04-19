@@ -38,6 +38,11 @@
    <property name="invisible" type="bool" value="true"/>
   </properties>
  </tile>
+ <tile id="88">
+  <properties>
+   <property name="invisible" type="bool" value="true"/>
+  </properties>
+ </tile>
  <tile id="89">
   <properties>
    <property name="anim" value="debris_medium_1"/>
@@ -70,6 +75,26 @@
   <properties>
    <property name="anim" value="debris_small_6"/>
    <property name="entity" value="debris"/>
+   <property name="invisible" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="108">
+  <properties>
+   <property name="invisible" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="109">
+  <properties>
+   <property name="invisible" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="110">
+  <properties>
+   <property name="invisible" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="111">
+  <properties>
    <property name="invisible" type="bool" value="true"/>
   </properties>
  </tile>

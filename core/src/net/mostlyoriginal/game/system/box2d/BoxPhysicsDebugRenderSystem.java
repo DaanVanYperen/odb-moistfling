@@ -13,8 +13,8 @@ import net.mostlyoriginal.api.system.camera.CameraSystem;
 public class BoxPhysicsDebugRenderSystem extends BaseSystem {
 
     private Box2DDebugRenderer debugRenderer;
-    private BoxPhysicsSystem boxPhysicsSystem;
-    private OrthographicCamera camera;
+    public BoxPhysicsSystem boxPhysicsSystem;
+    public OrthographicCamera camera;
     private CameraSystem cameraSystem;
     private boolean enabled=true;
 
@@ -37,6 +37,7 @@ public class BoxPhysicsDebugRenderSystem extends BaseSystem {
         if (Gdx.input.isKeyJustPressed(Input.Keys.F8)) enabled = !enabled;
         if (enabled) {
             camera.position.x = cameraSystem.camera.position.x / boxPhysicsSystem.PPM;
+            camera.position.y = cameraSystem.camera.position.y / boxPhysicsSystem.PPM;
             camera.update();
             debugRenderer.render(boxPhysicsSystem.box2d, camera.combined);
 

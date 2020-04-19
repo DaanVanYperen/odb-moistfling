@@ -37,6 +37,8 @@ public class LatchingSystem extends FluidSystem {
             box2d.destroyJoint(grappleJoint);
             grappleJoint=null;
         }
+
+        player.tethered(grappleJoint != null);
     }
 
     Vector3 v2 = new Vector3();
@@ -49,7 +51,7 @@ public class LatchingSystem extends FluidSystem {
                     .set(e.getPos().xy)
                     .add(e.getBounds().cx(),e.getBounds().cy(),0)
                     .sub(player.getPos().xy)
-                    .sub(player.getBounds().cx(),player.getBounds().cy(),0).len() * 0.8f;
+                    .sub(player.getBounds().cx(),player.getBounds().cy(),0).len() * 0.25F;
 
 
             if ( pixelDistance < 50 )
@@ -57,10 +59,12 @@ public class LatchingSystem extends FluidSystem {
 
             World box2d = boxPhysicsSystem.box2d;
             DistanceJointDef grappleJointDef = new DistanceJointDef();
+            grappleJointDef.localAnchorB.x = -18 / PPM;
+            grappleJointDef.localAnchorB.y = 20 / PPM;
             grappleJointDef.bodyA = e.getBoxed().body;
             grappleJointDef.bodyB = player.getBoxed().body;
             grappleJointDef.length = pixelDistance / PPM;
-            grappleJointDef.frequencyHz = 0.5f;
+            grappleJointDef.frequencyHz = 0.15f;
             grappleJointDef.dampingRatio = 0.3f;
 
             grappleJoint = box2d.createJoint(grappleJointDef);

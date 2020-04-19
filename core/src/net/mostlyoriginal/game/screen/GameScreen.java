@@ -11,6 +11,7 @@ import net.mostlyoriginal.api.SingletonPlugin;
 import net.mostlyoriginal.api.event.common.EventSystem;
 import net.mostlyoriginal.api.manager.FontManager;
 import net.mostlyoriginal.api.system.camera.CameraSystem;
+import net.mostlyoriginal.api.system.camera.EntityCameraSystem;
 import net.mostlyoriginal.api.system.graphics.RenderBatchingSystem;
 import net.mostlyoriginal.game.GameRules;
 import net.mostlyoriginal.game.GdxArtemisGame;
@@ -61,12 +62,15 @@ public class GameScreen extends TransitionableWorldScreen {
                         new MyClearScreenSystem(Color.valueOf(BACKGROUND_COLOR_HEX)), // probably fine.
                         new GameScreenAssetSystem(),
                         new MapEntitySpawnerSystem(), // Converts Tiled maps to FutureEntities to be spawned.
+
                         new FutureEntitySystem(new MyEntityAssemblyStrategy()), // Responsible for spawning entities.
                         new ParticleEffectSystem(new MyParticleEffectStrategy()),
                         new PlayerControlSystem(), // @todo phase 2: separate movement from key binding to control.
                         new BoxPhysicsSystem(),
                         new BoxPhysicsMouseSystem(),
                         new LatchingSystem(),
+                        new CameraFollowSystem(),
+                        new PlayerAnimationSystem(),
                         renderBatchingSystem = new RenderBatchingSystem(),
                         new MyAnimRenderSystem(renderBatchingSystem),
                         new MyLabelRenderSystem(renderBatchingSystem),

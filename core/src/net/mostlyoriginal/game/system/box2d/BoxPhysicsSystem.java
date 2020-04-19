@@ -226,7 +226,7 @@ public class BoxPhysicsSystem extends FluidSystem {
         bodyDef.position.x = (e.getPos().xy.x - e.boundsCx()) / PPM;
         bodyDef.angle = radianAngle;
         bodyDef.position.y = (e.getPos().xy.y - e.boundsCy()) / PPM;
-        bodyDef.angularVelocity = 0.4f;
+        //bodyDef.angularVelocity = 0.4f;
 
         Body body = box2d.createBody(bodyDef);
 
@@ -250,6 +250,35 @@ public class BoxPhysicsSystem extends FluidSystem {
         return body;
     }
 
+    public Body addAsCircle(E e, float cy, float density, short categoryBits, short maskBits, float radianAngle, float radius) {
+        final BodyDef bodyDef = new BodyDef();
+        bodyDef.type = BodyDef.BodyType.DynamicBody;
+        bodyDef.position.x = (e.getPos().xy.x - e.boundsCx()) / PPM;
+        bodyDef.angle = radianAngle;
+        bodyDef.position.y = (e.getPos().xy.y - e.boundsCy()) / PPM;
+        //bodyDef.angularVelocity = 0.4f;
+
+        Body body = box2d.createBody(bodyDef);
+
+        CircleShape shape = new CircleShape();
+        shape.setRadius(radius / PPM);
+
+        final FixtureDef fixtureDef = new FixtureDef();
+        fixtureDef.shape = shape;
+        fixtureDef.density = density;
+        fixtureDef.filter.categoryBits = categoryBits;
+        fixtureDef.filter.maskBits = maskBits;
+        fixtureDef.friction = 0.01F;
+
+        body.createFixture(fixtureDef);
+
+        e.boxedBody(body);
+        body.setUserData(e);
+
+        shape.dispose();
+
+        return body;
+    }
     protected void addGroundBody() {
         final BodyDef bodyDef = new BodyDef();
         bodyDef.type = BodyDef.BodyType.StaticBody;
