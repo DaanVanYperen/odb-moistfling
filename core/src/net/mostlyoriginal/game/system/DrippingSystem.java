@@ -5,13 +5,7 @@ import com.artemis.FluidIteratingSystem;
 import com.artemis.annotations.All;
 import com.badlogic.gdx.math.MathUtils;
 import net.mostlyoriginal.api.component.basic.Pos;
-import net.mostlyoriginal.api.operation.JamOperationFactory;
-import net.mostlyoriginal.api.operation.OperationFactory;
-import net.mostlyoriginal.game.GameRules;
 import net.mostlyoriginal.game.component.Dripping;
-import net.mostlyoriginal.game.component.StaminaIndicator;
-
-import static net.mostlyoriginal.api.utils.Duration.seconds;
 
 /**
  * @author Daan van Yperen

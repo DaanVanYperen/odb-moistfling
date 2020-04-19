@@ -5,15 +5,11 @@ import com.artemis.E;
 import com.artemis.ESubscription;
 import com.artemis.annotations.All;
 import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.math.Vector3;
-import net.mostlyoriginal.api.component.basic.Pos;
 import net.mostlyoriginal.api.component.graphics.Tint;
 import net.mostlyoriginal.api.component.ui.Label;
 import net.mostlyoriginal.api.operation.OperationFactory;
 import net.mostlyoriginal.api.utils.Duration;
 import net.mostlyoriginal.game.GameRules;
-import net.mostlyoriginal.game.component.Item;
-import net.mostlyoriginal.game.system.StaminaSystem;
 
 import static net.mostlyoriginal.api.operation.JamOperationFactory.tintBetween;
 
@@ -26,12 +22,9 @@ public class ScoreSystem extends BaseSystem {
     private E hintLabel;
     private E rankLabel;
     private int lastScore = -1;
-    @All(Item.class)
-    ESubscription items;
+
     private String lastLabel="";
     private E rankLabelShadow;
-
-    private StaminaSystem staminaSystem;
 
     @Override
     protected void initialize() {
@@ -53,19 +46,6 @@ public class ScoreSystem extends BaseSystem {
         int wifes = 0;
         int score=0;
         int starfishies=0            ;
-
-        for (E item : items) {
-            if ( item.isLocked() ) {
-                switch ( item.itemType() ) {
-                    case "item_pallet": raftSize++; break;
-                    case "item_dog_placed": dogs++; break;
-                    case "item_wife_placed": wifes++; break;
-                    case "item_flamingo_placed": flamingos++; break;
-                    case "item_starfish_placed": starfishies++; break;
-                }
-                score += item.getItemMetadata().data.score;
-            }
-        }
 
         String sizeAdjective = sizeLabel[MathUtils.clamp(raftSize, 0, sizeLabel.length - 1)];
         String suffix="";

@@ -1,4 +1,4 @@
-package net.mostlyoriginal.game.system;
+package net.mostlyoriginal.game.system.box2d;
 
 import com.artemis.BaseSystem;
 import com.badlogic.gdx.Gdx;

@@ -1,16 +1,9 @@
-package net.mostlyoriginal.game.system.map;
+package net.mostlyoriginal.game.system.render;
 
 import com.artemis.E;
-import com.artemis.ESubscription;
 import com.artemis.FluidIteratingSystem;
 import com.artemis.annotations.All;
-import net.mostlyoriginal.api.component.basic.Bounds;
-import net.mostlyoriginal.api.component.basic.Pos;
-import net.mostlyoriginal.api.component.physics.Physics;
-import net.mostlyoriginal.api.utils.MapMask;
 import net.mostlyoriginal.game.component.Blinking;
-import net.mostlyoriginal.game.component.flags.Walkable;
-import net.mostlyoriginal.game.component.map.TiledMapSingleton;
 
 /**
  * Check if player is over solid surface.s

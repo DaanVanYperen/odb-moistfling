@@ -5,7 +5,6 @@ import com.artemis.FluidIteratingSystem;
 import com.artemis.annotations.All;
 import com.badlogic.gdx.maps.MapProperties;
 import net.mostlyoriginal.game.EntityType;
-import net.mostlyoriginal.game.component.inventory.Inventory;
 import net.mostlyoriginal.game.component.map.MapEntityMarker;
 import net.mostlyoriginal.game.system.future.FutureSpawnUtility;
 

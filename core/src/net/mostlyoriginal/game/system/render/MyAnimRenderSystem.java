@@ -6,7 +6,6 @@ package net.mostlyoriginal.game.system.render;
 import com.artemis.Aspect;
 import com.artemis.annotations.Wire;
 import com.badlogic.gdx.graphics.g2d.*;
-import com.badlogic.gdx.math.MathUtils;
 import net.mostlyoriginal.api.component.basic.Angle;
 import net.mostlyoriginal.api.component.basic.Origin;
 import net.mostlyoriginal.api.component.basic.Pos;
@@ -22,7 +21,6 @@ import net.mostlyoriginal.api.system.camera.CameraSystem;
 import net.mostlyoriginal.api.system.delegate.DeferredEntityProcessingSystem;
 import net.mostlyoriginal.api.system.delegate.EntityProcessPrincipal;
 import net.mostlyoriginal.game.GameRules;
-import net.mostlyoriginal.game.component.Item;
 
 /**
  * Render and progress animations.
@@ -39,7 +37,6 @@ public class MyAnimRenderSystem extends DeferredEntityProcessingSystem {
     protected M<Angle> mAngle;
     protected M<Scale> mScale;
     protected M<Origin> mOrigin;
-    protected M<Item> mItem;
     private FontManager fontManager;
     private BitmapFont font;
 
@@ -92,27 +89,10 @@ public class MyAnimRenderSystem extends DeferredEntityProcessingSystem {
         if (anim.id2 != null) drawAnimation(anim, angle, origin, pos, anim.id2, scale);
 
         anim.age += world.delta * anim.speed;
-        if (mItem.has(e)) {
-            renderStackCount(e, pos);
-        }
     }
 
     Tint FONT_TINT = new Tint(1f,1f,1f,0.8f);
     Tint FONT_SHADOW_TINT = new Tint(0f,0f,0f,0.6f);
-
-    private void renderStackCount(int e, Pos pos) {
-        int count = mItem.get(e).count;
-        if (count > 1) {
-            font.getData().setScale(1f);
-            final String countText = "x"+count ;
-            glyphLayout.setText(font, countText);
-
-            font.setColor(FONT_SHADOW_TINT.color);
-            font.draw(batch, countText, pos.xy.x + GameRules.CELL_SIZE - glyphLayout.width -3, pos.xy.y + 10 -1);
-            font.setColor(FONT_TINT.color);
-            font.draw(batch, countText, pos.xy.x + GameRules.CELL_SIZE - glyphLayout.width -4, pos.xy.y + 10);
-        }
-    }
 
     /**
      * Pixel perfect aligning.

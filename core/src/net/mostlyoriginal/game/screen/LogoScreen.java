@@ -4,14 +4,11 @@ import com.artemis.SuperMapper;
 import com.artemis.World;
 import com.artemis.WorldConfigurationBuilder;
 import com.artemis.managers.TagManager;
-import com.badlogic.gdx.graphics.Color;
 import net.mostlyoriginal.api.SingletonPlugin;
 import net.mostlyoriginal.api.manager.FontManager;
 import net.mostlyoriginal.api.system.camera.CameraSystem;
 import net.mostlyoriginal.api.system.graphics.RenderBatchingSystem;
-import net.mostlyoriginal.api.system.render.ClearScreenSystem;
 import net.mostlyoriginal.game.GdxArtemisGame;
-import net.mostlyoriginal.game.system.ShadedWaterRenderSystem;
 import net.mostlyoriginal.game.system.render.MyAnimRenderSystem;
 import net.mostlyoriginal.game.system.render.MyLabelRenderSystem;
 import net.mostlyoriginal.game.system.logic.TransitionSystem;
@@ -43,7 +40,6 @@ public class LogoScreen extends TransitionableWorldScreen {
                 ).with(WorldConfigurationBuilder.Priority.LOW,
                         // processing
                         // animation
-                        new ShadedWaterRenderSystem(),
                         renderBatchingSystem = new RenderBatchingSystem(),
                         new MyAnimRenderSystem(renderBatchingSystem),
                         new MyLabelRenderSystem(renderBatchingSystem),

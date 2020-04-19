@@ -1,4 +1,4 @@
-package net.mostlyoriginal.game.component;
+package net.mostlyoriginal.game.component.box2d;
 
 import com.artemis.Component;
 import com.artemis.annotations.DelayedComponentRemoval;

@@ -1,16 +1,15 @@
-package net.mostlyoriginal.game.system;
+package net.mostlyoriginal.game.system.box2d;
 
 import com.artemis.Aspect;
 import com.artemis.E;
 import com.artemis.Entity;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
-import com.badlogic.gdx.physics.box2d.joints.DistanceJointDef;
 import com.badlogic.gdx.physics.box2d.joints.RevoluteJointDef;
 import com.badlogic.gdx.physics.box2d.joints.WeldJointDef;
 import net.mostlyoriginal.api.component.basic.Pos;
 import net.mostlyoriginal.game.GameRules;
-import net.mostlyoriginal.game.component.Boxed;
+import net.mostlyoriginal.game.component.box2d.Boxed;
 import net.mostlyoriginal.game.system.common.FluidSystem;
 
 import static net.mostlyoriginal.game.system.MyEntityAssemblyStrategy.*;
