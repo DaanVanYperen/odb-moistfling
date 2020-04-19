@@ -23,7 +23,7 @@ public class BoxPhysicsDebugRenderSystem extends BaseSystem {
         super.initialize();
         debugRenderer = new Box2DDebugRenderer();
         float zoomFactorInverter = 1f / 2f;
-        setupViewport((Gdx.graphics.getWidth() * zoomFactorInverter) / boxPhysicsSystem.SCALING, (Gdx.graphics.getHeight() * zoomFactorInverter) / boxPhysicsSystem.SCALING);
+        setupViewport((Gdx.graphics.getWidth() * zoomFactorInverter) / boxPhysicsSystem.PPM, (Gdx.graphics.getHeight() * zoomFactorInverter) / boxPhysicsSystem.PPM);
     }
 
     private void setupViewport(float width, float height) {
@@ -36,7 +36,7 @@ public class BoxPhysicsDebugRenderSystem extends BaseSystem {
     protected void processSystem() {
         if (Gdx.input.isKeyJustPressed(Input.Keys.F8)) enabled = !enabled;
         if (enabled) {
-            camera.position.x = cameraSystem.camera.position.x / boxPhysicsSystem.SCALING;
+            camera.position.x = cameraSystem.camera.position.x / boxPhysicsSystem.PPM;
             camera.update();
             debugRenderer.render(boxPhysicsSystem.box2d, camera.combined);
 

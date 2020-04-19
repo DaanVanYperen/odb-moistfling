@@ -28,30 +28,12 @@ public class MapEntitySpawnerSystem extends FluidIteratingSystem {
 
         String entity = (String) properties.get("entity");
         String type = (String) properties.get("type");
-        if ("item".equals(entity)) {
-            int stackSize = properties.containsKey("count") ? (int) properties.get("count") : 1;
-            if (type != null && !"".equals(type)) {
-                FutureSpawnUtility.item(type, stackSize, gridX, gridY, properties.containsKey("submerged") ? (boolean)properties.get("submerged"): false);
-            }
-            return true;
-        } else if ("slot".equals(entity)) {
-            FutureSpawnUtility.slot(gridX, gridY, Inventory.Mode.valueOf(((String) properties.get("mode")).toUpperCase()), properties.get("accepts"), (int) properties.get("x"), (int) properties.get("y"), "item_pallet");
-            return false;
-        } else if ("player".equals(entity)) {
+        if ("player".equals(entity)) {
             FutureSpawnUtility.of(EntityType.PLAYER, gridX, gridY);
             return true;
-        } else if ("machine".equals(entity)) {
-            FutureSpawnUtility.of(EntityType.ALTAR, gridX, gridY);
+        } else if ("debris".equals(entity)) {
+            FutureSpawnUtility.of(EntityType.DEBRIS, gridX, gridY);
             return true;
-        } else if ("shopperspawner".equals(entity)) {
-            FutureSpawnUtility.of(EntityType.SHOPPER_SPAWNER, gridX, gridY);
-            return true;
-        } else if ("window".equals(entity)) {
-            FutureSpawnUtility.of(EntityType.WINDOW, gridX, gridY);
-            return false;
-        } else if ("door".equals(entity)) {
-            FutureSpawnUtility.of(EntityType.DOOR, gridX, gridY);
-            return false;
         }
 
         return false;

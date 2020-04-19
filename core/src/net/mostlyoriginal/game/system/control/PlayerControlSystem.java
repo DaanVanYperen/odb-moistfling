@@ -6,13 +6,12 @@ import com.artemis.annotations.All;
 import com.artemis.annotations.Exclude;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Body;
 import net.mostlyoriginal.game.GameRules;
 import net.mostlyoriginal.game.component.Player;
 import net.mostlyoriginal.game.component.dialog.InDialog;
-import net.mostlyoriginal.game.system.MyParticleEffectStrategy;
-import net.mostlyoriginal.game.system.StaminaSystem;
+import net.mostlyoriginal.game.system.BoxPhysicsSystem;
 
 /**
  * Basic keyboard control system for player.s
@@ -29,6 +28,8 @@ public class PlayerControlSystem extends FluidIteratingSystem {
 
     private boolean flipperBonus;
     private boolean snorkelBonus;
+    private Vector2 worldOrigin = new Vector2();
+    private Vector2 vel = new Vector2();
 
     public boolean isFlipperBonus() {
         return flipperBonus;
@@ -55,41 +56,6 @@ public class PlayerControlSystem extends FluidIteratingSystem {
         int dy = Gdx.input.isKeyPressed(Input.Keys.W) || Gdx.input.isKeyPressed(Input.Keys.UP) ? 1 :
                 Gdx.input.isKeyPressed(Input.Keys.S) || Gdx.input.isKeyPressed(Input.Keys.DOWN) ? -1 : 0;
 
-        if ( e.hasDiving() ) {
-            e.getDiving().diving -= world.delta;
-            if ( e.getDiving().diving <0 ) {
-                e.removeDiving();
-                //E.E().playSound("water1");
-            }
-        }
-
-//        if ( dx==0&&dy==0) {
-            if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE) || Gdx.input.isKeyJustPressed(Input.Keys.SHIFT_RIGHT) || Gdx.input.isKeyJustPressed(Input.Keys.SHIFT_LEFT)) {
-                if ( e.isSwimming() && !e.hasHolding() ) {
-                    e.diving();
-                    E.E().particleEffect(MyParticleEffectStrategy.EFFECT_SPLASH).pos(e.posX() + e.boundsCx(), e.posY() + e.boundsCy());
-                   //E.E().playSound("water2");
-                }
-                e.actionInteract();
-            }
-//        } else {
-//            if ( divingCooldown <= 0 && Gdx.input.isKeyPressed(Input.Keys.SPACE) )
-//                divingCooldown=0.2f;
-//        }
-//
-//        if ( divingCooldown > 0 ) {
-//            divingCooldown-=world.delta;
-//            e.submerged();
-//            e.submergedSubmergedAnim("player_dive");
-//        } else {
-//            e.removeSubmerged();
-//        }
-
-        if (e.hasBlinking() ) {
-            dx=dy=0;
-
-        }
-
         e.playerDx(dx);
         e.playerDy(dy);
 
@@ -104,20 +70,15 @@ public class PlayerControlSystem extends FluidIteratingSystem {
 
         Vector2 movementVector = vector2.set(dx, dy).nor();
 
-        e.physics();
-
-        float speed = e.hasSwimming() ? (e.hasSubmerged() ? PLAYER_SUBMERGED_SPEED : PLAYER_SWIMMING_SPEED) : PLAYER_WALKING_SPEED;
-
-        // affect movement speed by stamina.
-        if ( flipperBonus ) speed *= 1.25f;
-
-        if (movementVector.x != 0) {
-            e.getPhysics().vx = movementVector.x * speed * 1.1f;
+        if (movementVector.x != 0 || movementVector.y != 0) {
+            Body body = e.boxedBody();
+            final Vector2 vel = body.getLinearVelocity();
+            worldOrigin.x = (e.posX() + e.boundsCx()) / BoxPhysicsSystem.PPM;
+            worldOrigin.y = (e.posY() + e.boundsCy()) / BoxPhysicsSystem.PPM;
+            this.vel.x = (movementVector.x * 0.1f) * body.getMass();
+            this.vel.y = (movementVector.y * 0.1f) * body.getMass();
+            body.applyLinearImpulse(this.vel, worldOrigin, true);
         }
-        if (movementVector.y != 0) {
-            e.getPhysics().vy = movementVector.y * speed;
-        }
-        e.getPhysics().friction = 50;
     }
 
     public void enableFlipperBonus() {

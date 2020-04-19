@@ -2,6 +2,7 @@ package net.mostlyoriginal.game.system;
 
 import com.artemis.E;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.physics.box2d.Body;
 import net.mostlyoriginal.api.component.graphics.Tint;
 import net.mostlyoriginal.game.CollisionLayers;
 import net.mostlyoriginal.game.GameRules;
@@ -36,6 +37,7 @@ public class MyEntityAssemblyStrategy implements FutureEntitySystem.EntityAssemb
     public static final short CAT_METEORITE = 2;
     public static final short CAT_GRAPPLE = 4;
     public static final short CAT_DEBRIS = 8;
+    public static final short CAT_CHAIN = 16;
 
 
     ItemTypeManager itemManager;
@@ -77,58 +79,12 @@ public class MyEntityAssemblyStrategy implements FutureEntitySystem.EntityAssemb
     private E decorateInstance(E source) {
         final FutureEntity futureEntity = source.getFutureEntity();
         switch (futureEntity.type) {
-            case ITEM: {
-                final Properties p = source.getProperties();
-                return decorateItem(source, futureEntity.subType, futureEntity.count, p.getBoolean("submerged"));
-            }
+            case DEBRIS:
+                return decorateItem(source, futureEntity.subType);
             case PLAYER:
                 return decoratePlayer(source);
-            case WINDOW:
-                return decorateWindow(source);
-            case DOOR:
-                return decorateDoor(source);
-            case SHOPPER_SPAWNER:
-                return decorateShopperSpawner(source);
-            case SLOT: {
-                final Properties p = source.getProperties();
-                return decorateSlot(source, p.getEnum("mode", Inventory.Mode.class), p.getInt("x"), p.getInt("y"), p.getString("transform"), p.getString("accepts").split(","));
-            }
-            case ALTAR:
-                return decorateAltar(source);
-            case SHOPPER:
-                return decorateShopper(source);
         }
         throw new RuntimeException("Unknown entity type " + source.futureEntityType());
-    }
-
-    private E decorateShopper(E e) {
-        final Properties p = e.getProperties();
-
-        String desiredItem = p.getString(FutureSpawnUtility.KEY_DESIRED_ITEM);
-        if ("random".equals(desiredItem)) {
-            desiredItem = itemManager.randomReward();
-        }
-
-        e
-                .pos(500, 300)
-                .desireDesiredItem(desiredItem)
-                .shopper()
-                .tint(Tint.TRANSPARENT)
-                .lifter()
-                .castsShadow()
-                .castsShadowYOffset(-4)
-                .script(Scripts.appearOverTime())
-                .renderLayer(GameRules.LAYER_SHOPPER);
-
-        String rewardItem = p.getString(FutureSpawnUtility.KEY_REWARD_ITEM);
-        if (rewardItem != null) {
-            if ("random".equals(rewardItem)) {
-                rewardItem = itemManager.randomReward();
-            }
-            E item = decorateItem(E.E(), rewardItem, p.getInt(FutureSpawnUtility.KEY_REWARD_ITEM_COUNT), p.getBoolean("submerged"));
-            e.actionPickupTarget(item.id());
-        }
-        return e;
     }
 
     private E decorateAltar(E e) {
@@ -183,73 +139,32 @@ public class MyEntityAssemblyStrategy implements FutureEntitySystem.EntityAssemb
 
     private E decoratePlayer(E e) {
         E decoratePlayer = e
-                .blinking()
                 .pos(20*16-4, 13*16+4)
-                .anim("player_kid")
-                .itemType("item_player")
-                .gridPosDeriveFromPos(true)
-                .bounds(4, 0, 16 - 4, 16)
+                .anim("player_idle")
+                .bounds(4, 4, 48 - 4, 48-4)
                 .player()
-                .collider(CollisionLayers.PLAYER, CollisionLayers.HOPPER | CollisionLayers.DOOR) // player will collide with items and slots.
-                .castsShadow()
-                .physics()
                 .tag("player")
-                .lifter()
                 .castsShadowYOffset(-4)
                 .renderLayer(GameRules.LAYER_PLAYER);
 
-        E.E().pos(240, 160).anim("indicator_power1").renderLayer(GameRules.LAYER_DESIRE_INDICATOR).staminaIndicator();
+//        E.E().pos(240, 160).anim("indicator_power1").renderLayer(GameRules.LAYER_DESIRE_INDICATOR).staminaIndicator();
 
-        FutureSpawnUtility.item("item_pallet",1,20,13,false).locked();
-        FutureSpawnUtility.item("item_radio",1,20,13,false).tag("radio");
+//        FutureSpawnUtility.item("item_pallet",1,20,13,false).locked();
+//        FutureSpawnUtility.item("item_radio",1,20,13,false).tag("radio");
 
-        boxPhysicsSystem.addAsBox(decoratePlayer, decoratePlayer.getBounds().cx(), decoratePlayer.getBounds().cy(), 1f, CAT_PLAYER, (short) (CAT_DEBRIS), 0);
+        Body body = boxPhysicsSystem.addAsBox(decoratePlayer, decoratePlayer.getBounds().cx(), decoratePlayer.getBounds().cy(), 20f, CAT_PLAYER, (short) (CAT_DEBRIS), 0);
+        boxPhysicsSystem.spawnChain(body, e);
 
         return decoratePlayer;
     }
 
-    private E decorateItem(E e, String type, int count, boolean submerged) {
-        if (type == null || "".equals(type)) return null;
+    private E decorateItem(E e, String type) {
         E item = e
-                .itemType(type)
-                .itemCount(count)
-                .bounds(0, 0, 16, 16)
-                .castsShadow()
+                .bounds(0, 0, 48, 48)
+                .anim("debris_small_1")
                 .renderLayer(GameRules.LAYER_ITEM + (GameRules.SCREEN_HEIGHT - (int) e.posY()));
 
-
-        if (submerged) {
-            item.submerged();
-        }
-        if (!e.hasLocked())
-            e.canPickup(true);
-        if ("item_pallet".equals(type)) {
-            e.gridPosYPixelOffset(-8);
-        }
-
-        ItemData itemData = itemManager.get(type);
-        if (itemData != null && itemData.revealEvery > 0) {
-            e.submergedRevealEvery(itemData.revealEvery);
-            e.submergedAge(MathUtils.random(itemData.revealEvery * 0.8f));
-        }
-
-        e.pos(e.gridPosX() * 16, e.gridPosY() * 16);
-        boxPhysicsSystem.addAsBox(item, item.getBounds().cx(), item.getBounds().cy(), 1f, CAT_DEBRIS, (short) (0), 0);
-        if ("item_net_placed".equals(type)) {
-            e.passiveSpawnerAnimSpawned("item_net");
-            e.passiveSpawnerAnimNormal("item_net");
-            e.passiveSpawnerItems(new String[]{"item_fish", "item_driftwood", "item_driftwood", "item_fish", "item_driftwood", "item_fish", "item_driftwood", "item_coconut_seed", "item_coconut", "item_citrus_seed", "item_citrus"});
-        }
-        if ("item_citrus_plant_sapling".equals(type)) {
-            e.passiveSpawnerAnimSpawned("item_citrus_plant_grown");
-            e.passiveSpawnerAnimNormal("item_citrus_plant_sapling");
-            e.passiveSpawnerItems(new String[]{"item_citrus"});
-        }
-        if ("item_palm_sapling".equals(type)) {
-            e.passiveSpawnerAnimSpawned("item_palm_grown");
-            e.passiveSpawnerAnimNormal("item_palm_sapling");
-            e.passiveSpawnerItems(new String[]{"item_coconut"});
-        }
+        boxPhysicsSystem.addAsBox(item, item.getBounds().cx(), item.getBounds().cy(), 1000f, CAT_DEBRIS, (short) (CAT_PLAYER|CAT_GRAPPLE|CAT_CHAIN), 15);
         return item;
     }
 }

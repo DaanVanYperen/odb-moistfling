@@ -110,18 +110,16 @@ public class GameScreen extends TransitionableWorldScreen {
 //                        new MyPhysicsSystem(), // @todo phase2: replace. box2d?
                         new BoxPhysicsSystem(),
 //                        new BruteforceCollisionSystem(new MyCollisionHandler()),
-                        new GridPosSystem(), // @todo phase2: Separate the Snap to grid behaviour.
-                        //new GridPosFloatSystem(), // @todo phase2: Move floating to separate mechanic. (Mount it on something?)
-                        new AttachmentSystem(),
+                        //new AttachmentSystem(),
 
                         //new HopperTalleySystem(), // talley hoppered items on the machine.
                         //new PlayerOnHopperTalleySystem(), // talley hoppered players on the machine.
                         //new MachineRecipeSystem(),
                         //new RecipeIngredientHintSystem(),
 
-                        new MapSwimmingSystem(),
-                        new PlayerAnimationSystem(), // @todo phase2: is there a more generic what to do this?
-                        new BlinkingSystem(),
+                        //new MapSwimmingSystem(),
+                        //new PlayerAnimationSystem(), // @todo phase2: is there a more generic what to do this?
+                        //new BlinkingSystem(),
                         //new PaymentAnimationSystem(), // @todo phase2: do we need a whole system for this?
 
                         //new NightSystem(),

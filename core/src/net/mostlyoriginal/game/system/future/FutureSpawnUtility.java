@@ -50,6 +50,6 @@ public class FutureSpawnUtility {
     public static E of(int type, int gridX, int gridY) {
         return E()
                 .futureEntity(type)
-                .gridPos(gridX, gridY);
+                .pos(gridX*48, gridY*48);
     }
 }

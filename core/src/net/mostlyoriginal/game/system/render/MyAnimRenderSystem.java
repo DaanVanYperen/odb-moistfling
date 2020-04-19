@@ -134,7 +134,7 @@ public class MyAnimRenderSystem extends DeferredEntityProcessingSystem {
 
         float ox = frame.getRegionWidth() * scale * origin.xy.x;
         float oy = frame.getRegionHeight() * scale * origin.xy.y;
-        float y = roundToPixels(position.xy.y+ MathUtils.cosDeg(position.xy.y)*10+ MathUtils.sinDeg(position.xy.x*2f)*3) ;
+        float y = roundToPixels(position.xy.y);
         float x = roundToPixels(position.xy.x);
 
         if (animation.flippedX && angle.rotation == 0) {

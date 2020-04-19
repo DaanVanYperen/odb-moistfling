@@ -16,4 +16,5 @@ public abstract class EntityType {
     public static final int ALTAR_INPUT = 8;
     public static final int SHOPPER = 9;
     public static final int DIALOG = 10;
+    public static final int DEBRIS = 1;
 }
