@@ -26,6 +26,7 @@ public class MyParticleEffectStrategy implements ParticleEffectSystem.ParticleEf
     public static final String EFFECT_DROPLET = "droplet";
     public static final String EFFECT_SPLASH = "splash";
     public static final String EFFECT_LEAK = "leak";
+    public static final String EFFECT_SLOW_LEAK = "slow-leak";
 
     private Builder bakery = new Builder();
     private Color BLOOD_COLOR = Color.valueOf("4B1924");
@@ -41,7 +42,11 @@ public class MyParticleEffectStrategy implements ParticleEffectSystem.ParticleEf
         ParticleEffect effect = source.getParticleEffect();
         switch (effect.type) {
             case EFFECT_LEAK:
-                spawnLeak(source.angleRotation(),source.posX(), source.posY(), 2, 3, ParticleEffectSystem.COLOR_WHITE_TRANSPARENT);
+                spawnLeak(source.angleRotation(),source.posX(), source.posY(), 1, 3, ParticleEffectSystem.COLOR_WHITE_TRANSPARENT, 50);
+                source.deleteFromWorld();
+                break;
+            case EFFECT_SLOW_LEAK:
+                spawnLeak(source.angleRotation(),source.posX(), source.posY(), 1, 1, ParticleEffectSystem.COLOR_WHITE_TRANSPARENT, 25);
                 source.deleteFromWorld();
                 break;
             default:
@@ -67,12 +72,12 @@ public class MyParticleEffectStrategy implements ParticleEffectSystem.ParticleEf
     }
 
 
-    public void spawnLeak(float angleRotation, float x, float y, int minCount, int maxCount, Color color) {
+    public void spawnLeak(float angleRotation, float x, float y, int minCount, int maxCount, Color color, int baseSpeed) {
         bakery
                 .at((int) x, (int) y, (int) x, (int) y)
                 .anim("dot")
                 .angle(angleRotation+2f, angleRotation-2f)
-                .speed(50, 100)
+                .speed(baseSpeed,baseSpeed*2)
                 .color(color)
                 .fadeAfter(0.1f)
                 .rotateRandomly()

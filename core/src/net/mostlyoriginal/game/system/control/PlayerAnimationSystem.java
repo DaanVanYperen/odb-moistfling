@@ -45,5 +45,7 @@ public class PlayerAnimationSystem extends FluidSystem {
         if ( e.isTethered() ) {
             e.anim("player_tethered"+suffix);
         }
+
+        if ( percentage <= 0 ) e.anim("astronaut_corpse");
     }
 }

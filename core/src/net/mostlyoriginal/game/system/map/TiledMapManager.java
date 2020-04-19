@@ -81,6 +81,7 @@ public class TiledMapManager extends BaseSystem {
         tiledMap.height = firstLayer.getHeight();
         tiledMap.tileWidth = (int) firstLayer.getTileWidth();
         tiledMap.tileHeight = (int) firstLayer.getTileHeight();
+        GameRules.currentMap = filename;
         GameRules.nextMap = (String) tiledMap.properties.get("nextmap");
         createMapMarkers(tiledMap);
     }

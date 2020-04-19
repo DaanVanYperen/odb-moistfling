@@ -58,7 +58,7 @@ public class LatchingSystem extends FluidSystem implements BoxDestructionListene
 
     @Override
     protected void process(E e) {
-        if (e.hasBoxed() && player.hasBoxed()) {
+        if (e.hasBoxed() && player.hasBoxed() && !player.isDead()) {
 
             killTheLatch();
 

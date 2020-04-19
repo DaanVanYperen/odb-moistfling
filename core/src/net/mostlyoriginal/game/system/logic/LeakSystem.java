@@ -6,14 +6,17 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import net.mostlyoriginal.api.component.basic.Bounds;
 import net.mostlyoriginal.api.component.basic.Pos;
+import net.mostlyoriginal.game.GameRules;
 import net.mostlyoriginal.game.component.Leak;
 import net.mostlyoriginal.game.component.Oxygen;
 import net.mostlyoriginal.game.component.Player;
+import net.mostlyoriginal.game.screen.GameScreen;
 import net.mostlyoriginal.game.system.MyParticleEffectStrategy;
 import net.mostlyoriginal.game.system.box2d.BoxContactListener;
 import net.mostlyoriginal.game.system.box2d.BoxPhysicsSystem;
 import net.mostlyoriginal.game.system.common.FluidSystem;
 
+import static net.mostlyoriginal.game.GameRules.currentMap;
 import static net.mostlyoriginal.game.component.Leak.MAXLEAKS;
 
 /**
@@ -27,6 +30,8 @@ public class LeakSystem extends FluidSystem implements BoxContactListener {
     private float leakY[]= new float[MAXLEAKS];
     private float leakX[]= new float[MAXLEAKS];
     private float angles[] = new float[MAXLEAKS];
+    private TransitionSystem transitionSystem;
+
     {
         for (int i = 0; i < MAXLEAKS; i++) {
             angles[i]= MathUtils.random(0,360);
@@ -50,20 +55,27 @@ public class LeakSystem extends FluidSystem implements BoxContactListener {
 
         leak.age -= world.delta;
         leak.lastLeakAge += world.delta;
-        if ( leak.age <= 0) {
-            leak.age+= 1/15f;
+        if ( leak.age <= 0 && !e.isDead()) {
+            leak.age+= 1/30f;
+            leak.age+= Math.max(0,(100f-e.oxygenPercentage())*0.005f); // slow leak if oxygen is low.
             for (int i = 0; i < leak.leaks; i++) {
 
                 tmp.set(leakX[i],leakY[i]).sub(e.boundsCx(),e.boundsCy()).rotate(e.angleRotation()).add(e.boundsCx(), e.boundsCy());
 
-                E.E().particleEffect(MyParticleEffectStrategy.EFFECT_LEAK).pos(
+                E.E().particleEffect(
+                        e.oxygenPercentage() < 50 ?
+                                MyParticleEffectStrategy.EFFECT_SLOW_LEAK :
+                        MyParticleEffectStrategy.EFFECT_LEAK).pos(
                         e.posX() + tmp.x,
                         e.posY() + tmp.y).angleRotation(angles[i] + e.angleRotation());
             }
         }
 
-
-
+        if ( e.oxygenPercentage() <= 0 && !e.isDead() ) {
+            e.dead();
+            GameRules.nextMap = GameRules.currentMap;
+            transitionSystem.transition(GameScreen.class,10);
+        }
     }
 
     @Override

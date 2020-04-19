@@ -7,7 +7,7 @@ import com.badlogic.gdx.math.MathUtils;
  * @author Daan van Yperen
  */
 public class Leak extends Component {
-    public static final int MAXLEAKS = 8;
+    public static final int MAXLEAKS = 20;
     public float age=0;
     public float speed=1f;
     public int leaks = 0;

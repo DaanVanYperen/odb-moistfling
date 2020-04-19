@@ -43,7 +43,7 @@ public class PopSystem extends BaseSystem implements BoxContactListener {
             if ( b.isSharp() ) {
                 toBeDeleted = a.id();
                 E.E().playSound("water1");
-            } else if ( b.hasPlayer() ) {
+            } else if ( b.hasPlayer() && !b.hasDead() ) {
                 toBeDeleted = a.id(); // also delete, but oxygen!
                 E.E().playSound("burp");
                 b.oxygenIncrease();

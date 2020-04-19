@@ -42,4 +42,5 @@ public abstract class GameRules {
     public static boolean sfxOn=true;
     public static boolean musicOn=true;
     public static String nextMap;
+    public static String currentMap;
 }
