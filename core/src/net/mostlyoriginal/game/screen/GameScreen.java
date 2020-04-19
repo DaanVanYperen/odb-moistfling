@@ -16,6 +16,7 @@ import net.mostlyoriginal.game.GameRules;
 import net.mostlyoriginal.game.GdxArtemisGame;
 import net.mostlyoriginal.game.system.*;
 import net.mostlyoriginal.game.system.box2d.BoxPhysicsDebugRenderSystem;
+import net.mostlyoriginal.game.system.box2d.BoxPhysicsMouseSystem;
 import net.mostlyoriginal.game.system.box2d.BoxPhysicsSystem;
 import net.mostlyoriginal.game.system.control.*;
 import net.mostlyoriginal.game.system.future.FutureEntitySystem;
@@ -64,6 +65,7 @@ public class GameScreen extends TransitionableWorldScreen {
                         new ParticleEffectSystem(new MyParticleEffectStrategy()),
                         new PlayerControlSystem(), // @todo phase 2: separate movement from key binding to control.
                         new BoxPhysicsSystem(),
+                        new BoxPhysicsMouseSystem(),
                         renderBatchingSystem = new RenderBatchingSystem(),
                         new MyAnimRenderSystem(renderBatchingSystem),
                         new MyLabelRenderSystem(renderBatchingSystem),

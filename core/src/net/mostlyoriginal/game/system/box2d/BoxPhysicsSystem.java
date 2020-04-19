@@ -27,6 +27,10 @@ public class BoxPhysicsSystem extends FluidSystem {
     private Body weldTargetB = null;
     private Body weldTargetA = null;
 
+    public World getBox2d() {
+        return box2d;
+    }
+
     //private MouseThrowSystem mouseThrowSystem;
 
     public BoxPhysicsSystem() {

@@ -85,6 +85,7 @@ public class MyEntityAssemblyStrategy implements FutureEntitySystem.EntityAssemb
     private E decorateItem(E e, String type) {
         E item = e
                 .bounds(0, 0, 48, 48)
+                .tappable()
                 .anim("debris_small_1")
                 .renderLayer(GameRules.LAYER_ITEM + (GameRules.SCREEN_HEIGHT - (int) e.posY()));
 
