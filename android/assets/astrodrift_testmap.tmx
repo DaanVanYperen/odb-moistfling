@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.0.2" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="48" tileheight="48" nextobjectid="1">
+<map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="48" tileheight="48" infinite="0" nextlayerid="4" nextobjectid="1">
  <tileset firstgid="1" source="astrodrift_test.tsx"/>
- <layer name="Background 1" width="40" height="40">
+ <layer id="1" name="Background 1" width="40" height="40">
+  <properties>
+   <property name="layer" type="int" value="80"/>
+  </properties>
   <data encoding="csv">
 92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,
 92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,
@@ -45,7 +48,10 @@
 92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92
 </data>
  </layer>
- <layer name="Background 2" width="40" height="40">
+ <layer id="2" name="Background 2" width="40" height="40">
+  <properties>
+   <property name="layer" type="int" value="90"/>
+  </properties>
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -89,7 +95,10 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <layer name="Debris" width="40" height="40">
+ <layer id="3" name="Debris" width="40" height="40">
+  <properties>
+   <property name="layer" type="int" value="100"/>
+  </properties>
   <data encoding="csv">
 90,86,87,87,108,108,87,87,87,87,108,87,108,87,87,86,91,88,89,108,108,108,86,108,91,108,108,108,87,108,108,86,108,87,86,108,108,87,108,108,
 111,108,87,0,0,0,0,0,0,0,0,0,107,0,87,87,112,109,110,108,86,91,108,108,112,108,108,107,0,0,0,0,0,0,0,0,0,0,86,86,

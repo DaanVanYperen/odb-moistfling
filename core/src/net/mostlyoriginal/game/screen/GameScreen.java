@@ -54,7 +54,7 @@ public class GameScreen extends TransitionableWorldScreen {
                 .with(
                         new FontManager(),
                         new TagManager(),
-                        new TiledMapManager("map0.tmx")
+                        new TiledMapManager("astrodrift_testmap.tmx")
                 )
                 .with(
                         new CameraSystem(2),
@@ -66,6 +66,7 @@ public class GameScreen extends TransitionableWorldScreen {
                         new PlayerControlSystem(), // @todo phase 2: separate movement from key binding to control.
                         new BoxPhysicsSystem(),
                         new BoxPhysicsMouseSystem(),
+                        new LatchingSystem(),
                         renderBatchingSystem = new RenderBatchingSystem(),
                         new MyAnimRenderSystem(renderBatchingSystem),
                         new MyLabelRenderSystem(renderBatchingSystem),

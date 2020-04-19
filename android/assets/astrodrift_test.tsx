@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset name="Astrodrift" tilewidth="48" tileheight="48" tilecount="441" columns="21">
- <image source="C:/github/ld46/odb-moistfling/android/assets/tileset.png" width="1024" height="1024"/>
+<tileset version="1.2" tiledversion="1.2.4" name="Astrodrift" tilewidth="48" tileheight="48" tilecount="441" columns="21">
+ <image source="tileset.png" width="1024" height="1024"/>
  <terraintypes>
   <terrain name="New Terrain" tile="106"/>
  </terraintypes>
+ <tile id="0">
+  <properties>
+   <property name="entity" value="player"/>
+   <property name="invisible" type="bool" value="true"/>
+  </properties>
+ </tile>
  <tile id="84">
   <properties>
    <property name="anim" value="debris_small_1"/>

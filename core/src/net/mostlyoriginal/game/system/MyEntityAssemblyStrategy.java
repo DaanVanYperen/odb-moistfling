@@ -70,15 +70,7 @@ public class MyEntityAssemblyStrategy implements FutureEntitySystem.EntityAssemb
                 .player()
                 .tag("player")
                 .renderLayer(GameRules.LAYER_PLAYER);
-
-//        E.E().pos(240, 160).anim("indicator_power1").renderLayer(GameRules.LAYER_DESIRE_INDICATOR).staminaIndicator();
-
-//        FutureSpawnUtility.item("item_pallet",1,20,13,false).locked();
-//        FutureSpawnUtility.item("item_radio",1,20,13,false).tag("radio");
-
-        Body body = boxPhysicsSystem.addAsBox(decoratePlayer, decoratePlayer.getBounds().cx(), decoratePlayer.getBounds().cy(), 20f, CAT_PLAYER, (short) (CAT_DEBRIS), 0);
-//        boxPhysicsSystem.spawnChain(body, e);
-
+        boxPhysicsSystem.addAsBox(decoratePlayer, decoratePlayer.getBounds().cx(), decoratePlayer.getBounds().cy(), 20f, CAT_PLAYER, (short) (CAT_DEBRIS), 0);
         return decoratePlayer;
     }
 
@@ -87,7 +79,7 @@ public class MyEntityAssemblyStrategy implements FutureEntitySystem.EntityAssemb
                 .bounds(0, 0, 48, 48)
                 .tappable()
                 .anim("debris_small_1")
-                .renderLayer(GameRules.LAYER_ITEM + (GameRules.SCREEN_HEIGHT - (int) e.posY()));
+                .renderLayer(GameRules.LAYER_ITEM);
 
         boxPhysicsSystem.addAsBox(item, item.getBounds().cx(), item.getBounds().cy(), 1000f, CAT_DEBRIS, (short) (CAT_PLAYER|CAT_GRAPPLE|CAT_CHAIN), 15);
         return item;
