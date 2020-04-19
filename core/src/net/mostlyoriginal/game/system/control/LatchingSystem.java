@@ -45,15 +45,23 @@ public class LatchingSystem extends FluidSystem {
     protected void process(E e) {
         if (grappleJoint == null && e.hasBoxed() && player.hasBoxed()) {
 
-            float pixelDistance = v2.set(e.getPos().xy).sub(player.getPos().xy).len() * 0.75f;
+            float pixelDistance = v2
+                    .set(e.getPos().xy)
+                    .add(e.getBounds().cx(),e.getBounds().cy(),0)
+                    .sub(player.getPos().xy)
+                    .sub(player.getBounds().cx(),player.getBounds().cy(),0).len() * 0.8f;
+
+
+            if ( pixelDistance < 50 )
+                pixelDistance=50;
 
             World box2d = boxPhysicsSystem.box2d;
             DistanceJointDef grappleJointDef = new DistanceJointDef();
             grappleJointDef.bodyA = e.getBoxed().body;
             grappleJointDef.bodyB = player.getBoxed().body;
             grappleJointDef.length = pixelDistance / PPM;
-            grappleJointDef.frequencyHz = 0.8f;
-            grappleJointDef.dampingRatio = 1f;
+            grappleJointDef.frequencyHz = 0.5f;
+            grappleJointDef.dampingRatio = 0.3f;
 
             grappleJoint = box2d.createJoint(grappleJointDef);
         }

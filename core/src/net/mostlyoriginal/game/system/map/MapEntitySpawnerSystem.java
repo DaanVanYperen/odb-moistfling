@@ -26,12 +26,12 @@ public class MapEntitySpawnerSystem extends FluidIteratingSystem {
     public boolean spawn(int gridX, int gridY, MapProperties properties) {
 
         String entity = (String) properties.get("entity");
-        String type = (String) properties.get("type");
+        String type = (String) properties.get("anim");
         if ("player".equals(entity)) {
             FutureSpawnUtility.of(EntityType.PLAYER, gridX, gridY);
             return true;
         } else if ("debris".equals(entity)) {
-            FutureSpawnUtility.of(EntityType.DEBRIS, gridX, gridY);
+            FutureSpawnUtility.of(EntityType.DEBRIS, gridX, gridY).futureEntitySubType(type);
             return true;
         }
 

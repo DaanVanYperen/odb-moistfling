@@ -78,10 +78,10 @@ public class MyEntityAssemblyStrategy implements FutureEntitySystem.EntityAssemb
         E item = e
                 .bounds(0, 0, 48, 48)
                 .tappable()
-                .anim("debris_small_1")
+                .anim(type)
                 .renderLayer(GameRules.LAYER_ITEM);
 
-        boxPhysicsSystem.addAsBox(item, item.getBounds().cx(), item.getBounds().cy(), 1000f, CAT_DEBRIS, (short) (CAT_PLAYER|CAT_GRAPPLE|CAT_CHAIN), 15);
+        boxPhysicsSystem.addAsBox(item, item.getBounds().cx(), item.getBounds().cy(), 1000000f, CAT_DEBRIS, (short) (CAT_PLAYER|CAT_GRAPPLE|CAT_CHAIN), 15);
         return item;
     }
 }
