@@ -356,5 +356,21 @@
       "width": 256,
       "height": 256,
     },
+    {
+      "id": "tractor_beam",
+      "comment": "Tractor beam.",
+      "x": 96,
+      "y": 336,
+      "width": 96,
+      "height": 48,
+    },
+    {
+      "id": "tractor_glow",
+      "comment": "Tractor glow.",
+      "x": 96,
+      "y": 288,
+      "width": 48,
+      "height": 48,
+    },
   ]
 }
