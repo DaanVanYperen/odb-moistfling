@@ -5,6 +5,7 @@ import com.artemis.ESubscription;
 import com.artemis.annotations.All;
 import com.badlogic.gdx.audio.Sound;
 import net.mostlyoriginal.api.util.Cooldown;
+import net.mostlyoriginal.game.GameRules;
 import net.mostlyoriginal.game.component.Leak;
 import net.mostlyoriginal.game.component.Oxygen;
 import net.mostlyoriginal.game.component.Player;
@@ -40,7 +41,7 @@ public class LeakSfxSystem extends FluidSystem {
     protected void process(E e) {
 
 
-        if ( e.hasLeak() && !e.isDead() && !e.isInvisible() && transitions.size() == 0 ) {
+        if ( e.hasLeak() && !e.isDead() && !e.isInvisible() && transitions.size() == 0 && GameRules.sfxOn ) {
             if ( !isPlaying ) {
                 if ( sfx == null ) {
                     sfx = soundPlaySystem.getSfx("leak-loop.wav");
@@ -52,7 +53,7 @@ public class LeakSfxSystem extends FluidSystem {
         } else {
             if ( isPlaying ) {
                 isPlaying=false;
-                sfx.stop();
+                sfx.stop(soundId);
             }
         }
     }
