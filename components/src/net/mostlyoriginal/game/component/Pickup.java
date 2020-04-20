@@ -10,6 +10,6 @@ public class Pickup extends Component {
     public enum Type {
         OXYGEN,
         EXIT,
-        BLINKER
+        CLICKABLE, BLINKER
     }
 }

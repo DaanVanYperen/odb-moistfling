@@ -168,7 +168,23 @@ public class MyEntityAssemblyStrategy implements FutureEntitySystem.EntityAssemb
     }
 
     private E decorateTutorial(E e) {
-return null;
+
+        String type = "mouse";
+        Animation<TextureRegion> animation = gameScreenAssetSystem.get(type);
+        final TextureRegion frame = animation.getKeyFrame(0, false);
+
+        E item = e
+                .bounds(0, 0, frame.getRegionWidth(), frame.getRegionHeight())
+                .anim(type)
+                .pickupType(Pickup.Type.CLICKABLE)
+                .renderLayer(GameRules.LAYER_ITEM+5);
+
+        e.posX(e.posX()-16);
+        e.posY(e.posY()-16);
+
+        boxPhysicsSystem.addAsCircle(item, item.getBounds().cy(), 999999999f, CAT_PICKUP, (short) CAT_PLAYER, 0, 100f, 0f,0f,BodyDef.BodyType.StaticBody,true);
+
+        return item;
     }
 
 
