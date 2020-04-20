@@ -156,7 +156,7 @@ return null;
 
         int size = (frame.getRegionWidth() / 2) + 4;
 
-        boxPhysicsSystem.addAsCircle(item, item.getBounds().cy(), 1f, CAT_PICKUP, (short) (CAT_DEBRIS|CAT_PLAYER|CAT_GRAPPLE|CAT_PICKUP|CAT_BORDER), MathUtils.random(0,360f), size, 0.0f, 0.1F, BodyDef.BodyType.DynamicBody, false);
+        boxPhysicsSystem.addAsCircle(item, item.getBounds().cy(), 8f, CAT_PICKUP, (short) (CAT_DEBRIS|CAT_PLAYER|CAT_GRAPPLE|CAT_PICKUP|CAT_BORDER), MathUtils.random(0,360f), size, 0.0f, 0.1F, BodyDef.BodyType.DynamicBody, true);
 
 
         Body body = e.boxedBody();
