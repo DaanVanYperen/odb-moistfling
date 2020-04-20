@@ -12,6 +12,7 @@ import net.mostlyoriginal.api.event.common.EventSystem;
 import net.mostlyoriginal.api.manager.FontManager;
 import net.mostlyoriginal.api.system.camera.CameraSystem;
 import net.mostlyoriginal.api.system.graphics.RenderBatchingSystem;
+import net.mostlyoriginal.api.system.mouse.MouseCursorSystem;
 import net.mostlyoriginal.api.system.physics.PhysicsSystem;
 import net.mostlyoriginal.game.GameRules;
 import net.mostlyoriginal.game.GdxArtemisGame;
@@ -72,6 +73,7 @@ public class GameScreen extends TransitionableWorldScreen {
                         new BoxPhysicsSystem(),
                         new BoxPhysicsMouseSystem(),
                         new LatchingSystem(),
+                        new MouseCursorSystem(),
 
 
                         new PickupSystem(),
@@ -92,7 +94,7 @@ public class GameScreen extends TransitionableWorldScreen {
                         new MyAnimRenderSystem(renderBatchingSystem),
                         new MyLabelRenderSystem(renderBatchingSystem),
                         new MapLayerRenderSystem(renderBatchingSystem, batch),
-
+                        new UiSystem(),
                         new SoundPlaySystem(
                                 "leak-loop.wav",
                                 "oxygen-recharge-1",

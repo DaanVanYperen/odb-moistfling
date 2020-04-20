@@ -83,11 +83,15 @@ public class LeakSystem extends FluidSystem implements BoxContactListener {
         if ( almostDeadSoundPlayed && !e.isDead() ) {
             deathCooldown -= world.delta;
             if (deathCooldown <= 0 ) {
-                e.dead();
-                GameRules.nextMap = GameRules.currentMap;
-                transitionSystem.transition(GameScreen.class, 10);
+                forceDeath();
             }
         }
+    }
+
+    public void forceDeath() {
+        E.withTag("player").dead();
+        GameRules.nextMap = GameRules.currentMap;
+        transitionSystem.transition(GameScreen.class, 4);
     }
 
     @Override
