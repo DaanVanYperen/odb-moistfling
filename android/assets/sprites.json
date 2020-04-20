@@ -372,5 +372,25 @@
       "width": 48,
       "height": 48,
     },
+    {
+      "id": "mouse",
+      "comment": "Mouse for indicating mousy business.",
+      "x": 16,
+      "y": 400,
+      "width": 11,
+      "height": 16,
+    },
+    {
+      "id": "swipe",
+      "comment": "Swipe for indicating swipy business.",
+      "x": 40,
+      "y": 384,
+      "width": 18,
+      "height": 26,
+      "countX": 2,
+      "countY": 1,
+      "milliseconds": 400,
+      "repeat": true,
+    },
   ]
 }
