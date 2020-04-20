@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.BodyDef;
 import net.mostlyoriginal.game.GameRules;
 import net.mostlyoriginal.game.component.Pickup;
 import net.mostlyoriginal.game.component.future.FutureEntity;
@@ -61,6 +62,8 @@ public class MyEntityAssemblyStrategy implements FutureEntitySystem.EntityAssemb
                 return decoratePickup(source, futureEntity.subType);
             case EXIT:
                 return decorateExit(source, futureEntity.subType);
+            case BLINKER:
+                return decorateBlinker(source);
         }
         throw new RuntimeException("Unknown entity type " + source.futureEntityType());
     }
@@ -77,9 +80,18 @@ public class MyEntityAssemblyStrategy implements FutureEntitySystem.EntityAssemb
                 .tag("player")
                 .camera()
                 .renderLayer(GameRules.LAYER_PLAYER);
-        Body body = boxPhysicsSystem.addAsCircle(decoratePlayer, decoratePlayer.getBounds().cy(), 20f, CAT_PLAYER, (short) (CAT_DEBRIS|CAT_PICKUP|CAT_BORDER), 0, 16, 1.0f, 0F);
+        Body body = boxPhysicsSystem.addAsCircle(decoratePlayer, decoratePlayer.getBounds().cy(), 20f, CAT_PLAYER, (short) (CAT_DEBRIS|CAT_PICKUP|CAT_BORDER), 0, 16, 1.0f, 0F, BodyDef.BodyType.DynamicBody);
 
         return decoratePlayer;
+    }
+
+    private E decorateBlinker(E e) {
+        e
+                .anim("orb_off")
+                .bounds(4, 4, 16 - 4, 16-4)
+                .renderLayer(GameRules.LAYER_ITEM-2);
+//        Body body = boxPhysicsSystem.addAsCircle(decoratePlayer, decoratePlayer.getBounds().cy(), 20f, CAT_PLAYER, (short) (CAT_DEBRIS|CAT_PICKUP|CAT_BORDER), 0, 16, 1.0f, 0F);
+        return e;
     }
 
     GameScreenAssetSystem gameScreenAssetSystem;
@@ -98,7 +110,9 @@ public class MyEntityAssemblyStrategy implements FutureEntitySystem.EntityAssemb
 
         int size = (frame.getRegionWidth() / 2) - 4;
 
-        boxPhysicsSystem.addAsCircle(item, item.getBounds().cy(), size * size * 0.15f, CAT_DEBRIS, (short) (CAT_DEBRIS|CAT_PLAYER|CAT_GRAPPLE|CAT_CHAIN|CAT_PICKUP|CAT_BORDER), MathUtils.random(0,360f), size, 0.0f, 0.2f);
+        boxPhysicsSystem.addAsCircle(item, item.getBounds().cy(), size * size * 0.15f, CAT_DEBRIS, (short) (CAT_DEBRIS|CAT_PLAYER|CAT_GRAPPLE|CAT_CHAIN|CAT_PICKUP|CAT_BORDER), MathUtils.random(0,360f), size, 0.0f, 0.2f,
+                "debris_immovable".equals(type) ? BodyDef.BodyType.StaticBody:
+                BodyDef.BodyType.DynamicBody);
 
 
         if ( MathUtils.random(0, 100) < 20) {
@@ -129,7 +143,7 @@ public class MyEntityAssemblyStrategy implements FutureEntitySystem.EntityAssemb
 
         int size = (frame.getRegionWidth() / 2) + 4;
 
-        boxPhysicsSystem.addAsCircle(item, item.getBounds().cy(), 1f, CAT_PICKUP, (short) (CAT_DEBRIS|CAT_PLAYER|CAT_GRAPPLE|CAT_PICKUP|CAT_BORDER), MathUtils.random(0,360f), size, 0.0f, 0.1F);
+        boxPhysicsSystem.addAsCircle(item, item.getBounds().cy(), 1f, CAT_PICKUP, (short) (CAT_DEBRIS|CAT_PLAYER|CAT_GRAPPLE|CAT_PICKUP|CAT_BORDER), MathUtils.random(0,360f), size, 0.0f, 0.1F, BodyDef.BodyType.DynamicBody);
 
 
         Body body = e.boxedBody();

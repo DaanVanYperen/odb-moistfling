@@ -10,4 +10,5 @@ public abstract class EntityType {
     public static final int PLAYER = 2;
     public static final int PICKUP = 3;
     public static final int EXIT = 4;
+    public static final int BLINKER = 5;
 }

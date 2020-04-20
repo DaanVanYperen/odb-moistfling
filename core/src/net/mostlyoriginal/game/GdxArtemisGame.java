@@ -5,8 +5,7 @@ import net.mostlyoriginal.game.screen.GameScreen;
 import net.mostlyoriginal.game.screen.LogoScreen;
 
 import static com.badlogic.gdx.Input.Keys.G;
-import static net.mostlyoriginal.game.GameRules.LOGO_ENABLED;
-import static net.mostlyoriginal.game.GameRules.nextMap;
+import static net.mostlyoriginal.game.GameRules.*;
 
 public class GdxArtemisGame extends Game {
 
@@ -20,7 +19,7 @@ public class GdxArtemisGame extends Game {
 	}
 
 	public void restart() {
-		GameRules.nextMap="astrodrift_testmap.tmx";
+		GameRules.nextMap=DEBUG_ENABLED ? "map_debug.tmx" : "map1.tmx";
 		setScreen(LOGO_ENABLED ? new LogoScreen() : new GameScreen());
 	}
 

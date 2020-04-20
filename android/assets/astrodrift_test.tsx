@@ -64,6 +64,13 @@
    <property name="invisible" type="bool" value="true"/>
   </properties>
  </tile>
+ <tile id="92">
+  <properties>
+   <property name="anim" value="debris_immovable"/>
+   <property name="entity" value="debris"/>
+   <property name="invisible" type="bool" value="true"/>
+  </properties>
+ </tile>
  <tile id="105" terrain=",0,,">
   <properties>
    <property name="anim" value="debris_small_4"/>
@@ -114,6 +121,12 @@
  </tile>
  <tile id="127">
   <properties>
+   <property name="invisible" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="129">
+  <properties>
+   <property name="entity" value="blinker"/>
    <property name="invisible" type="bool" value="true"/>
   </properties>
  </tile>

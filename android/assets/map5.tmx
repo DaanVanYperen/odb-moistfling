@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="48" tileheight="48" infinite="0" nextlayerid="4" nextobjectid="1">
  <properties>
-  <property name="nextmap" value="map3.tmx"/>
+  <property name="nextmap" value="map6.tmx"/>
  </properties>
  <tileset firstgid="1" source="astrodrift_test.tsx"/>
  <layer id="1" name="Background 1" width="40" height="40">

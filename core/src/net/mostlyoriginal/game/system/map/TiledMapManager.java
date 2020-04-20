@@ -19,7 +19,7 @@ import net.mostlyoriginal.game.system.box2d.BoxPhysicsSystem;
 
 /**
  * Loads tiled map and craetes MapEntityMarker for all tiles with 'entity' property.
- *
+ * <p>
  * Supported cell properties:
  * Entity (String): any value
  * Invisible: remove tile from map. Useful in combination with Entity.
@@ -83,10 +83,10 @@ public class TiledMapManager extends BaseSystem {
         tiledMap.tileWidth = (int) firstLayer.getTileWidth();
         tiledMap.tileHeight = (int) firstLayer.getTileHeight();
 
-        if (firstLayer != null) {
-            int padding = 128;
-            boxPhysicsSystem.addLevelBorders(-padding, firstLayer.getWidth() * tiledMap.tileWidth + padding,  -padding, firstLayer.getHeight() * tiledMap.tileHeight + padding);
-        }
+        // make it so the player cannot drift into outer space by accident.
+        int padding = 128;
+        boxPhysicsSystem.addLevelBorders(-padding, firstLayer.getWidth() * tiledMap.tileWidth + padding, -padding, firstLayer.getHeight() * tiledMap.tileHeight + padding);
+
         GameRules.currentMap = filename;
         GameRules.nextMap = (String) tiledMap.properties.get("nextmap");
         createMapMarkers(tiledMap);
@@ -96,7 +96,7 @@ public class TiledMapManager extends BaseSystem {
         Entity layerEntity = world.createEntity();
         cPos.create(layerEntity);
         cMapLayer.create(layerEntity).layer = layer;
-        cRender.create(layerEntity).layer = (int)layer.getProperties().get(LAYER_PROPERTY_KEY);
+        cRender.create(layerEntity).layer = (int) layer.getProperties().get(LAYER_PROPERTY_KEY);
 
         //layerEntity.deleteFromWorld();
     }
@@ -113,7 +113,7 @@ public class TiledMapManager extends BaseSystem {
                             mapEntityMarker.mapX = tx;
                             mapEntityMarker.mapY = ty;
                             mapEntityMarker.properties = properties;
-                            if ( properties.containsKey(INVISIBLE)) {
+                            if (properties.containsKey(INVISIBLE)) {
                                 cell.setTile(null);
                             }
                         }
