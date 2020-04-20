@@ -3,10 +3,14 @@ package net.mostlyoriginal.game.system;
 import com.artemis.E;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
+import net.mostlyoriginal.api.component.graphics.Invisible;
+import net.mostlyoriginal.api.operation.JamOperationFactory;
+import net.mostlyoriginal.api.operation.OperationFactory;
 import net.mostlyoriginal.game.GameRules;
 import net.mostlyoriginal.game.component.Pickup;
 import net.mostlyoriginal.game.component.future.FutureEntity;
@@ -14,6 +18,7 @@ import net.mostlyoriginal.game.system.box2d.BoxPhysicsSystem;
 import net.mostlyoriginal.game.system.future.FutureEntitySystem;
 import net.mostlyoriginal.game.system.view.GameScreenAssetSystem;
 
+import static net.mostlyoriginal.api.utils.Duration.seconds;
 import static net.mostlyoriginal.game.EntityType.*;
 import static net.mostlyoriginal.game.component.Pickup.Type.OXYGEN;
 
@@ -81,8 +86,25 @@ public class MyEntityAssemblyStrategy implements FutureEntitySystem.EntityAssemb
                 .oxygenPercentage(100)
                 .tag("player")
                 .camera()
-                .renderLayer(GameRules.LAYER_PLAYER);
+                .renderLayer(GameRules.LAYER_PLAYER)
+                .invisible()
+                .script(OperationFactory.sequence(OperationFactory.delay(seconds(1.2f)),OperationFactory.remove(Invisible.class)));
         Body body = boxPhysicsSystem.addAsCircle(decoratePlayer, decoratePlayer.getBounds().cy(), 20f, CAT_PLAYER, (short) (CAT_DEBRIS|CAT_PICKUP|CAT_BORDER), 0, 16, 1.0f, 0F, BodyDef.BodyType.DynamicBody, false);
+
+        float targetX = e.posX() - e.boundsCx() - 48;
+        float targetY = e.posY() - e.boundsCy() - 48;
+        float startY = targetY + GameRules.SCREEN_HEIGHT / 2;
+        float endY = e.posY()-1000;
+        E.E().anim("escape_pod")
+                .pos(targetX, startY)
+                .renderLayer(GameRules.LAYER_PLAYER+1)
+            .script(
+                OperationFactory.sequence(
+                        JamOperationFactory.moveBetween(targetX,startY,targetX,targetY,seconds(1.2f), Interpolation.exp5Out),
+                        OperationFactory.delay(seconds(0.2f)),
+                        JamOperationFactory.moveBetween(targetX,targetY,targetX,endY,seconds(0.8f), Interpolation.exp5In),
+                        OperationFactory.deleteFromWorld())
+            );
 
         return decoratePlayer;
     }
@@ -183,7 +205,7 @@ return null;
                 .pickupType(Pickup.Type.EXIT)
                 .renderLayer(GameRules.LAYER_ITEM);
 
-        boxPhysicsSystem.addAsBox(item, item.getBounds().cx(), item.getBounds().cy(), 999999999f, CAT_PICKUP, (short) (CAT_PLAYER|CAT_BORDER), 0);
+        boxPhysicsSystem.addAsBox(item, item.getBounds().cx(), item.getBounds().cy(), 999999999f, CAT_PICKUP, (short) (CAT_PLAYER|CAT_BORDER), 0, true);
 
         return item;
     }

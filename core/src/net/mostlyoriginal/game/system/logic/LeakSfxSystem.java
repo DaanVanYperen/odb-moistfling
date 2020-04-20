@@ -40,7 +40,7 @@ public class LeakSfxSystem extends FluidSystem {
     protected void process(E e) {
 
 
-        if ( e.hasLeak() && !e.isDead() && transitions.size() == 0 ) {
+        if ( e.hasLeak() && !e.isDead() && !e.isInvisible() && transitions.size() == 0 ) {
             if ( !isPlaying ) {
                 if ( sfx == null ) {
                     sfx = soundPlaySystem.getSfx("leak-loop.wav");

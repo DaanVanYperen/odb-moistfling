@@ -42,7 +42,7 @@ public class LatchingSystem extends FluidSystem implements BoxDestructionListene
 
     @Override
     protected void end() {
-        if (grappleJoint != null && subscription.getEntities().isEmpty() && (Gdx.input.isTouched() || player.isDead())) {
+        if (grappleJoint != null && subscription.getEntities().isEmpty() && (Gdx.input.isTouched() || player.isDead() || player.isInvisible())) {
             killTheLatch();
             E.E().playSound("tractor-unlock.wav",0.08f);
         }
@@ -66,7 +66,7 @@ public class LatchingSystem extends FluidSystem implements BoxDestructionListene
 
     @Override
     protected void process(E e) {
-        if (e.hasBoxed() && player.hasBoxed() && !player.isDead()) {
+        if (e.hasBoxed() && player.hasBoxed() && !player.isDead() && !player.isInvisible()) {
 
             killTheLatch();
             latchedTarget = e;

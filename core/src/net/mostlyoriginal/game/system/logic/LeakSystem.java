@@ -59,7 +59,7 @@ public class LeakSystem extends FluidSystem implements BoxContactListener {
 
         leak.age -= world.delta;
         leak.lastLeakAge += world.delta;
-        if ( leak.age <= 0 && !e.isDead()) {
+        if ( leak.age <= 0 && !e.isDead() && !e.isInvisible()) {
             leak.age+= 1/30f;
             leak.age+= Math.max(0,(100f-e.oxygenPercentage())*0.005f); // slow leak if oxygen is low.
             for (int i = 0; i < leak.leaks; i++) {
@@ -80,7 +80,7 @@ public class LeakSystem extends FluidSystem implements BoxContactListener {
             deathCooldown=2.5f;
             E.E().playSound("suit-last-oxygen-escapes");
         }
-        if ( almostDeadSoundPlayed && !e.isDead() ) {
+        if ( almostDeadSoundPlayed && !e.isDead() && !e.isInvisible()) {
             deathCooldown -= world.delta;
             if (deathCooldown <= 0 ) {
                 forceDeath();
@@ -96,7 +96,7 @@ public class LeakSystem extends FluidSystem implements BoxContactListener {
 
     @Override
     public void beginContact(E a, E b) {
-        if ( a.hasSharp() && b.hasPlayer() && !b.isDead() ) {
+        if ( a.hasSharp() && b.hasPlayer() && !b.isDead() && !b.isInvisible() ) {
             if ( b.leakLastLeakAge() > 0.5f ) { // don't spam leaks.
                 if ( MathUtils.random(0,100) > a.sharpChance()) {
                     // sometimes you are lucky.

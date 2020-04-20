@@ -196,7 +196,7 @@ public class BoxPhysicsSystem extends FluidSystem {
         shape.dispose();
     }
 
-    public Body addAsBox(E e, float cx, float cy, float density, short categoryBits, short maskBits, float radianAngle) {
+    public Body addAsBox(E e, float cx, float cy, float density, short categoryBits, short maskBits, float radianAngle, boolean isSensor) {
         final BodyDef bodyDef = new BodyDef();
         bodyDef.type = BodyDef.BodyType.DynamicBody;
         bodyDef.position.x = (e.getPos().xy.x - e.boundsCx()) / PPM;
@@ -215,6 +215,7 @@ public class BoxPhysicsSystem extends FluidSystem {
         fixtureDef.filter.categoryBits = categoryBits;
         fixtureDef.filter.maskBits = maskBits;
         fixtureDef.friction = 0;
+        fixtureDef.isSensor = isSensor;
 
         body.createFixture(fixtureDef);
 
