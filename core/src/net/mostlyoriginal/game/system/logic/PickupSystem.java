@@ -47,6 +47,7 @@ public class PickupSystem extends BaseSystem implements BoxContactListener {
             } else if ( b.hasPlayer() && !b.hasDead() ) {
                 if ( a.pickupType() == Pickup.Type.BLINKER) {
                     a.anim("orb_on");
+                    E.E().playSound("orb-on");
                 }else {
                     toBeDeleted = a.id(); // also delete, but oxygen!
                     E.E().playSound(b.oxygenPercentage() > 100 ? "oxygen-recharge-2" : "oxygen-recharge-1");

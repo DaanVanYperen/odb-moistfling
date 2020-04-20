@@ -106,6 +106,8 @@ public class MyEntityAssemblyStrategy implements FutureEntitySystem.EntityAssemb
 
         Animation<TextureRegion> animation = gameScreenAssetSystem.get(type);
         final TextureRegion frame = animation.getKeyFrame(0, false);
+        boolean isCactus = "debris_cactus".equals(type);
+        boolean isHedgehog = "debris_hedgehog".equals(type);
 
         E item = e
                 .bounds(0, 0, frame.getRegionWidth(), frame.getRegionHeight())
@@ -116,11 +118,11 @@ public class MyEntityAssemblyStrategy implements FutureEntitySystem.EntityAssemb
 
         int size = (frame.getRegionWidth() / 2) - 4;
 
-        boxPhysicsSystem.addAsCircle(item, item.getBounds().cy(), size * size * 0.15f, CAT_DEBRIS, (short) (CAT_DEBRIS|CAT_PLAYER|CAT_GRAPPLE|CAT_CHAIN|CAT_PICKUP|CAT_BORDER), MathUtils.random(0,360f), size, 0.0f, 0.2f,
+        boxPhysicsSystem.addAsCircle(item, item.getBounds().cy(), isCactus ? 4 : isHedgehog ? 2 : size * size * 0.15f, CAT_DEBRIS, (short) (CAT_DEBRIS|CAT_PLAYER|CAT_GRAPPLE|CAT_CHAIN|CAT_PICKUP|CAT_BORDER), MathUtils.random(0,360f), size, 0.0f, 0.2f,
                 "debris_immovable".equals(type) ? BodyDef.BodyType.StaticBody:
                         BodyDef.BodyType.DynamicBody, false);
 
-        if("debris_cactus".equals(type)){
+        if(isCactus||isHedgehog){
             e.sharpChance(100).sharpSharpness(3);
         }
 

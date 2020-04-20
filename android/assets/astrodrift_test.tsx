@@ -72,6 +72,13 @@
    <property name="invisible" type="bool" value="true"/>
   </properties>
  </tile>
+ <tile id="93">
+  <properties>
+   <property name="anim" value="debris_crate_cactus"/>
+   <property name="entity" value="debris"/>
+   <property name="invisible" type="bool" value="true"/>
+  </properties>
+ </tile>
  <tile id="105" terrain=",0,,">
   <properties>
    <property name="anim" value="debris_small_4"/>
@@ -120,6 +127,20 @@
  <tile id="112">
   <properties>
    <property name="anim" value="debris_cactus"/>
+   <property name="entity" value="debris"/>
+   <property name="invisible" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="113">
+  <properties>
+   <property name="anim" value="debris_hedgehog"/>
+   <property name="entity" value="debris"/>
+   <property name="invisible" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="114">
+  <properties>
+   <property name="anim" value="debris_crate_hedgehog"/>
    <property name="entity" value="debris"/>
    <property name="invisible" type="bool" value="true"/>
   </properties>

@@ -109,7 +109,8 @@ public class GameScreen extends TransitionableWorldScreen {
                                 "ship-reached",
                                 "tractor-lock-1.wav",
                                 "tractor-lock-2.wav",
-                                "tractor-unlock.wav"
+                                "tractor-unlock.wav",
+                                "orb-on"
                         ),
                         new BoxPhysicsDebugRenderSystem(),
                         new TransitionSystem(GdxArtemisGame.getInstance(), this)
