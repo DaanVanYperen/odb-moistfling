@@ -227,7 +227,9 @@ public class MyEntityAssemblyStrategy implements FutureEntitySystem.EntityAssemb
                 .pickupType(Pickup.Type.EXIT)
                 .renderLayer(GameRules.LAYER_ITEM);
 
-        boxPhysicsSystem.addAsBox(item, item.getBounds().cx(), item.getBounds().cy(), 999999999f, CAT_PICKUP, (short) (CAT_PLAYER|CAT_BORDER), 0, true);
+        boxPhysicsSystem.addAsCircle(item, item.getBounds().cy(), 99999999999f, CAT_PICKUP, (short) (CAT_PLAYER|CAT_BORDER), 0f, 70f, 0.0f, 0.1F, BodyDef.BodyType.StaticBody, true);
+//
+//        boxPhysicsSystem.addAsBox(item, item.getBounds().cx()+20, item.getBounds().cy()+20, 999999999f,  0, true);
 
         return item;
     }

@@ -70,9 +70,11 @@ public class UiSystem extends BaseSystem {
                         }
                         //musicButton.anim(GameRules.musicOn ? "icon_music" : "icon_music_off");
                     } else if (posX > GameRules.SCREEN_WIDTH / GameRules.CAMERA_ZOOM - 150) {
-                        released=false;
-                        leakSystem.forceDeath();
-                        E.E().playSound("astronaut-pops");
+                        if ( !E.E().withTag("player").isDead()) {
+                            released = false;
+                            leakSystem.forceDeath();
+                            E.E().playSound("astronaut-pops");
+                        }
                     }
                 }
             } else {
