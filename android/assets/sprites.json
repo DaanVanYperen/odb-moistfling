@@ -497,6 +497,10 @@
       "y": 336,
       "width": 96,
       "height": 48,
+      "countX": 2,
+      "countY": 1,
+      "milliseconds": 100,
+      "repeat": true,
     },
     {
       "id": "tractor_glow",
