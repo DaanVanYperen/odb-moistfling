@@ -233,12 +233,8 @@
       "comment": "Outline of the corpse of a deceased spaceman."
       "x": 96,
       "y": 544,
-      "countX": 2,
-      "countY": 1,
       "width": 48,
       "height": 48,
-      "milliseconds": 250,
-      "repeat": true,
     },
     {
       "id": "grappling_hook",
@@ -344,7 +340,22 @@
       "width": 48,
       "height": 48,
     },
-	
+    {
+      "id": "debris_crate_cactus",
+      "comment": "48x48 cactus crate debris.",
+      "x": 432,
+      "y": 192,
+      "width": 48,
+      "height": 48,
+    },
+    {
+      "id": "debris_crate_hedgehog",
+      "comment": "48x48 hedgehog crate debris.",
+      "x": 432,
+      "y": 240,
+      "width": 48,
+      "height": 48,
+    },	
 	
 	
 	
@@ -436,7 +447,22 @@
       "width": 48,
       "height": 48,
     },
-	
+    {
+      "id": "debris_crate_cactus_outline",
+      "comment": "Outline for 48x48 cactus crate debris.",
+      "x": 432,
+      "y": 448,
+      "width": 48,
+      "height": 48,
+    },
+    {
+      "id": "debris_crate_hedgehog_outline",
+      "comment": "Outline for 48x48 hedgehog crate debris.",
+      "x": 432,
+      "y": 496,
+      "width": 48,
+      "height": 48,
+    },		
 	
 	
 	
@@ -541,6 +567,47 @@
       "y": 416,
       "width": 16,
       "height": 16,
+    },
+	
+    {
+      "id": "icon_sound",
+      "comment": "Sound icon, turned on.",
+      "x": 0,
+      "y": 640,
+      "width": 40,
+      "height": 40,
+    },
+    {
+      "id": "icon_sound_off",
+      "comment": "Sound icon, turned off.",
+      "x": 40,
+      "y": 640,
+      "width": 40,
+      "height": 40,
+    },
+    {
+      "id": "icon_music",
+      "comment": "Music icon, turned on.",
+      "x": 0,
+      "y": 680,
+      "width": 40,
+      "height": 40,
+    },
+    {
+      "id": "icon_music_off",
+      "comment": "Music icon, turned off.",
+      "x": 40,
+      "y": 680,
+      "width": 40,
+      "height": 40,
+    },
+    {
+      "id": "icon_reset",
+      "comment": "Reset icon.",
+      "x": 0,
+      "y": 720,
+      "width": 40,
+      "height": 40,
     },
   ]
 }
