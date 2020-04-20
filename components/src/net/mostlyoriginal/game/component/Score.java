@@ -6,5 +6,6 @@ import com.artemis.Component;
  * @author Daan van Yperen
  */
 public class Score {
-   public float age;
+   public int checkpoints=0;
+   public float age=0;
 }

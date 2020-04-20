@@ -12,6 +12,7 @@ import net.mostlyoriginal.api.component.graphics.Render;
 import net.mostlyoriginal.api.plugin.extendedcomponentmapper.M;
 import net.mostlyoriginal.api.utils.MapMask;
 import net.mostlyoriginal.game.GameRules;
+import net.mostlyoriginal.game.component.Score;
 import net.mostlyoriginal.game.component.map.MapEntityMarker;
 import net.mostlyoriginal.game.component.map.TiledMapLayer;
 import net.mostlyoriginal.game.component.map.TiledMapSingleton;
@@ -69,6 +70,9 @@ public class TiledMapManager extends BaseSystem {
     }
 
     protected void load(String filename) {
+        if ( "map1.tmx".equals(filename)) {
+            GameRules.score = new Score();
+        }
         tiledMap.map = new TmxMapLoader().load(filename);
         this.map = tiledMap.map;
         tiledMap.properties = tiledMap.map.getProperties();

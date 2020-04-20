@@ -55,7 +55,7 @@ public class LevelTimerSystem extends BaseSystem {
                 .renderLayer(1999)
                 .script(OperationFactory.sequence(
                         JamOperationFactory.tintBetween(Tint.TRANSPARENT,new Tint(0f,0f,0f,0.4f),seconds(0.5f), Interpolation.exp5In),
-                        OperationFactory.delay(showTime),
+                        OperationFactory.delay(seconds(showTime)),
                         JamOperationFactory.tintBetween(new Tint(0f,0f,0f,0.4f),Tint.TRANSPARENT,seconds(1f), Interpolation.exp5Out),
                         OperationFactory.deleteFromWorld()
                 ));
@@ -69,7 +69,7 @@ public class LevelTimerSystem extends BaseSystem {
         final int seconds = (int)GameRules.score.age;
         if ( lastSeconds != seconds ) {
             lastSeconds = seconds;
-            final String txt = mapName + asTime(lastSeconds);
+            final String txt = mapName + asTime(lastSeconds) + " checkpoints hit: " + GameRules.score.checkpoints;
             rankLabel.labelText(txt);
             rankLabelShadow.labelText(txt);
         }
@@ -77,7 +77,7 @@ public class LevelTimerSystem extends BaseSystem {
         if ( victoryCooldown > 0 ) {
             victoryCooldown-= world.delta;
             if ( victoryCooldown <= 0 ) {
-                genTitle("You finished in " +asTime((int)GameRules.score.age) + ", good job!", 99f);
+                genTitle("Run in "+asTime((int)GameRules.score.age) + ", "+GameRules.score.checkpoints+" checkpoints!", 99f);
                 victoryCooldown=0;
             }
         }

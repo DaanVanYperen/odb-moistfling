@@ -90,6 +90,7 @@ public class PickupSystem extends BaseSystem implements BoxContactListener {
                     if ("orb_off".equals(a.animId())) {
                         a.anim("orb_on");
                         E.E().playSound("orb-on");
+                        GameRules.score.checkpoints++;
                     }
                 } else {
                     toBeDeleted = a.id(); // also delete, but oxygen!
