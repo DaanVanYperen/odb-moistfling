@@ -11,7 +11,6 @@ import net.mostlyoriginal.api.SingletonPlugin;
 import net.mostlyoriginal.api.event.common.EventSystem;
 import net.mostlyoriginal.api.manager.FontManager;
 import net.mostlyoriginal.api.system.camera.CameraSystem;
-import net.mostlyoriginal.api.system.camera.EntityCameraSystem;
 import net.mostlyoriginal.api.system.graphics.RenderBatchingSystem;
 import net.mostlyoriginal.api.system.physics.PhysicsSystem;
 import net.mostlyoriginal.game.GameRules;
@@ -75,7 +74,7 @@ public class GameScreen extends TransitionableWorldScreen {
                         new LatchingSystem(),
 
 
-                        new PopSystem(),
+                        new PickupSystem(),
                         new LeakSystem(),
                         new BeamedSystem(),
 

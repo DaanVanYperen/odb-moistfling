@@ -13,7 +13,7 @@ import net.mostlyoriginal.game.system.common.FluidSystem;
 /**
  * @author Daan van Yperen
  */
-public class PopSystem extends BaseSystem implements BoxContactListener {
+public class PickupSystem extends BaseSystem implements BoxContactListener {
 
     private int toBeDeleted = -1;
     private BoxPhysicsSystem boxPhysicsSystem;
@@ -45,9 +45,13 @@ public class PopSystem extends BaseSystem implements BoxContactListener {
                 toBeDeleted = a.id();
                 E.E().playSound("astronaut-pops");
             } else if ( b.hasPlayer() && !b.hasDead() ) {
-                toBeDeleted = a.id(); // also delete, but oxygen!
-                E.E().playSound(b.oxygenPercentage() > 100 ? "oxygen-recharge-2" : "oxygen-recharge-1");
-                b.oxygenIncrease();
+                if ( a.pickupType() == Pickup.Type.BLINKER) {
+                    a.anim("orb_on");
+                }else {
+                    toBeDeleted = a.id(); // also delete, but oxygen!
+                    E.E().playSound(b.oxygenPercentage() > 100 ? "oxygen-recharge-2" : "oxygen-recharge-1");
+                    b.oxygenIncrease();
+                }
             }
         }
     }

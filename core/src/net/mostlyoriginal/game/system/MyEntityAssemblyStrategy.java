@@ -82,7 +82,7 @@ public class MyEntityAssemblyStrategy implements FutureEntitySystem.EntityAssemb
                 .tag("player")
                 .camera()
                 .renderLayer(GameRules.LAYER_PLAYER);
-        Body body = boxPhysicsSystem.addAsCircle(decoratePlayer, decoratePlayer.getBounds().cy(), 20f, CAT_PLAYER, (short) (CAT_DEBRIS|CAT_PICKUP|CAT_BORDER), 0, 16, 1.0f, 0F, BodyDef.BodyType.DynamicBody);
+        Body body = boxPhysicsSystem.addAsCircle(decoratePlayer, decoratePlayer.getBounds().cy(), 20f, CAT_PLAYER, (short) (CAT_DEBRIS|CAT_PICKUP|CAT_BORDER), 0, 16, 1.0f, 0F, BodyDef.BodyType.DynamicBody, false);
 
         return decoratePlayer;
     }
@@ -91,8 +91,9 @@ public class MyEntityAssemblyStrategy implements FutureEntitySystem.EntityAssemb
         e
                 .anim("orb_off")
                 .bounds(4, 4, 16 - 4, 16-4)
+                .pickupType(Pickup.Type.BLINKER)
                 .renderLayer(GameRules.LAYER_ITEM-2);
-//        Body body = boxPhysicsSystem.addAsCircle(decoratePlayer, decoratePlayer.getBounds().cy(), 20f, CAT_PLAYER, (short) (CAT_DEBRIS|CAT_PICKUP|CAT_BORDER), 0, 16, 1.0f, 0F);
+        final Body body = boxPhysicsSystem.addAsCircle(e, e.getBounds().cy(), 0f, CAT_PICKUP, (short) (CAT_PLAYER), 0, 100, 1.0f, 0F,BodyDef.BodyType.StaticBody, true);
         return e;
     }
 
@@ -114,7 +115,7 @@ public class MyEntityAssemblyStrategy implements FutureEntitySystem.EntityAssemb
 
         boxPhysicsSystem.addAsCircle(item, item.getBounds().cy(), size * size * 0.15f, CAT_DEBRIS, (short) (CAT_DEBRIS|CAT_PLAYER|CAT_GRAPPLE|CAT_CHAIN|CAT_PICKUP|CAT_BORDER), MathUtils.random(0,360f), size, 0.0f, 0.2f,
                 "debris_immovable".equals(type) ? BodyDef.BodyType.StaticBody:
-                        BodyDef.BodyType.DynamicBody);
+                        BodyDef.BodyType.DynamicBody, false);
 
         if("debris_cactus".equals(type)){
             e.sharpChance(100).sharpSharpness(3);
@@ -152,7 +153,7 @@ return null;
 
         int size = (frame.getRegionWidth() / 2) + 4;
 
-        boxPhysicsSystem.addAsCircle(item, item.getBounds().cy(), 1f, CAT_PICKUP, (short) (CAT_DEBRIS|CAT_PLAYER|CAT_GRAPPLE|CAT_PICKUP|CAT_BORDER), MathUtils.random(0,360f), size, 0.0f, 0.1F, BodyDef.BodyType.DynamicBody);
+        boxPhysicsSystem.addAsCircle(item, item.getBounds().cy(), 1f, CAT_PICKUP, (short) (CAT_DEBRIS|CAT_PLAYER|CAT_GRAPPLE|CAT_PICKUP|CAT_BORDER), MathUtils.random(0,360f), size, 0.0f, 0.1F, BodyDef.BodyType.DynamicBody, false);
 
 
         Body body = e.boxedBody();
