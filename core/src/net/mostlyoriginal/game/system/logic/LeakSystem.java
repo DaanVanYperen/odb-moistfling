@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.Vector2;
 import net.mostlyoriginal.api.component.basic.Bounds;
 import net.mostlyoriginal.api.component.basic.Pos;
 import net.mostlyoriginal.game.GameRules;
+import net.mostlyoriginal.game.component.Dead;
 import net.mostlyoriginal.game.component.Leak;
 import net.mostlyoriginal.game.component.Oxygen;
 import net.mostlyoriginal.game.component.Player;
@@ -31,6 +32,7 @@ public class LeakSystem extends FluidSystem implements BoxContactListener {
     private float leakX[]= new float[MAXLEAKS];
     private float angles[] = new float[MAXLEAKS];
     private TransitionSystem transitionSystem;
+    private float deathCooldown;
 
     {
         for (int i = 0; i < MAXLEAKS; i++) {
@@ -47,6 +49,8 @@ public class LeakSystem extends FluidSystem implements BoxContactListener {
     }
 
     Vector2 tmp = new Vector2();
+
+    boolean almostDeadSoundPlayed=false;
 
     @Override
     protected void process(E e) {
@@ -71,19 +75,33 @@ public class LeakSystem extends FluidSystem implements BoxContactListener {
             }
         }
 
-        if ( e.oxygenPercentage() <= 0 && !e.isDead() ) {
-            e.dead();
-            GameRules.nextMap = GameRules.currentMap;
-            transitionSystem.transition(GameScreen.class,10);
+        if ( e.oxygenPercentage() <= 0 && !almostDeadSoundPlayed ) {
+            almostDeadSoundPlayed=true;
+            deathCooldown=2.5f;
+            E.E().playSound("suit-last-oxygen-escapes");
+        }
+        if ( almostDeadSoundPlayed && !e.isDead() ) {
+            deathCooldown -= world.delta;
+            if (deathCooldown <= 0 ) {
+                e.dead();
+                GameRules.nextMap = GameRules.currentMap;
+                transitionSystem.transition(GameScreen.class, 10);
+            }
         }
     }
 
     @Override
     public void beginContact(E a, E b) {
-        if ( a.hasSharp() && b.hasPlayer() ) {
+        if ( a.hasSharp() && b.hasPlayer() && !b.isDead() ) {
             if ( b.leakLastLeakAge() > 0.5f ) { // don't spam leaks.
+                if ( MathUtils.random(0,100) < 50f) {
+                    // sometimes you are lucky.
+                    E.E().playSound("suit-almost-puncture");
+                } else {
+                    E.E().playSound("suit-puncture");
+                    b.leakLeaks(Math.min(MAXLEAKS, b.leakLeaks() + 1));
+                }
                 b.leakLastLeakAge(0f);
-                b.leakLeaks(Math.min(MAXLEAKS, b.leakLeaks() + 1));
             }
         }
     }

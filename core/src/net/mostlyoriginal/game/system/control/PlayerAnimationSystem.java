@@ -46,6 +46,6 @@ public class PlayerAnimationSystem extends FluidSystem {
             e.anim("player_tethered"+suffix);
         }
 
-        if ( percentage <= 0 ) e.anim("player_dead");
+        if ( e.isDead()) e.anim("player_dead");
     }
 }

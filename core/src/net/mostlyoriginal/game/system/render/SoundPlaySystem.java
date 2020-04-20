@@ -44,7 +44,11 @@ public class SoundPlaySystem extends FluidIteratingSystem {
 
     protected void loadSounds(String[] soundnames) {
         for (String identifier : soundnames) {
-            sounds.put(identifier, Gdx.audio.newSound(Gdx.files.internal("sfx/" + identifier + ".mp3")));
+            if ( identifier.contains(".wav")) {
+                sounds.put(identifier, Gdx.audio.newSound(Gdx.files.internal("sfx/" + identifier )));
+            } else {
+                sounds.put(identifier, Gdx.audio.newSound(Gdx.files.internal("sfx/" + identifier + ".mp3")));
+            }
         }
     }
 

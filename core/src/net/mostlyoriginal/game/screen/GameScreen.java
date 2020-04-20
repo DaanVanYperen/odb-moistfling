@@ -22,10 +22,9 @@ import net.mostlyoriginal.game.system.box2d.BoxPhysicsMouseSystem;
 import net.mostlyoriginal.game.system.box2d.BoxPhysicsSystem;
 import net.mostlyoriginal.game.system.control.*;
 import net.mostlyoriginal.game.system.future.FutureEntitySystem;
-import net.mostlyoriginal.game.system.logic.LeakSystem;
-import net.mostlyoriginal.game.system.logic.PopSystem;
-import net.mostlyoriginal.game.system.logic.TransitionSystem;
+import net.mostlyoriginal.game.system.logic.*;
 import net.mostlyoriginal.game.system.map.*;
+import net.mostlyoriginal.game.system.mechanics.LevelTimerSystem;
 import net.mostlyoriginal.game.system.render.*;
 import net.mostlyoriginal.game.system.view.GameScreenAssetSystem;
 import net.mostlyoriginal.game.system.view.MyClearScreenSystem;
@@ -80,30 +79,32 @@ public class GameScreen extends TransitionableWorldScreen {
                         new LeakSystem(),
                         new BeamedSystem(),
 
+                        new LevelTimerSystem(),
+
                         new CameraFollowSystem(),
                         new PlayerAnimationSystem(),
+
+                        new BreathingSfxSystem(),
+                        new LeakSfxSystem(),
+
                         new RenderBackgroundSystem(),
+
                         renderBatchingSystem = new RenderBatchingSystem(),
                         new MyAnimRenderSystem(renderBatchingSystem),
                         new MyLabelRenderSystem(renderBatchingSystem),
                         new MapLayerRenderSystem(renderBatchingSystem, batch),
 
                         new SoundPlaySystem(
-                                "sfx_interact_6",
-                                "sfx_magic_1",
-                                "sfx_magic_2",
-                                "sfx_magic_3",
-                                "sfx_money_1",
-                                "sfx_pickup",
-                                "sfx_putdown",
-                                "sfx_walk",
-                                "sfx_hag",
-                                "burp",
-                                "drowned",
-                                "water1",
-                                "water2",
-                                "LD45_dogwhine",
-                                "LD45_mermaid"
+                                "leak-loop.wav",
+                                "oxygen-recharge-1",
+                                "oxygen-recharge-2",
+                                "astronaut-pops",
+                                "breath-normal",
+                                "breath-laboured",
+                                "breath-suffocating",
+                                "suit-puncture",
+                                "suit-almost-puncture",
+                                "suit-last-oxygen-escapes"
                         ),
                         new BoxPhysicsDebugRenderSystem(),
                         new TransitionSystem(GdxArtemisGame.getInstance(), this)
