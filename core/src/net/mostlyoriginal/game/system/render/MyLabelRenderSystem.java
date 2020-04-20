@@ -48,7 +48,7 @@ public class MyLabelRenderSystem extends DeferredEntityProcessingSystem {
 
     @Override
     protected void begin() {
-        batch.setProjectionMatrix(cameraSystem.camera.combined);
+        batch.setProjectionMatrix(cameraSystem.guiCamera.combined);
         batch.setColor(new Color(1f,0f,0f,1f));
         batch.begin();
     }

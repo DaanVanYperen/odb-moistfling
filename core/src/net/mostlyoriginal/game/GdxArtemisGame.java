@@ -1,6 +1,7 @@
 package net.mostlyoriginal.game;
 
 import com.badlogic.gdx.Game;
+import net.mostlyoriginal.game.component.Score;
 import net.mostlyoriginal.game.screen.GameScreen;
 import net.mostlyoriginal.game.screen.LogoScreen;
 
@@ -19,6 +20,7 @@ public class GdxArtemisGame extends Game {
 	}
 
 	public void restart() {
+		GameRules.score= new Score();
 		GameRules.nextMap=DEBUG_ENABLED ? "map_debug.tmx" : "map1.tmx";
 		setScreen(LOGO_ENABLED ? new LogoScreen() : new GameScreen());
 	}

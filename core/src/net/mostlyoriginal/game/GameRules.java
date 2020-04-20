@@ -1,6 +1,7 @@
 package net.mostlyoriginal.game;
 
 import com.badlogic.gdx.audio.Music;
+import net.mostlyoriginal.game.component.Score;
 
 /**
  * @author Daan van Yperen
@@ -43,4 +44,6 @@ public abstract class GameRules {
     public static boolean musicOn=true;
     public static String nextMap;
     public static String currentMap;
+
+    public static Score score = new Score();
 }

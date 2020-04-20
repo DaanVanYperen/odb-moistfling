@@ -5,6 +5,6 @@ import com.artemis.Component;
 /**
  * @author Daan van Yperen
  */
-public class Timer extends Component {
+public class Score {
    public float age;
 }
