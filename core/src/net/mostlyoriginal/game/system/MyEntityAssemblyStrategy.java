@@ -93,14 +93,14 @@ public class MyEntityAssemblyStrategy implements FutureEntitySystem.EntityAssemb
 
         float targetX = e.posX() - e.boundsCx() - 48;
         float targetY = e.posY() - e.boundsCy() - 48;
-        float startY = targetY + GameRules.SCREEN_HEIGHT / 2;
-        float endY = e.posY()-1000;
+        float endY = targetY +1000;
+        float startY =  targetY -1000;
         E.E().anim("escape_pod")
                 .pos(targetX, startY)
                 .renderLayer(GameRules.LAYER_PLAYER+1)
             .script(
                 OperationFactory.sequence(
-                        JamOperationFactory.moveBetween(targetX,startY,targetX,targetY,seconds(1.2f), Interpolation.exp5Out),
+                        JamOperationFactory.moveBetween(targetX,startY,targetX,targetY,seconds(1.4f), Interpolation.exp5Out),
                         OperationFactory.delay(seconds(0.2f)),
                         JamOperationFactory.moveBetween(targetX,targetY,targetX,endY,seconds(0.8f), Interpolation.exp5In),
                         OperationFactory.deleteFromWorld())
