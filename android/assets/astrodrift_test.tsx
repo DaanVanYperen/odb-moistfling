@@ -79,6 +79,13 @@
    <property name="invisible" type="bool" value="true"/>
   </properties>
  </tile>
+ <tile id="94">
+  <properties>
+   <property name="anim" value="debris_robot"/>
+   <property name="entity" value="debris"/>
+   <property name="invisible" type="bool" value="true"/>
+  </properties>
+ </tile>
  <tile id="105" terrain=",0,,">
   <properties>
    <property name="anim" value="debris_small_4"/>
@@ -167,6 +174,27 @@
  <tile id="130">
   <properties>
    <property name="entity" value="tutorial"/>
+   <property name="invisible" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="132">
+  <properties>
+   <property name="anim" value="steve_corpse"/>
+   <property name="entity" value="pickup"/>
+   <property name="invisible" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="134">
+  <properties>
+   <property name="anim" value="trump_corpse"/>
+   <property name="entity" value="pickup"/>
+   <property name="invisible" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="136">
+  <properties>
+   <property name="anim" value="alien_corpse"/>
+   <property name="entity" value="pickup"/>
    <property name="invisible" type="bool" value="true"/>
   </properties>
  </tile>

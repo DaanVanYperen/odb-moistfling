@@ -8,6 +8,7 @@
     <!--<inherits name='net.mostlyoriginal.ContribEventBus'/>-->
     <inherits name='net.mostlyoriginal.ContribJam'/>
     <inherits name='javax.annotation.Annotation' />
+    <inherits name='com.badlogic.gdx.physics.box2d.box2d-gwt' />
 
     <!-- Just include everything. -->
     <extend-configuration-property name="artemis.reflect.include" value="net.mostlyoriginal.game.component"/>
@@ -71,8 +72,15 @@
     <extend-configuration-property name="artemis.reflect.include" value="net.mostlyoriginal.game.events" />
     <extend-configuration-property name="artemis.reflect.include" value="net.mostlyoriginal.game.util" />
     <extend-configuration-property name="artemis.reflect.include" value="com.artemis.PooledComponent" />
+    <extend-configuration-property name="artemis.reflect.include" value="com.badlogic.gdx.physics.box2d.Body"/>
+    <extend-configuration-property name="artemis.reflect.include" value="com.badlogic.gdx.physics.box2d.Joint"/>
+    <extend-configuration-property name="artemis.reflect.include" value="com.badlogic.gdx.physics.box2d.JointDef"/>
+
     <extend-configuration-property name="gdx.reflect.include" value="com.artemis.PooledComponent" />
 
+    <extend-configuration-property name="gdx.reflect.include" value="com.badlogic.gdx.physics.box2d.Body"/>
+    <extend-configuration-property name="gdx.reflect.include" value="com.badlogic.gdx.physics.box2d.Joint"/>
+    <extend-configuration-property name="gdx.reflect.include" value="com.badlogic.gdx.physics.box2d.JointDef"/>
 
     <!--<extend-configuration-property name="artemis.reflect.exclude" value="com.badlogic.gdx.graphics.g3d" />-->
     <!--<extend-configuration-property name="artemis.reflect.exclude" value="com.badlogic.gdx.scenes.scene2d" />-->
