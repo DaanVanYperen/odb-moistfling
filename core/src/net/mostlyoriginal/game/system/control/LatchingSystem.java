@@ -26,8 +26,8 @@ public class LatchingSystem extends FluidSystem implements BoxDestructionListene
 
     private E player;
     private BoxPhysicsSystem boxPhysicsSystem;
-    private Joint grappleJoint;
-    private E latchedTarget;
+    private Joint grappleJoint = null;
+    private E latchedTarget = null;
 
     @Override
     protected void initialize() {
@@ -96,10 +96,11 @@ public class LatchingSystem extends FluidSystem implements BoxDestructionListene
             grappleJointDef.length = pixelDistance / PPM;
             grappleJointDef.frequencyHz = 0.15f;
             grappleJointDef.dampingRatio = 0.3f;
+            grappleJointDef.collideConnected = true;
 
-            //if (e.hasPickup()) {
-                grappleJointDef.collideConnected = true;
-            //}
+            e.getBoxed().body.setAwake(true);
+            player.getBoxed().body.setAwake(true);
+
 
             grappleJoint = box2d.createJoint(grappleJointDef);
 

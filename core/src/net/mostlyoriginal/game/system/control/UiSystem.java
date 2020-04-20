@@ -47,20 +47,23 @@ public class UiSystem extends BaseSystem {
     @Override
     protected void processSystem() {
 
-        batch.draw(((TextureRegion)assetSystem.get(GameRules.sfxOn?"icon_sound":"icon_sound_off").getKeyFrame(0)),GameRules.SCREEN_WIDTH / 2 - 50,GameRules.SCREEN_HEIGHT / 2 - 50);
-        batch.draw(((TextureRegion)assetSystem.get(GameRules.musicOn ?"icon_music":"icon_music_off").getKeyFrame(0)),GameRules.SCREEN_WIDTH / 2 - 100,GameRules.SCREEN_HEIGHT / 2 - 50);
-        batch.draw(((TextureRegion)assetSystem.get("icon_reset").getKeyFrame(0)),GameRules.SCREEN_WIDTH / 2 - 150,GameRules.SCREEN_HEIGHT / 2 - 50);
+        batch.draw(((TextureRegion)assetSystem.get("icon_reset").getKeyFrame(0)),GameRules.SCREEN_WIDTH / 2 - 20,GameRules.SCREEN_HEIGHT / 2 - 20, 16f, 16f);
+        batch.draw(((TextureRegion)assetSystem.get(GameRules.musicOn ?"icon_music":"icon_music_off").getKeyFrame(0)),GameRules.SCREEN_WIDTH / 2 - 40,GameRules.SCREEN_HEIGHT / 2 - 20, 16f, 16f);
+        batch.draw(((TextureRegion)assetSystem.get(GameRules.sfxOn?"icon_sound":"icon_sound_off").getKeyFrame(0)),GameRules.SCREEN_WIDTH / 2 - 60,GameRules.SCREEN_HEIGHT / 2 - 20, 16f, 16f);
 
             if (Gdx.input.isTouched()) {
                 float posX = Gdx.input.getX()/2;
                 float posY = GameRules.SCREEN_HEIGHT/2 - Gdx.input.getY()/2;
-                if (released && posY > GameRules.SCREEN_HEIGHT / GameRules.CAMERA_ZOOM - 50) {
-                    if (posX > GameRules.SCREEN_WIDTH / GameRules.CAMERA_ZOOM - 50) {
-                        released = false;
-                        GameRules.sfxOn = !GameRules.sfxOn;
+                if (released && posY > GameRules.SCREEN_HEIGHT / GameRules.CAMERA_ZOOM - 20) {
+                    if (posX > GameRules.SCREEN_WIDTH / GameRules.CAMERA_ZOOM - 20) {
+                        if ( !E.E().withTag("player").isDead()) {
+                            released = false;
+                            leakSystem.forceDeath();
+                            E.E().playSound("astronaut-pops");
+                        }
                         //sfxButton.anim(GameRules.sfxOn ? "icon_sound" : "icon_sound_off");
 
-                    } else if (posX > GameRules.SCREEN_WIDTH / GameRules.CAMERA_ZOOM - 100) {
+                    } else if (posX > GameRules.SCREEN_WIDTH / GameRules.CAMERA_ZOOM - 40) {
                         released = false;
                         GameRules.musicOn = !GameRules.musicOn;
                         if (GameRules.musicOn) {
@@ -69,12 +72,9 @@ public class UiSystem extends BaseSystem {
                             GameRules.music.pause();
                         }
                         //musicButton.anim(GameRules.musicOn ? "icon_music" : "icon_music_off");
-                    } else if (posX > GameRules.SCREEN_WIDTH / GameRules.CAMERA_ZOOM - 150) {
-                        if ( !E.E().withTag("player").isDead()) {
-                            released = false;
-                            leakSystem.forceDeath();
-                            E.E().playSound("astronaut-pops");
-                        }
+                    } else if (posX > GameRules.SCREEN_WIDTH / GameRules.CAMERA_ZOOM - 60) {
+                        released = false;
+                        GameRules.sfxOn = !GameRules.sfxOn;
                     }
                 }
             } else {
