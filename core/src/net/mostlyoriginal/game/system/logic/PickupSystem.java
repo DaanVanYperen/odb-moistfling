@@ -3,6 +3,8 @@ package net.mostlyoriginal.game.system.logic;
 import com.artemis.BaseSystem;
 import com.artemis.E;
 import com.artemis.annotations.All;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
@@ -36,6 +38,9 @@ public class PickupSystem extends BaseSystem implements BoxContactListener {
 
     @Override
     protected void processSystem() {
+        if (GameRules.DEBUG_ENABLED && Gdx.input.isKeyJustPressed(Input.Keys.F3)) {
+            transitionSystem.transition(GameScreen.class, seconds(0.1f));
+        }
         if (toBeDeleted != -1) {
             E e = E.E(toBeDeleted);
             if (e.hasPickup() && e.pickupType() == Pickup.Type.EXIT) {

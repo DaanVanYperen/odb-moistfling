@@ -16,6 +16,7 @@ import net.mostlyoriginal.game.component.map.MapEntityMarker;
 import net.mostlyoriginal.game.component.map.TiledMapLayer;
 import net.mostlyoriginal.game.component.map.TiledMapSingleton;
 import net.mostlyoriginal.game.system.box2d.BoxPhysicsSystem;
+import net.mostlyoriginal.game.system.mechanics.LevelTimerSystem;
 
 /**
  * Loads tiled map and craetes MapEntityMarker for all tiles with 'entity' property.
@@ -45,6 +46,7 @@ public class TiledMapManager extends BaseSystem {
     // Injected singleton
     private TiledMapSingleton tiledMap;
     private BoxPhysicsSystem boxPhysicsSystem;
+    private LevelTimerSystem levelTimerSystem;
 
     // @Todo
     @Deprecated
@@ -89,6 +91,8 @@ public class TiledMapManager extends BaseSystem {
 
         GameRules.currentMap = filename;
         GameRules.nextMap = (String) tiledMap.properties.get("nextmap");
+        // @todo SMART!
+        levelTimerSystem.mapName = (String) tiledMap.properties.get("name");
         createMapMarkers(tiledMap);
     }
 

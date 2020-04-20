@@ -198,6 +198,20 @@
    <property name="invisible" type="bool" value="true"/>
   </properties>
  </tile>
+ <tile id="138">
+  <properties>
+   <property name="anim" value="random_corpse"/>
+   <property name="entity" value="pickup"/>
+   <property name="invisible" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="140">
+  <properties>
+   <property name="anim" value="troop_corpse"/>
+   <property name="entity" value="pickup"/>
+   <property name="invisible" type="bool" value="true"/>
+  </properties>
+ </tile>
  <tile id="147">
   <properties>
    <property name="entity" value="none"/>
