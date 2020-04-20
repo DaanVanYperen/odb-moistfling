@@ -48,7 +48,7 @@ public class BoxPhysicsMouseSystem extends FluidSystem {
                 if ( e != null && e.hasTappable() ) {
                     e.tapped();
                 }
-                return false;
+                return true;
             } else
                 return true;
         }

@@ -100,6 +100,9 @@ public class MyEntityAssemblyStrategy implements FutureEntitySystem.EntityAssemb
     GameScreenAssetSystem gameScreenAssetSystem;
 
     private E decorateDebris(E e, String type) {
+        if ( "debris_small_1".equals(type) ) {
+            type = "debris_small_"+MathUtils.random(1,6);
+        }
 
         Animation<TextureRegion> animation = gameScreenAssetSystem.get(type);
         final TextureRegion frame = animation.getKeyFrame(0, false);
