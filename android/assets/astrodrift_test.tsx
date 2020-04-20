@@ -112,6 +112,13 @@
    <property name="invisible" type="bool" value="true"/>
   </properties>
  </tile>
+ <tile id="112">
+  <properties>
+   <property name="anim" value="debris_cactus"/>
+   <property name="entity" value="debris"/>
+   <property name="invisible" type="bool" value="true"/>
+  </properties>
+ </tile>
  <tile id="126">
   <properties>
    <property name="anim" value="escape_pod"/>

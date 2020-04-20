@@ -114,9 +114,12 @@ public class MyEntityAssemblyStrategy implements FutureEntitySystem.EntityAssemb
                 "debris_immovable".equals(type) ? BodyDef.BodyType.StaticBody:
                 BodyDef.BodyType.DynamicBody);
 
+        if("debris_cactus".equals(type)){
+            e.sharpChance(100).sharpSharpness(3);
+        }
 
         if ( MathUtils.random(0, 100) < 20) {
-            Body body = e.boxedBody();
+            final Body body = e.boxedBody();
             final Vector2 vel = body.getLinearVelocity();
             worldOrigin.x = (e.posX() + e.boundsCx()) / BoxPhysicsSystem.PPM;
             worldOrigin.y = (e.posY() + e.boundsCy()) / BoxPhysicsSystem.PPM;

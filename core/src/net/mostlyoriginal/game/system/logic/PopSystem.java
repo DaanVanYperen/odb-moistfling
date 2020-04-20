@@ -41,7 +41,7 @@ public class PopSystem extends BaseSystem implements BoxContactListener {
     @Override
     public void beginContact(E a, E b) {
         if ( a.hasPickup() ) {
-            if ( b.isSharp() ) {
+            if ( b.hasSharp() ) {
                 toBeDeleted = a.id();
                 E.E().playSound("astronaut-pops");
             } else if ( b.hasPlayer() && !b.hasDead() ) {
