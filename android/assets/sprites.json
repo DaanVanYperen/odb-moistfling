@@ -490,6 +490,46 @@
       "width": 48,
       "height": 48,
     },
+    {
+      "id": "random_corpse",
+      "comment": "Corpse of a deceased randomise user."
+      "x": 576,
+      "y": 288,
+      "countX": 2,
+      "countY": 1,
+      "width": 48,
+      "height": 48,
+      "milliseconds": 250,
+      "repeat": true,
+    },
+    {
+      "id": "random_corpse_outline",
+      "comment": "Outline of the corpse of a deceased randomise user."
+      "x": 576,
+      "y": 544,
+      "width": 48,
+      "height": 48,
+    },
+    {
+      "id": "troop_corpse",
+      "comment": "Corpse of a deceased troop."
+      "x": 672,
+      "y": 288,
+      "countX": 2,
+      "countY": 1,
+      "width": 48,
+      "height": 48,
+      "milliseconds": 250,
+      "repeat": true,
+    },
+    {
+      "id": "troop_corpse_outline",
+      "comment": "Outline of the corpse of a deceased troop."
+      "x": 672,
+      "y": 544,
+      "width": 48,
+      "height": 48,
+    },
 	
     {
       "id": "grappling_hook",
