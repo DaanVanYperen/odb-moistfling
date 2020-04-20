@@ -11,4 +11,6 @@ public abstract class EntityType {
     public static final int PICKUP = 3;
     public static final int EXIT = 4;
     public static final int BLINKER = 5;
+    public static final int TUTORIAL = 6;
+
 }

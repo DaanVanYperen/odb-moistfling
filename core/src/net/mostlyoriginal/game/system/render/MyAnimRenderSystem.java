@@ -98,12 +98,12 @@ public class MyAnimRenderSystem extends DeferredEntityProcessingSystem {
 
         batch.setColor(mTint.getSafe(e, Tint.WHITE).color);
 
-        if ( E.E(e).isBeamed() ) {
-            drawAnimation(anim, angle, origin, pos, "tractor_glow", scale, animSize);
-        }
         if (anim.id != null) drawAnimation(anim, angle, origin, pos, anim.id, scale,animSize);
         if (anim.id2 != null) drawAnimation(anim, angle, origin, pos, anim.id2, scale,animSize);
 
+        if ( E.E(e).isBeamed() ) {
+            drawAnimation(anim, angle, origin, pos, anim.id+"_outline", scale, animSize);
+        }
 
         anim.age += world.delta * anim.speed;
     }

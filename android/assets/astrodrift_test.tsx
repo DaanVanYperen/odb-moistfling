@@ -47,6 +47,7 @@
  </tile>
  <tile id="88">
   <properties>
+   <property name="entity" value="none"/>
    <property name="invisible" type="bool" value="true"/>
   </properties>
  </tile>
@@ -94,21 +95,25 @@
  </tile>
  <tile id="108">
   <properties>
+   <property name="entity" value="none"/>
    <property name="invisible" type="bool" value="true"/>
   </properties>
  </tile>
  <tile id="109">
   <properties>
+   <property name="entity" value="none"/>
    <property name="invisible" type="bool" value="true"/>
   </properties>
  </tile>
  <tile id="110">
   <properties>
+   <property name="entity" value="none"/>
    <property name="invisible" type="bool" value="true"/>
   </properties>
  </tile>
  <tile id="111">
   <properties>
+   <property name="entity" value="none"/>
    <property name="invisible" type="bool" value="true"/>
   </properties>
  </tile>
@@ -128,6 +133,7 @@
  </tile>
  <tile id="127">
   <properties>
+   <property name="entity" value="none"/>
    <property name="invisible" type="bool" value="true"/>
   </properties>
  </tile>
@@ -137,13 +143,21 @@
    <property name="invisible" type="bool" value="true"/>
   </properties>
  </tile>
+ <tile id="130">
+  <properties>
+   <property name="entity" value="tutorial"/>
+   <property name="invisible" type="bool" value="true"/>
+  </properties>
+ </tile>
  <tile id="147">
   <properties>
+   <property name="entity" value="none"/>
    <property name="invisible" type="bool" value="true"/>
   </properties>
  </tile>
  <tile id="148">
   <properties>
+   <property name="entity" value="none"/>
    <property name="invisible" type="bool" value="true"/>
   </properties>
  </tile>

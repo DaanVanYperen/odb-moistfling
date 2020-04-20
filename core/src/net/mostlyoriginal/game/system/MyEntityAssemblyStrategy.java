@@ -64,6 +64,8 @@ public class MyEntityAssemblyStrategy implements FutureEntitySystem.EntityAssemb
                 return decorateExit(source, futureEntity.subType);
             case BLINKER:
                 return decorateBlinker(source);
+            case TUTORIAL:
+                return decorateTutorial(source);
         }
         throw new RuntimeException("Unknown entity type " + source.futureEntityType());
     }
@@ -112,7 +114,7 @@ public class MyEntityAssemblyStrategy implements FutureEntitySystem.EntityAssemb
 
         boxPhysicsSystem.addAsCircle(item, item.getBounds().cy(), size * size * 0.15f, CAT_DEBRIS, (short) (CAT_DEBRIS|CAT_PLAYER|CAT_GRAPPLE|CAT_CHAIN|CAT_PICKUP|CAT_BORDER), MathUtils.random(0,360f), size, 0.0f, 0.2f,
                 "debris_immovable".equals(type) ? BodyDef.BodyType.StaticBody:
-                BodyDef.BodyType.DynamicBody);
+                        BodyDef.BodyType.DynamicBody);
 
         if("debris_cactus".equals(type)){
             e.sharpChance(100).sharpSharpness(3);
@@ -129,6 +131,10 @@ public class MyEntityAssemblyStrategy implements FutureEntitySystem.EntityAssemb
 
 
         return item;
+    }
+
+    private E decorateTutorial(E e) {
+return null;
     }
 
 
