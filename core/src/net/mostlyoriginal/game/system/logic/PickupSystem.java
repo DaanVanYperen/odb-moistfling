@@ -59,7 +59,7 @@ public class PickupSystem extends BaseSystem implements BoxContactListener {
             if (e.pickupType() != Pickup.Type.EXIT) {
                 e.removePickup();
                 e.script(OperationFactory.sequence(
-                        JamOperationFactory.tintBetween(Tint.WHITE, Tint.TRANSPARENT, seconds(0.5f), Interpolation.exp5),
+                        JamOperationFactory.tintBetween(Tint.WHITE, Tint.TRANSPARENT, seconds(0.3f), Interpolation.exp5),
                         OperationFactory.deleteFromWorld()
                 ));
             } else e.deleteFromWorld();
