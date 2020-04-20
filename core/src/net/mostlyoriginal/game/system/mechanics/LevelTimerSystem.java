@@ -41,7 +41,7 @@ public class LevelTimerSystem extends BaseSystem {
     private void genTitle(String value, float showTime) {
         float x = GameRules.SCREEN_WIDTH/4;
         float y = 120f;
-        E.E().tag("titleLabel").labelText(value).tint(STONE_FONT_TINT).fontScale(4f).fontFontName("5x5")
+        E.E().tag("titleLabel").labelText(value).tint(0.0f,0.0f,0.0f,0.0f).fontScale(4f).fontFontName("5x5")
                 .labelAlign(Label.Align.RIGHT).pos(x, y)
                 .renderLayer(2000)
                 .script(OperationFactory.sequence(
@@ -50,7 +50,7 @@ public class LevelTimerSystem extends BaseSystem {
                         JamOperationFactory.tintBetween(Tint.WHITE,Tint.TRANSPARENT,seconds(1f), Interpolation.exp5Out),
                         OperationFactory.deleteFromWorld()
                 ));
-        E.E().tag("titleLabel").labelText(value).tint(0f,0f,0f,0.4f).fontScale(4f).fontFontName("5x5")
+        E.E().tag("titleLabel").labelText(value).tint(0.0f,0.0f,0.0f,0.0f).fontScale(4f).fontFontName("5x5")
                 .labelAlign(Label.Align.RIGHT).pos(x +1, y -1)
                 .renderLayer(1999)
                 .script(OperationFactory.sequence(
@@ -69,7 +69,7 @@ public class LevelTimerSystem extends BaseSystem {
         final int seconds = (int)GameRules.score.age;
         if ( lastSeconds != seconds ) {
             lastSeconds = seconds;
-            final String txt = mapName + asTime(lastSeconds) + " checkpoints hit: " + GameRules.score.checkpoints;
+            final String txt = mapName + " ("+ asTime(lastSeconds) + ") checkpoints hit: " + GameRules.score.checkpoints;
             rankLabel.labelText(txt);
             rankLabelShadow.labelText(txt);
         }
@@ -77,13 +77,13 @@ public class LevelTimerSystem extends BaseSystem {
         if ( victoryCooldown > 0 ) {
             victoryCooldown-= world.delta;
             if ( victoryCooldown <= 0 ) {
-                genTitle("Run in "+asTime((int)GameRules.score.age) + ", "+GameRules.score.checkpoints+" checkpoints!", 99f);
+                genTitle("Run in "+asTime((int)GameRules.score.age) + ", "+(GameRules.score.checkpoints)+" checkpoints!", 99f);
                 victoryCooldown=0;
             }
         }
     }
 
     private String asTime(int value) {
-        return " (" + ((lastSeconds / 60) < 10 ? "0" : "") + (value / 60) + ":" + ((lastSeconds % 60) < 10 ? "0" : "") + (lastSeconds % 60) + ")";
+        return ((lastSeconds / 60) < 10 ? "0" : "") + (value / 60) + ":" + ((lastSeconds % 60) < 10 ? "0" : "") + (lastSeconds % 60);
     }
 }

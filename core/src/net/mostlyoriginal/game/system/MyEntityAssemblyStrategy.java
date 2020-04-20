@@ -129,6 +129,7 @@ public class MyEntityAssemblyStrategy implements FutureEntitySystem.EntityAssemb
         Animation<TextureRegion> animation = gameScreenAssetSystem.get(type);
         final TextureRegion frame = animation.getKeyFrame(0, false);
         boolean isCactus = "debris_cactus".equals(type);
+        boolean isCrate = "debris_crate_hedgehog".equals(type) || "debris_crate_cactus".equals(type);
         boolean isHedgehog = "debris_hedgehog".equals(type);
         boolean isImmovable = "debris_immovable".equals(type);
 
@@ -150,7 +151,7 @@ public class MyEntityAssemblyStrategy implements FutureEntitySystem.EntityAssemb
             e.sharpChance(100).sharpSharpness(2);
         } else if(isHedgehog){
             e.sharpChance(90).sharpSharpness(1);
-        } else if ( isImmovable ) {
+        } else if ( isImmovable||isCrate ) {
             e.sharpChance(0).sharpSharpness(0);
         }
 
