@@ -677,7 +677,7 @@
       "height": 48,
     },
     {
-      "id": "debris_robot",
+      "id": "debris_robot_outline",
       "comment": "Outline for 48x48 debris robot.",
       "x": 480,
       "y": 448,
