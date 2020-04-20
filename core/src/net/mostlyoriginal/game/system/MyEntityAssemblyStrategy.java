@@ -89,7 +89,7 @@ public class MyEntityAssemblyStrategy implements FutureEntitySystem.EntityAssemb
                 .renderLayer(GameRules.LAYER_PLAYER)
                 .invisible()
                 .script(OperationFactory.sequence(OperationFactory.delay(seconds(1.2f)),OperationFactory.remove(Invisible.class)));
-        Body body = boxPhysicsSystem.addAsCircle(decoratePlayer, decoratePlayer.getBounds().cy(), 20f, CAT_PLAYER, (short) (CAT_DEBRIS|CAT_PICKUP|CAT_BORDER), 0, 16, 1.0f, 0F, BodyDef.BodyType.DynamicBody, false);
+        Body body = boxPhysicsSystem.addAsCircle(decoratePlayer, decoratePlayer.getBounds().cy(), 20f, CAT_PLAYER, (short) (CAT_DEBRIS|CAT_PICKUP|CAT_BORDER), 0, 16, 0.9f, 0F, BodyDef.BodyType.DynamicBody, false);
 
         float targetX = e.posX() - e.boundsCx() - 48;
         float targetY = e.posY() - e.boundsCy() - 48;
@@ -130,6 +130,7 @@ public class MyEntityAssemblyStrategy implements FutureEntitySystem.EntityAssemb
         final TextureRegion frame = animation.getKeyFrame(0, false);
         boolean isCactus = "debris_cactus".equals(type);
         boolean isHedgehog = "debris_hedgehog".equals(type);
+        boolean isImmovable = "debris_immovable".equals(type);
 
         E item = e
                 .bounds(0, 0, frame.getRegionWidth(), frame.getRegionHeight())
@@ -140,12 +141,15 @@ public class MyEntityAssemblyStrategy implements FutureEntitySystem.EntityAssemb
 
         int size = (frame.getRegionWidth() / 2) - 4;
 
-        boxPhysicsSystem.addAsCircle(item, item.getBounds().cy(), isCactus ? 4 : isHedgehog ? 2 : size * size * 0.15f, CAT_DEBRIS, (short) (CAT_DEBRIS|CAT_PLAYER|CAT_GRAPPLE|CAT_CHAIN|CAT_PICKUP|CAT_BORDER), MathUtils.random(0,360f), size, 0.0f, 0.2f,
-                "debris_immovable".equals(type) ? BodyDef.BodyType.StaticBody:
+        boxPhysicsSystem.addAsCircle(item, item.getBounds().cy(), isCactus ? 4 : isHedgehog ? 2 : size * size * 0.15f, CAT_DEBRIS, (short) (CAT_DEBRIS|CAT_PLAYER|CAT_GRAPPLE|CAT_CHAIN|CAT_PICKUP|CAT_BORDER), MathUtils.random(0,360f), size,
+                isCactus || isHedgehog ? 1.0f: 0.0f, 0.2f,
+                isImmovable ? BodyDef.BodyType.StaticBody:
                         BodyDef.BodyType.DynamicBody, false);
 
         if(isCactus||isHedgehog){
             e.sharpChance(100).sharpSharpness(3);
+        } else if ( isImmovable ) {
+            e.sharpChance(0).sharpSharpness(0);
         }
 
         if ( MathUtils.random(0, 100) < 20) {
