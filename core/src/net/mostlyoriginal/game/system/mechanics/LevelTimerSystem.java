@@ -31,14 +31,14 @@ public class LevelTimerSystem extends BaseSystem {
         float y = 10f;
         rankLabel = E.E().tag("scoreLabel").labelText("test123").tint(STONE_FONT_TINT).fontScale(1f).fontFontName("5x5").labelAlign(Label.Align.LEFT).pos(x, y).renderLayer(2000);
         rankLabelShadow = E.E().tag("scoreLabel").labelText("test123").tint(0f,0f,0f,0.4f).fontScale(1f).fontFontName("5x5").labelAlign(Label.Align.LEFT).pos(x +1, y -1).renderLayer(1999);
-        genTitle(mapName);
+        genTitle(mapName, 5.0f);
         if (mapName != null && mapName.contains("Victory!")) {
             victoryCooldown = 6f;
             done=true;
         }
     }
 
-    private void genTitle(String value) {
+    private void genTitle(String value, float showTime) {
         float x = GameRules.SCREEN_WIDTH/4;
         float y = 120f;
         E.E().tag("titleLabel").labelText(value).tint(STONE_FONT_TINT).fontScale(4f).fontFontName("5x5")
@@ -46,7 +46,7 @@ public class LevelTimerSystem extends BaseSystem {
                 .renderLayer(2000)
                 .script(OperationFactory.sequence(
                         JamOperationFactory.tintBetween(Tint.TRANSPARENT,Tint.WHITE,seconds(0.5f), Interpolation.exp5In),
-                        OperationFactory.delay(5.0f),
+                        OperationFactory.delay(showTime),
                         JamOperationFactory.tintBetween(Tint.WHITE,Tint.TRANSPARENT,seconds(1f), Interpolation.exp5Out),
                         OperationFactory.deleteFromWorld()
                 ));
@@ -55,7 +55,7 @@ public class LevelTimerSystem extends BaseSystem {
                 .renderLayer(1999)
                 .script(OperationFactory.sequence(
                         JamOperationFactory.tintBetween(Tint.TRANSPARENT,new Tint(0f,0f,0f,0.4f),seconds(0.5f), Interpolation.exp5In),
-                        OperationFactory.delay(5.0f),
+                        OperationFactory.delay(showTime),
                         JamOperationFactory.tintBetween(new Tint(0f,0f,0f,0.4f),Tint.TRANSPARENT,seconds(1f), Interpolation.exp5Out),
                         OperationFactory.deleteFromWorld()
                 ));
@@ -77,7 +77,7 @@ public class LevelTimerSystem extends BaseSystem {
         if ( victoryCooldown > 0 ) {
             victoryCooldown-= world.delta;
             if ( victoryCooldown <= 0 ) {
-                genTitle("You only took " +asTime((int)GameRules.score.age) + " to finish!");
+                genTitle("You finished in " +asTime((int)GameRules.score.age) + ", good job!", 99f);
                 victoryCooldown=0;
             }
         }
