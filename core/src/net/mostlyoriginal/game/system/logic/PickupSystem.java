@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.compression.lzma.Base;
+import net.mostlyoriginal.api.component.graphics.Tint;
 import net.mostlyoriginal.api.operation.JamOperationFactory;
 import net.mostlyoriginal.api.operation.OperationFactory;
 import net.mostlyoriginal.game.GameRules;
@@ -35,11 +36,11 @@ public class PickupSystem extends BaseSystem implements BoxContactListener {
 
     @Override
     protected void processSystem() {
-        if ( toBeDeleted != -1 ) {
+        if (toBeDeleted != -1) {
             E e = E.E(toBeDeleted);
             if (e.hasPickup() && e.pickupType() == Pickup.Type.EXIT) {
                 E player = E.withTag("player");
-                if ( !player.isInvisible()) {
+                if (!player.isInvisible()) {
                     transitionSystem.transition(GameScreen.class, seconds(0.9f));
                     E.E().playSound("ship-reached");
                     player.invisible();
@@ -48,15 +49,21 @@ public class PickupSystem extends BaseSystem implements BoxContactListener {
                     float endY = e.posY() - 1000;
                     E.E().anim("escape_pod")
                             .pos(targetX, targetY)
-                            .renderLayer(GameRules.LAYER_PLAYER+1).removeBoxed().script(
+                            .renderLayer(GameRules.LAYER_PLAYER + 1).removeBoxed().script(
                             OperationFactory.sequence(
                                     JamOperationFactory.moveBetween(targetX, targetY, targetX, endY, seconds(0.8f), Interpolation.exp5In),
                                     OperationFactory.deleteFromWorld())
                     );
                 }
             }
-            e.deleteFromWorld();
-            toBeDeleted=-1;
+            if (e.pickupType() != Pickup.Type.EXIT) {
+                e.removePickup();
+                e.script(OperationFactory.sequence(
+                        JamOperationFactory.tintBetween(Tint.WHITE, Tint.TRANSPARENT, seconds(0.5f), Interpolation.exp5),
+                        OperationFactory.deleteFromWorld()
+                ));
+            } else e.deleteFromWorld();
+            toBeDeleted = -1;
         }
     }
 
@@ -64,25 +71,27 @@ public class PickupSystem extends BaseSystem implements BoxContactListener {
 
     @Override
     public void beginContact(E a, E b) {
-        if ( a.hasPickup() ) {
-            if ( b.hasSharp() ) {
-                if ( a.pickupType() != Pickup.Type.EXIT && a.pickupType() != Pickup.Type.BLINKER) {
+        if (a.hasPickup()) {
+            if (b.hasSharp()) {
+                if (a.pickupType() != Pickup.Type.EXIT && a.pickupType() != Pickup.Type.BLINKER) {
                     toBeDeleted = a.id();
                 }
                 // pop sfx within visual range or user gets confuzzled
-                if ( v2.set(a.posXy()).sub(b.posXy()).len() < GameRules.SCREEN_WIDTH/2) {
+                if (v2.set(a.posXy()).sub(b.posXy()).len() < GameRules.SCREEN_WIDTH / 2) {
                     E.E().playSound("astronaut-pops");
                 }
-            } else if ( b.hasPlayer() && !b.hasDead() && !b.hasInvisible() ) {
-                if ( a.pickupType() == Pickup.Type.BLINKER) {
-                    if ( "orb_off".equals(a.animId())) {
+            } else if (b.hasPlayer() && !b.hasDead() && !b.hasInvisible()) {
+                if (a.pickupType() == Pickup.Type.BLINKER) {
+                    if ("orb_off".equals(a.animId())) {
                         a.anim("orb_on");
                         E.E().playSound("orb-on");
                     }
-                }else {
+                } else {
                     toBeDeleted = a.id(); // also delete, but oxygen!
-                    E.E().playSound(b.oxygenPercentage() > 100 ? "oxygen-recharge-2" : "oxygen-recharge-1");
-                    b.oxygenIncrease();
+                    if (a.pickupType() != Pickup.Type.TUTORIAL) {
+                        E.E().playSound(b.oxygenPercentage() > 100 ? "oxygen-recharge-2" : "oxygen-recharge-1");
+                        b.oxygenIncrease();
+                    }
                 }
             }
         }

@@ -176,7 +176,7 @@ public class MyEntityAssemblyStrategy implements FutureEntitySystem.EntityAssemb
         E item = e
                 .bounds(0, 0, frame.getRegionWidth(), frame.getRegionHeight())
                 .anim(type)
-                .pickupType(Pickup.Type.CLICKABLE)
+                .pickupType(Pickup.Type.TUTORIAL)
                 .renderLayer(GameRules.LAYER_ITEM+5);
 
         e.posX(e.posX()-16);

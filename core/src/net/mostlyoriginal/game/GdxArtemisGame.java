@@ -21,7 +21,7 @@ public class GdxArtemisGame extends Game {
 
 	public void restart() {
 		GameRules.score= new Score();
-		GameRules.nextMap=DEBUG_ENABLED ? "map_debug.tmx" : "map1.tmx";
+		GameRules.nextMap=DEBUG_ENABLED ? "map_debug.tmx" : "map5.tmx";
 		setScreen(LOGO_ENABLED ? new LogoScreen() : new GameScreen());
 	}
 
