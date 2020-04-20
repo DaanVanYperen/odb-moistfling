@@ -10,7 +10,7 @@ public class DesktopLauncher {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		config.width = GameRules.SCREEN_WIDTH;
 		config.height = GameRules.SCREEN_HEIGHT;
-		config.title = "Bob";
+		config.title = "Spacedrift";
 		new LwjglApplication(new GdxArtemisGame(), config);
 		}
 		}

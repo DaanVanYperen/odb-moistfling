@@ -29,7 +29,7 @@ allprojects {
 
     version = '1.0'
     ext {
-        appName = 'Bob'
+        appName = 'Spacedrift'
         appVersion = '1.0'
         gdxVersion = '1.9.10'
         roboVMVersion = '2.3.5'
