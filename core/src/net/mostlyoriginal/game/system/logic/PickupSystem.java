@@ -94,7 +94,11 @@ public class PickupSystem extends BaseSystem implements BoxContactListener {
                 } else {
                     toBeDeleted = a.id(); // also delete, but oxygen!
                     if (a.pickupType() != Pickup.Type.TUTORIAL) {
-                        E.E().playSound(b.oxygenPercentage() > 100 ? "oxygen-recharge-2" : "oxygen-recharge-1");
+                        if ( a.hasAnim() && "random_corpse".equals(a.animId())) {
+                            E.E().playSound("randomise");
+                        } else {
+                            E.E().playSound(b.oxygenPercentage() > 100 ? "oxygen-recharge-2" : "oxygen-recharge-1");
+                        }
                         b.oxygenIncrease();
                         if ( b.hasLeak() && b.leakLeaks() > 1 ) {
                             b.leakLeaks(b.leakLeaks()-1);

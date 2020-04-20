@@ -110,7 +110,8 @@ public class GameScreen extends TransitionableWorldScreen {
                                 "tractor-lock-1.wav",
                                 "tractor-lock-2.wav",
                                 "tractor-unlock.wav",
-                                "orb-on"
+                                "orb-on",
+                                "randomise"
                         ),
                         new BoxPhysicsDebugRenderSystem(),
                         new TransitionSystem(GdxArtemisGame.getInstance(), this)
