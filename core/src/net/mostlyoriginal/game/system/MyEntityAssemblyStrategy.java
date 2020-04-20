@@ -31,6 +31,8 @@ public class MyEntityAssemblyStrategy implements FutureEntitySystem.EntityAssemb
     public static final short CAT_DEBRIS = 8;
     public static final short CAT_CHAIN = 16;
     public static final short CAT_PICKUP = 32;
+    public static final short CAT_BORDER = 64;
+
 
     private BoxPhysicsSystem boxPhysicsSystem;
 
@@ -75,7 +77,7 @@ public class MyEntityAssemblyStrategy implements FutureEntitySystem.EntityAssemb
                 .tag("player")
                 .camera()
                 .renderLayer(GameRules.LAYER_PLAYER);
-        Body body = boxPhysicsSystem.addAsCircle(decoratePlayer, decoratePlayer.getBounds().cy(), 20f, CAT_PLAYER, (short) (CAT_DEBRIS|CAT_PICKUP), 0, 16, 1.0f, 0F);
+        Body body = boxPhysicsSystem.addAsCircle(decoratePlayer, decoratePlayer.getBounds().cy(), 20f, CAT_PLAYER, (short) (CAT_DEBRIS|CAT_PICKUP|CAT_BORDER), 0, 16, 1.0f, 0F);
 
         return decoratePlayer;
     }
@@ -96,7 +98,7 @@ public class MyEntityAssemblyStrategy implements FutureEntitySystem.EntityAssemb
 
         int size = (frame.getRegionWidth() / 2) - 4;
 
-        boxPhysicsSystem.addAsCircle(item, item.getBounds().cy(), size * size * 0.15f, CAT_DEBRIS, (short) (CAT_DEBRIS|CAT_PLAYER|CAT_GRAPPLE|CAT_CHAIN|CAT_PICKUP), MathUtils.random(0,360f), size, 0.0f, 0.2f);
+        boxPhysicsSystem.addAsCircle(item, item.getBounds().cy(), size * size * 0.15f, CAT_DEBRIS, (short) (CAT_DEBRIS|CAT_PLAYER|CAT_GRAPPLE|CAT_CHAIN|CAT_PICKUP|CAT_BORDER), MathUtils.random(0,360f), size, 0.0f, 0.2f);
 
 
         if ( MathUtils.random(0, 100) < 20) {
@@ -127,7 +129,7 @@ public class MyEntityAssemblyStrategy implements FutureEntitySystem.EntityAssemb
 
         int size = (frame.getRegionWidth() / 2) + 4;
 
-        boxPhysicsSystem.addAsCircle(item, item.getBounds().cy(), 1f, CAT_PICKUP, (short) (CAT_DEBRIS|CAT_PLAYER|CAT_GRAPPLE|CAT_PICKUP), MathUtils.random(0,360f), size, 0.0f, 0.1F);
+        boxPhysicsSystem.addAsCircle(item, item.getBounds().cy(), 1f, CAT_PICKUP, (short) (CAT_DEBRIS|CAT_PLAYER|CAT_GRAPPLE|CAT_PICKUP|CAT_BORDER), MathUtils.random(0,360f), size, 0.0f, 0.1F);
 
 
         Body body = e.boxedBody();
@@ -152,7 +154,7 @@ public class MyEntityAssemblyStrategy implements FutureEntitySystem.EntityAssemb
                 .pickupType(Pickup.Type.EXIT)
                 .renderLayer(GameRules.LAYER_ITEM);
 
-        boxPhysicsSystem.addAsBox(item, item.getBounds().cx(), item.getBounds().cy(), 999999999f, CAT_PICKUP, (short) (CAT_PLAYER), 0);
+        boxPhysicsSystem.addAsBox(item, item.getBounds().cx(), item.getBounds().cy(), 999999999f, CAT_PICKUP, (short) (CAT_PLAYER|CAT_BORDER), 0);
 
         return item;
     }

@@ -15,8 +15,7 @@ import net.mostlyoriginal.game.GameRules;
 import net.mostlyoriginal.game.component.map.MapEntityMarker;
 import net.mostlyoriginal.game.component.map.TiledMapLayer;
 import net.mostlyoriginal.game.component.map.TiledMapSingleton;
-
-import static com.badlogic.gdx.Input.Keys.G;
+import net.mostlyoriginal.game.system.box2d.BoxPhysicsSystem;
 
 /**
  * Loads tiled map and craetes MapEntityMarker for all tiles with 'entity' property.
@@ -45,6 +44,7 @@ public class TiledMapManager extends BaseSystem {
 
     // Injected singleton
     private TiledMapSingleton tiledMap;
+    private BoxPhysicsSystem boxPhysicsSystem;
 
     // @Todo
     @Deprecated
@@ -76,11 +76,17 @@ public class TiledMapManager extends BaseSystem {
             tiledMap.tiledLayers.add(layer);
             createLayerEntity(layer);
         }
+
         final TiledMapTileLayer firstLayer = tiledMap.tiledLayers.get(0);
         tiledMap.width = firstLayer.getWidth();
         tiledMap.height = firstLayer.getHeight();
         tiledMap.tileWidth = (int) firstLayer.getTileWidth();
         tiledMap.tileHeight = (int) firstLayer.getTileHeight();
+
+        if (firstLayer != null) {
+            int padding = 128;
+            boxPhysicsSystem.addLevelBorders(-padding, firstLayer.getWidth() * tiledMap.tileWidth + padding,  -padding, firstLayer.getHeight() * tiledMap.tileHeight + padding);
+        }
         GameRules.currentMap = filename;
         GameRules.nextMap = (String) tiledMap.properties.get("nextmap");
         createMapMarkers(tiledMap);

@@ -82,7 +82,7 @@ public class BoxPhysicsSystem extends FluidSystem {
             public void postSolve(Contact contact, ContactImpulse impulse) {
             }
         });
-        //addGroundBody();
+
     }
 
     public World box2d;
@@ -256,7 +256,7 @@ public class BoxPhysicsSystem extends FluidSystem {
 
         return body;
     }
-    protected void addGroundBody() {
+    public void addLevelBorders(int minX, int maxX, int minY, int maxY) {
         final BodyDef bodyDef = new BodyDef();
         bodyDef.type = BodyDef.BodyType.StaticBody;
         bodyDef.position.x = 0;
@@ -265,12 +265,18 @@ public class BoxPhysicsSystem extends FluidSystem {
         groundBody = box2d.createBody(bodyDef);
 
         EdgeShape shape = new EdgeShape();
-        shape.set(-9999, FLOOR_LEVEL_Y / PPM, 9999 / PPM, FLOOR_LEVEL_Y / PPM);
+        shape.set(minX / PPM, minY / PPM, maxX / PPM, minY / PPM);
 //        PolygonShape shape = new PolygonShape();
 //        shape.setAsBox(20 / scaling, 1000 / scaling);
-
         final FixtureDef fixtureDef = new FixtureDef();
+        fixtureDef.filter.categoryBits=CAT_BORDER;
         fixtureDef.shape = shape;
+        groundBody.createFixture(fixtureDef);
+        shape.set(minX / PPM, maxY / PPM, maxX / PPM, maxY / PPM);
+        groundBody.createFixture(fixtureDef);
+        shape.set(minX / PPM, minY / PPM, minX / PPM, maxY / PPM);
+        groundBody.createFixture(fixtureDef);
+        shape.set(maxX / PPM, minY / PPM, maxX / PPM, maxY / PPM);
         groundBody.createFixture(fixtureDef);
         shape.dispose();
     }
