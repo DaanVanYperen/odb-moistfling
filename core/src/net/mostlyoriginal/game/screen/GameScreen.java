@@ -104,7 +104,11 @@ public class GameScreen extends TransitionableWorldScreen {
                                 "breath-suffocating",
                                 "suit-puncture",
                                 "suit-almost-puncture",
-                                "suit-last-oxygen-escapes"
+                                "suit-last-oxygen-escapes",
+                                "ship-reached",
+                                "tractor-lock-1.wav",
+                                "tractor-lock-2.wav",
+                                "tractor-unlock.wav"
                         ),
                         new BoxPhysicsDebugRenderSystem(),
                         new TransitionSystem(GdxArtemisGame.getInstance(), this)

@@ -69,7 +69,9 @@ public class GameScreenAssetSystem extends AbstractAssetSystem {
         loadSprites();
 
         if ( GameRules.MUSIC_ENABLED ) {
-            playMusic("sfx/music.mp3");
+            if ( GameRules.music == null || !GameRules.music.isPlaying() ) { // don't cut short the music.
+                playMusic("sfx/music.mp3");
+            }
         }
     }
 
@@ -85,7 +87,7 @@ public class GameScreenAssetSystem extends AbstractAssetSystem {
         }
     }
 
-    public void playMusic(String mp3) {
+    public static void playMusic(String mp3) {
         if (GameRules.music != null) {
             GameRules.music.stop();
             GameRules.music.dispose();

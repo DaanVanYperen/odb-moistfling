@@ -1,12 +1,14 @@
 package net.mostlyoriginal.game.system.logic;
 
 import com.artemis.E;
+import com.artemis.ESubscription;
 import com.artemis.annotations.All;
 import com.badlogic.gdx.audio.Sound;
 import net.mostlyoriginal.api.util.Cooldown;
 import net.mostlyoriginal.game.component.Leak;
 import net.mostlyoriginal.game.component.Oxygen;
 import net.mostlyoriginal.game.component.Player;
+import net.mostlyoriginal.game.component.logic.Transition;
 import net.mostlyoriginal.game.system.common.FluidSystem;
 import net.mostlyoriginal.game.system.render.SoundPlaySystem;
 import net.mostlyoriginal.game.system.view.GameScreenAssetSystem;
@@ -25,6 +27,9 @@ public class LeakSfxSystem extends FluidSystem {
     private boolean isPlaying=false;
     private long soundId;
 
+    @All(Transition.class)
+    ESubscription transitions;
+
 
     @Override
     protected void initialize() {
@@ -35,7 +40,7 @@ public class LeakSfxSystem extends FluidSystem {
     protected void process(E e) {
 
 
-        if ( e.hasLeak() && !e.isDead() ) {
+        if ( e.hasLeak() && !e.isDead() && transitions.size() == 0 ) {
             if ( !isPlaying ) {
                 if ( sfx == null ) {
                     sfx = soundPlaySystem.getSfx("leak-loop.wav");

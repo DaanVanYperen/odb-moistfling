@@ -4,6 +4,7 @@ import com.artemis.E;
 import com.artemis.annotations.All;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.*;
@@ -43,6 +44,7 @@ public class LatchingSystem extends FluidSystem implements BoxDestructionListene
     protected void end() {
         if (grappleJoint != null && subscription.getEntities().isEmpty() && Gdx.input.isTouched()) {
             killTheLatch();
+            E.E().playSound("tractor-unlock.wav",0.08f);
         }
 
         player.tethered(grappleJoint != null);
@@ -99,6 +101,8 @@ public class LatchingSystem extends FluidSystem implements BoxDestructionListene
             //}
 
             grappleJoint = box2d.createJoint(grappleJointDef);
+
+            E.E().playSound(MathUtils.randomBoolean() ? "tractor-lock-1.wav" : "tractor-lock-2.wav",0.08f);
         }
     }
 

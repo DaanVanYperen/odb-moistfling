@@ -31,6 +31,7 @@ public class PopSystem extends BaseSystem implements BoxContactListener {
             E e = E.E(toBeDeleted);
             if (e.hasPickup() && e.pickupType() == Pickup.Type.EXIT) {
                 transitionSystem.transition(GameScreen.class,0);
+                E.E().playSound("ship-reached");
             }
             e.deleteFromWorld();
             toBeDeleted=-1;
