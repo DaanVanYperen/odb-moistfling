@@ -147,7 +147,9 @@ public class MyEntityAssemblyStrategy implements FutureEntitySystem.EntityAssemb
                         BodyDef.BodyType.DynamicBody, false);
 
         if(isCactus||isHedgehog){
-            e.sharpChance(100).sharpSharpness(3);
+            e.sharpChance(100).sharpSharpness(2);
+        } else if(isHedgehog){
+            e.sharpChance(90).sharpSharpness(1);
         } else if ( isImmovable ) {
             e.sharpChance(0).sharpSharpness(0);
         }
