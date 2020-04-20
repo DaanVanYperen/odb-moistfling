@@ -92,6 +92,7 @@ public class LeakSystem extends FluidSystem implements BoxContactListener {
         E.withTag("player").dead();
         GameRules.nextMap = GameRules.currentMap;
         transitionSystem.transition(GameScreen.class, 4);
+        GameRules.score.checkpoints = GameRules.score.levelStartCheckpoints;
     }
 
     @Override

@@ -98,6 +98,8 @@ public class TiledMapManager extends BaseSystem {
         // @todo SMART!
         levelTimerSystem.mapName = (String) tiledMap.properties.get("name");
         createMapMarkers(tiledMap);
+
+        GameRules.score.levelStartCheckpoints = GameRules.score.checkpoints;
     }
 
     private void createLayerEntity(TiledMapTileLayer layer) {

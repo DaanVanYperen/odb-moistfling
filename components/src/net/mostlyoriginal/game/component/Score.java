@@ -8,4 +8,5 @@ import com.artemis.Component;
 public class Score {
    public int checkpoints=0;
    public float age=0;
+   public int levelStartCheckpoints=0;
 }
