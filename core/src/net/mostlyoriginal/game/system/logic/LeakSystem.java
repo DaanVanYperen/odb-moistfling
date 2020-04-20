@@ -97,7 +97,11 @@ public class LeakSystem extends FluidSystem implements BoxContactListener {
     @Override
     public void beginContact(E a, E b) {
         if ( a.hasSharp() && b.hasPlayer() && !b.isDead() && !b.isInvisible() ) {
-            if ( b.leakLastLeakAge() > 0.5f ) { // don't spam leaks.
+            if ( b.leakLastLeakAge() > 0.2f &&  b.leakLastLeakAge() < 1.0f ) { // don't spam leaks.
+                // be a little forgiving.
+                E.E().playSound("suit-almost-puncture");
+            }
+            else if ( b.leakLastLeakAge() > 0.5f ) { // don't spam leaks.
                 if ( MathUtils.random(0,100) > a.sharpChance()) {
                     // sometimes you are lucky.
                     E.E().playSound("suit-almost-puncture");

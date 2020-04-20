@@ -91,6 +91,9 @@ public class PickupSystem extends BaseSystem implements BoxContactListener {
                     if (a.pickupType() != Pickup.Type.TUTORIAL) {
                         E.E().playSound(b.oxygenPercentage() > 100 ? "oxygen-recharge-2" : "oxygen-recharge-1");
                         b.oxygenIncrease();
+                        if ( b.hasLeak() && b.leakLeaks() > 1 ) {
+                            b.leakLeaks(b.leakLeaks()-1);
+                        }
                     }
                 }
             }
