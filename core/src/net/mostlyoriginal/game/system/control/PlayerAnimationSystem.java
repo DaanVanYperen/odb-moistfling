@@ -28,9 +28,13 @@ public class PlayerAnimationSystem extends FluidSystem {
 
         String suffix;
         if ( percentage > 100 ) suffix="_thicc";
-        else if ( percentage > 50 ) suffix="";
-        else if ( percentage > 25 ) suffix="_skinny";
+        else if ( percentage > 66 ) suffix="";
+        else if ( percentage > 33 ) suffix="_skinny";
         else suffix="_deflated";
+
+        if ( e.hasInhale()) {
+            suffix = suffix + "_inhale";
+        }
 
         Body body = e.boxedBody();
         if (Math.abs(body.getAngularVelocity()) / body.getMass() > 0.05 ) {

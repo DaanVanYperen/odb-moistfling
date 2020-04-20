@@ -141,7 +141,7 @@ public class MyEntityAssemblyStrategy implements FutureEntitySystem.EntityAssemb
 
         int size = (frame.getRegionWidth() / 2) - 4;
 
-        boxPhysicsSystem.addAsCircle(item, item.getBounds().cy(), isCactus ? 4 : isHedgehog ? 2 : size * size * 0.15f, CAT_DEBRIS, (short) (CAT_DEBRIS|CAT_PLAYER|CAT_GRAPPLE|CAT_CHAIN|CAT_PICKUP|CAT_BORDER), MathUtils.random(0,360f), size,
+        boxPhysicsSystem.addAsCircle(item, item.getBounds().cy(), isCactus ? 3 : isHedgehog ? 0.2f : size * size * 0.15f, CAT_DEBRIS, (short) (CAT_DEBRIS|CAT_PLAYER|CAT_GRAPPLE|CAT_CHAIN|CAT_PICKUP|CAT_BORDER), MathUtils.random(0,360f), size,
                 isCactus || isHedgehog ? 1.0f: 0.0f, 0.2f,
                 isImmovable ? BodyDef.BodyType.StaticBody:
                         BodyDef.BodyType.DynamicBody, false);
